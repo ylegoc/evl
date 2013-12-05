@@ -1,5 +1,6 @@
 package evl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -12,14 +13,14 @@ public class MultiMethod<ReturnType, DataType> {
 
 	private int dimension;
 	private MethodComparator<DataType> methodComparator;
-	private AbstractMap<ClassTuple, DispatchableMethod<ReturnType, DataType>> cacheMap;
+	private AbstractMap<ClassTuple, DispatchableMethod<ReturnType, DataType>> cache;
 	private ArrayList<DispatchableMethod<ReturnType, DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<ReturnType, DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
 	MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<ReturnType, DataType>> cacheMap) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
-		this.cacheMap = cacheMap;
+		this.cache = cacheMap;
 	}
 	
 	public void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypes, BadNonVirtualParameterTypes {
@@ -62,6 +63,32 @@ public class MultiMethod<ReturnType, DataType> {
 	
 	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypes, BadNonVirtualParameterTypes {
 		this.add(method, object, null);
+	}
+	
+	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		// create ClassTuple from arguments
+		Class<?>[] virtualParameterTypes = new Class<?>[dimension];
+		for (int i = 0; i < dimension; ++i) {
+			virtualParameterTypes[i] = args[i].getClass();
+		}
+		ClassTuple tuple = new ClassTuple(virtualParameterTypes);
+		
+		// search tuple in cache
+		DispatchableMethod<ReturnType, DataType> method = cache.get(tuple);
+		
+		// calculate the invoked method and put it in the cache
+		if (method == null) {
+			method = find_min_method(tuple);
+			cache.put(tuple, method);
+		}
+		
+		// invoke the method
+		return method.invoke(args);
+		
+	}
+
+	private DispatchableMethod<ReturnType, DataType> find_min_method(ClassTuple tuple) {
+		return null;
 	}
 	
 }
