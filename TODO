@@ -1,0 +1,1 @@
+- hide helper/implementation classes, some methods that must remain package protected 

@@ -5,19 +5,22 @@ import java.lang.reflect.Method;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import evl.exceptions.BadNonVirtualParameterTypes;
 import evl.exceptions.BadNumberOfVirtualParameterTypes;
+import evl.util.CompatibleMethod;
+import evl.util.SuperClass;
 
 public class MultiMethod<ReturnType, DataType> {
 
 	private int dimension;
 	private MethodComparator<DataType> methodComparator;
-	private AbstractMap<ClassTuple, DispatchableMethod<ReturnType, DataType>> cache;
-	private ArrayList<DispatchableMethod<ReturnType, DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<ReturnType, DataType>>();
+	private AbstractMap<ClassTuple, DispatchableMethod<DataType>> cache;
+	private ArrayList<DispatchableMethod<DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<ReturnType, DataType>> cacheMap) {
+	MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<DataType>> cacheMap) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 		this.cache = cacheMap;
@@ -55,7 +58,7 @@ public class MultiMethod<ReturnType, DataType> {
 		}
 		
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
-		DispatchableMethod<ReturnType, DataType> dispatchableMethod = new DispatchableMethod<ReturnType, DataType>(tuple, method, object);
+		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
 		dispatchableMethod.setData(data);
 		
 		dispatchableMethods.add(dispatchableMethod);
@@ -65,7 +68,8 @@ public class MultiMethod<ReturnType, DataType> {
 		this.add(method, object, null);
 	}
 	
-	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	@SuppressWarnings("unchecked")
+	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[dimension];
 		for (int i = 0; i < dimension; ++i) {
@@ -74,20 +78,43 @@ public class MultiMethod<ReturnType, DataType> {
 		ClassTuple tuple = new ClassTuple(virtualParameterTypes);
 		
 		// search tuple in cache
-		DispatchableMethod<ReturnType, DataType> method = cache.get(tuple);
+		DispatchableMethod<DataType> method = cache.get(tuple);
 		
 		// calculate the invoked method and put it in the cache
 		if (method == null) {
-			method = find_min_method(tuple);
+			method = processClassTuple(tuple);
 			cache.put(tuple, method);
 		}
 		
 		// invoke the method
-		return method.invoke(args);
+		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
 		
 	}
 
-	private DispatchableMethod<ReturnType, DataType> find_min_method(ClassTuple tuple) {
+	@SuppressWarnings("unchecked")
+	private DispatchableMethod<DataType> processClassTuple(ClassTuple tuple) throws InstantiationException, IllegalAccessException {
+		
+		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
+		return processClassTuple(this.methodComparator.getClass().newInstance(), tuple, SuperClass.calculate(tuple));
+	}
+	
+	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {
+		
+		// search compatible methods
+		ArrayList<MethodItem<DataType>> compatibleMethodItems = new ArrayList<MethodItem<DataType>>();
+		
+		// iterate the list
+		for (DispatchableMethod<DataType> method : dispatchableMethods) {
+			MethodItem<DataType> item = CompatibleMethod.calculate(superClassSet, method);
+			
+			if (item != null) {
+				compatibleMethodItems.add(item);
+			}
+		}
+		
+		// search for the minimum method item
+		// ...
+		
 		return null;
 	}
 	

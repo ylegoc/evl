@@ -1,9 +1,8 @@
 package evl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-class DispatchableMethod<ReturnType, DataType> {
+public class DispatchableMethod<DataType> {
 
 	private Method method;
 	private Object object;
@@ -16,7 +15,15 @@ class DispatchableMethod<ReturnType, DataType> {
 		this.tuple = tuple;
 	}
 	
-	public ClassTuple tuple() {
+	public Method getMethod() {
+		return method;
+	}
+	
+	public Object getObject() {
+		return object;
+	}
+	
+	public ClassTuple getClassTuple() {
 		return tuple;
 	}
 
@@ -24,13 +31,8 @@ class DispatchableMethod<ReturnType, DataType> {
 		this.data = data;
 	}
 	
-	public DataType data() {
+	public DataType getData() {
 		return data;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		return (ReturnType)method.invoke(object, args);
-	}
-
 }

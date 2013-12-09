@@ -1,35 +1,19 @@
 package evl;
 
-import java.lang.reflect.Method;
 
-public class MethodItem<Data> {
+public class MethodItem<DataType> extends DispatchableMethod<DataType> {
 
-	private Class<?>[] tuple;
 	private int[] distance;
-	private Method method;
-	private Data data;
 	
-	MethodItem(Class<?>[] tuple, int[] distance, Method method, Data data) {
-		this.tuple = tuple;
+	public MethodItem(DispatchableMethod<DataType> method, int[] distance) {
+		super(method.getClassTuple(), method.getMethod(), method.getObject());
+		setData(method.getData());
+		
 		this.distance = distance;
-		this.method = method;
-		this.data = data;
 	}
 	
-	public Class<?>[] tuple() {
-		return tuple;
-	}
-	
-	public int[] distance() {
+	public int[] getDistanceTuple() {
 		return distance;
-	}
-
-	public Method method() {
-		return method;
-	}
-	
-	public Data data() {
-		return data;
 	}
 
 }
