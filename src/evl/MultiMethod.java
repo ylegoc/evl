@@ -6,6 +6,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import evl.exceptions.BadNonVirtualParameterTypes;
 import evl.exceptions.BadNumberOfVirtualParameterTypes;
@@ -20,7 +21,7 @@ public class MultiMethod<ReturnType, DataType> {
 	private ArrayList<DispatchableMethod<DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<DataType>> cacheMap) {
+	public MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<DataType>> cacheMap) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 		this.cache = cacheMap;
@@ -43,7 +44,7 @@ public class MultiMethod<ReturnType, DataType> {
 		
 		Class<?>[] newNonVirtualParameterTypes = new Class<?>[newParameterTypes.length - dimension];
 		for (int i = dimension; i < newParameterTypes.length; ++i) {
-			newNonVirtualParameterTypes[i] = newParameterTypes[i];
+			newNonVirtualParameterTypes[i - dimension] = newParameterTypes[i];
 		}
 		
 		if (nonVirtualParameterTypes == null) {
@@ -56,6 +57,9 @@ public class MultiMethod<ReturnType, DataType> {
 				throw new BadNonVirtualParameterTypes();
 			}
 		}
+		
+		// the cache must be cleared
+		cache.clear();
 		
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
 		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
@@ -113,8 +117,39 @@ public class MultiMethod<ReturnType, DataType> {
 		}
 		
 		// search for the minimum method item
-		// ...
+		ArrayList<MethodItem<DataType>> minMethodItems = new ArrayList<MethodItem<DataType>>();
 		
+		if (compatibleMethodItems.isEmpty()) {
+			// TODO exception
+			System.err.println("no compatible method");
+			return null;
+		}
+
+		// there is at least 1 item
+		Iterator<MethodItem<DataType>> i = compatibleMethodItems.iterator();
+		minMethodItems.add(i.next());
+		
+		while (i.hasNext()) {
+			
+			MethodItem<DataType> item = i.next();
+			
+			int result = methodComparator.compare(item, minMethodItems.get(0));
+			
+			if (result == 0) {
+				minMethodItems.add(item);
+			} else if (result < 0) {
+				minMethodItems.clear();
+				minMethodItems.add(item);
+			}
+		}
+		
+		// test the result, the container cannot be empty
+		if (minMethodItems.size() == 1) {
+			return minMethodItems.get(0);
+		}
+		
+		// TODO ambiguity exception
+		System.err.println("ambiguous method");
 		return null;
 	}
 	

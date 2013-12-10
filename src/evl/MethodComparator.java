@@ -1,7 +1,6 @@
 package evl;
 
-import java.util.Comparator;
+public interface MethodComparator<Data> {
 
-public interface MethodComparator<Data> extends Comparator<MethodItem<Data>> {
-
+	int compare(MethodItem<Data> m1, MethodItem<Data> m2);
 }
