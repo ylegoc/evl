@@ -1,4 +1,6 @@
+- implement exception methods
+- manage exceptions (reduce list of invoke?)
 - hide helper/implementation classes, some methods that must remain package protected 
 - test all errors : bad insertion, etc.
-- faire resolve ou bien laisser implementation simple à base de cache?
-=> dans un premier temps, laisser cache seulement, sinon il faut imaginer toutes les classes ou alors un base prototype
+- not implement resolve because potentially lots of classes
+=> or imagine a base prototype

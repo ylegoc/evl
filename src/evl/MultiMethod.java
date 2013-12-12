@@ -13,6 +13,15 @@ import evl.exceptions.BadNumberOfVirtualParameterTypes;
 import evl.util.CompatibleMethod;
 import evl.util.SuperClass;
 
+/*
+ * Performance tests show that:
+ * - MultiMethod call is 9 times slower than method call
+ * - Time is spent :
+ *  - 25% ClassTuple construction
+ *  - 25% cache search for HashMap
+ *  - 50% reflection method invocation
+ * - Use static methods with null objects has no incidence 
+ */
 public class MultiMethod<ReturnType, DataType> {
 
 	private int dimension;
@@ -92,9 +101,24 @@ public class MultiMethod<ReturnType, DataType> {
 		
 		// invoke the method
 		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
-		
 	}
 
+	@SuppressWarnings("unchecked")
+	public ReturnType invokeCache(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+		// create ClassTuple from arguments
+		Class<?>[] virtualParameterTypes = new Class<?>[dimension];
+		for (int i = 0; i < dimension; ++i) {
+			virtualParameterTypes[i] = args[i].getClass();
+		}
+		ClassTuple tuple = new ClassTuple(virtualParameterTypes);
+		
+		// search tuple in cache
+		DispatchableMethod<DataType> method = cache.get(tuple);
+		
+		// invoke the method
+		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+	}
+	
 	@SuppressWarnings("unchecked")
 	private DispatchableMethod<DataType> processClassTuple(ClassTuple tuple) throws InstantiationException, IllegalAccessException {
 		
