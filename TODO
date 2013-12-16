@@ -4,3 +4,47 @@
 - test all errors : bad insertion, etc.
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
+
+- interface:
+
+Method2<R>.from(obj, "name", Class<?>...)
+
+Method2 m;
+m.invoke(o1, o2, 3, true);
+
+m.add(...)
+
+possibilité de rajouter des familles de methodes
+
+rajouter de façon optionnelle:
+- Cache class
+- FCO
+
+rajouter de façon optionnelle
+
+m.setData(d, T.class, "name", Class<?>...);
+
+idealement:
+Method2<R>.cache(new Cache).fco(new FCO).from(...);
+
+cf:
+ConcurrentMap<K, V> cache = new ConcurrentLinkedHashMap.Builder<K, V>()
+    .maximumWeightedCapacity(1000)
+    .build();
+
+=> Method2.Builder<R, D>().
+
+avec Method2<R>.cache(c) : Method2Builder<R> objet contenant reference vers cache + fco
+verifie que Data est cohérent.
+exemple de cache : LRUMap, rajouter synchronized pour sync.
+
+par défaut, cache est HashMap
+
+on a les methodes invoke et invokeCache.
+
+on peut faire la remarque qu'il pourrait etre plus general de garder obj pour invoke, oui mais les objets composites sont moins faisables.
+=> ne permet que d'économiser de la mémoire en cache.
+=> sauf si on mutualise les cache (faisable?)
+
+mecanisme de resolve + mutex à voir
+

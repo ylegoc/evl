@@ -1,8 +1,11 @@
 package tests.perfs;
 
+import java.util.AbstractMap;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
+
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
 import evl.AsymmetricComparator;
 import evl.ClassTuple;
@@ -67,7 +70,7 @@ public class TestPerfs {
 			
 			int res = 0;
 			for (int i = 0; i < N; i++) {
-				res += m.invokeCache(objects[indexes[i]]);
+				res += m.invoke(objects[indexes[i]]);
 			}
 			
 			Date end = new Date();
@@ -84,6 +87,12 @@ public class TestPerfs {
 		testMethod();
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>()));
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new ConcurrentHashMap<ClassTuple, DispatchableMethod<Void>>()));
+		
+		AbstractMap<ClassTuple, DispatchableMethod<Void>> cache32 = new ConcurrentLinkedHashMap.Builder<ClassTuple, DispatchableMethod<Void>>().maximumWeightedCapacity(32).build();
+		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), cache32));
+		
+		AbstractMap<ClassTuple, DispatchableMethod<Void>> cache4 = new ConcurrentLinkedHashMap.Builder<ClassTuple, DispatchableMethod<Void>>().maximumWeightedCapacity(4).build();
+		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), cache4));
 		
 	}
 }

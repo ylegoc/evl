@@ -1,6 +1,7 @@
 package tests;
 
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import tests.classes.Bar;
 import tests.classes.D;
@@ -9,10 +10,15 @@ import tests.classes.Foo;
 import tests.classes.Foo2;
 import tests.classes.IA;
 import tests.classes.IC;
+
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
+
 import evl.AsymmetricComparator;
 import evl.ClassTuple;
 import evl.DispatchableMethod;
 import evl.MultiMethod;
+import evl.PrioritySymmetricComparator;
+import evl.SymmetricComparator;
 import evl.util.SuperClass;
 
 public class Test {
@@ -43,7 +49,7 @@ public class Test {
 			System.out.println("res = " + res);
 			
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			System.out.println("error");
 		}
 	}
 	
@@ -93,6 +99,43 @@ public class Test {
 		}
 	}
 	
+	public static void test4() {
+		
+		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(2, new SymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
+		
+		Foo2 foo = new Foo2();
+		
+		E e = new E();
+		
+		try {
+		
+			m.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo);
+			m.add(Foo2.class.getMethod("foo", D.class, IA.class), foo);
+			m.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+			
+			int res = m.invoke(e, e);
+			System.out.println("m res = " + res);
+			
+		} catch (Exception ex) {
+			System.out.println("error");
+		}
+		
+		MultiMethod<Integer, Integer> m2 = new MultiMethod<Integer, Integer>(2, new PrioritySymmetricComparator<Integer>(), new HashMap<ClassTuple, DispatchableMethod<Integer>>());
+		
+		try {
+			
+			m2.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo, 1);
+			m2.add(Foo2.class.getMethod("foo", D.class, IA.class), foo, 2);
+			m2.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
+			
+			int res = m2.invoke(e, e);
+			System.out.println("m2 res = " + res);
+			
+		} catch (Exception ex) {
+			System.out.println("error");
+		}
+	}
+	
 	public static void main(String[] args) {
 	
 		HashMap<Class<?>, Integer> classDistanceMap = SuperClass.calculate(E.class);
@@ -102,6 +145,6 @@ public class Test {
 		test1();
 		test2();
 		test3();
-		
+		test4();
 	}
 }
