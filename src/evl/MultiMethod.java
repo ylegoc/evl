@@ -21,6 +21,20 @@ import evl.util.SuperClass;
  *  - 25% cache search for HashMap
  *  - 50% reflection method invocation
  * - Use static methods with null objects has no incidence 
+ * - No need for invokeCache since performance is not good enough
+ * 
+ * When call to method will be optimized, it is possible to be more effective with the cache search
+ * ex: define Method1 (dim. 1) extends MultiMethod and defines invoke
+ * direct call to args[0].getClass()
+ * 
+ * For Method1
+ * invoke(Object obj1, Object...args)
+ * 
+ * For Method2
+ * invoke(Object obj1, Object obj2, Object...args)
+ * 
+ * Optimize with MethodHandle objects.
+ * Try to type the non-virtual parameters.
  */
 public class MultiMethod<ReturnType, DataType> {
 
@@ -98,22 +112,6 @@ public class MultiMethod<ReturnType, DataType> {
 			method = processClassTuple(tuple);
 			cache.put(tuple, method);
 		}
-		
-		// invoke the method
-		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
-	}
-
-	@SuppressWarnings("unchecked")
-	public ReturnType invokeCache(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
-		// create ClassTuple from arguments
-		Class<?>[] virtualParameterTypes = new Class<?>[dimension];
-		for (int i = 0; i < dimension; ++i) {
-			virtualParameterTypes[i] = args[i].getClass();
-		}
-		ClassTuple tuple = new ClassTuple(virtualParameterTypes);
-		
-		// search tuple in cache
-		DispatchableMethod<DataType> method = cache.get(tuple);
 		
 		// invoke the method
 		return (ReturnType)method.getMethod().invoke(method.getObject(), args);

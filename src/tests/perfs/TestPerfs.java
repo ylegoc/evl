@@ -48,6 +48,39 @@ public class TestPerfs {
 		System.out.println("method in " + (end.getTime() - begin.getTime()) + "ms result " + res);
 	}
 	
+	private static void testInstanceOf() {
+
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAll(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("instanceof in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+	}
+	
+	private static void testMap() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllMap(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("map in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		
+	}
+	
 	static void testMultiMethod(MultiMethod<Integer, Void> m) {
 	
 		Foo foo = new Foo();
@@ -85,6 +118,9 @@ public class TestPerfs {
 		
 		init();
 		testMethod();
+		testInstanceOf();
+		testMap();
+		
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>()));
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new ConcurrentHashMap<ClassTuple, DispatchableMethod<Void>>()));
 		
@@ -95,4 +131,5 @@ public class TestPerfs {
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), cache4));
 		
 	}
+
 }

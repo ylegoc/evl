@@ -34,6 +34,9 @@ ConcurrentMap<K, V> cache = new ConcurrentLinkedHashMap.Builder<K, V>()
 
 => Method2.Builder<R, D>().
 
+voir comment rendre optionnelle D
+=> DataMethod2.Builder<R, D>() ?
+
 avec Method2<R>.cache(c) : Method2Builder<R> objet contenant reference vers cache + fco
 verifie que Data est cohérent.
 exemple de cache : LRUMap, rajouter synchronized pour sync.
