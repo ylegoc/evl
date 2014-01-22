@@ -1,23 +1,69 @@
 package tests;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.util.HashMap;
 
+import tests.classes.Bar;
 import tests.classes.D;
 import tests.classes.E;
 import tests.classes.Foo;
+import tests.classes.Foo2;
 import tests.classes.IA;
 import tests.classes.IC;
 import evl.AsymmetricComparator;
 import evl.DispatchableMethod;
 import evl.Method1;
-import evl.MultiMethod;
+import evl.Method2;
+import evl.PrioritySymmetricComparator;
+import evl.SymmetricComparator;
 import evl.util.SuperClass;
 
 public class Test {
 
+	public static void test0() {
+		
+		try {
+			MethodHandles.Lookup lookup = MethodHandles.lookup();
+			// mt is (char,char)String
+			MethodType mt = MethodType.methodType(String.class, char.class, char.class);
+			MethodHandle mh = lookup.findVirtual(String.class, "replace", mt);
+			String s = (String) mh.invokeExact("daddy", 'd', 'n');
+			System.out.println("s = " + s);
+		
+			Foo foo = new Foo();
+			E e = new E();
+			
+			mt = MethodType.methodType(int.class, IA.class);
+			mh = lookup.findVirtual(Foo.class, "foo", mt);
+			
+			int i = (int)mh.invokeExact(foo, (IA)e);
+			System.out.println("i = " + i);
+			
+			i = (int)mh.invoke(foo, e);
+			System.out.println("i = " + i);
+
+			
+			mt = MethodType.methodType(int.class, double.class);
+			mh = lookup.findVirtual(Foo.class, "bar", mt);
+			
+			i = (int)mh.invokeExact(foo, 1.2);
+			System.out.println("i = " + i);
+
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		//Foo.class.getMethod("foo", IA.class);
+	}
+	
 	public static void test1() {
 		
-		MultiMethod<Integer, Void> m = new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Class<?>, DispatchableMethod<Void>>());
+		Method1<Integer, Void> m = new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Class<?>, DispatchableMethod<Void>>());
 		
 		Foo foo = new Foo();
 		
@@ -46,8 +92,8 @@ public class Test {
 	}
 	
 	public static void test2() {
-	/*	
-		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(2, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
+	
+		Method2<Integer, Void> m = new Method2<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Method2.ClassTuple, DispatchableMethod<Void>>());
 		
 		Foo2 foo = new Foo2();
 		
@@ -64,12 +110,12 @@ public class Test {
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}*/
+		}
 	}
 	
 	public static void test3() {
-	/*	
-		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
+	
+		Method1<Integer, Void> m = new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Class<?>, DispatchableMethod<Void>>());
 		
 		Bar bar = new Bar();
 		
@@ -88,12 +134,12 @@ public class Test {
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}*/
+		}
 	}
 	
 	public static void test4() {
-		/*
-		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(2, new SymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
+		
+		Method2<Integer, Void> m = new Method2<Integer, Void>(new SymmetricComparator<Void>(), new HashMap<Method2.ClassTuple, DispatchableMethod<Void>>());
 		
 		Foo2 foo = new Foo2();
 		
@@ -112,7 +158,7 @@ public class Test {
 			System.out.println("error");
 		}
 		
-		MultiMethod<Integer, Integer> m2 = new MultiMethod<Integer, Integer>(2, new PrioritySymmetricComparator<Integer>(), new HashMap<ClassTuple, DispatchableMethod<Integer>>());
+		Method2<Integer, Integer> m2 = new Method2<Integer, Integer>(new PrioritySymmetricComparator<Integer>(), new HashMap<Method2.ClassTuple, DispatchableMethod<Integer>>());
 		
 		try {
 			
@@ -125,7 +171,7 @@ public class Test {
 			
 		} catch (Exception ex) {
 			System.out.println("error");
-		}*/
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -134,6 +180,7 @@ public class Test {
 		
 		System.out.println(classDistanceMap);
 		
+		test0();
 		test1();
 		test2();
 		test3();

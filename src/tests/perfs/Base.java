@@ -1,6 +1,6 @@
 package tests.perfs;
 
-public interface IA {
+public interface Base {
 
 	int foo();
 }

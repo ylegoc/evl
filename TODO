@@ -1,6 +1,8 @@
 - implement exception methods
 - manage exceptions (reduce list of invoke?)
+- check security manager
 - hide helper/implementation classes, some methods that must remain package protected 
+- hide reflection method : propose interface with strings and .class?
 - test all errors : bad insertion, etc.
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype

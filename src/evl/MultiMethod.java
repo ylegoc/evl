@@ -2,7 +2,6 @@ package evl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,25 +15,17 @@ import evl.util.SuperClass;
 /*
  * Performance tests show that:
  * - MultiMethod call is 9 times slower than method call
- * - Time is spent :
- *  - 25% ClassTuple construction
+ * - Time is spent approximatively:
+ *  - 25% method call
  *  - 25% cache search for HashMap
  *  - 50% reflection method invocation
  * - Use static methods with null objects has no incidence 
  * - No need for invokeCache since performance is not good enough
  * 
- * When call to method will be optimized, it is possible to be more effective with the cache search
- * ex: define Method1 (dim. 1) extends MultiMethod and defines invoke
- * direct call to args[0].getClass()
- * 
- * For Method1
- * invoke(Object obj1, Object...args)
- * 
- * For Method2
- * invoke(Object obj1, Object obj2, Object...args)
- * 
- * Optimize with MethodHandle objects.
- * Try to type the non-virtual parameters.
+ * It is not possible to optimize with MethodHandle objects.
+ * Only the MethodHandle.invokeExact is fast, but it requires to define a bridge 
+ * that would be only possible with code template (C++) to generate it.
+ * At least the virtual arguments could be avoided to be checked.
  */
 public abstract class MultiMethod<ReturnType, DataType> {
 
@@ -88,6 +79,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		// the cache must be cleared
 		resetCache();
 		
+		method.setAccessible(true);
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
 		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
 		dispatchableMethod.setData(data);
@@ -100,7 +92,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 	}
 	
 	public abstract ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException;
-		
+	
 /*	
 	@SuppressWarnings("unchecked")
 	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
@@ -125,10 +117,17 @@ public abstract class MultiMethod<ReturnType, DataType> {
 	}
 */	
 	@SuppressWarnings("unchecked")
-	protected DispatchableMethod<DataType> processClassTuple(MethodClassTuple tuple) throws InstantiationException, IllegalAccessException {
+	protected DispatchableMethod<DataType> processClassTuple(Object[] args) throws InstantiationException, IllegalAccessException {
+		
+		// create ClassTuple from arguments
+		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
+		for (int i = 0; i < getDimension(); ++i) {
+			virtualParameterTypes[i] = args[i].getClass();
+		}
+		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		return processClassTuple(this.methodComparator.getClass().newInstance(), tuple, SuperClass.calculate(tuple));
+		return processClassTuple(this.methodComparator.getClass().newInstance(), methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
 	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {

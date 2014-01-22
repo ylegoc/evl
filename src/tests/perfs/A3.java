@@ -1,6 +1,6 @@
 package tests.perfs;
 
-public class A3 implements IA {
+public class A3 implements Base {
 
 	@Override
 	public int foo() {

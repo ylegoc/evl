@@ -16,4 +16,8 @@ public class Foo {
 		System.out.println("foo IC");
 		return 3;
 	}
+	
+	public int bar(double d) {
+		return (int)d;
+	}
 }
