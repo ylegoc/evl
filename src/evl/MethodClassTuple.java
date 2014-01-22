@@ -2,11 +2,11 @@ package evl;
 
 import java.util.Arrays;
 
-public class ClassTuple {
+public class MethodClassTuple {
 
 	private Class<?>[] tuple;
 	
-	public ClassTuple(Class<?>[] tuple) {
+	public MethodClassTuple(Class<?>[] tuple) {
 		this.tuple = tuple;
 	}
 	
@@ -33,7 +33,7 @@ public class ClassTuple {
 			return false;
 		}
 
-		ClassTuple other = (ClassTuple) obj;
+		MethodClassTuple other = (MethodClassTuple) obj;
 		if (!Arrays.equals(tuple, other.tuple)) {
 			return false;
 		}

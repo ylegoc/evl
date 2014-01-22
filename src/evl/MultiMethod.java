@@ -36,19 +36,23 @@ import evl.util.SuperClass;
  * Optimize with MethodHandle objects.
  * Try to type the non-virtual parameters.
  */
-public class MultiMethod<ReturnType, DataType> {
+public abstract class MultiMethod<ReturnType, DataType> {
 
 	private int dimension;
 	private MethodComparator<DataType> methodComparator;
-	private AbstractMap<ClassTuple, DispatchableMethod<DataType>> cache;
 	private ArrayList<DispatchableMethod<DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	public MultiMethod(int dimension, MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<DataType>> cacheMap) {
+	public MultiMethod(int dimension, MethodComparator<DataType> methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
-		this.cache = cacheMap;
 	}
+
+	public int getDimension() {
+		return dimension;
+	}
+	
+	protected abstract void resetCache();
 	
 	public void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypes, BadNonVirtualParameterTypes {
 		
@@ -82,9 +86,9 @@ public class MultiMethod<ReturnType, DataType> {
 		}
 		
 		// the cache must be cleared
-		cache.clear();
+		resetCache();
 		
-		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
+		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
 		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
 		dispatchableMethod.setData(data);
 		
@@ -95,6 +99,9 @@ public class MultiMethod<ReturnType, DataType> {
 		this.add(method, object, null);
 	}
 	
+	public abstract ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException;
+		
+/*	
 	@SuppressWarnings("unchecked")
 	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		// create ClassTuple from arguments
@@ -116,15 +123,15 @@ public class MultiMethod<ReturnType, DataType> {
 		// invoke the method
 		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
 	}
-	
+*/	
 	@SuppressWarnings("unchecked")
-	private DispatchableMethod<DataType> processClassTuple(ClassTuple tuple) throws InstantiationException, IllegalAccessException {
+	protected DispatchableMethod<DataType> processClassTuple(MethodClassTuple tuple) throws InstantiationException, IllegalAccessException {
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
 		return processClassTuple(this.methodComparator.getClass().newInstance(), tuple, SuperClass.calculate(tuple));
 	}
 	
-	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {
+	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {
 		
 		// search compatible methods
 		ArrayList<MethodItem<DataType>> compatibleMethodItems = new ArrayList<MethodItem<DataType>>();

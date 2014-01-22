@@ -1,16 +1,12 @@
 package tests.perfs;
 
-import java.util.AbstractMap;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-
 import evl.AsymmetricComparator;
-import evl.ClassTuple;
 import evl.DispatchableMethod;
-import evl.MultiMethod;
+import evl.Method1;
 
 public class TestPerfs {
 
@@ -81,7 +77,7 @@ public class TestPerfs {
 		
 	}
 	
-	static void testMultiMethod(MultiMethod<Integer, Void> m) {
+	static void testMultiMethod(Method1<Integer, Void> m) {
 	
 		Foo foo = new Foo();
 		
@@ -121,15 +117,15 @@ public class TestPerfs {
 		testInstanceOf();
 		testMap();
 		
-		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>()));
-		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new ConcurrentHashMap<ClassTuple, DispatchableMethod<Void>>()));
-		
+		testMultiMethod(new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Class<?>, DispatchableMethod<Void>>()));
+		testMultiMethod(new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new ConcurrentHashMap<Class<?>, DispatchableMethod<Void>>()));
+		/*
 		AbstractMap<ClassTuple, DispatchableMethod<Void>> cache32 = new ConcurrentLinkedHashMap.Builder<ClassTuple, DispatchableMethod<Void>>().maximumWeightedCapacity(32).build();
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), cache32));
 		
 		AbstractMap<ClassTuple, DispatchableMethod<Void>> cache4 = new ConcurrentLinkedHashMap.Builder<ClassTuple, DispatchableMethod<Void>>().maximumWeightedCapacity(4).build();
 		testMultiMethod(new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), cache4));
-		
+		*/
 	}
 
 }

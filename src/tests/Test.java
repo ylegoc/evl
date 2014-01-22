@@ -1,31 +1,23 @@
 package tests;
 
 import java.util.HashMap;
-import java.util.concurrent.ConcurrentMap;
 
-import tests.classes.Bar;
 import tests.classes.D;
 import tests.classes.E;
 import tests.classes.Foo;
-import tests.classes.Foo2;
 import tests.classes.IA;
 import tests.classes.IC;
-
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-
 import evl.AsymmetricComparator;
-import evl.ClassTuple;
 import evl.DispatchableMethod;
+import evl.Method1;
 import evl.MultiMethod;
-import evl.PrioritySymmetricComparator;
-import evl.SymmetricComparator;
 import evl.util.SuperClass;
 
 public class Test {
 
 	public static void test1() {
 		
-		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
+		MultiMethod<Integer, Void> m = new Method1<Integer, Void>(new AsymmetricComparator<Void>(), new HashMap<Class<?>, DispatchableMethod<Void>>());
 		
 		Foo foo = new Foo();
 		
@@ -54,7 +46,7 @@ public class Test {
 	}
 	
 	public static void test2() {
-		
+	/*	
 		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(2, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
 		
 		Foo2 foo = new Foo2();
@@ -72,11 +64,11 @@ public class Test {
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
+		}*/
 	}
 	
 	public static void test3() {
-		
+	/*	
 		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(1, new AsymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
 		
 		Bar bar = new Bar();
@@ -96,11 +88,11 @@ public class Test {
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		}
+		}*/
 	}
 	
 	public static void test4() {
-		
+		/*
 		MultiMethod<Integer, Void> m = new MultiMethod<Integer, Void>(2, new SymmetricComparator<Void>(), new HashMap<ClassTuple, DispatchableMethod<Void>>());
 		
 		Foo2 foo = new Foo2();
@@ -133,7 +125,7 @@ public class Test {
 			
 		} catch (Exception ex) {
 			System.out.println("error");
-		}
+		}*/
 	}
 	
 	public static void main(String[] args) {

@@ -2,11 +2,11 @@ package evl.util;
 
 import java.util.HashMap;
 
-import evl.ClassTuple;
+import evl.MethodClassTuple;
 
 public class SuperClass {
 
-	public static HashMap<Class<?>, Integer>[] calculate(ClassTuple tuple) {
+	public static HashMap<Class<?>, Integer>[] calculate(MethodClassTuple tuple) {
 		
 		@SuppressWarnings("unchecked")
 		HashMap<Class<?>, Integer>[] result = new HashMap[tuple.get().length];

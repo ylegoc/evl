@@ -6,10 +6,10 @@ public class DispatchableMethod<DataType> {
 
 	private Method method;
 	private Object object;
-	private ClassTuple tuple;
+	private MethodClassTuple tuple;
 	private DataType data;
 	
-	public DispatchableMethod(ClassTuple tuple, Method method, Object object) {
+	public DispatchableMethod(MethodClassTuple tuple, Method method, Object object) {
 		this.method = method;
 		this.object = object;
 		this.tuple = tuple;
@@ -23,7 +23,7 @@ public class DispatchableMethod<DataType> {
 		return object;
 	}
 	
-	public ClassTuple getClassTuple() {
+	public MethodClassTuple getClassTuple() {
 		return tuple;
 	}
 
