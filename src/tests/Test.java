@@ -87,7 +87,7 @@ public class Test {
 			System.out.println("res = " + res);
 			
 		} catch (Exception ex) {
-			System.out.println("error");
+			ex.printStackTrace();
 		}
 	}
 	
@@ -155,7 +155,7 @@ public class Test {
 			System.out.println("m res = " + res);
 			
 		} catch (Exception ex) {
-			System.out.println("error");
+			ex.printStackTrace();
 		}
 		
 		Method2<Integer, Integer> m2 = new Method2<Integer, Integer>(new PrioritySymmetricComparator<Integer>(), new HashMap<Method2.ClassTuple, DispatchableMethod<Integer>>());
@@ -170,7 +170,7 @@ public class Test {
 			System.out.println("m2 res = " + res);
 			
 		} catch (Exception ex) {
-			System.out.println("error");
+			ex.printStackTrace();
 		}
 	}
 	

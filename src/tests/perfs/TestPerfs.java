@@ -1,5 +1,6 @@
 package tests.perfs;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.AbstractMap;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +13,9 @@ import evl.DispatchableMethod;
 import evl.Method1;
 import evl.Method2;
 import evl.Method3;
+import evl.exceptions.AmbiguousMethodException;
+import evl.exceptions.MethodComparatorInstantiationException;
+import evl.exceptions.NoCompatibleMethodException;
 
 public class TestPerfs {
 
@@ -149,7 +153,7 @@ public class TestPerfs {
 	}
 	
 	static void testMultiMethod3(Method3<Integer, Void> m) {
-		
+
 		Foo foo = new Foo();
 		
 		try {

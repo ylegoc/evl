@@ -1,4 +1,4 @@
-package tests;
+package tests.proto;
 
 
 public class MyMethod extends MMethod {

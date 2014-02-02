@@ -7,8 +7,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import evl.exceptions.BadNonVirtualParameterTypes;
-import evl.exceptions.BadNumberOfVirtualParameterTypes;
+import evl.exceptions.AmbiguousMethodException;
+import evl.exceptions.BadNonVirtualParameterTypesException;
+import evl.exceptions.BadNumberOfVirtualParameterTypesException;
+import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
+import evl.exceptions.MethodComparatorInstantiationException;
+import evl.exceptions.NoCompatibleMethodException;
 import evl.util.CompatibleMethod;
 import evl.util.SuperClass;
 
@@ -45,13 +50,13 @@ public abstract class MultiMethod<ReturnType, DataType> {
 	
 	protected abstract void resetCache();
 	
-	public void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypes, BadNonVirtualParameterTypes {
+	public void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
 		// check parameter types
 		if (newParameterTypes.length < dimension) {
-			throw new BadNumberOfVirtualParameterTypes();
+			throw new BadNumberOfVirtualParameterTypesException();
 		} 
 	
 		Class<?>[] newVirtualParameterTypes = new Class<?>[dimension];
@@ -72,14 +77,18 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		} else {
 			// check the equality with non virtual parameter types
 			if (!Arrays.equals(nonVirtualParameterTypes, newNonVirtualParameterTypes)) {
-				throw new BadNonVirtualParameterTypes();
+				throw new BadNonVirtualParameterTypesException();
 			}
 		}
 		
 		// the cache must be cleared
 		resetCache();
 		
-		method.setAccessible(true);
+		try {
+			method.setAccessible(true);
+		} catch (SecurityException e) {
+			// do nothing
+		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
 		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
 		dispatchableMethod.setData(data);
@@ -87,37 +96,24 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		dispatchableMethods.add(dispatchableMethod);
 	}
 	
-	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypes, BadNonVirtualParameterTypes {
+	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		this.add(method, object, null);
 	}
 	
-	public abstract ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException;
+	public abstract ReturnType invoke(Object... args) throws EVLException;
 	
-/*	
 	@SuppressWarnings("unchecked")
-	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
-		// create ClassTuple from arguments
-		Class<?>[] virtualParameterTypes = new Class<?>[dimension];
-		for (int i = 0; i < dimension; ++i) {
-			virtualParameterTypes[i] = args[i].getClass();
-		}
-		ClassTuple tuple = new ClassTuple(virtualParameterTypes);
-		
-		// search tuple in cache
-		DispatchableMethod<DataType> method = cache.get(tuple);
-		
-		// calculate the invoked method and put it in the cache
-		if (method == null) {
-			method = processClassTuple(tuple);
-			cache.put(tuple, method);
-		}
-		
+	protected ReturnType invokeMethod(DispatchableMethod<DataType> method, Object[] args) throws InvocationException {
 		// invoke the method
-		return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+		try {
+			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			throw new InvocationException();
+		}
 	}
-*/	
+	
 	@SuppressWarnings("unchecked")
-	protected DispatchableMethod<DataType> processClassTuple(Object[] args) throws InstantiationException, IllegalAccessException {
+	protected DispatchableMethod<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -127,10 +123,18 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		return processClassTuple(this.methodComparator.getClass().newInstance(), methodTuple, SuperClass.calculate(methodTuple));
+		MethodComparator<DataType> methodComparatorCopy;
+		
+		try {
+			methodComparatorCopy = this.methodComparator.getClass().newInstance();
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new MethodComparatorInstantiationException();
+		}
+		
+		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
-	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {
+	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
 		ArrayList<MethodItem<DataType>> compatibleMethodItems = new ArrayList<MethodItem<DataType>>();
@@ -148,9 +152,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		ArrayList<MethodItem<DataType>> minMethodItems = new ArrayList<MethodItem<DataType>>();
 		
 		if (compatibleMethodItems.isEmpty()) {
-			// TODO exception
-			System.err.println("no compatible method");
-			return null;
+			throw new NoCompatibleMethodException(tuple);
 		}
 
 		// there is at least 1 item
@@ -176,9 +178,12 @@ public abstract class MultiMethod<ReturnType, DataType> {
 			return minMethodItems.get(0);
 		}
 		
-		// TODO ambiguity exception
-		System.err.println("ambiguous method");
-		return null;
+		String possibleMethods = "";
+		for (MethodItem<DataType> item : minMethodItems) {
+			possibleMethods += "\t" + item.getMethod() + "\n";
+		}
+		
+		throw new AmbiguousMethodException(tuple, possibleMethods);
 	}
 	
 }

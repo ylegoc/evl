@@ -40,5 +40,19 @@ public class MethodClassTuple {
 		
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		String result = "<";
+		
+		for (int i = 0; i < tuple.length - 1; i++) {
+			result += tuple[i].getName() + ", ";
+		}
+		
+		// tuple has size > 0 
+		result += tuple[tuple.length - 1].getName() + ">";
+		
+		return result;
+	}
 	
 }

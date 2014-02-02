@@ -1,4 +1,4 @@
-package tests;
+package tests.proto;
 
 import java.lang.reflect.Method;
 

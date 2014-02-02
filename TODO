@@ -1,6 +1,5 @@
-- implement exception methods
-- manage exceptions (reduce list of invoke?)
-- check security manager
+- interface for creation of multimethods
+	=> separate methods with Data and the other
 - hide helper/implementation classes, some methods that must remain package protected 
 - hide reflection method : propose interface with strings and .class?
 - test all errors : bad insertion, etc.

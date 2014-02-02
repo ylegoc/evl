@@ -1,7 +1,8 @@
 package evl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.AbstractMap;
+
+import evl.exceptions.EVLException;
 
 
 public class Method1<ReturnType, DataType> extends MultiMethod<ReturnType, DataType> {
@@ -17,15 +18,14 @@ public class Method1<ReturnType, DataType> extends MultiMethod<ReturnType, DataT
 		cache.clear();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public ReturnType invoke(Object... args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
+	public ReturnType invoke(Object... args) throws EVLException {
 		
 		// search tuple in cache
 		DispatchableMethod<DataType> method = cache.get(args[0].getClass());
 
 		try {
 			// invoke the method
-			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+			return invokeMethod(method, args);
 			
 		} catch (NullPointerException e) {
 			// calculate the invoked method and put it in the cache
@@ -38,7 +38,7 @@ public class Method1<ReturnType, DataType> extends MultiMethod<ReturnType, DataT
 			}
 			
 			// invoke the method
-			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+			return invokeMethod(method, args);
 		}
 	}
 		
