@@ -190,26 +190,39 @@ public class TestPerfs {
 		testInstanceOf();
 		testMap();
 		
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), new HashMap<Class<?>, DispatchableMethodD<Void>>()));
-		testMultiMethod2(new Method2<Integer>(new AsymmetricComparator(), new HashMap<Method2D.ClassTuple, DispatchableMethodD<Void>>()));
-		testMultiMethod3(new Method3<Integer>(new AsymmetricComparator(), new HashMap<Method3D.ClassTuple, DispatchableMethodD<Void>>()));
+		testMultiMethod(Method1.<Integer>builder()
+								.comparator(new AsymmetricComparator()).build());
 		
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), new ConcurrentHashMap<Class<?>, DispatchableMethodD<Void>>()));
+		testMultiMethod2(Method2.<Integer>builder().comparator(new AsymmetricComparator()).build());
+		//testMultiMethod3(Method3.<Integer>builder().comparator(new AsymmetricComparator()).build());
 		
-		ConcurrentLinkedHashMap<Class<?>, DispatchableMethodD<Void>> cache32 = new ConcurrentLinkedHashMap.Builder<Class<?>, DispatchableMethodD<Void>>().maximumWeightedCapacity(32).build();
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), cache32));
-
-		ConcurrentLinkedHashMap<Class<?>, DispatchableMethodD<Void>> cache8 = new ConcurrentLinkedHashMap.Builder<Class<?>, DispatchableMethodD<Void>>().maximumWeightedCapacity(8).build();
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), cache8));
-	
-		ConcurrentLinkedHashMap<Class<?>, DispatchableMethodD<Void>> cache7 = new ConcurrentLinkedHashMap.Builder<Class<?>, DispatchableMethodD<Void>>().maximumWeightedCapacity(7).build();
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), cache7));
+		testMultiMethod(Method1.<Integer>builder()
+								.comparator(new AsymmetricComparator())
+								.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>()).build());
 		
-		ConcurrentLinkedHashMap<Class<?>, DispatchableMethodD<Void>> cache6 = new ConcurrentLinkedHashMap.Builder<Class<?>, DispatchableMethodD<Void>>().maximumWeightedCapacity(6).build();
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), cache6));
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(32).build());
 		
-		ConcurrentLinkedHashMap<Class<?>, DispatchableMethodD<Void>> cache4 = new ConcurrentLinkedHashMap.Builder<Class<?>, DispatchableMethodD<Void>>().maximumWeightedCapacity(4).build();
-		testMultiMethod(new Method1<Integer>(new AsymmetricComparator(), cache4));
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(8).build());
+		
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(7).build());
+		
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(6).build());
+		
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(5).build());
+		
+		testMultiMethod(Method1.<Integer>builder()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(4).build());
 	}
 
 }

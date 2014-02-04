@@ -23,7 +23,8 @@ public class Test {
 	
 	public static void test1() {
 		
-		Method1<Integer> m = new Method1<Integer>(new AsymmetricComparator(), new HashMap<Class<?>, DispatchableMethodD<Void>>());
+		Method1<Integer> m = Method1.<Integer>builder()
+									.comparator(new AsymmetricComparator()).build();
 		
 		Foo foo = new Foo();
 		
@@ -53,7 +54,7 @@ public class Test {
 	
 	public static void test2() {
 	
-		Method2<Integer> m = new Method2<Integer>(new AsymmetricComparator(), new HashMap<Method2.ClassTuple, DispatchableMethodD<Void>>());
+		Method2<Integer> m = Method2.<Integer>builder().comparator(new AsymmetricComparator()).build();
 		
 		Foo2 foo = new Foo2();
 		
@@ -75,7 +76,7 @@ public class Test {
 	
 	public static void test3() {
 	
-		Method1<Integer> m = new Method1<Integer>(new AsymmetricComparator(), new HashMap<Class<?>, DispatchableMethodD<Void>>());
+		Method1<Integer> m = Method1.<Integer>builder().comparator(new AsymmetricComparator()).build();
 		
 		Bar bar = new Bar();
 		
@@ -99,7 +100,7 @@ public class Test {
 	
 	public static void test4() {
 		
-		Method2<Integer> m = new Method2<Integer>(new SymmetricComparator(), new HashMap<Method2.ClassTuple, DispatchableMethodD<Void>>());
+		Method2<Integer> m = Method2.<Integer>builder().comparator(new SymmetricComparator()).build();
 		
 		Foo2 foo = new Foo2();
 		
@@ -118,7 +119,17 @@ public class Test {
 			ex.printStackTrace();
 		}
 		
-		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>(new PrioritySymmetricComparator<Integer>(), new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>());
+		Method2D<Integer, Integer> m2 = new Method2D.Builder<Integer, Integer>()
+											.comparator(new PrioritySymmetricComparator<Integer>())
+											.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+											.build();
+
+		m2 = Method2D.<Integer, Integer>builder()
+				.comparator(new PrioritySymmetricComparator<Integer>())
+				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+				.build();
+
+		
 		
 		try {
 			

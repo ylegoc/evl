@@ -42,7 +42,8 @@ Method2.Builder<R>().build();
 rajouter les methodes à builder : methods(Method...) et data(DataType...) pour mettre des tableaux
 
 
-
+reutiliser une method :
+private Method1 m = Method1.Builder<Integer>().methods(...).build()
 
 
 on peut faire la remarque qu'il pourrait etre plus general de garder obj pour invoke, oui mais les objets composites sont moins faisables.

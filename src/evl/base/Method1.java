@@ -3,20 +3,57 @@ package evl.base;
 import java.lang.reflect.Method;
 import java.util.AbstractMap;
 
-import evl.data.DispatchableMethodD;
 import evl.data.BaseMethod1D;
+import evl.data.DispatchableMethodD;
 import evl.data.MethodComparatorD;
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
+import evl.util.CacheFactory;
 
 
 public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 	
-	public Method1(MethodComparatorD<Void> methodComparator, AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap) {
+	private Method1(MethodComparatorD<Void> methodComparator, AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap) {
 		super(methodComparator, cacheMap);
 	}
 	
 	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		super.add(method, object, null);
+	}
+	
+	public static class Builder<ReturnType> {
+		
+		// default value for method comparator
+		private MethodComparatorD<Void> methodComparator = new AsymmetricComparator();
+		private AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
+		
+		public Builder<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
+			this.methodComparator = methodComparator;
+			return this;
+		}
+		
+		public Builder<ReturnType> cache(AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap) {
+			this.cacheMap = cacheMap;
+			return this;
+		}
+		
+		public Builder<ReturnType> unboundedCache() {
+			this.cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
+			return this;
+		}
+		
+		public Builder<ReturnType> boundedCache(long capacity) {
+			this.cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createBoundedCache(capacity);
+			return this;
+		}
+		
+		public Method1<ReturnType> build() {
+			return new Method1<ReturnType>(methodComparator, cacheMap);
+		}
+	}
+	
+	// provided for convenience
+	public static <ReturnType> Builder<ReturnType> builder() {
+		return new Builder<ReturnType>();
 	}
 }
