@@ -1,4 +1,4 @@
-package evl;
+package evl.data;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,6 +15,7 @@ import evl.exceptions.InvocationException;
 import evl.exceptions.MethodComparatorInstantiationException;
 import evl.exceptions.NoCompatibleMethodException;
 import evl.util.CompatibleMethod;
+import evl.util.MethodClassTuple;
 import evl.util.SuperClass;
 
 /*
@@ -32,14 +33,14 @@ import evl.util.SuperClass;
  * that would be only possible with code template (C++) to generate it.
  * At least the virtual arguments could be avoided to be checked.
  */
-public abstract class MultiMethod<ReturnType, DataType> {
+public abstract class MultiMethodD<ReturnType, DataType> {
 
 	private int dimension;
-	private MethodComparator<DataType> methodComparator;
-	private ArrayList<DispatchableMethod<DataType>> dispatchableMethods = new ArrayList<DispatchableMethod<DataType>>();
+	private MethodComparatorD<DataType> methodComparator;
+	private ArrayList<DispatchableMethodD<DataType>> dispatchableMethods = new ArrayList<DispatchableMethodD<DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	public MultiMethod(int dimension, MethodComparator<DataType> methodComparator) {
+	public MultiMethodD(int dimension, MethodComparatorD<DataType> methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 	}
@@ -50,7 +51,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 	
 	protected abstract void resetCache();
 	
-	public void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	protected void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
@@ -90,20 +91,16 @@ public abstract class MultiMethod<ReturnType, DataType> {
 			// do nothing
 		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
-		DispatchableMethod<DataType> dispatchableMethod = new DispatchableMethod<DataType>(tuple, method, object);
+		DispatchableMethodD<DataType> dispatchableMethod = new DispatchableMethodD<DataType>(tuple, method, object);
 		dispatchableMethod.setData(data);
 		
 		dispatchableMethods.add(dispatchableMethod);
 	}
 	
-	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
-		this.add(method, object, null);
-	}
-	
 	public abstract ReturnType invoke(Object... args) throws EVLException;
 	
 	@SuppressWarnings("unchecked")
-	protected ReturnType invokeMethod(DispatchableMethod<DataType> method, Object[] args) throws InvocationException {
+	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws InvocationException {
 		// invoke the method
 		try {
 			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
@@ -113,7 +110,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected DispatchableMethod<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
+	protected DispatchableMethodD<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -123,7 +120,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		MethodComparator<DataType> methodComparatorCopy;
+		MethodComparatorD<DataType> methodComparatorCopy;
 		
 		try {
 			methodComparatorCopy = this.methodComparator.getClass().newInstance();
@@ -134,14 +131,14 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
-	private DispatchableMethod<DataType> processClassTuple(MethodComparator<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private DispatchableMethodD<DataType> processClassTuple(MethodComparatorD<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
-		ArrayList<MethodItem<DataType>> compatibleMethodItems = new ArrayList<MethodItem<DataType>>();
+		ArrayList<MethodItemD<DataType>> compatibleMethodItems = new ArrayList<MethodItemD<DataType>>();
 		
 		// iterate the list
-		for (DispatchableMethod<DataType> method : dispatchableMethods) {
-			MethodItem<DataType> item = CompatibleMethod.calculate(superClassSet, method);
+		for (DispatchableMethodD<DataType> method : dispatchableMethods) {
+			MethodItemD<DataType> item = CompatibleMethod.calculate(superClassSet, method);
 			
 			if (item != null) {
 				compatibleMethodItems.add(item);
@@ -149,19 +146,19 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		}
 		
 		// search for the minimum method item
-		ArrayList<MethodItem<DataType>> minMethodItems = new ArrayList<MethodItem<DataType>>();
+		ArrayList<MethodItemD<DataType>> minMethodItems = new ArrayList<MethodItemD<DataType>>();
 		
 		if (compatibleMethodItems.isEmpty()) {
 			throw new NoCompatibleMethodException(tuple);
 		}
 
 		// there is at least 1 item
-		Iterator<MethodItem<DataType>> i = compatibleMethodItems.iterator();
+		Iterator<MethodItemD<DataType>> i = compatibleMethodItems.iterator();
 		minMethodItems.add(i.next());
 		
 		while (i.hasNext()) {
 			
-			MethodItem<DataType> item = i.next();
+			MethodItemD<DataType> item = i.next();
 			
 			int result = methodComparator.compare(item, minMethodItems.get(0));
 			
@@ -179,7 +176,7 @@ public abstract class MultiMethod<ReturnType, DataType> {
 		}
 		
 		String possibleMethods = "";
-		for (MethodItem<DataType> item : minMethodItems) {
+		for (MethodItemD<DataType> item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";
 		}
 		

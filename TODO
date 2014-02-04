@@ -3,6 +3,7 @@
 - hide helper/implementation classes, some methods that must remain package protected 
 - hide reflection method : propose interface with strings and .class?
 - test all errors : bad insertion, etc.
+- refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
 
@@ -25,30 +26,26 @@ rajouter de façon optionnelle
 
 m.setData(d, T.class, "name", Class<?>...);
 
-idealement:
-Method2<R>.cache(new Cache).fco(new FCO).from(...);
-
-cf:
+voir:
 ConcurrentMap<K, V> cache = new ConcurrentLinkedHashMap.Builder<K, V>()
     .maximumWeightedCapacity(1000)
     .build();
 
-=> Method2.Builder<R, D>().
+=> Method2D.Builder<R, D>()
+idem
+Method2.Builder<R>()
 
-voir comment rendre optionnelle D
-=> DataMethod2.Builder<R, D>() ?
+ex: Method2D.Builder<R, D>().comparator(new MyComparator()).cache(new MyCache()).build();
 
-avec Method2<R>.cache(c) : Method2Builder<R> objet contenant reference vers cache + fco
-verifie que Data est cohérent.
-exemple de cache : LRUMap, rajouter synchronized pour sync.
+Method2.Builder<R>().build();
 
-par défaut, cache est HashMap
+rajouter les methodes à builder : methods(Method...) et data(DataType...) pour mettre des tableaux
 
-on a les methodes invoke et invokeCache.
+
+
+
 
 on peut faire la remarque qu'il pourrait etre plus general de garder obj pour invoke, oui mais les objets composites sont moins faisables.
 => ne permet que d'économiser de la mémoire en cache.
 => sauf si on mutualise les cache (faisable?)
-
-mecanisme de resolve + mutex à voir
 

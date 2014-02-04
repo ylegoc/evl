@@ -1,6 +1,6 @@
 package evl.exceptions;
 
-import evl.MethodClassTuple;
+import evl.util.MethodClassTuple;
 
 public class NoCompatibleMethodException extends EVLException {
 

@@ -1,15 +1,17 @@
-package evl;
+package evl.data;
 
 import java.lang.reflect.Method;
 
-public class DispatchableMethod<DataType> {
+import evl.util.MethodClassTuple;
+
+public class DispatchableMethodD<DataType> {
 
 	private Method method;
 	private Object object;
 	private MethodClassTuple tuple;
 	private DataType data;
 	
-	public DispatchableMethod(MethodClassTuple tuple, Method method, Object object) {
+	public DispatchableMethodD(MethodClassTuple tuple, Method method, Object object) {
 		this.method = method;
 		this.object = object;
 		this.tuple = tuple;

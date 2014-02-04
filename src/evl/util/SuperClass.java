@@ -2,8 +2,6 @@ package evl.util;
 
 import java.util.HashMap;
 
-import evl.MethodClassTuple;
-
 public class SuperClass {
 
 	public static HashMap<Class<?>, Integer>[] calculate(MethodClassTuple tuple) {

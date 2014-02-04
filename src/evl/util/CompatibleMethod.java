@@ -2,12 +2,12 @@ package evl.util;
 
 import java.util.HashMap;
 
-import evl.DispatchableMethod;
-import evl.MethodItem;
+import evl.data.DispatchableMethodD;
+import evl.data.MethodItemD;
 
 public class CompatibleMethod {
 
-	public static <ReturnType, DataType> MethodItem<DataType> calculate(HashMap<Class<?>, Integer>[] superClassSet, DispatchableMethod<DataType> method) {
+	public static <ReturnType, DataType> MethodItemD<DataType> calculate(HashMap<Class<?>, Integer>[] superClassSet, DispatchableMethodD<DataType> method) {
 		
 		Class<?>[] classTuple = method.getClassTuple().get();
 		int[] distanceTuple = new int[superClassSet.length];
@@ -24,6 +24,6 @@ public class CompatibleMethod {
 			}
 		}
 		
-		return new MethodItem<DataType>(method, distanceTuple);
+		return new MethodItemD<DataType>(method, distanceTuple);
 	}
 }

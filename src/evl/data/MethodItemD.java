@@ -1,11 +1,12 @@
-package evl;
+package evl.data;
 
 
-public class MethodItem<DataType> extends DispatchableMethod<DataType> {
+
+public class MethodItemD<DataType> extends DispatchableMethodD<DataType> {
 
 	private int[] distance;
 	
-	public MethodItem(DispatchableMethod<DataType> method, int[] distance) {
+	public MethodItemD(DispatchableMethodD<DataType> method, int[] distance) {
 		super(method.getClassTuple(), method.getMethod(), method.getObject());
 		setData(method.getData());
 		

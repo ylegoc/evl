@@ -1,4 +1,4 @@
-package evl;
+package evl.data;
 
 import java.util.AbstractMap;
 import java.util.Arrays;
@@ -6,15 +6,16 @@ import java.util.Arrays;
 import evl.exceptions.EVLException;
 
 
-public class Method2<ReturnType, DataType> extends MultiMethod<ReturnType, DataType> {
+public abstract class BaseMethod3D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
 	
 	public static class ClassTuple {
 		
-		private Class<?>[] tuple = new Class<?>[2];
+		private Class<?>[] tuple = new Class<?>[3];
 		
-		ClassTuple(Class<?> class1, Class<?> class2) {
+		ClassTuple(Class<?> class1, Class<?> class2, Class<?> class3) {
 			tuple[0] = class1;
 			tuple[1] = class2;
+			tuple[2] = class3;
 		}
 		
 		@Override
@@ -28,10 +29,10 @@ public class Method2<ReturnType, DataType> extends MultiMethod<ReturnType, DataT
 		}
 	}
 	
-	private AbstractMap<ClassTuple, DispatchableMethod<DataType>> cache;
+	private AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cache;
 	
-	public Method2(MethodComparator<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethod<DataType>> cacheMap) {
-		super(2, methodComparator);
+	public BaseMethod3D(MethodComparatorD<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
+		super(3, methodComparator);
 		this.cache = cacheMap;
 	}
 	
@@ -42,10 +43,10 @@ public class Method2<ReturnType, DataType> extends MultiMethod<ReturnType, DataT
 	public ReturnType invoke(Object... args) throws EVLException {
 		
 		// define tuple
-		ClassTuple classTuple = new ClassTuple(args[0].getClass(), args[1].getClass());
+		ClassTuple classTuple = new ClassTuple(args[0].getClass(), args[1].getClass(), args[2].getClass());
 		
 		// search tuple in cache
-		DispatchableMethod<DataType> method = cache.get(classTuple);
+		DispatchableMethodD<DataType> method = cache.get(classTuple);
 
 		try {
 			// invoke the method
