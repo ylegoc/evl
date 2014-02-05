@@ -193,8 +193,11 @@ public class TestPerfs {
 		testMultiMethod(Method1.<Integer>builder()
 								.comparator(new AsymmetricComparator()).build());
 		
-		testMultiMethod2(Method2.<Integer>builder().comparator(new AsymmetricComparator()).build());
-		//testMultiMethod3(Method3.<Integer>builder().comparator(new AsymmetricComparator()).build());
+		testMultiMethod2(Method2.<Integer>builder()
+								.comparator(new AsymmetricComparator()).build());
+		
+		testMultiMethod3(Method3.<Integer>builder()
+								.comparator(new AsymmetricComparator()).build());
 		
 		testMultiMethod(Method1.<Integer>builder()
 								.comparator(new AsymmetricComparator())
