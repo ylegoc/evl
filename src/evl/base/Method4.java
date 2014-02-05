@@ -3,11 +3,9 @@ package evl.base;
 import java.lang.reflect.Method;
 import java.util.AbstractMap;
 
-import evl.base.Method3.Builder;
-import evl.data.DispatchableMethodD;
 import evl.data.BaseMethod4D;
+import evl.data.DispatchableMethodD;
 import evl.data.MethodComparatorD;
-import evl.data.BaseMethod3D.ClassTuple;
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
 import evl.util.CacheFactory;

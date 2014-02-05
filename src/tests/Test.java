@@ -13,7 +13,6 @@ import evl.base.AsymmetricComparator;
 import evl.base.Method1;
 import evl.base.Method2;
 import evl.base.SymmetricComparator;
-import evl.data.BaseMethod2D;
 import evl.data.DispatchableMethodD;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;

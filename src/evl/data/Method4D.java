@@ -3,8 +3,6 @@ package evl.data;
 import java.lang.reflect.Method;
 import java.util.AbstractMap;
 
-import evl.data.BaseMethod3D.ClassTuple;
-import evl.data.Method3D.Builder;
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
 import evl.util.CacheFactory;
