@@ -6,6 +6,8 @@
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
+- check the size of the application (with bounded cache)
+
 
 - interface:
 

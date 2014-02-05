@@ -17,8 +17,9 @@ public class Method3<ReturnType> extends BaseMethod3D<ReturnType, Void> {
 		super(methodComparator, cacheMap);
 	}
 		
-	public void add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
-		super.add(method, object, null);
+	public Method3<ReturnType> add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+		super.addMethod(method, object, null);
+		return this;
 	}
 	
 	public static class Builder<ReturnType> {

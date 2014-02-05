@@ -22,17 +22,17 @@ public class Test {
 	
 	public static void test1() {
 		
-		Method1<Integer> m = Method1.<Integer>builder()
-									.comparator(new AsymmetricComparator()).build();
-		
 		Foo foo = new Foo();
 		
-		E e = new E();
-		
 		try {
+			Method1<Integer> m = Method1.<Integer>builder()
+					.comparator(new AsymmetricComparator())
+					.build()
+					.add(Foo.class.getMethod("foo", IA.class), foo)
+					.add(Foo.class.getMethod("foo", D.class), foo);
 		
-			m.add(Foo.class.getMethod("foo", IA.class), foo);
-			m.add(Foo.class.getMethod("foo", D.class), foo);
+			
+			E e = new E();
 			
 			int res = m.invoke(e);
 			System.out.println("res = " + res);
@@ -52,18 +52,19 @@ public class Test {
 	}
 	
 	public static void test2() {
-	
-		Method2<Integer> m = Method2.<Integer>builder().comparator(new AsymmetricComparator()).build();
-		
+
 		Foo2 foo = new Foo2();
 		
-		E e = new E();
-		
 		try {
-		
-			m.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo);
-			m.add(Foo2.class.getMethod("foo", D.class, IA.class), foo);
-			m.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+			Method2<Integer> m = Method2.<Integer>builder()
+					.comparator(new AsymmetricComparator())
+					.build()
+					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo)
+					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo)
+					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+
+			
+			E e = new E();
 			
 			int res = m.invoke(e, e);
 			System.out.println("res = " + res);
@@ -75,16 +76,17 @@ public class Test {
 	
 	public static void test3() {
 	
-		Method1<Integer> m = Method1.<Integer>builder().comparator(new AsymmetricComparator()).build();
-		
 		Bar bar = new Bar();
 		
-		E e = new E();
-		
 		try {
-		
-			m.add(Bar.class.getMethod("bar", IA.class, int.class), bar);
-			m.add(Bar.class.getMethod("bar", D.class, int.class), bar);
+			Method1<Integer> m = Method1.<Integer>builder()
+					.comparator(new AsymmetricComparator())
+					.build()
+					.add(Bar.class.getMethod("bar", IA.class, int.class), bar)
+					.add(Bar.class.getMethod("bar", D.class, int.class), bar);
+			
+
+			E e = new E();
 			
 			int res = m.invoke(e, 3);
 			System.out.println("res = " + res);
@@ -99,17 +101,19 @@ public class Test {
 	
 	public static void test4() {
 		
-		Method2<Integer> m = Method2.<Integer>builder().comparator(new SymmetricComparator()).build();
-		
 		Foo2 foo = new Foo2();
 		
 		E e = new E();
 		
 		try {
-		
-			m.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo);
-			m.add(Foo2.class.getMethod("foo", D.class, IA.class), foo);
-			m.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+			Method2<Integer> m = Method2.<Integer>builder()
+					.comparator(new SymmetricComparator())
+					.build()
+					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo)
+					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo)
+					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+			
+
 			
 			int res = m.invoke(e, e);
 			System.out.println("m res = " + res);
@@ -118,23 +122,14 @@ public class Test {
 			ex.printStackTrace();
 		}
 		
-		Method2D<Integer, Integer> m2 = new Method2D.Builder<Integer, Integer>()
-											.comparator(new PrioritySymmetricComparator<Integer>())
-											.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-											.build();
-
-		m2 = Method2D.<Integer, Integer>builder()
-				.comparator(new PrioritySymmetricComparator<Integer>())
-				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-				.build();
-
-		
-		
 		try {
-			
-			m2.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo, 1);
-			m2.add(Foo2.class.getMethod("foo", D.class, IA.class), foo, 2);
-			m2.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
+			Method2D<Integer, Integer> m2 = new Method2D.Builder<Integer, Integer>()
+					.comparator(new PrioritySymmetricComparator<Integer>())
+					.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+					.build()
+					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo, 1)
+					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo, 2)
+					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
 			
 			int res = m2.invoke(e, e);
 			System.out.println("m2 res = " + res);

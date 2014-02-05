@@ -51,7 +51,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	
 	protected abstract void resetCache();
 	
-	protected void add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	protected void addMethod(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
