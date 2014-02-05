@@ -13,6 +13,6 @@ public class MyMethod extends MMethod {
 	
 	public static void main(String[] args) {
 		
-		MyMethod m = new MyMethod();
+		new MyMethod();
 	}
 }
