@@ -97,6 +97,17 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		dispatchableMethods.add(dispatchableMethod);
 	}
 	
+	// not possible to set data to all the methods
+	// only for non-data methods
+	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+		Method[] methods = classInstance.getMethods();
+		for (Method m : methods) {
+			if (m.getName().equals(methodName)) {
+				addMethod(m, object, null);
+			}
+		}
+	}
+	
 	public abstract ReturnType invoke(Object... args) throws EVLException;
 	
 	@SuppressWarnings("unchecked")

@@ -35,16 +35,16 @@ public class Test {
 			E e = new E();
 			
 			int res = m.invoke(e);
-			System.out.println("res = " + res);
+			System.out.println("test1 res = " + res);
 
 			res = m.invoke(e);
-			System.out.println("res = " + res);
+			System.out.println("test1 res = " + res);
 
 			
 			m.add(Foo.class.getMethod("foo", IC.class), foo);
 			
 			res = m.invoke(e);
-			System.out.println("res = " + res);
+			System.out.println("test1 res = " + res);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -59,15 +59,13 @@ public class Test {
 			Method2<Integer> m = Method2.<Integer>builder()
 					.comparator(new AsymmetricComparator())
 					.build()
-					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo)
-					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo)
-					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
+					.addAll(Foo2.class, "foo", foo);
 
 			
 			E e = new E();
 			
 			int res = m.invoke(e, e);
-			System.out.println("res = " + res);
+			System.out.println("test2 res = " + res);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -89,10 +87,10 @@ public class Test {
 			E e = new E();
 			
 			int res = m.invoke(e, 3);
-			System.out.println("res = " + res);
+			System.out.println("test3 res = " + res);
 
 			res = m.invoke(e, 5);
-			System.out.println("res = " + res);
+			System.out.println("test3 res = " + res);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -109,14 +107,10 @@ public class Test {
 			Method2<Integer> m = Method2.<Integer>builder()
 					.comparator(new SymmetricComparator())
 					.build()
-					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo)
-					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo)
-					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo);
-			
-
+					.addAll(Foo2.class, "foo", foo);
 			
 			int res = m.invoke(e, e);
-			System.out.println("m res = " + res);
+			System.out.println("test4 res = " + res);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -132,7 +126,7 @@ public class Test {
 					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
 			
 			int res = m2.invoke(e, e);
-			System.out.println("m2 res = " + res);
+			System.out.println("test4 res = " + res);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
