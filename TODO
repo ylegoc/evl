@@ -1,7 +1,5 @@
-- interface for creation of multimethods
-	=> separate methods with Data and the other
 - hide helper/implementation classes, some methods that must remain package protected 
-- hide reflection method : propose interface with strings and .class?
+- implement toString method of MultiMethodD
 - test all errors : bad insertion, etc.
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 - not implement resolve because potentially lots of classes

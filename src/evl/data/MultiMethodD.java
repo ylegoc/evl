@@ -193,5 +193,14 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		
 		throw new AmbiguousMethodException(tuple, possibleMethods);
 	}
+
+	@Override
+	public String toString() {
+		return "MultiMethodD [dimension=" + dimension + ", methodComparator="
+				+ methodComparator + ", dispatchableMethods="
+				+ dispatchableMethods + ", nonVirtualParameterTypes="
+				+ Arrays.toString(nonVirtualParameterTypes) + "]";
+	}
+	
 	
 }
