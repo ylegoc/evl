@@ -12,13 +12,13 @@ public class Main {
 		A b = new B(1, 2);
 		A c = new C(2, -5);
 		
-		Foo fooObject = new Foo();
+		Foo foo = new Foo();
 		
-		Method1<Integer> foo = Method1.<Integer>builder()
+		Method1<Integer> process = Method1.<Integer>builder()
 						.build()
-						.addAll(Foo.class, "process", fooObject);
+						.addAll(Foo.class, "process", foo);
 		
-		System.out.println(foo.invoke(b));
-		System.out.println(foo.invoke(c));
+		System.out.println(process.invoke(b));
+		System.out.println(process.invoke(c));
 	}
 }
