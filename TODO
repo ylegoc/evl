@@ -6,4 +6,5 @@
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
 - check the size of the application (with bounded cache)
+- think about comparator copy by newInstance?
 

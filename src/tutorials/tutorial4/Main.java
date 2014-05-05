@@ -2,48 +2,58 @@ package tutorials.tutorial4;
 
 import tutorials.classes.A;
 import tutorials.classes.B;
+import tutorials.classes.J;
+import tutorials.classes.K;
 import evl.base.Method2;
 import evl.base.SymmetricComparator;
-import evl.data.Method2D;
-import evl.data.PrioritySymmetricComparator;
 
+/**
+ * Symmetric and asymmetric dispatch.
+ * @author yan
+ *
+ */
 public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
-		A b1 = new B(1, 2);
-		A b2 = new B(2, -5);
+		B b = new B(1, 4);
+		K k = new K(3, 7);
 		
-		Agent agent = new Agent();
+		Copier copier = new Copier();
 		
-		Method2<Integer> process1 = Method2.<Integer>builder()
-						.comparator(new SymmetricComparator())
+		Method2<Void> copy1 = Method2.<Void>builder()
 						.build()
-						.addAll(Agent.class, "process", agent);
+						.add(Copier.class.getMethod("copy", A.class, K.class), copier)
+						.add(Copier.class.getMethod("copy", B.class, J.class), copier);
+		
+		copy1.invoke(b, k);
+		
+		System.out.println(b.getB() + " == " + k.getJ());
+		
+		
+		Method2<Void> copy2 = Method2.<Void>builder()
+				.comparator(new SymmetricComparator())
+				.build()
+				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
+				.add(Copier.class.getMethod("copy", B.class, J.class), copier);
 
 		try {
-			System.out.println(process1.invoke(b1, b2));
+			copy2.invoke(b, k);
+		
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
-		ExtendedAgent agent2 = new ExtendedAgent();
 		
-		Method2<Integer> process2 = Method2.<Integer>builder()
+		Method2<Void> copy3 = Method2.<Void>builder()
 				.comparator(new SymmetricComparator())
 				.build()
-				.addAll(ExtendedAgent.class, "process", agent2);
+				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
+				.add(Copier.class.getMethod("copy", B.class, J.class), copier)
+				.add(Copier.class.getMethod("copy", B.class, K.class), copier);
 
-		System.out.println(process2.invoke(b1, b2));
-		
+		copy3.invoke(b, k);
 
-		Method2D<Integer, Integer> process3 = Method2D.<Integer, Integer>builder()
-				.comparator(new PrioritySymmetricComparator<Integer>())
-				.build()
-				.add(Agent.class.getMethod("process", A.class, B.class), agent, 1)
-				.add(Agent.class.getMethod("process", B.class, A.class), agent, 0);
-
-		System.out.println(process3.invoke(b1, b2));
-
+		System.out.println(b.getA() + " == " + k.getK());
 	}
 }

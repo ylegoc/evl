@@ -2,6 +2,11 @@ package tutorials.asteroid;
 
 import evl.base.Method2;
 
+/**
+ * Asteroid tutorial.
+ * @author yan
+ *
+ */
 public class Main {
 
 	public static void collide(Asteroid a, Asteroid b) {

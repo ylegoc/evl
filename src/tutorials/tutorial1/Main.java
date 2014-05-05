@@ -5,6 +5,11 @@ import tutorials.classes.B;
 import tutorials.classes.C;
 import evl.base.Method1;
 
+/**
+ * Simple example.
+ * @author yan
+ *
+ */
 public class Main {
 	
 	public static void main(String[] args) throws Exception {
