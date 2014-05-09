@@ -1,6 +1,6 @@
 package evl.data;
 
-import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Arrays;
 
 import evl.exceptions.EVLException;
@@ -30,9 +30,9 @@ public abstract class BaseMethod4D<ReturnType, DataType> extends MultiMethodD<Re
 		}
 	}
 	
-	private AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cache;
+	private Map<ClassTuple, DispatchableMethodD<DataType>> cache;
 	
-	public BaseMethod4D(MethodComparatorD<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
+	public BaseMethod4D(MethodComparatorD<DataType> methodComparator, Map<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
 		super(4, methodComparator);
 		this.cache = cacheMap;
 	}

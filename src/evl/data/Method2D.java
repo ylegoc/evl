@@ -1,7 +1,7 @@
 package evl.data;
 
 import java.lang.reflect.Method;
-import java.util.AbstractMap;
+import java.util.Map;
 
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
@@ -10,7 +10,7 @@ import evl.util.CacheFactory;
 
 public class Method2D<ReturnType, DataType> extends BaseMethod2D<ReturnType, DataType> {
 	
-	private Method2D(MethodComparatorD<DataType> methodComparator, AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
+	private Method2D(MethodComparatorD<DataType> methodComparator, Map<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
 		super(methodComparator, cacheMap);
 	}	
 	
@@ -23,14 +23,14 @@ public class Method2D<ReturnType, DataType> extends BaseMethod2D<ReturnType, Dat
 		
 		// default value for method comparator
 		private MethodComparatorD<DataType> methodComparator = new AsymmetricComparatorD<DataType>();
-		private AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cacheMap = CacheFactory.<ClassTuple, DispatchableMethodD<DataType>>createUnboundedCache();
+		private Map<ClassTuple, DispatchableMethodD<DataType>> cacheMap = CacheFactory.<ClassTuple, DispatchableMethodD<DataType>>createUnboundedCache();
 		
 		public Builder<ReturnType, DataType> comparator(MethodComparatorD<DataType> methodComparator) {
 			this.methodComparator = methodComparator;
 			return this;
 		}
 		
-		public Builder<ReturnType, DataType> cache(AbstractMap<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
+		public Builder<ReturnType, DataType> cache(Map<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
 			this.cacheMap = cacheMap;
 			return this;
 		}

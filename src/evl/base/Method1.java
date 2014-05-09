@@ -1,7 +1,7 @@
 package evl.base;
 
 import java.lang.reflect.Method;
-import java.util.AbstractMap;
+import java.util.Map;
 
 import evl.data.BaseMethod1D;
 import evl.data.DispatchableMethodD;
@@ -13,7 +13,7 @@ import evl.util.CacheFactory;
 
 public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 	
-	private Method1(MethodComparatorD<Void> methodComparator, AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap) {
+	private Method1(MethodComparatorD<Void> methodComparator, Map<Class<?>, DispatchableMethodD<Void>> cacheMap) {
 		super(methodComparator, cacheMap);
 	}
 	
@@ -31,14 +31,14 @@ public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 		
 		// default value for method comparator
 		private MethodComparatorD<Void> methodComparator = new AsymmetricComparator();
-		private AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
+		private Map<Class<?>, DispatchableMethodD<Void>> cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
 		
 		public Builder<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
 			this.methodComparator = methodComparator;
 			return this;
 		}
 		
-		public Builder<ReturnType> cache(AbstractMap<Class<?>, DispatchableMethodD<Void>> cacheMap) {
+		public Builder<ReturnType> cache(Map<Class<?>, DispatchableMethodD<Void>> cacheMap) {
 			this.cacheMap = cacheMap;
 			return this;
 		}

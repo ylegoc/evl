@@ -1,11 +1,11 @@
 package tests.perfs;
 
-import java.util.AbstractMap;
+import java.util.Map;
 import java.util.HashMap;
 
 public class Foo {
 
-	private AbstractMap<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
+	private Map<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
 	
 	public Foo() {
 		processMap.put(A1.class, 1);
