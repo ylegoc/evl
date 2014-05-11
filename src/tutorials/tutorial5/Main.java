@@ -52,7 +52,12 @@ public class Main {
 				.add(Agent.class.getMethod("process", A.class, B.class), agent, "first")
 				.add(Agent.class.getMethod("process", B.class, A.class), agent, "second");
 
-		System.out.println(process4.invoke(b1, b2));
-		
+		// the test with String parameter does not provide consistent order
+		// an exception is thrown because the minimum found is not the real minimum
+		try {
+			System.out.println(process4.invoke(b1, b2));
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

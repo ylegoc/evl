@@ -191,7 +191,22 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		
 		// test the result, the container cannot be empty
 		if (minMethodItems.size() == 1) {
-			return minMethodItems.get(0);
+			
+			// check that min is really min
+			MethodItemD<DataType> minItem = minMethodItems.get(0);
+			
+			i = compatibleMethodItems.iterator();
+			minMethodItems.add(i.next());
+			
+			while (i.hasNext()) {
+				MethodItemD<DataType> item = i.next();
+				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
+					// minItem is not the real minimum
+					throw new NoCompatibleMethodException(tuple);
+				}
+			}
+			
+			return minItem;
 		}
 		
 		String possibleMethods = "";
