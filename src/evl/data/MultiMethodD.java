@@ -36,7 +36,7 @@ import evl.util.SuperClass;
 public abstract class MultiMethodD<ReturnType, DataType> {
 
 	private int dimension;
-	private MethodComparatorD<DataType> methodComparator;
+	protected MethodComparatorD<DataType> methodComparator;
 	private ArrayList<DispatchableMethodD<DataType>> dispatchableMethods = new ArrayList<DispatchableMethodD<DataType>>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
@@ -139,6 +139,9 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 			throw new MethodComparatorInstantiationException();
 		}
 		
+		// set the args to the comparator
+		methodComparatorCopy.setArgs(args);
+		
 		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
@@ -152,7 +155,12 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 			MethodItemD<DataType> item = CompatibleMethod.calculate(superClassSet, method);
 			
 			if (item != null) {
-				compatibleMethodItems.add(item);
+				
+				// test if the function is applicable
+				// the function is added if it is equals to itself
+				if (methodComparator.compare(item, item) == 0) {
+					compatibleMethodItems.add(item);
+				}
 			}
 		}
 		

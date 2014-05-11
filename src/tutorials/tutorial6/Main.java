@@ -2,7 +2,6 @@ package tutorials.tutorial6;
 
 import tutorials.classes.A;
 import tutorials.classes.B;
-import tutorials.tutorial6.Agent;
 import evl.base.Method2;
 
 /**

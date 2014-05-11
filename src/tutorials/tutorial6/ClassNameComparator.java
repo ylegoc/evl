@@ -3,7 +3,7 @@ package tutorials.tutorial6;
 import evl.data.MethodComparatorD;
 import evl.data.MethodItemD;
 
-public class ClassNameComparator implements MethodComparatorD<Void> {
+public class ClassNameComparator extends MethodComparatorD<Void> {
 
 	@Override
 	public int compare(MethodItemD<Void> m1, MethodItemD<Void> m2) {

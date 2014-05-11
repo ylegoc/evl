@@ -8,7 +8,6 @@ import tutorials.classes.C;
 import evl.base.Method1;
 import evl.base.Method2;
 import evl.data.DispatchableMethodD;
-import evl.data.EmptyMap;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
 
@@ -71,9 +70,5 @@ public class Main {
 
 		System.out.println(process2d.invoke(b, c));
 
-		
-		EmptyMap<Integer, Integer> em = new EmptyMap<Integer, Integer>();
-		em.put(1, 2);
-		System.out.println("em 1 = " + em.get(1));
 	}
 }

@@ -1,7 +1,18 @@
 package evl.data;
 
 
-public interface MethodComparatorD<Data> {
+public abstract class MethodComparatorD<Data> {
 
-	int compare(MethodItemD<Data> m1, MethodItemD<Data> m2);
+	private Object[] args;
+	
+	public Object[] getArgs() {
+		return args;
+	}
+
+	public void setArgs(Object[] args) {
+		this.args = args;
+	}
+	
+	public abstract int compare(MethodItemD<Data> m1, MethodItemD<Data> m2);
+	
 }

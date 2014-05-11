@@ -1,5 +1,6 @@
 package tutorials.classes;
 
+
 public class B extends A {
 
 	private int b;

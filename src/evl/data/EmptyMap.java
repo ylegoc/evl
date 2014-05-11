@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class EmptyMap<V, K> implements Map<K, V> {
+public class EmptyMap<V, K> implements Map<V, K> {
 
 	@Override
 	public void clear() {
@@ -14,25 +14,25 @@ public class EmptyMap<V, K> implements Map<K, V> {
 	}
 
 	@Override
-	public boolean containsKey(Object arg0) {
+	public boolean containsKey(Object key) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean containsValue(Object arg0) {
+	public boolean containsValue(Object value) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<K, V>> entrySet() {
+	public Set<java.util.Map.Entry<V, K>> entrySet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public V get(Object arg0) {
+	public K get(Object key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -44,25 +44,25 @@ public class EmptyMap<V, K> implements Map<K, V> {
 	}
 
 	@Override
-	public Set<K> keySet() {
+	public Set<V> keySet() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public V put(K arg0, V arg1) {
+	public K put(V key, K value) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void putAll(Map<? extends K, ? extends V> arg0) {
+	public void putAll(Map<? extends V, ? extends K> m) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public V remove(Object arg0) {
+	public K remove(Object key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -74,7 +74,7 @@ public class EmptyMap<V, K> implements Map<K, V> {
 	}
 
 	@Override
-	public Collection<V> values() {
+	public Collection<K> values() {
 		// TODO Auto-generated method stub
 		return null;
 	}

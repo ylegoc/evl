@@ -1,7 +1,7 @@
 package tests.perfs;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Foo {
 
