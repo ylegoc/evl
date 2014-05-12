@@ -1,6 +1,6 @@
 package evl.exceptions;
 
-public class BadNumberOfVirtualParameterTypesException extends EVLException {
+public class BadNumberOfVirtualParameterTypesException extends RuntimeException {
 
 	private static final long serialVersionUID = 2L;
 	

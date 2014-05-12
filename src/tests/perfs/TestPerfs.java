@@ -8,6 +8,7 @@ import evl.base.Method1;
 import evl.base.Method2;
 import evl.base.Method3;
 import evl.data.DispatchableMethodD;
+import evl.exceptions.InvocationException;
 import evl.util.Parameter;
 
 public class TestPerfs {
@@ -106,7 +107,8 @@ public class TestPerfs {
 			Date end = new Date();
 			
 			System.out.println("method in " + (end.getTime() - begin.getTime()) + "ms result " + res);
-		} catch (Exception e) {
+			
+		} catch (InvocationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -140,7 +142,8 @@ public class TestPerfs {
 			Date end = new Date();
 			
 			System.out.println("method 2 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
-		} catch (Exception e) {
+			
+		} catch (InvocationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -174,7 +177,8 @@ public class TestPerfs {
 			Date end = new Date();
 			
 			System.out.println("method 3 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
-		} catch (Exception e) {
+			
+		} catch (InvocationException e) {
 			e.printStackTrace();
 		}
 	}

@@ -2,8 +2,7 @@ package evl.data;
 
 import java.util.Map;
 
-import evl.base.AsymmetricComparator;
-import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
 import evl.util.CacheFactory;
 
 
@@ -20,7 +19,7 @@ public abstract class BaseMethod1D<ReturnType, DataType> extends MultiMethodD<Re
 		cache.clear();
 	}
 	
-	public ReturnType invoke(Object... args) throws EVLException {
+	public ReturnType invoke(Object... args) throws InvocationException {
 		
 		// search tuple in cache
 		DispatchableMethodD<DataType> method = cache.get(args[0].getClass());

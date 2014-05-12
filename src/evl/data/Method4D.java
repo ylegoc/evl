@@ -2,18 +2,18 @@ package evl.data;
 
 import java.util.Map;
 
-import evl.exceptions.BadNonVirtualParameterTypesException;
-import evl.exceptions.BadNumberOfVirtualParameterTypesException;
+import evl.exceptions.MethodInsertionException;
 import evl.util.CacheFactory;
 
 
 public class Method4D<ReturnType, DataType> extends BaseMethod4D<ReturnType, DataType> {
 	
-	public Method4D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
+	public Method4D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object, DataType data) {
 		try {
 			super.addMethod(classInstance.getMethod(name, parameterTypes), object, data);
 		} catch (NoSuchMethodException | SecurityException e) {
-			System.err.println("error !");
+			throw new MethodInsertionException();
 		}
 		return this;
 	}

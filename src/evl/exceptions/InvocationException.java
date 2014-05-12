@@ -1,11 +1,10 @@
 package evl.exceptions;
 
-
-public class InvocationException extends EVLException {
-
-	private static final long serialVersionUID = 6L;
+public class InvocationException extends Exception {
 	
-	public InvocationException() {
-		super("invocation exception");
+	private static final long serialVersionUID = 1L;
+
+	public InvocationException(String message) {
+		super(message);
 	}
 }

@@ -10,9 +10,9 @@ import java.util.Iterator;
 import evl.exceptions.AmbiguousMethodException;
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
-import evl.exceptions.EVLException;
 import evl.exceptions.InvocationException;
 import evl.exceptions.MethodComparatorInstantiationException;
+import evl.exceptions.MethodInvocationException;
 import evl.exceptions.NoCompatibleMethodException;
 import evl.util.CompatibleMethod;
 import evl.util.MethodClassTuple;
@@ -51,7 +51,8 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	
 	protected abstract void resetCache();
 	
-	protected void addMethod(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
+	protected void addMethod(Method method, Object object, DataType data) {
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
@@ -99,7 +100,8 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	
 	// not possible to set data to all the methods
 	// only for non-data methods
-	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
+	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) {
 		Method[] methods = classInstance.getMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
@@ -108,15 +110,15 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 	}
 	
-	public abstract ReturnType invoke(Object... args) throws EVLException;
+	public abstract ReturnType invoke(Object... args) throws InvocationException;
 	
 	@SuppressWarnings("unchecked")
-	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws InvocationException {
+	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws MethodInvocationException {
 		// invoke the method
 		try {
 			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
 		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			throw new InvocationException();
+			throw new MethodInvocationException();
 		}
 	}
 	

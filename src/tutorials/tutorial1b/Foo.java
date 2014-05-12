@@ -5,7 +5,7 @@ import tutorials.classes.C;
 import evl.base.Method1;
 import evl.exceptions.BadNonVirtualParameterTypesException;
 import evl.exceptions.BadNumberOfVirtualParameterTypesException;
-import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
 
 public class Foo {
 	
@@ -18,7 +18,7 @@ public class Foo {
 		}
 	}
 
-	public int process(Object obj) throws EVLException {
+	public int process(Object obj) throws InvocationException {
 		return process.invoke(obj);
 	}
 	

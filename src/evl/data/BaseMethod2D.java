@@ -3,7 +3,7 @@ package evl.data;
 import java.util.Arrays;
 import java.util.Map;
 
-import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
 import evl.util.CacheFactory;
 
 
@@ -40,7 +40,7 @@ public abstract class BaseMethod2D<ReturnType, DataType> extends MultiMethodD<Re
 		cache.clear();
 	}
 	
-	public ReturnType invoke(Object... args) throws EVLException {
+	public ReturnType invoke(Object... args) throws InvocationException {
 		
 		// define tuple
 		ClassTuple classTuple = new ClassTuple(args[0].getClass(), args[1].getClass());

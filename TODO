@@ -32,3 +32,5 @@ remarks
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
  
+- Exception management
+	- use runtime exceptions optionally for insertion

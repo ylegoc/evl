@@ -16,125 +16,104 @@ import evl.base.SymmetricComparator;
 import evl.data.DispatchableMethodD;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
-import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
 import evl.util.Parameter;
-import evl.util.SuperClass;
 
 public class Test {
 	
-	public static void test1() {
+	public static void test1() throws InvocationException {
 		
 		Foo foo = new Foo();
 		
-		try {
-			Method1<Integer> m = new Method1<Integer>()
-					.comparator(new AsymmetricComparator())
-					.add(Foo.class, "foo", Parameter.types(IA.class), foo)
-					.add(Foo.class, "foo", Parameter.types(D.class), foo);
+		Method1<Integer> m = new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.add(Foo.class, "foo", Parameter.types(IA.class), foo)
+				.add(Foo.class, "foo", Parameter.types(D.class), foo);
 		
-			
-			E e = new E();
-			
-			int res = m.invoke(e);
-			System.out.println("test1 res = " + res);
+		E e = new E();
+		
+		int res = m.invoke(e);
+		System.out.println("test1 res = " + res);
 
+		res = m.invoke(e);
+		System.out.println("test1 res = " + res);
+
+		
+		m.add(Foo.class, "foo", Parameter.types(IC.class), foo);
+		
+		try {
 			res = m.invoke(e);
 			System.out.println("test1 res = " + res);
-
 			
-			m.add(Foo.class, "foo", Parameter.types(IC.class), foo);
-			
-			res = m.invoke(e);
-			System.out.println("test1 res = " + res);
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (InvocationException ex) {
+			System.out.println("error 1 : " + ex.getMessage());
 		}
 	}
 	
-	public static void test2() {
+	public static void test2() throws InvocationException {
 
 		Foo2 foo = new Foo2();
 		
-		try {
-			Method2<Integer> m = new Method2<Integer>()
-					.comparator(new AsymmetricComparator())
-					.addAll(Foo2.class, "foo", foo);
+		Method2<Integer> m = new Method2<Integer>()
+				.comparator(new AsymmetricComparator())
+				.addAll(Foo2.class, "foo", foo);
 
-			
-			E e = new E();
-			
-			int res = m.invoke(e, e);
-			System.out.println("test2 res = " + res);
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		
+		E e = new E();
+		
+		int res = m.invoke(e, e);
+		System.out.println("test2 res = " + res);
 	}
 	
-	public static void test3() {
+	public static void test3() throws InvocationException {
 	
 		Bar bar = new Bar();
 		
-		try {
-			Method1<Integer> m = new Method1<Integer>()
-					.comparator(new AsymmetricComparator())
-					.add(Bar.class, "bar", Parameter.types(IA.class, int.class), bar)
-					.add(Bar.class, "bar", Parameter.types(D.class, int.class), bar);
-			
+		Method1<Integer> m = new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.add(Bar.class, "bar", Parameter.types(IA.class, int.class), bar)
+				.add(Bar.class, "bar", Parameter.types(D.class, int.class), bar);
+		
 
-			E e = new E();
-			
-			int res = m.invoke(e, 3);
-			System.out.println("test3 res = " + res);
+		E e = new E();
+		
+		int res = m.invoke(e, 3);
+		System.out.println("test3 res = " + res);
 
-			res = m.invoke(e, 5);
-			System.out.println("test3 res = " + res);
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		res = m.invoke(e, 5);
+		System.out.println("test3 res = " + res);
 	}
 	
-	public static void test4() {
+	public static void test4() throws InvocationException {
 		
 		Foo2 foo = new Foo2();
 		
 		E e = new E();
 		
+		Method2<Integer> m = new Method2<Integer>()
+				.comparator(new SymmetricComparator())
+				.addAll(Foo2.class, "foo", foo);
+
 		try {
-			Method2<Integer> m = new Method2<Integer>()
-					.comparator(new SymmetricComparator())
-					.addAll(Foo2.class, "foo", foo);
-			
 			int res = m.invoke(e, e);
 			System.out.println("test4 res = " + res);
 			
-		} catch (EVLException ex) {
-			System.out.println("error : " + ex.getMessage());
+		} catch (InvocationException ex) {
+			System.out.println("error 4 : " + ex.getMessage());
 		}
 		
-		try {
-			Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
-					.comparator(new PrioritySymmetricComparator<Integer>())
-					.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-					.add(Foo2.class, "foo", Parameter.types(IA.class, IA.class), foo, 1)
-					.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
-					.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);
-			
-			int res = m2.invoke(e, e);
-			System.out.println("test4 res = " + res);
-			
-		} catch (Exception ex) {
-			System.out.println("error : " + ex.getMessage());
-		}
+		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
+				.comparator(new PrioritySymmetricComparator<Integer>())
+				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+				.add(Foo2.class, "foo", Parameter.types(IA.class, IA.class), foo, 1)
+				.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
+				.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);
+
+		int res = m2.invoke(e, e);
+		System.out.println("test4 res = " + res);
 	}
 	
-	public static void main(String[] args) {
-	
-		HashMap<Class<?>, Integer> classDistanceMap = SuperClass.calculate(E.class);
-		
-		System.out.println(classDistanceMap);
+	public static void main(String[] args) throws InvocationException {
 		
 		test1();
 		test2();

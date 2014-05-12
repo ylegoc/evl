@@ -3,7 +3,7 @@ package tutorials.tutorial8;
 import tutorials.classes.A;
 import tutorials.classes.B;
 import evl.data.predicate.PredicateMethod1;
-import evl.exceptions.EVLException;
+import evl.exceptions.InvocationException;
 import evl.util.Parameter;
 
 /**
@@ -38,7 +38,7 @@ public class Main {
 		
 		try {
 			System.out.println(process.invoke(b, 1));
-		} catch (EVLException e) {
+		} catch (InvocationException e) {
 			System.out.println("no function for x = 1");
 		}
 		System.out.println(process.invoke(b, 11));

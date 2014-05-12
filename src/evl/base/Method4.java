@@ -5,23 +5,24 @@ import java.util.Map;
 import evl.data.BaseMethod4D;
 import evl.data.DispatchableMethodD;
 import evl.data.MethodComparatorD;
-import evl.exceptions.BadNonVirtualParameterTypesException;
-import evl.exceptions.BadNumberOfVirtualParameterTypesException;
+import evl.exceptions.MethodInsertionException;
 import evl.util.CacheFactory;
 
 
 public class Method4<ReturnType> extends BaseMethod4D<ReturnType, Void> {
 	
-	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
+	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object) {
 		try {
 			super.addMethod(classInstance.getMethod(name, parameterTypes), object, null);
 		} catch (NoSuchMethodException | SecurityException e) {
-			System.err.println("error !");
+			throw new MethodInsertionException();
 		}
 		return this;
 	}
 	
-	public Method4<ReturnType> addAll(Class<?> classInstance, String name, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
+	public Method4<ReturnType> addAll(Class<?> classInstance, String name, Object object) {
 		super.addMethodFamily(classInstance, name, object);
 		return this;
 	}

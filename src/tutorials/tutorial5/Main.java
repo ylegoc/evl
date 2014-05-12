@@ -6,6 +6,7 @@ import evl.base.Method2;
 import evl.base.SymmetricComparator;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
+import evl.exceptions.InvocationException;
 import evl.util.Parameter;
 
 public class Main {
@@ -23,8 +24,8 @@ public class Main {
 
 		try {
 			System.out.println(process1.invoke(b1, b2));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		} catch (InvocationException e) {
+			System.out.println("error : " + e.getMessage());
 		}
 		
 		ExtendedAgent agent2 = new ExtendedAgent();
@@ -53,8 +54,8 @@ public class Main {
 		// an exception is thrown because the minimum found is not the real minimum
 		try {
 			System.out.println(process4.invoke(b1, b2));
-		} catch (Exception e) {
-			System.out.println(e);
+		} catch (InvocationException e) {
+			System.out.println("error : " + e.getMessage());
 		}
 	}
 }

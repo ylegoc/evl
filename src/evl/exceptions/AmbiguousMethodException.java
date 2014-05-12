@@ -2,7 +2,7 @@ package evl.exceptions;
 
 import evl.util.MethodClassTuple;
 
-public class AmbiguousMethodException extends EVLException {
+public class AmbiguousMethodException extends InvocationException {
 
 	private static final long serialVersionUID = 5L;
 	

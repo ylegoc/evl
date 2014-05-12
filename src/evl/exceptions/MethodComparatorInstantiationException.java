@@ -1,6 +1,6 @@
 package evl.exceptions;
 
-public class MethodComparatorInstantiationException extends EVLException {
+public class MethodComparatorInstantiationException extends InvocationException {
 
 	private static final long serialVersionUID = 4L;
 	
