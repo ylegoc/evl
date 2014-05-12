@@ -20,8 +20,7 @@ public class Main {
 		
 		Comparator comparator = new Comparator();
 		
-		Method2<Boolean> compare = Method2.<Boolean>builder()
-						.build()
+		Method2<Boolean> compare = new Method2<Boolean>()
 						.addAll(Comparator.class, "compare", comparator);
 		
 		System.out.println(compare.invoke(b1, b2));

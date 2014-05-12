@@ -1,10 +1,34 @@
+Code
 - hide helper/implementation classes, some methods that must remain package protected 
 - implement toString method of MultiMethodD
 - put the tutorials on web site
 - test all errors : bad insertion, etc.
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
-- not implement resolve because potentially lots of classes
-=> or imagine a base prototype
 - check the size of the application (with bounded cache)
 - think about comparator copy by newInstance?
 
+Tutorials
+- Update web site
+- Start examples (more concrete)
+	Algorithms
+	- replace virtual inheritance by outside definitions
+	- explain how visitor pattern would be used if not multi-method
+	- replace in Method1
+	- second Method1 for second algorithm
+	- Method1 with simple argument enum to show the choice between algos
+	- Method2 with additional value (completely dynamic)
+	=> third party can add algo + type without code rewriting
+	
+	Dispatch
+	- simple choice with instanceof
+	=> replace any instanceof (with simplest code)
+	=> explain reusability
+	=> explain it is not type matching => BETTER more specialized !
+	- simple message queue
+	=> more complex
+	=> explain reusability (key explanation)
+	
+remarks
+- not implement resolve because potentially lots of classes
+=> or imagine a base prototype
+ 

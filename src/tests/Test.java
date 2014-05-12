@@ -16,6 +16,7 @@ import evl.base.SymmetricComparator;
 import evl.data.DispatchableMethodD;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
+import evl.exceptions.EVLException;
 import evl.util.SuperClass;
 
 public class Test {
@@ -25,9 +26,8 @@ public class Test {
 		Foo foo = new Foo();
 		
 		try {
-			Method1<Integer> m = Method1.<Integer>builder()
+			Method1<Integer> m = new Method1<Integer>()
 					.comparator(new AsymmetricComparator())
-					.build()
 					.add(Foo.class.getMethod("foo", IA.class), foo)
 					.add(Foo.class.getMethod("foo", D.class), foo);
 		
@@ -56,9 +56,8 @@ public class Test {
 		Foo2 foo = new Foo2();
 		
 		try {
-			Method2<Integer> m = Method2.<Integer>builder()
+			Method2<Integer> m = new Method2<Integer>()
 					.comparator(new AsymmetricComparator())
-					.build()
 					.addAll(Foo2.class, "foo", foo);
 
 			
@@ -77,9 +76,8 @@ public class Test {
 		Bar bar = new Bar();
 		
 		try {
-			Method1<Integer> m = Method1.<Integer>builder()
+			Method1<Integer> m = new Method1<Integer>()
 					.comparator(new AsymmetricComparator())
-					.build()
 					.add(Bar.class.getMethod("bar", IA.class, int.class), bar)
 					.add(Bar.class.getMethod("bar", D.class, int.class), bar);
 			
@@ -104,23 +102,21 @@ public class Test {
 		E e = new E();
 		
 		try {
-			Method2<Integer> m = Method2.<Integer>builder()
+			Method2<Integer> m = new Method2<Integer>()
 					.comparator(new SymmetricComparator())
-					.build()
 					.addAll(Foo2.class, "foo", foo);
 			
 			int res = m.invoke(e, e);
 			System.out.println("test4 res = " + res);
 			
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (EVLException ex) {
+			System.out.println("error : " + ex.getMessage());
 		}
 		
 		try {
-			Method2D<Integer, Integer> m2 = new Method2D.Builder<Integer, Integer>()
+			Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
 					.comparator(new PrioritySymmetricComparator<Integer>())
 					.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-					.build()
 					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo, 1)
 					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo, 2)
 					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
@@ -129,7 +125,7 @@ public class Test {
 			System.out.println("test4 res = " + res);
 			
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			System.out.println("error : " + ex.getMessage());
 		}
 	}
 	

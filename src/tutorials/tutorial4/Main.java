@@ -21,8 +21,7 @@ public class Main {
 		
 		Copier copier = new Copier();
 		
-		Method2<Void> copy1 = Method2.<Void>builder()
-						.build()
+		Method2<Void> copy1 = new Method2<Void>()
 						.add(Copier.class.getMethod("copy", A.class, K.class), copier)
 						.add(Copier.class.getMethod("copy", B.class, J.class), copier);
 		
@@ -31,9 +30,8 @@ public class Main {
 		System.out.println(b.getB() + " == " + k.getJ());
 		
 		
-		Method2<Void> copy2 = Method2.<Void>builder()
+		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.build()
 				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
 				.add(Copier.class.getMethod("copy", B.class, J.class), copier);
 
@@ -45,9 +43,8 @@ public class Main {
 		}
 		
 		
-		Method2<Void> copy3 = Method2.<Void>builder()
+		Method2<Void> copy3 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.build()
 				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
 				.add(Copier.class.getMethod("copy", B.class, J.class), copier)
 				.add(Copier.class.getMethod("copy", B.class, K.class), copier);

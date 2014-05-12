@@ -18,9 +18,8 @@ public class Main {
 		
 		Agent agent = new Agent();
 		
-		Method2<Integer> process = Method2.<Integer>builder()
+		Method2<Integer> process = new Method2<Integer>()
 				.comparator(new ClassNameComparator())
-				.build()
 				.add(Agent.class.getMethod("process", A.class, B.class), agent)
 				.add(Agent.class.getMethod("process", B.class, A.class), agent);
 

@@ -1,11 +1,8 @@
 package tutorials.tutorial8;
 
-import java.lang.reflect.Method;
-
 import tutorials.classes.A;
 import tutorials.classes.B;
-import evl.data.Method1D;
-import evl.data.predicate.Predicate;
+import evl.data.predicate.PredicateMethod1;
 import evl.exceptions.EVLException;
 
 /**
@@ -21,7 +18,7 @@ public class Main {
 		
 		Foo foo = new Foo();
 		
-		Method1D<Integer, Method> process = Predicate.<Integer>method1Builder().build();
+		PredicateMethod1<Integer> process = new PredicateMethod1<Integer>();
 						
 		process.add(Foo.class.getMethod("process", A.class, int.class), 
 					foo, 

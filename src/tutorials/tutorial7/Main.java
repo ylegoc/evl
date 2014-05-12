@@ -25,46 +25,41 @@ public class Main {
 		
 		Foo foo = new Foo();
 		
-		Method1<Integer> process = Method1.<Integer>builder()
+		Method1<Integer> process = new Method1<Integer>()
 						.unboundedCache()
-						.build()
 						.addAll(Foo.class, "process", foo);
 		
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
 		
 		
-		process = Method1.<Integer>builder()
+		process = new Method1<Integer>()
 				.boundedCache(2)
-				.build()
 				.addAll(Foo.class, "process", foo);
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
 		
 		
-		process = Method1.<Integer>builder()
+		process = new Method1<Integer>()
 				.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>())
-				.build()
 				.addAll(Foo.class, "process", foo);
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
 		
 		
-		Method2<Integer> process2 = Method2.<Integer>builder()
+		Method2<Integer> process2 = new Method2<Integer>()
 				.cache(new HashMap<Method2.ClassTuple, DispatchableMethodD<Void>>())
-				.build()
 				.addAll(Foo.class, "process2", foo);
 
 
 		System.out.println(process2.invoke(b, c));
 
 		
-		Method2D<Integer, Integer> process2d = Method2D.<Integer, Integer>builder()
+		Method2D<Integer, Integer> process2d = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
 				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-				.build()
 				.add(Foo.class.getMethod("process2", B.class, A.class), foo, 1)
 				.add(Foo.class.getMethod("process2", B.class, C.class), foo, 2);
 

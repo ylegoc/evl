@@ -13,10 +13,6 @@ import evl.util.CacheFactory;
 
 public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 	
-	private Method1(MethodComparatorD<Void> methodComparator, Map<Class<?>, DispatchableMethodD<Void>> cacheMap) {
-		super(methodComparator, cacheMap);
-	}
-	
 	public Method1<ReturnType> add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
 		super.addMethod(method, object, null);
 		return this;
@@ -27,39 +23,23 @@ public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 		return this;
 	}
 	
-	public static class Builder<ReturnType> {
-		
-		// default value for method comparator
-		private MethodComparatorD<Void> methodComparator = new AsymmetricComparator();
-		private Map<Class<?>, DispatchableMethodD<Void>> cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
-		
-		public Builder<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
-			this.methodComparator = methodComparator;
-			return this;
-		}
-		
-		public Builder<ReturnType> cache(Map<Class<?>, DispatchableMethodD<Void>> cacheMap) {
-			this.cacheMap = cacheMap;
-			return this;
-		}
-		
-		public Builder<ReturnType> unboundedCache() {
-			this.cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
-			return this;
-		}
-		
-		public Builder<ReturnType> boundedCache(long capacity) {
-			this.cacheMap = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createBoundedCache(capacity);
-			return this;
-		}
-		
-		public Method1<ReturnType> build() {
-			return new Method1<ReturnType>(methodComparator, cacheMap);
-		}
+	public Method1<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
+		this.methodComparator = methodComparator;
+		return this;
 	}
 	
-	// provided for convenience
-	public static <ReturnType> Builder<ReturnType> builder() {
-		return new Builder<ReturnType>();
+	public Method1<ReturnType> cache(Map<Class<?>, DispatchableMethodD<Void>> cacheMap) {
+		this.cache = cacheMap;
+		return this;
+	}
+	
+	public Method1<ReturnType> unboundedCache() {
+		this.cache = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createUnboundedCache();
+		return this;
+	}
+	
+	public Method1<ReturnType> boundedCache(long capacity) {
+		this.cache = CacheFactory.<Class<?>, DispatchableMethodD<Void>>createBoundedCache(capacity);
+		return this;
 	}
 }

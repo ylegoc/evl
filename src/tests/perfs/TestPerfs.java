@@ -185,42 +185,42 @@ public class TestPerfs {
 		testInstanceOf();
 		testMap();
 		
-		testMultiMethod(Method1.<Integer>builder()
-								.comparator(new AsymmetricComparator()).build());
+		testMultiMethod(new Method1<Integer>()
+								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod2(Method2.<Integer>builder()
-								.comparator(new AsymmetricComparator()).build());
+		testMultiMethod2(new Method2<Integer>()
+								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod3(Method3.<Integer>builder()
-								.comparator(new AsymmetricComparator()).build());
+		testMultiMethod3(new Method3<Integer>()
+								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 								.comparator(new AsymmetricComparator())
-								.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>()).build());
+								.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>()));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(32).build());
+				.boundedCache(32));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(8).build());
+				.boundedCache(8));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(7).build());
+				.boundedCache(7));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(6).build());
+				.boundedCache(6));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(5).build());
+				.boundedCache(5));
 		
-		testMultiMethod(Method1.<Integer>builder()
+		testMultiMethod(new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.boundedCache(4).build());
+				.boundedCache(4));
 	}
 
 }

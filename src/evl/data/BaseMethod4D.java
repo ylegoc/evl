@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import evl.exceptions.EVLException;
+import evl.util.CacheFactory;
 
 
 public abstract class BaseMethod4D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
@@ -30,11 +31,11 @@ public abstract class BaseMethod4D<ReturnType, DataType> extends MultiMethodD<Re
 		}
 	}
 	
-	private Map<ClassTuple, DispatchableMethodD<DataType>> cache;
+	protected Map<ClassTuple, DispatchableMethodD<DataType>> cache;
 	
-	public BaseMethod4D(MethodComparatorD<DataType> methodComparator, Map<ClassTuple, DispatchableMethodD<DataType>> cacheMap) {
-		super(4, methodComparator);
-		this.cache = cacheMap;
+	public BaseMethod4D() {
+		super(4, new AsymmetricComparatorD<DataType>());
+		this.cache = CacheFactory.<ClassTuple, DispatchableMethodD<DataType>>createBoundedCache(10000);
 	}
 	
 	protected void resetCache() {

@@ -2,16 +2,18 @@ package evl.data;
 
 import java.util.Map;
 
+import evl.base.AsymmetricComparator;
 import evl.exceptions.EVLException;
+import evl.util.CacheFactory;
 
 
 public abstract class BaseMethod1D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
 	
-	private Map<Class<?>, DispatchableMethodD<DataType>> cache;
+	protected Map<Class<?>, DispatchableMethodD<DataType>> cache;
 	
-	public BaseMethod1D(MethodComparatorD<DataType> methodComparator, Map<Class<?>, DispatchableMethodD<DataType>> cacheMap) {
-		super(1, methodComparator);
-		this.cache = cacheMap;
+	public BaseMethod1D() {
+		super(1, new AsymmetricComparatorD<DataType>());
+		this.cache = CacheFactory.<Class<?>, DispatchableMethodD<DataType>>createUnboundedCache();;
 	}
 	
 	protected void resetCache() {

@@ -16,9 +16,8 @@ public class Main {
 		
 		Agent agent = new Agent();
 		
-		Method2<Integer> process1 = Method2.<Integer>builder()
+		Method2<Integer> process1 = new Method2<Integer>()
 						.comparator(new SymmetricComparator())
-						.build()
 						.addAll(Agent.class, "process", agent);
 
 		try {
@@ -29,26 +28,23 @@ public class Main {
 		
 		ExtendedAgent agent2 = new ExtendedAgent();
 		
-		Method2<Integer> process2 = Method2.<Integer>builder()
+		Method2<Integer> process2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.build()
 				.addAll(ExtendedAgent.class, "process", agent2);
 
 		System.out.println(process2.invoke(b1, b2));
 		
 
-		Method2D<Integer, Integer> process3 = Method2D.<Integer, Integer>builder()
+		Method2D<Integer, Integer> process3 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
-				.build()
 				.add(Agent.class.getMethod("process", A.class, B.class), agent, 1)
 				.add(Agent.class.getMethod("process", B.class, A.class), agent, 0);
 
 		System.out.println(process3.invoke(b1, b2));
 
 		
-		Method2D<Integer, String> process4 = Method2D.<Integer, String>builder()
+		Method2D<Integer, String> process4 = new Method2D<Integer, String>()
 				.comparator(new PrioritySymmetricComparator<String>())
-				.build()
 				.add(Agent.class.getMethod("process", A.class, B.class), agent, "first")
 				.add(Agent.class.getMethod("process", B.class, A.class), agent, "second");
 

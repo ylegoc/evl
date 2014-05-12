@@ -1,9 +1,8 @@
-package tutorials.tutorial1;
+package tutorials.tutorial1b;
 
 import tutorials.classes.A;
 import tutorials.classes.B;
 import tutorials.classes.C;
-import evl.base.Method1;
 
 /**
  * Simple example.
@@ -19,10 +18,7 @@ public class Main {
 		
 		Foo foo = new Foo();
 		
-		Method1<Integer> process = new Method1<Integer>()
-						.addAll(Foo.class, "process", foo);
-		
-		System.out.println(process.invoke(b));
-		System.out.println(process.invoke(c));
+		System.out.println(foo.process(b));
+		System.out.println(foo.process(c));
 	}
 }

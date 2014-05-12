@@ -28,8 +28,7 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 	
-		Method2<Void> collide = Method2.<Void>builder()
-						.build()
+		Method2<Void> collide = new Method2<Void>()
 						.addAll(Main.class, "collide", null);
 		
 		collide.invoke(new Asteroid(), new Asteroid());
