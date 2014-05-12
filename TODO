@@ -7,6 +7,9 @@ Code
 - check the size of the application (with bounded cache)
 - think about comparator copy by newInstance?
 
+- recode Predicate without Method as DataType but the description of the method
+=> break dependency to reflection
+
 Tutorials
 - Update web site
 - Start examples (more concrete)
@@ -34,3 +37,5 @@ remarks
  
 - Exception management
 	- use runtime exceptions optionally for insertion
+	- avoid too many compilation exceptions to treat that should be resolved once
+	=> because we are using reflection layer
