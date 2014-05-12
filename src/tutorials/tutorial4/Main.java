@@ -6,6 +6,7 @@ import tutorials.classes.J;
 import tutorials.classes.K;
 import evl.base.Method2;
 import evl.base.SymmetricComparator;
+import evl.util.Parameter;
 
 /**
  * Symmetric and asymmetric dispatch.
@@ -22,8 +23,8 @@ public class Main {
 		Copier copier = new Copier();
 		
 		Method2<Void> copy1 = new Method2<Void>()
-						.add(Copier.class.getMethod("copy", A.class, K.class), copier)
-						.add(Copier.class.getMethod("copy", B.class, J.class), copier);
+						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+						.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
 		
 		copy1.invoke(b, k);
 		
@@ -32,8 +33,8 @@ public class Main {
 		
 		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
-				.add(Copier.class.getMethod("copy", B.class, J.class), copier);
+				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
 
 		try {
 			copy2.invoke(b, k);
@@ -45,9 +46,9 @@ public class Main {
 		
 		Method2<Void> copy3 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(Copier.class.getMethod("copy", A.class, K.class), copier)
-				.add(Copier.class.getMethod("copy", B.class, J.class), copier)
-				.add(Copier.class.getMethod("copy", B.class, K.class), copier);
+				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, K.class), copier);
 
 		copy3.invoke(b, k);
 

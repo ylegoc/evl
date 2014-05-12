@@ -1,6 +1,5 @@
 package evl.data;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 import evl.exceptions.BadNonVirtualParameterTypesException;
@@ -10,8 +9,12 @@ import evl.util.CacheFactory;
 
 public class Method1D<ReturnType, DataType> extends BaseMethod1D<ReturnType, DataType> {
 	
-	public Method1D<ReturnType, DataType> add(Method method, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
-		super.addMethod(method, object, data);
+	public Method1D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object, DataType data) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+		try {
+			super.addMethod(classInstance.getMethod(name, parameterTypes), object, data);
+		} catch (NoSuchMethodException | SecurityException e) {
+			System.err.println("error !");
+		}
 		return this;
 	}
 	

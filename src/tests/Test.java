@@ -17,6 +17,7 @@ import evl.data.DispatchableMethodD;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
 import evl.exceptions.EVLException;
+import evl.util.Parameter;
 import evl.util.SuperClass;
 
 public class Test {
@@ -28,8 +29,8 @@ public class Test {
 		try {
 			Method1<Integer> m = new Method1<Integer>()
 					.comparator(new AsymmetricComparator())
-					.add(Foo.class.getMethod("foo", IA.class), foo)
-					.add(Foo.class.getMethod("foo", D.class), foo);
+					.add(Foo.class, "foo", Parameter.types(IA.class), foo)
+					.add(Foo.class, "foo", Parameter.types(D.class), foo);
 		
 			
 			E e = new E();
@@ -41,7 +42,7 @@ public class Test {
 			System.out.println("test1 res = " + res);
 
 			
-			m.add(Foo.class.getMethod("foo", IC.class), foo);
+			m.add(Foo.class, "foo", Parameter.types(IC.class), foo);
 			
 			res = m.invoke(e);
 			System.out.println("test1 res = " + res);
@@ -78,8 +79,8 @@ public class Test {
 		try {
 			Method1<Integer> m = new Method1<Integer>()
 					.comparator(new AsymmetricComparator())
-					.add(Bar.class.getMethod("bar", IA.class, int.class), bar)
-					.add(Bar.class.getMethod("bar", D.class, int.class), bar);
+					.add(Bar.class, "bar", Parameter.types(IA.class, int.class), bar)
+					.add(Bar.class, "bar", Parameter.types(D.class, int.class), bar);
 			
 
 			E e = new E();
@@ -117,9 +118,9 @@ public class Test {
 			Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
 					.comparator(new PrioritySymmetricComparator<Integer>())
 					.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-					.add(Foo2.class.getMethod("foo", IA.class, IA.class), foo, 1)
-					.add(Foo2.class.getMethod("foo", D.class, IA.class), foo, 2)
-					.add(Foo2.class.getMethod("foo", IA.class, D.class), foo, 3);
+					.add(Foo2.class, "foo", Parameter.types(IA.class, IA.class), foo, 1)
+					.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
+					.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);
 			
 			int res = m2.invoke(e, e);
 			System.out.println("test4 res = " + res);

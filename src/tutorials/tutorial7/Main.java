@@ -10,6 +10,7 @@ import evl.base.Method2;
 import evl.data.DispatchableMethodD;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
+import evl.util.Parameter;
 
 /**
  * Example with different cache strategies.
@@ -60,8 +61,8 @@ public class Main {
 		Method2D<Integer, Integer> process2d = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
 				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
-				.add(Foo.class.getMethod("process2", B.class, A.class), foo, 1)
-				.add(Foo.class.getMethod("process2", B.class, C.class), foo, 2);
+				.add(Foo.class, "process2", Parameter.types(B.class, A.class), foo, 1)
+				.add(Foo.class, "process2", Parameter.types(B.class, C.class), foo, 2);
 
 		System.out.println(process2d.invoke(b, c));
 

@@ -6,6 +6,7 @@ import evl.base.Method2;
 import evl.base.SymmetricComparator;
 import evl.data.Method2D;
 import evl.data.PrioritySymmetricComparator;
+import evl.util.Parameter;
 
 public class Main {
 	
@@ -37,16 +38,16 @@ public class Main {
 
 		Method2D<Integer, Integer> process3 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
-				.add(Agent.class.getMethod("process", A.class, B.class), agent, 1)
-				.add(Agent.class.getMethod("process", B.class, A.class), agent, 0);
+				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, 1)
+				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, 0);
 
 		System.out.println(process3.invoke(b1, b2));
 
 		
 		Method2D<Integer, String> process4 = new Method2D<Integer, String>()
 				.comparator(new PrioritySymmetricComparator<String>())
-				.add(Agent.class.getMethod("process", A.class, B.class), agent, "first")
-				.add(Agent.class.getMethod("process", B.class, A.class), agent, "second");
+				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, "first")
+				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, "second");
 
 		// the test with String parameter does not provide consistent order
 		// an exception is thrown because the minimum found is not the real minimum

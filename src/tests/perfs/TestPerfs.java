@@ -8,6 +8,7 @@ import evl.base.Method1;
 import evl.base.Method2;
 import evl.base.Method3;
 import evl.data.DispatchableMethodD;
+import evl.util.Parameter;
 
 public class TestPerfs {
 
@@ -82,14 +83,14 @@ public class TestPerfs {
 		Foo foo = new Foo();
 		
 		try {
-			m.add(Foo.class.getMethod("processA1", A1.class), foo);
-			m.add(Foo.class.getMethod("processA2", A2.class), foo);
-			m.add(Foo.class.getMethod("processA3", A3.class), foo);
-			m.add(Foo.class.getMethod("processA4", A4.class), foo);
-			m.add(Foo.class.getMethod("processA5", A5.class), foo);
-			m.add(Foo.class.getMethod("processA6", A6.class), foo);
-			m.add(Foo.class.getMethod("processA7", A7.class), foo);
-			m.add(Foo.class.getMethod("processA8", A8.class), foo);
+			m.add(Foo.class, "processA1", Parameter.types(A1.class), foo);
+			m.add(Foo.class, "processA2", Parameter.types(A2.class), foo);
+			m.add(Foo.class, "processA3", Parameter.types(A3.class), foo);
+			m.add(Foo.class, "processA4", Parameter.types(A4.class), foo);
+			m.add(Foo.class, "processA5", Parameter.types(A5.class), foo);
+			m.add(Foo.class, "processA6", Parameter.types(A6.class), foo);
+			m.add(Foo.class, "processA7", Parameter.types(A7.class), foo);
+			m.add(Foo.class, "processA8", Parameter.types(A8.class), foo);
 			
 			for (int i = 0; i < 8; i++) {
 				m.invoke(objects[i]);
@@ -115,14 +116,14 @@ public class TestPerfs {
 		Foo foo = new Foo();
 		
 		try {
-			m.add(Foo.class.getMethod("processA1A1", A1.class, A1.class), foo);
-			m.add(Foo.class.getMethod("processA2A2", A2.class, A2.class), foo);
-			m.add(Foo.class.getMethod("processA3A3", A3.class, A3.class), foo);
-			m.add(Foo.class.getMethod("processA4A4", A4.class, A4.class), foo);
-			m.add(Foo.class.getMethod("processA5A5", A5.class, A5.class), foo);
-			m.add(Foo.class.getMethod("processA6A6", A6.class, A6.class), foo);
-			m.add(Foo.class.getMethod("processA7A7", A7.class, A7.class), foo);
-			m.add(Foo.class.getMethod("processA8A8", A8.class, A8.class), foo);
+			m.add(Foo.class, "processA1A1", Parameter.types(A1.class, A1.class), foo);
+			m.add(Foo.class, "processA2A2", Parameter.types(A2.class, A2.class), foo);
+			m.add(Foo.class, "processA3A3", Parameter.types(A3.class, A3.class), foo);
+			m.add(Foo.class, "processA4A4", Parameter.types(A4.class, A4.class), foo);
+			m.add(Foo.class, "processA5A5", Parameter.types(A5.class, A5.class), foo);
+			m.add(Foo.class, "processA6A6", Parameter.types(A6.class, A6.class), foo);
+			m.add(Foo.class, "processA7A7", Parameter.types(A7.class, A7.class), foo);
+			m.add(Foo.class, "processA8A8", Parameter.types(A8.class, A8.class), foo);
 			
 			for (int i = 0; i < 8; i++) {
 				m.invoke(objects[i], objects[i]);
@@ -149,14 +150,14 @@ public class TestPerfs {
 		Foo foo = new Foo();
 		
 		try {
-			m.add(Foo.class.getMethod("processA1A1A1", A1.class, A1.class, A1.class), foo);
-			m.add(Foo.class.getMethod("processA2A2A2", A2.class, A2.class, A2.class), foo);
-			m.add(Foo.class.getMethod("processA3A3A3", A3.class, A3.class, A3.class), foo);
-			m.add(Foo.class.getMethod("processA4A4A4", A4.class, A4.class, A4.class), foo);
-			m.add(Foo.class.getMethod("processA5A5A5", A5.class, A5.class, A5.class), foo);
-			m.add(Foo.class.getMethod("processA6A6A6", A6.class, A6.class, A6.class), foo);
-			m.add(Foo.class.getMethod("processA7A7A7", A7.class, A7.class, A7.class), foo);
-			m.add(Foo.class.getMethod("processA8A8A8", A8.class, A8.class, A8.class), foo);
+			m.add(Foo.class, "processA1A1A1", Parameter.types(A1.class, A1.class, A1.class), foo);
+			m.add(Foo.class, "processA2A2A2", Parameter.types(A2.class, A2.class, A2.class), foo);
+			m.add(Foo.class, "processA3A3A3", Parameter.types(A3.class, A3.class, A3.class), foo);
+			m.add(Foo.class, "processA4A4A4", Parameter.types(A4.class, A4.class, A4.class), foo);
+			m.add(Foo.class, "processA5A5A5", Parameter.types(A5.class, A5.class, A5.class), foo);
+			m.add(Foo.class, "processA6A6A6", Parameter.types(A6.class, A6.class, A6.class), foo);
+			m.add(Foo.class, "processA7A7A7", Parameter.types(A7.class, A7.class, A7.class), foo);
+			m.add(Foo.class, "processA8A8A8", Parameter.types(A8.class, A8.class, A8.class), foo);
 			
 			for (int i = 0; i < 8; i++) {
 				m.invoke(objects[i], objects[i], objects[i]);

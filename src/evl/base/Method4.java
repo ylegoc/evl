@@ -1,6 +1,5 @@
 package evl.base;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 import evl.data.BaseMethod4D;
@@ -13,8 +12,12 @@ import evl.util.CacheFactory;
 
 public class Method4<ReturnType> extends BaseMethod4D<ReturnType, Void> {
 	
-	public Method4<ReturnType> add(Method method, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
-		super.addMethod(method, object, null);
+	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object) throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException {
+		try {
+			super.addMethod(classInstance.getMethod(name, parameterTypes), object, null);
+		} catch (NoSuchMethodException | SecurityException e) {
+			System.err.println("error !");
+		}
 		return this;
 	}
 	

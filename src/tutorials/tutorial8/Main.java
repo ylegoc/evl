@@ -4,6 +4,7 @@ import tutorials.classes.A;
 import tutorials.classes.B;
 import evl.data.predicate.PredicateMethod1;
 import evl.exceptions.EVLException;
+import evl.util.Parameter;
 
 /**
  * Example with different cache strategies.
@@ -20,15 +21,15 @@ public class Main {
 		
 		PredicateMethod1<Integer> process = new PredicateMethod1<Integer>();
 						
-		process.add(Foo.class.getMethod("process", A.class, int.class), 
+		process.add(Foo.class, "process", Parameter.types(A.class, int.class), 
 					foo, 
 					Foo.class.getMethod("test", A.class, int.class));
 	
-		process.add(Foo.class.getMethod("process", B.class, int.class), 
+		process.add(Foo.class, "process", Parameter.types(B.class, int.class), 
 				foo, 
 				Foo.class.getMethod("test", B.class, int.class));
 
-		process.add(Foo.class.getMethod("process2", B.class, int.class), 
+		process.add(Foo.class, "process2", Parameter.types(B.class, int.class), 
 				foo, 
 				Foo.class.getMethod("test2", B.class, int.class));
 
