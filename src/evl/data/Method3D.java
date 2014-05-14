@@ -18,6 +18,11 @@ public class Method3D<ReturnType, DataType> extends BaseMethod3D<ReturnType, Dat
 		return this;
 	}
 	
+	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
+	public Method3D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, DataType data) {
+		return add(classInstance, name, parameterTypes, null, data);
+	}
+	
 	public Method3D<ReturnType, DataType> comparator(MethodComparatorD<DataType> methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;

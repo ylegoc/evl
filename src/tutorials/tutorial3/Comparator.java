@@ -1,4 +1,4 @@
-package tutorials.tutorial2;
+package tutorials.tutorial3;
 
 import tutorials.classes.A;
 import tutorials.classes.B;

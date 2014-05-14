@@ -2,60 +2,56 @@ package tutorials.tutorial5;
 
 import tutorials.classes.A;
 import tutorials.classes.B;
+import tutorials.classes.J;
+import tutorials.classes.K;
 import evl.base.Method2;
 import evl.base.SymmetricComparator;
-import evl.data.Method2D;
-import evl.data.PrioritySymmetricComparator;
-import evl.exceptions.InvocationException;
 import evl.util.Parameter;
 
+/**
+ * Symmetric and asymmetric dispatch.
+ * @author yan
+ *
+ */
 public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
-		A b1 = new B(1, 2);
-		A b2 = new B(2, -5);
+		B b = new B(1, 4);
+		K k = new K(3, 7);
 		
-		Agent agent = new Agent();
+		Copier copier = new Copier();
 		
-		Method2<Integer> process1 = new Method2<Integer>()
-						.comparator(new SymmetricComparator())
-						.addAll(Agent.class, "process", agent);
-
-		try {
-			System.out.println(process1.invoke(b1, b2));
-		} catch (InvocationException e) {
-			System.out.println("error : " + e.getMessage());
-		}
+		Method2<Void> copy1 = new Method2<Void>()
+						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+						.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
 		
-		ExtendedAgent agent2 = new ExtendedAgent();
+		copy1.invoke(b, k);
 		
-		Method2<Integer> process2 = new Method2<Integer>()
+		System.out.println(b.getB() + " == " + k.getJ());
+		
+		
+		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.addAll(ExtendedAgent.class, "process", agent2);
+				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
 
-		System.out.println(process2.invoke(b1, b2));
-		
-
-		Method2D<Integer, Integer> process3 = new Method2D<Integer, Integer>()
-				.comparator(new PrioritySymmetricComparator<Integer>())
-				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, 1)
-				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, 0);
-
-		System.out.println(process3.invoke(b1, b2));
-
-		
-		Method2D<Integer, String> process4 = new Method2D<Integer, String>()
-				.comparator(new PrioritySymmetricComparator<String>())
-				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, "first")
-				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, "second");
-
-		// the test with String parameter does not provide consistent order
-		// an exception is thrown because the minimum found is not the real minimum
 		try {
-			System.out.println(process4.invoke(b1, b2));
-		} catch (InvocationException e) {
-			System.out.println("error : " + e.getMessage());
+			copy2.invoke(b, k);
+		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
+		
+		
+		Method2<Void> copy3 = new Method2<Void>()
+				.comparator(new SymmetricComparator())
+				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier)
+				.add(Copier.class, "copy", Parameter.types(B.class, K.class), copier);
+
+		copy3.invoke(b, k);
+
+		System.out.println(b.getA() + " == " + k.getK());
 	}
 }

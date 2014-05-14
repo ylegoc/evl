@@ -2,31 +2,23 @@ package tutorials.tutorial8;
 
 import tutorials.classes.A;
 import tutorials.classes.B;
+import tutorials.classes.C;
 
 public class Foo {
 
-	public int process(A obj, int x) {
-		return 1;
-	}
-	
-	public boolean test(A obj, int x) {
-		return (x < 0);
+	public int process(B obj) {
+		return 1 + obj.getB();
 	}
 
-	public int process(B obj, int x) {
-		return 2;
-	}
-	
-	public boolean test(B obj, int x) {
-		return (x >= 10 && x < 20);
-	}
-	
-	public int process2(B obj, int x) {
-		return 3;
-	}
-	
-	public boolean test2(B obj, int x) {
-		return (x >= 20);
+	public int process(C obj) {
+		return 2 + obj.getC();
 	}
 
+	public int process2(B obj1, A obj2) {
+		return 1 + obj1.getB() + obj2.getA();
+	}
+	
+	public int process2(B obj1, C obj2) {
+		return 1 - obj1.getB() - obj2.getC();
+	}
 }

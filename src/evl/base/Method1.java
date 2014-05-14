@@ -21,10 +21,18 @@ public class Method1<ReturnType> extends BaseMethod1D<ReturnType, Void> {
 		return this;
 	}
 	
+	public Method1<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes) {
+		return add(classInstance, name, parameterTypes, null);
+	}
+	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
 	public Method1<ReturnType> addAll(Class<?> classInstance, String name, Object object) {
 		super.addMethodFamily(classInstance, name, object);
 		return this;
+	}
+	
+	public Method1<ReturnType> addAll(Class<?> classInstance, String name) {
+		return addAll(classInstance, name, null);
 	}
 	
 	public Method1<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {

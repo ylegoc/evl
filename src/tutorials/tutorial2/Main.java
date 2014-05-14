@@ -3,10 +3,9 @@ package tutorials.tutorial2;
 import tutorials.classes.A;
 import tutorials.classes.B;
 import tutorials.classes.C;
-import evl.base.Method2;
 
 /**
- * Binary method example.
+ * Simple example.
  * @author yan
  *
  */
@@ -14,17 +13,12 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
-		A b1 = new B(1, 4);
-		A b2 = new B(3, 7);
-		A c1 = new C(2, -6);
+		A b = new B(1, 2);
+		A c = new C(2, -5);
 		
-		Comparator comparator = new Comparator();
+		Foo foo = new Foo();
 		
-		Method2<Boolean> compare = new Method2<Boolean>()
-						.addAll(Comparator.class, "compare", comparator);
-		
-		System.out.println(compare.invoke(b1, b2));
-		System.out.println(compare.invoke(b1, b1));
-		System.out.println(compare.invoke(b1, c1));
+		System.out.println(foo.process(b));
+		System.out.println(foo.process(c));
 	}
 }

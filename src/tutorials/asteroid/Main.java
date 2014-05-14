@@ -28,13 +28,11 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 	
-		Method2<Void> collide = new Method2<Void>()
-						.addAll(Main.class, "collide", null);
+		Method2<Void> collide = new Method2<Void>().addAll(Main.class, "collide");
 		
 		collide.invoke(new Asteroid(), new Asteroid());
 		collide.invoke(new Asteroid(), new Spaceship());
 		collide.invoke(new Spaceship(), new Asteroid());
 		collide.invoke(new Spaceship(), new Spaceship());
-			
 	}
 }
