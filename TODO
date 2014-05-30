@@ -13,7 +13,7 @@ Code
 Tutorials
 - Update web site
 - Start examples (more concrete)
-	Algorithms
+	Algorithms : calculate the descriptor of triangle, rectangle, hexagon
 	- replace virtual inheritance by outside definitions
 	- explain how visitor pattern would be used if not multi-method
 	- replace in Method1
@@ -31,11 +31,30 @@ Tutorials
 	=> more complex
 	=> explain reusability (key explanation)
 	
+- explain
+	=> not a framework, can be used really often
+	=> take the habit
+	
+- where to use
+	=> avoid internal virtual methods
+	=> code can be moved to the same class (it is better to move process functions in the same class)
+	
 remarks
 - not implement resolve because potentially lots of classes
 => or imagine a base prototype
  
 - Exception management
-	- use runtime exceptions optionally for insertion
-	- avoid too many compilation exceptions to treat that should be resolved once
+	- use runtime exceptions for insertion
+	=> avoid too many compilation exceptions to treat that should be resolved once
 	=> because we are using reflection layer
+	
+Web site:
+Add index.html that let the choice between java and cpp implementations:
+
+java:
+Do like concurrentlinkedhashmap?
+- Apache License 2.0
+- provide link to bitbuckets web site (in Downloads & installation that will be renamed)
+- remove Documentation
+- javadoc
+
