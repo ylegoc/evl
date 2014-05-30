@@ -2,14 +2,14 @@ package org.bitbucket.evl.tutorial8;
 
 import java.util.HashMap;
 
-import org.bitbucket.evl.base.Method1;
-import org.bitbucket.evl.base.Method2;
+import org.bitbucket.evl.DispatchableMethodD;
+import org.bitbucket.evl.Method1;
+import org.bitbucket.evl.Method2;
+import org.bitbucket.evl.Method2D;
+import org.bitbucket.evl.PrioritySymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;
-import org.bitbucket.evl.data.DispatchableMethodD;
-import org.bitbucket.evl.data.Method2D;
-import org.bitbucket.evl.data.PrioritySymmetricComparator;
 import org.bitbucket.evl.util.Parameter;
 
 /**

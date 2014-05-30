@@ -1,6 +1,6 @@
 package org.bitbucket.evl.tutorial3;
 
-import org.bitbucket.evl.base.Method2;
+import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;

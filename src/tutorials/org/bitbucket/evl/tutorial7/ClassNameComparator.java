@@ -1,7 +1,7 @@
 package org.bitbucket.evl.tutorial7;
 
-import org.bitbucket.evl.data.MethodComparatorD;
-import org.bitbucket.evl.data.MethodItemD;
+import org.bitbucket.evl.MethodComparatorD;
+import org.bitbucket.evl.MethodItemD;
 
 public class ClassNameComparator extends MethodComparatorD<Void> {
 

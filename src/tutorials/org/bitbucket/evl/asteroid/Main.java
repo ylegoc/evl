@@ -1,6 +1,6 @@
 package org.bitbucket.evl.asteroid;
 
-import org.bitbucket.evl.base.Method2;
+import org.bitbucket.evl.Method2;
 
 /**
  * Asteroid tutorial.

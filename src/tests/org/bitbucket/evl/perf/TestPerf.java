@@ -3,12 +3,12 @@ package org.bitbucket.evl.perf;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.bitbucket.evl.base.AsymmetricComparator;
-import org.bitbucket.evl.base.Method1;
-import org.bitbucket.evl.base.Method2;
-import org.bitbucket.evl.base.Method3;
-import org.bitbucket.evl.data.DispatchableMethodD;
-import org.bitbucket.evl.exceptions.InvocationException;
+import org.bitbucket.evl.AsymmetricComparator;
+import org.bitbucket.evl.DispatchableMethodD;
+import org.bitbucket.evl.Method1;
+import org.bitbucket.evl.Method2;
+import org.bitbucket.evl.Method3;
+import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.Parameter;
 
 public class TestPerf {

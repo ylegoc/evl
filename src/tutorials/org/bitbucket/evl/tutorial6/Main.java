@@ -1,12 +1,12 @@
 package org.bitbucket.evl.tutorial6;
 
-import org.bitbucket.evl.base.Method2;
-import org.bitbucket.evl.base.SymmetricComparator;
+import org.bitbucket.evl.Method2;
+import org.bitbucket.evl.Method2D;
+import org.bitbucket.evl.PrioritySymmetricComparator;
+import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
-import org.bitbucket.evl.data.Method2D;
-import org.bitbucket.evl.data.PrioritySymmetricComparator;
-import org.bitbucket.evl.exceptions.InvocationException;
+import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.Parameter;
 
 public class Main {
