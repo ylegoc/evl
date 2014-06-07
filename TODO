@@ -1,7 +1,8 @@
 Code
-- hide helper/implementation classes, some methods that must remain package protected 
 - implement toString method of MultiMethodD
+- javadoc (exclude some classes)
 - put the tutorials on web site
+- put javadoc on website
 - test all errors : bad insertion, etc.
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 - check the size of the application (with bounded cache)
