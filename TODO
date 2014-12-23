@@ -1,5 +1,6 @@
 Code
 - implement toString method of MultiMethodD
+- check the classes to be ignored, the methods to be not accessible to user
 - javadoc (exclude some classes)
 - put the tutorials on web site
 - put javadoc on website
@@ -10,6 +11,32 @@ Code
 
 - recode Predicate without Method as DataType but the description of the method
 => break dependency to reflection
+
+- add the possibility to dynamically refine the FCOs
+=> a list of FCOs, applied sequentially
+=> provide refineComparator method that is called after comparator
+
+Planning
+- provide more precise plans
+=> see if a technical article is ok
+1. introduction
+	provide some tutorials as examples
+2. use cases
+
+- study the C++ implementation with C++14
+=> propose an architecture and main interfaces (e.g. need for string?)
+=> multi_function to be compatible with std::function
+
+Article
+Explain not a new idea so we need to convince the user
+When a real virtual method is defined, can we do it with a multi-method?
+- Patterns GoF
+	- Visitor
+	- State (can be introduced anywhere)
+	- ...
+- Message queues
+	- Take ConcurrentBlockingQueue
+	=> say that it would be perfect in the actor model
 
 Tutorials
 - Update web site
@@ -54,7 +81,6 @@ Add index.html that let the choice between java and cpp implementations:
 
 java:
 Do like concurrentlinkedhashmap?
-- Apache License 2.0
 - provide link to bitbuckets web site (in Downloads & installation that will be renamed)
 - remove Documentation
 - javadoc
