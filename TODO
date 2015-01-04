@@ -37,6 +37,11 @@ When a real virtual method is defined, can we do it with a multi-method?
 - Message queues
 	- Take ConcurrentBlockingQueue
 	=> say that it would be perfect in the actor model
+	- Portable messages
+	=> need for serializer/deserializer
+	=> ex: zmq + protocol buffers + dispatcher (factory must be determined)
+	=> best solution that separates different parts
+	=> wait for C++ implementation
 
 Tutorials
 - Update web site
