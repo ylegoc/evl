@@ -10,7 +10,7 @@ import org.bitbucket.evl.test.IA;
 
 public class TestMethodHandle {
 
-public static void test0() {
+	public static void test0() {
 		
 		try {
 			MethodHandles.Lookup lookup = MethodHandles.lookup();
@@ -47,5 +47,10 @@ public static void test0() {
 		}
 		
 		//Foo.class.getMethod("foo", IA.class);
+	}
+
+	public static void main(String[] args) {
+	
+		TestMethodHandle.test0();
 	}
 }

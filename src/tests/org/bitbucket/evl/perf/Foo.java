@@ -1,11 +1,15 @@
 package org.bitbucket.evl.perf;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Foo {
 
 	private Map<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
+	private Map<Class<?>, MethodHandle> handleMap = new HashMap<Class<?>, MethodHandle>();
 	
 	public Foo() {
 		processMap.put(A1.class, 1);
@@ -16,6 +20,23 @@ public class Foo {
 		processMap.put(A6.class, 6);
 		processMap.put(A7.class, 7);
 		processMap.put(A8.class, 8);
+		
+		MethodHandles.Lookup lookup = MethodHandles.lookup();
+		
+		try {
+			handleMap.put(A1.class, lookup.findVirtual(Foo.class, "processA1", MethodType.methodType(int.class, A1.class)));
+			handleMap.put(A2.class, lookup.findVirtual(Foo.class, "processA2", MethodType.methodType(int.class, A2.class)));
+			handleMap.put(A3.class, lookup.findVirtual(Foo.class, "processA3", MethodType.methodType(int.class, A3.class)));
+			handleMap.put(A4.class, lookup.findVirtual(Foo.class, "processA4", MethodType.methodType(int.class, A4.class)));
+			handleMap.put(A5.class, lookup.findVirtual(Foo.class, "processA5", MethodType.methodType(int.class, A5.class)));
+			handleMap.put(A6.class, lookup.findVirtual(Foo.class, "processA6", MethodType.methodType(int.class, A6.class)));
+			handleMap.put(A7.class, lookup.findVirtual(Foo.class, "processA7", MethodType.methodType(int.class, A7.class)));
+			handleMap.put(A8.class, lookup.findVirtual(Foo.class, "processA8", MethodType.methodType(int.class, A8.class)));
+			
+		} catch (NoSuchMethodException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public int processA1(A1 a) {
@@ -81,6 +102,15 @@ public class Foo {
 	
 	public int processAllMap(Base a) {
 		return processMap.get(a.getClass());
+	}
+	
+	public int processAllHandle(Base a) {
+		try {
+			return (int)handleMap.get(a.getClass()).invoke(this, a);
+		} catch (Throwable e) {
+		}
+		
+		return 0;
 	}
 	
 	public int processA1A1(A1 a, A1 b) {

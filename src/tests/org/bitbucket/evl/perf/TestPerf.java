@@ -79,6 +79,22 @@ public class TestPerf {
 		System.out.println("map in " + (end.getTime() - begin.getTime()) + "ms result " + res);
 	}
 	
+	private static void testMethodHandle() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllHandle(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method handle in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+	}
+	
 	static void testMultiMethod(Method1<Integer> m) {
 	
 		Foo foo = new Foo();
@@ -189,6 +205,7 @@ public class TestPerf {
 		testMethod();
 		testInstanceOf();
 		testMap();
+		testMethodHandle();
 		
 		testMultiMethod(new Method1<Integer>()
 								.comparator(new AsymmetricComparator()));

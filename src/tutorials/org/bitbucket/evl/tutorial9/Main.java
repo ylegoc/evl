@@ -7,7 +7,7 @@ import org.bitbucket.evl.predicate.PredicateMethod1;
 import org.bitbucket.evl.util.Parameter;
 
 /**
- * Example with different cache strategies.
+ * Example with predicate dispatch in data.
  * @author yan
  *
  */
