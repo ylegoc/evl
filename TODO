@@ -1,4 +1,6 @@
 Code
+- reimplement the comparators by a list of comparators
+	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
 - check the classes to be ignored, the methods to be not accessible to user
 - javadoc (exclude some classes)
