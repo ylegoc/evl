@@ -97,7 +97,9 @@ Do like concurrentlinkedhashmap?
 Idea: Predicate inherited into Predicate0, Predicate1, ... Predicate7
 
 We defined Multimethod m;
-m.add(Foo.class, "foo", types(Channel0), foo);
+m.add(Foo.class, "foo", types(Predicate0), foo);
+
+void foo(Predicate0 p, ...)
 
 with Predicate.expression(EO e0, E1 e1, ...) : Predicate
 
