@@ -11,8 +11,7 @@ Code
 - check the size of the application (with bounded cache)
 - think about comparator copy by newInstance?
 
-- recode Predicate without Method as DataType but the description of the method
-=> break dependency to reflection
+
 
 - add the possibility to dynamically refine the FCOs
 => a list of FCOs, applied sequentially
@@ -92,3 +91,16 @@ Do like concurrentlinkedhashmap?
 - remove Documentation
 - javadoc
 
+- recode Predicate without Method as DataType but the description of the method
+=> break dependency to reflection?
+
+Idea: Predicate inherited into Predicate0, Predicate1, ... Predicate7
+
+We defined Multimethod m;
+m.add(Foo.class, "foo", types(Channel0), foo);
+
+with Predicate.expression(EO e0, E1 e1, ...) : Predicate
+
+we call m.invoke(Predicate.expression(x == 1, y != 3, ...))
+
+Predicate.expression returns the first true predicate channel.
