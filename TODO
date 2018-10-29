@@ -1,16 +1,24 @@
 Code
+- Tutorials
+	Merge Main.java and Foo.java into the same class.
+	Find another name for process (mm? see the name given in reflection examples).
+	Rename Process.method in tuto 4
+- Remove Parameter.types
+	Use ... instead (java equivalent)
+- Is the suffix D easy to understand? Rather use another package?
+	This could also be the case for Method1 that could be in arg1.Method
+- Would it be possible to be less compile-time? To facilitate coding but with less control.
+- See if lambdas can be used
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
-- check the classes to be ignored, the methods to be not accessible to user
+- check the classes to be ignored
+	cleanup of the code: the methods to be not accessible to user
 - javadoc (exclude some classes)
 - put the tutorials on web site
 - put javadoc on website
 - test all errors : bad insertion, etc.
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
-- check the size of the application (with bounded cache)
-- think about comparator copy by newInstance?
-
 
 
 - add the possibility to dynamically refine the FCOs
