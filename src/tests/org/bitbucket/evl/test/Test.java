@@ -67,7 +67,6 @@ public class Test {
 				.add(Bar.class, "bar", Parameter.types(IA.class, int.class), bar)
 				.add(Bar.class, "bar", Parameter.types(D.class, int.class), bar);
 		
-
 		E e = new E();
 		
 		int res = m.invoke(e, 3);

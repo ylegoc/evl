@@ -4,8 +4,23 @@ Code
 	Find another name for process (mm? see the name given in reflection examples).
 	Rename Process.method in tuto 4
 - Remove Parameter.types
-	Use ... instead (java equivalent)
-- Is the suffix D easy to understand? Rather use another package?
+	Find a simpler syntax : 
+	Method2<Void> copy1 = new Method2<Void>()
+						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
+	becomes ?
+	Or in "builder" syntax:
+				new Method2<Void>()
+						.method(Copier.class, "copy", A.class, B.class).add(copier)
+						.method(Copier.class, "copy", A.class, K.class).add(copier)
+						
+	With data:
+				new Method2D<Void, Integer>()
+						.method(Copier.class, "copy", A.class, B.class).add(copier, 11)
+						.method(Copier.class, "copy", A.class, K.class).add(copier, 12)
+	
+	Check if copier is tested against Copier.class.
+	
+- Is the suffix D easy to understand? Rather use another package? Or rename into d?
 	This could also be the case for Method1 that could be in arg1.Method
 - Would it be possible to be less compile-time? To facilitate coding but with less control.
 - See if lambdas can be used
