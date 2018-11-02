@@ -11,10 +11,12 @@ import org.bitbucket.evl.PrioritySymmetricComparator;
 import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.Parameter;
+import org.junit.Test;
 
-public class Test {
+public class BasicTest {
 	
-	public static void test1() throws InvocationException {
+	@Test
+	public void test1() throws InvocationException {
 		
 		Foo foo = new Foo();
 		
@@ -43,7 +45,8 @@ public class Test {
 		}
 	}
 	
-	public static void test2() throws InvocationException {
+	@Test
+	public void test2() throws InvocationException {
 
 		Foo2 foo = new Foo2();
 		
@@ -58,7 +61,8 @@ public class Test {
 		System.out.println("test2 res = " + res);
 	}
 	
-	public static void test3() throws InvocationException {
+	@Test
+	public void test3() throws InvocationException {
 	
 		Bar bar = new Bar();
 		
@@ -76,7 +80,8 @@ public class Test {
 		System.out.println("test3 res = " + res);
 	}
 	
-	public static void test4() throws InvocationException {
+	@Test
+	public void test4() throws InvocationException {
 		
 		Foo2 foo = new Foo2();
 		
@@ -105,11 +110,4 @@ public class Test {
 		System.out.println("test4 res = " + res);
 	}
 	
-	public static void main(String[] args) throws InvocationException {
-		
-		test1();
-		test2();
-		test3();
-		test4();
-	}
 }

@@ -1,6 +1,7 @@
 Code
 - Maven: fr.evl, plus tard avec fr.ill.code, evl
 - Rename packages: fr.evl, plus tar fr.ill.code.evl
+- Use ConcurrentLinkedHashMap from apache cayenne or caffeine (which name?)
 - Tutorials
 	Merge Main.java and Foo.java into the same class.
 	Find another name for process (mm? see the name given in reflection examples).
