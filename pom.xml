@@ -14,6 +14,17 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+			<version>2.6.2</version>
+		</dependency>
+		<dependency>
+    <groupId>org.apache.cayenne</groupId>
+    <artifactId>cayenne-server</artifactId>
+    <version>4.1.M2</version>
+</dependency>
+
 	</dependencies>
 
 	<build>

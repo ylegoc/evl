@@ -1,7 +1,8 @@
 Code
 - Maven: fr.evl, plus tard avec fr.ill.code, evl
 - Rename packages: fr.evl, plus tar fr.ill.code.evl
-- Use ConcurrentLinkedHashMap from apache cayenne or caffeine (which name?)
+- Review interface
+	Merge data : only a single interface : no data in generics interface
 - Tutorials
 	Merge Main.java and Foo.java into the same class.
 	Find another name for process (mm? see the name given in reflection examples).
@@ -24,9 +25,8 @@ Code
 	Check if copier is tested against Copier.class.
 
 - MethodHandle to be considered: https://dzone.com/articles/setters-method-handles-and-java-11
-	
-- Is the suffix D easy to understand? Rather use another package? Or rename into d?
-	This could also be the case for Method1 that could be in arg1.Method
+
+- Test Caffeine Cache class.	
 - Would it be possible to be less compile-time? To facilitate coding but with less control.
 - See if lambdas can be used
 - reimplement the comparators by a list of comparators

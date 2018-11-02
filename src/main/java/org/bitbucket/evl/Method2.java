@@ -47,7 +47,7 @@ public class Method2<ReturnType> extends InvokableMethod2D<ReturnType, Void> {
 		return this;
 	}
 	
-	public Method2<ReturnType> boundedCache(long capacity) {
+	public Method2<ReturnType> boundedCache(int capacity) {
 		this.cache = CacheFactory.<ClassTuple, DispatchableMethodD<Void>>createBoundedCache(capacity);
 		return this;
 	}
