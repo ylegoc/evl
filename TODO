@@ -19,6 +19,8 @@ Code
 						.method(Copier.class, "copy", A.class, K.class).add(copier, 12)
 	
 	Check if copier is tested against Copier.class.
+
+- MethodHandle to be considered: https://dzone.com/articles/setters-method-handles-and-java-11
 	
 - Is the suffix D easy to understand? Rather use another package? Or rename into d?
 	This could also be the case for Method1 that could be in arg1.Method
