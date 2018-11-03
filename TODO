@@ -1,10 +1,56 @@
 Code
 - Maven: fr.evl, plus tard avec fr.ill.code, evl
 - Rename packages: fr.evl, plus tar fr.ill.code.evl
+
+- MethodHandle to be tested (compare the branches)
+	Need for reflection to get the return type in Class<?>.
+	Implement better the cache: do not have DispatchableMethodD in values but MethodHandle.
+	
+- It is possible to generate code like templates: 
+	https://www.optaplanner.org/blog/2018/01/09/JavaReflectionButMuchFaster.html
+	generate a virtual implementation that casts the arguments.
+	
+	add(method)
+		generate
+		class "method.getName()+method.args" : public CacheItem
+		invoke(Object objs...)
+			return obj."method.getName"(objs 0, objs 1)
+	
+
+Java 8:
+method in 330ms result 83886775
+instanceof in 225ms result 83886775
+map in 252ms result 83886775
+method handle in 637ms result 83886775
+method in 897ms result 83886775
+method 2 in 1210ms result 83886775
+method 3 in 4191ms result 83886775
+method in 804ms result 83886775
+method in 3034ms result 83886775
+method in 2961ms result 83886775
+method in 2987ms result 83886775
+method in 5614ms result 83886775
+method in 7868ms result 83886775
+method in 10179ms result 83886775
+
+Java 11:
+method in 354ms result 83889169
+instanceof in 211ms result 83889169
+map in 264ms result 83889169
+method handle in 688ms result 83889169
+method in 871ms result 83889169
+method 2 in 1136ms result 83889169
+method 3 in 4044ms result 83889169
+method in 984ms result 83889169
+method in 3623ms result 83889169
+method in 3299ms result 83889169
+method in 3420ms result 83889169
+method in 6481ms result 83889169
+method in 8832ms result 83889169
+method in 12251ms result 83889169
+
 - Review interface
 	Merge data : only a single interface : no data in generics interface
-	
-    Remove Parameter.types
 	Find a simpler syntax : 
 	Method2<Void> copy1 = new Method2<Void>()
 						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
@@ -19,14 +65,29 @@ Code
 						.add(Copier.class, "copy", A.class, B.class).with(copier, 11)
 						.add(Copier.class, "copy", A.class, K.class).with(copier, 12)
 	
-	Checks:
+	Static with data:
+						.add(Copier.class, "copy", B.class, B.class).with(null, 13)
+	
+	Or:
+						.add(copier, "copy", A.class, K.class).data(new Integer(12))
+						.addAll(copier, "copy").data(new Integer(12)) // mark all the last added to set the data
+						.add(Copier.class, "copy", B.class, B.class).data(new Integer(13)) // for static
+	
+	Checks at runtime:
+	- return type? impose that the return type has a default constructor: so that it is possible to check OR provide an instance.
+		classInstance.getConstructor().newInstance()
 	- copier must be an instance of Copier.class.
 	- data can be tested using the current comparator.
-	- how to check if a method has no caller: exception at runtime.
+	- how to check if a method has no caller: exception at runtime if it is not static.
+	=> unit tests for all possible errors.
 	
 	Ask Stu or ? to check the interface.
 
-- MethodHandle to be considered: https://dzone.com/articles/setters-method-handles-and-java-11
+- Change default comparator: add priority to Asymmetric and Symmetric, remove Priority... 
+	Default value is 0
+	Change order: highest value provides more priority: so that it is always possible to force.
+
+- Provide the request list of methods with associated objects.
 
 - Tutorials
 	Merge Main.java and Foo.java into the same class.
@@ -35,7 +96,6 @@ Code
 
 
 - Test Caffeine Cache class.	
-- Would it be possible to be less compile-time? To facilitate coding but with less control.
 - See if lambdas can be used
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
@@ -48,9 +108,8 @@ Code
 - test all errors : bad insertion, etc.
 - refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 
-
 - add the possibility to dynamically refine the FCOs
-=> a list of FCOs, applied sequentially
+=> a list of FCOs, applied sequentially?
 => provide refineComparator method that is called after comparator
 
 Planning

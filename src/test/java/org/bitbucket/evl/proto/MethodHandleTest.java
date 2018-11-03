@@ -8,9 +8,12 @@ import org.bitbucket.evl.test.E;
 import org.bitbucket.evl.test.Foo;
 import org.bitbucket.evl.test.IA;
 
-public class TestMethodHandle {
+import org.junit.Test;
 
-	public static void test0() {
+public class MethodHandleTest {
+
+	@Test
+	public void test0() {
 		
 		try {
 			MethodHandles.Lookup lookup = MethodHandles.lookup();
@@ -31,7 +34,12 @@ public class TestMethodHandle {
 			
 			i = (int)mh.invoke(foo, e);
 			System.out.println("i = " + i);
-
+			
+			try {
+				i = (int)mh.invokeExact(foo, e);
+			} catch (Throwable t) {
+				System.out.println("args must be exact");
+			}
 			
 			mt = MethodType.methodType(int.class, double.class);
 			mh = lookup.findVirtual(Foo.class, "bar", mt);
@@ -40,8 +48,6 @@ public class TestMethodHandle {
 			System.out.println("i = " + i);
 
 			
-		} catch (Exception e) {
-			e.printStackTrace();
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -49,8 +55,4 @@ public class TestMethodHandle {
 		//Foo.class.getMethod("foo", IA.class);
 	}
 
-	public static void main(String[] args) {
-	
-		TestMethodHandle.test0();
-	}
 }

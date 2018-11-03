@@ -10,8 +10,9 @@ import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Method3;
 import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.Parameter;
+import org.junit.Test;
 
-public class TestPerf {
+public class PerformanceTest {
 
 	static int N = 1 << 24;
 	static int[] indexes;
@@ -79,6 +80,22 @@ public class TestPerf {
 		System.out.println("map in " + (end.getTime() - begin.getTime()) + "ms result " + res);
 	}
 	
+	private static void testMethodReflect() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllMethod(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method reflect in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+	}
+	
 	private static void testMethodHandle() {
 		
 		Foo foo = new Foo();
@@ -122,7 +139,7 @@ public class TestPerf {
 			
 			Date end = new Date();
 			
-			System.out.println("method in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+			System.out.println("method 1 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
 			
 		} catch (InvocationException e) {
 			e.printStackTrace();
@@ -199,12 +216,14 @@ public class TestPerf {
 		}
 	}
 	
-	public static void main(String[] args) {
+	@Test
+	public void testAll() {
 		
 		init();
 		testMethod();
 		testInstanceOf();
 		testMap();
+		testMethodReflect();
 		testMethodHandle();
 		
 		testMultiMethod(new Method1<Integer>()

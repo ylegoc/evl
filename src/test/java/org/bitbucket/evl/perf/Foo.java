@@ -3,12 +3,14 @@ package org.bitbucket.evl.perf;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Foo {
 
 	private Map<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
+	private Map<Class<?>, Method> methodMap = new HashMap<Class<?>, Method>();
 	private Map<Class<?>, MethodHandle> handleMap = new HashMap<Class<?>, MethodHandle>();
 	
 	public Foo() {
@@ -20,6 +22,26 @@ public class Foo {
 		processMap.put(A6.class, 6);
 		processMap.put(A7.class, 7);
 		processMap.put(A8.class, 8);
+		
+		
+		try {
+			methodMap.put(A1.class, Foo.class.getMethod("processA1", A1.class));
+			methodMap.put(A2.class, Foo.class.getMethod("processA2", A2.class));
+			methodMap.put(A3.class, Foo.class.getMethod("processA3", A3.class));
+			methodMap.put(A4.class, Foo.class.getMethod("processA4", A4.class));
+			methodMap.put(A5.class, Foo.class.getMethod("processA5", A5.class));
+			methodMap.put(A6.class, Foo.class.getMethod("processA6", A6.class));
+			methodMap.put(A7.class, Foo.class.getMethod("processA7", A7.class));
+			methodMap.put(A8.class, Foo.class.getMethod("processA8", A8.class));
+			
+			for (Method m : methodMap.values()) {
+				m.setAccessible(true);
+			}
+			
+		} catch (NoSuchMethodException | SecurityException e1) {
+			e1.printStackTrace();
+		}
+		
 		
 		MethodHandles.Lookup lookup = MethodHandles.lookup();
 		
@@ -102,6 +124,15 @@ public class Foo {
 	
 	public int processAllMap(Base a) {
 		return processMap.get(a.getClass());
+	}
+	
+	public int processAllMethod(Base a) {
+		try {
+			return (int)methodMap.get(a.getClass()).invoke(this, a);
+		} catch (Throwable e) {
+		}
+		
+		return 0;
 	}
 	
 	public int processAllHandle(Base a) {
