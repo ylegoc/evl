@@ -12,7 +12,7 @@ public abstract class InvokableMethod1D<ReturnType, DataType> extends MultiMetho
 	
 	public InvokableMethod1D() {
 		super(1, new AsymmetricComparatorD<DataType>());
-		this.cache = CacheFactory.<Class<?>, DispatchableMethodD<DataType>>createUnboundedCache();;
+		this.cache = CacheFactory.<Class<?>, DispatchableMethodD<DataType>>createUnboundedCache();
 	}
 	
 	protected void resetCache() {

@@ -1,5 +1,8 @@
 package org.bitbucket.evl.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 
 import org.bitbucket.evl.AsymmetricComparator;
@@ -27,22 +30,25 @@ public class BasicTest {
 		
 		E e = new E();
 		
+		// Adds a new entry in the cache.
 		int res = m.invoke(e);
-		System.out.println("test1 res = " + res);
+		assertEquals(res, 2);
 
+		// Use the cache.
 		res = m.invoke(e);
-		System.out.println("test1 res = " + res);
-
+		assertEquals(res, 2);
 		
+		// Add a method that will lead to an ambiguity.
 		m.add(Foo.class, "foo", Parameter.types(IC.class), foo);
 		
+		boolean error = false;
 		try {
 			res = m.invoke(e);
-			System.out.println("test1 res = " + res);
 			
 		} catch (InvocationException ex) {
-			System.out.println("error 1 : " + ex.getMessage());
+			error = true;
 		}
+		assertTrue(error);
 	}
 	
 	@Test
@@ -58,7 +64,7 @@ public class BasicTest {
 		E e = new E();
 		
 		int res = m.invoke(e, e);
-		System.out.println("test2 res = " + res);
+		assertEquals(res, 2);
 	}
 	
 	@Test
@@ -74,10 +80,10 @@ public class BasicTest {
 		E e = new E();
 		
 		int res = m.invoke(e, 3);
-		System.out.println("test3 res = " + res);
+		assertEquals(res, 3);
 
 		res = m.invoke(e, 5);
-		System.out.println("test3 res = " + res);
+		assertEquals(res, 5);
 	}
 	
 	@Test
@@ -91,13 +97,14 @@ public class BasicTest {
 				.comparator(new SymmetricComparator())
 				.addAll(Foo2.class, "foo", foo);
 
+		boolean error = false;
 		try {
-			int res = m.invoke(e, e);
-			System.out.println("test4 res = " + res);
+			m.invoke(e, e);
 			
 		} catch (InvocationException ex) {
-			System.out.println("error 4 : " + ex.getMessage());
+			error = true;
 		}
+		assertTrue(error);
 		
 		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
@@ -106,8 +113,9 @@ public class BasicTest {
 				.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
 				.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);
 
+		// Smallest priority wins.
 		int res = m2.invoke(e, e);
-		System.out.println("test4 res = " + res);
+		assertEquals(res, 2);
 	}
 	
 }
