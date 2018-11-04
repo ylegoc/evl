@@ -112,16 +112,10 @@ method in 12251ms result 83889169
 => a list of FCOs, applied sequentially?
 => provide refineComparator method that is called after comparator
 
-Planning
-- provide more precise plans
-=> see if a technical article is ok
-1. introduction
-	provide some tutorials as examples
-2. use cases
 
-- study the C++ implementation with C++14
-=> propose an architecture and main interfaces (e.g. need for string?)
-=> multi_function to be compatible with std::function
+Notes
+- Too constraining to implement a cache based on array (define EvlObject class that registers a unique id by using a special factory)
+	Future: mask map should be more suitable
 
 Article
 Explain not a new idea so we need to convince the user

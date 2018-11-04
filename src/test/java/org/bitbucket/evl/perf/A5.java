@@ -1,7 +1,11 @@
 package org.bitbucket.evl.perf;
 
-public class A5 implements Base {
+public class A5 extends Base {
 
+	public A5() {
+		id = 5;
+	}
+	
 	@Override
 	public int foo() {
 		return 5;

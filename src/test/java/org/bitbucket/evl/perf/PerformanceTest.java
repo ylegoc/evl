@@ -14,9 +14,10 @@ import org.junit.Test;
 
 public class PerformanceTest {
 
-	static int N = 1 << 24;
+	static int N = 1 << 20;
 	static int[] indexes;
 	static Base[] objects = new Base[8];
+	static long randomAccessTime;
 	
 	static void init() {
 		indexes = new int[N];
@@ -33,6 +34,18 @@ public class PerformanceTest {
 		objects[5] = new A6();
 		objects[6] = new A7();
 		objects[7] = new A8();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += objects[indexes[i]].id;
+		}
+		
+		Date end = new Date();
+		randomAccessTime = end.getTime() - begin.getTime();
+		
+		System.out.println("random access takes " + randomAccessTime + "ms result " + res);
 	}
 	
 	static void testMethod() {
@@ -45,7 +58,7 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		System.out.println("method in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
 	private static void testInstanceOf() {
@@ -61,7 +74,7 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("instanceof in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		System.out.println("instanceof in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
 	private static void testMap() {
@@ -77,7 +90,39 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("map in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		System.out.println("map in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+	}
+	
+	private static void testMethodExtern() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllExtern(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method extern in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+	}
+	
+	private static void testMethodExternArray() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllExternArray(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method extern array in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
 	private static void testMethodReflect() {
@@ -93,7 +138,7 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method reflect in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		System.out.println("method reflect in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
 	private static void testMethodHandle() {
@@ -109,7 +154,23 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method handle in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+		System.out.println("method handle in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+	}
+	
+	private static void testMethodHandleArray() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllHandleArray(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method handle array in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
 	static void testMultiMethod(Method1<Integer> m) {
@@ -139,7 +200,7 @@ public class PerformanceTest {
 			
 			Date end = new Date();
 			
-			System.out.println("method 1 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+			System.out.println("method 1 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 			
 		} catch (InvocationException e) {
 			e.printStackTrace();
@@ -174,7 +235,7 @@ public class PerformanceTest {
 			
 			Date end = new Date();
 			
-			System.out.println("method 2 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+			System.out.println("method 2 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 			
 		} catch (InvocationException e) {
 			e.printStackTrace();
@@ -209,7 +270,7 @@ public class PerformanceTest {
 			
 			Date end = new Date();
 			
-			System.out.println("method 3 in " + (end.getTime() - begin.getTime()) + "ms result " + res);
+			System.out.println("method 3 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 			
 		} catch (InvocationException e) {
 			e.printStackTrace();
@@ -223,8 +284,11 @@ public class PerformanceTest {
 		testMethod();
 		testInstanceOf();
 		testMap();
+		testMethodExtern();
+		testMethodExternArray();
 		testMethodReflect();
 		testMethodHandle();
+		testMethodHandleArray();
 		
 		testMultiMethod(new Method1<Integer>()
 								.comparator(new AsymmetricComparator()));

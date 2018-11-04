@@ -12,6 +12,63 @@ public class Foo {
 	private Map<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
 	private Map<Class<?>, Method> methodMap = new HashMap<Class<?>, Method>();
 	private Map<Class<?>, MethodHandle> handleMap = new HashMap<Class<?>, MethodHandle>();
+	private MethodHandle[] handleArray = new MethodHandle[9];
+	
+	static interface ExternBase {
+		public int foo(Foo foo, Object object);
+	}
+	
+	static class ExternA1 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA1((A1)object);
+		}
+	}
+	
+	static class ExternA2 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA2((A2)object);
+		}
+	}
+	
+	static class ExternA3 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA3((A3)object);
+		}
+	}
+	
+	static class ExternA4 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA4((A4)object);
+		}
+	}
+	
+	static class ExternA5 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA5((A5)object);
+		}
+	}
+	
+	static class ExternA6 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA6((A6)object);
+		}
+	}
+	
+	static class ExternA7 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA7((A7)object);
+		}
+	}
+	
+	static class ExternA8 implements ExternBase {
+		public int foo(Foo foo, Object object) {
+			return foo.processA8((A8)object);
+		}
+	}
+	
+	private Map<Class<?>, ExternBase> externMap = new HashMap<Class<?>, ExternBase>();
+	private ExternBase[] externArray = new ExternBase[9];
+	
 	
 	public Foo() {
 		processMap.put(A1.class, 1);
@@ -22,7 +79,6 @@ public class Foo {
 		processMap.put(A6.class, 6);
 		processMap.put(A7.class, 7);
 		processMap.put(A8.class, 8);
-		
 		
 		try {
 			methodMap.put(A1.class, Foo.class.getMethod("processA1", A1.class));
@@ -55,9 +111,37 @@ public class Foo {
 			handleMap.put(A7.class, lookup.findVirtual(Foo.class, "processA7", MethodType.methodType(int.class, A7.class)));
 			handleMap.put(A8.class, lookup.findVirtual(Foo.class, "processA8", MethodType.methodType(int.class, A8.class)));
 			
+			handleArray[1] = handleMap.get(A1.class);
+			handleArray[2] = handleMap.get(A2.class);
+			handleArray[3] = handleMap.get(A3.class);
+			handleArray[4] = handleMap.get(A4.class);
+			handleArray[5] = handleMap.get(A5.class);
+			handleArray[6] = handleMap.get(A6.class);
+			handleArray[7] = handleMap.get(A7.class);
+			handleArray[8] = handleMap.get(A8.class);
+			
+			
 		} catch (NoSuchMethodException | IllegalAccessException e) {
 			e.printStackTrace();
 		}
+		
+		externMap.put(A1.class, new ExternA1());
+		externMap.put(A2.class, new ExternA2());
+		externMap.put(A3.class, new ExternA3());
+		externMap.put(A4.class, new ExternA4());
+		externMap.put(A5.class, new ExternA5());
+		externMap.put(A6.class, new ExternA6());
+		externMap.put(A7.class, new ExternA7());
+		externMap.put(A8.class, new ExternA8());
+		
+		externArray[1] = new ExternA1();
+		externArray[2] = new ExternA2();
+		externArray[3] = new ExternA3();
+		externArray[4] = new ExternA4();
+		externArray[5] = new ExternA5();
+		externArray[6] = new ExternA6();
+		externArray[7] = new ExternA7();
+		externArray[8] = new ExternA8();
 		
 	}
 	
@@ -138,6 +222,33 @@ public class Foo {
 	public int processAllHandle(Base a) {
 		try {
 			return (int)handleMap.get(a.getClass()).invoke(this, a);
+		} catch (Throwable e) {
+		}
+		
+		return 0;
+	}
+	
+	public int processAllHandleArray(Base a) {
+		try {
+			return (int)handleArray[a.id].invoke(this, a);
+		} catch (Throwable e) {
+		}
+		
+		return 0;
+	}
+	
+	public int processAllExtern(Base a) {
+		try {
+			return (int)externMap.get(a.getClass()).foo(this, a);
+		} catch (Throwable e) {
+		}
+		
+		return 0;
+	}
+	
+	public int processAllExternArray(Base a) {
+		try {
+			return (int)externArray[a.id].foo(this, a);
 		} catch (Throwable e) {
 		}
 		

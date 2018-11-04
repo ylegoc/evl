@@ -12,7 +12,6 @@ import org.junit.Test;
 
 public class MethodHandleTest {
 
-	@Test
 	public void test0() {
 		
 		try {
@@ -51,8 +50,6 @@ public class MethodHandleTest {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-		
-		//Foo.class.getMethod("foo", IA.class);
 	}
 
 }

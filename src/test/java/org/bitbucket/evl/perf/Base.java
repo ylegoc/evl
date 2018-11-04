@@ -1,6 +1,8 @@
 package org.bitbucket.evl.perf;
 
-public interface Base {
+public abstract class Base {
 
-	int foo();
+	int id = 0;
+	
+	abstract int foo();
 }
