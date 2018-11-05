@@ -7,11 +7,6 @@ Code
 	Implement better the cache: do not have DispatchableMethodD in values but MethodHandle.
 
 notes:
-- processAllHandle(Base a) is more performant than processAllHandle(Object a)
-- invokeWithArguments is very slow
-- bindTo works nicely but how to call invoke with ...? Strange: invoke(Object...) but how to call it from a method that has ...?
-- Can we simulate templates? Using Generics?
-
 - It is possible to generate code like templates: 
 	https://www.optaplanner.org/blog/2018/01/09/JavaReflectionButMuchFaster.html
 	generate a virtual implementation that casts the arguments.
