@@ -19,7 +19,7 @@ import org.junit.Test;
 public class BasicTest {
 	
 	@Test
-	public void test1() throws InvocationException {
+	public void test1() throws Throwable {
 		
 		Foo foo = new Foo();
 		
@@ -51,7 +51,7 @@ public class BasicTest {
 		assertTrue(error);
 	}
 	
-	@Test
+	//@Test
 	public void test2() throws InvocationException {
 
 		Foo2 foo = new Foo2();
@@ -68,7 +68,7 @@ public class BasicTest {
 	}
 	
 	@Test
-	public void test3() throws InvocationException {
+	public void test3() throws Throwable {
 	
 		Bar bar = new Bar();
 		
@@ -86,8 +86,8 @@ public class BasicTest {
 		assertEquals(res, 5);
 	}
 	
-	@Test
-	public void test4() throws InvocationException {
+	//@Test
+	public void test4() throws Throwable {
 		
 		Foo2 foo = new Foo2();
 		

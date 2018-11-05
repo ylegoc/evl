@@ -1,23 +1,24 @@
 package org.bitbucket.evl;
 
+import java.lang.invoke.MethodHandle;
 import java.lang.reflect.Method;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
 public class DispatchableMethodD<DataType> {
 
-	private Method method;
+	private MethodHandle method;
 	private Object object;
 	private MethodClassTuple tuple;
 	private DataType data;
 	
-	public DispatchableMethodD(MethodClassTuple tuple, Method method, Object object) {
+	public DispatchableMethodD(MethodClassTuple tuple, MethodHandle method, Object object) {
 		this.method = method;
 		this.object = object;
 		this.tuple = tuple;
 	}
 	
-	public Method getMethod() {
+	public MethodHandle getMethod() {
 		return method;
 	}
 	

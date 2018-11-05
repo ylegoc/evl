@@ -12,6 +12,7 @@ public class Foo {
 	private Map<Class<?>, Integer> processMap = new HashMap<Class<?>, Integer>();
 	private Map<Class<?>, Method> methodMap = new HashMap<Class<?>, Method>();
 	private Map<Class<?>, MethodHandle> handleMap = new HashMap<Class<?>, MethodHandle>();
+	private Map<Class<?>, MethodHandle> boundHandleMap = new HashMap<Class<?>, MethodHandle>();
 	private MethodHandle[] handleArray = new MethodHandle[9];
 	
 	static interface ExternBase {
@@ -110,6 +111,15 @@ public class Foo {
 			handleMap.put(A6.class, lookup.findVirtual(Foo.class, "processA6", MethodType.methodType(int.class, A6.class)));
 			handleMap.put(A7.class, lookup.findVirtual(Foo.class, "processA7", MethodType.methodType(int.class, A7.class)));
 			handleMap.put(A8.class, lookup.findVirtual(Foo.class, "processA8", MethodType.methodType(int.class, A8.class)));
+			
+			boundHandleMap.put(A1.class, lookup.findVirtual(Foo.class, "processA1", MethodType.methodType(int.class, A1.class)).bindTo(this));
+			boundHandleMap.put(A2.class, lookup.findVirtual(Foo.class, "processA2", MethodType.methodType(int.class, A2.class)).bindTo(this));
+			boundHandleMap.put(A3.class, lookup.findVirtual(Foo.class, "processA3", MethodType.methodType(int.class, A3.class)).bindTo(this));
+			boundHandleMap.put(A4.class, lookup.findVirtual(Foo.class, "processA4", MethodType.methodType(int.class, A4.class)).bindTo(this));
+			boundHandleMap.put(A5.class, lookup.findVirtual(Foo.class, "processA5", MethodType.methodType(int.class, A5.class)).bindTo(this));
+			boundHandleMap.put(A6.class, lookup.findVirtual(Foo.class, "processA6", MethodType.methodType(int.class, A6.class)).bindTo(this));
+			boundHandleMap.put(A7.class, lookup.findVirtual(Foo.class, "processA7", MethodType.methodType(int.class, A7.class)).bindTo(this));
+			boundHandleMap.put(A8.class, lookup.findVirtual(Foo.class, "processA8", MethodType.methodType(int.class, A8.class)).bindTo(this));
 			
 			handleArray[1] = handleMap.get(A1.class);
 			handleArray[2] = handleMap.get(A2.class);
@@ -223,6 +233,26 @@ public class Foo {
 		try {
 			return (int)handleMap.get(a.getClass()).invoke(this, a);
 		} catch (Throwable e) {
+		}
+		
+		return 0;
+	}
+	
+	public int processAllBoundHandle(Base a) {
+		try {
+			return (int)boundHandleMap.get(a.getClass()).invoke(a);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public int processAllBoundHandleOnObject(Object a) {
+		try {
+			return (int)boundHandleMap.get(a.getClass()).invoke(a);
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 		
 		return 0;

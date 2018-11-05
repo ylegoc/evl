@@ -5,7 +5,13 @@ Code
 - MethodHandle to be tested (compare the branches)
 	Need for reflection to get the return type in Class<?>.
 	Implement better the cache: do not have DispatchableMethodD in values but MethodHandle.
-	
+
+notes:
+- processAllHandle(Base a) is more performant than processAllHandle(Object a)
+- invokeWithArguments is very slow
+- bindTo works nicely but how to call invoke with ...? Strange: invoke(Object...) but how to call it from a method that has ...?
+- Can we simulate templates? Using Generics?
+
 - It is possible to generate code like templates: 
 	https://www.optaplanner.org/blog/2018/01/09/JavaReflectionButMuchFaster.html
 	generate a virtual implementation that casts the arguments.
@@ -16,38 +22,27 @@ Code
 		invoke(Object objs...)
 			return obj."method.getName"(objs 0, objs 1)
 	
-
-Java 8:
-method in 330ms result 83886775
-instanceof in 225ms result 83886775
-map in 252ms result 83886775
-method handle in 637ms result 83886775
-method in 897ms result 83886775
-method 2 in 1210ms result 83886775
-method 3 in 4191ms result 83886775
-method in 804ms result 83886775
-method in 3034ms result 83886775
-method in 2961ms result 83886775
-method in 2987ms result 83886775
-method in 5614ms result 83886775
-method in 7868ms result 83886775
-method in 10179ms result 83886775
-
 Java 11:
-method in 354ms result 83889169
-instanceof in 211ms result 83889169
-map in 264ms result 83889169
-method handle in 688ms result 83889169
-method in 871ms result 83889169
-method 2 in 1136ms result 83889169
-method 3 in 4044ms result 83889169
-method in 984ms result 83889169
-method in 3623ms result 83889169
-method in 3299ms result 83889169
-method in 3420ms result 83889169
-method in 6481ms result 83889169
-method in 8832ms result 83889169
-method in 12251ms result 83889169
+random access takes 9ms result 5244485
+method in 14ms result 5244485
+instanceof in 19ms result 5244485
+map in 28ms result 5244485
+method extern in 42ms result 5244485
+method extern array in 24ms result 5244485
+method reflect in 84ms result 5244485
+method handle in 70ms result 5244485
+method handle array in 42ms result 5244485
+method 1 in 106ms result 5244485
+method 2 in 158ms result 5244485
+method 3 in 498ms result 5244485
+method 1 in 98ms result 5244485
+method 1 in 361ms result 5244485
+method 1 in 202ms result 5244485
+method 1 in 234ms result 5244485
+method 1 in 540ms result 5244485
+method 1 in 558ms result 5244485
+method 1 in 718ms result 5244485
+
 
 - Review interface
 	Merge data : only a single interface : no data in generics interface

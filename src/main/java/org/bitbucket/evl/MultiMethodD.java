@@ -1,5 +1,8 @@
 package org.bitbucket.evl;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -35,6 +38,7 @@ import org.bitbucket.evl.util.SuperClass;
  */
 public abstract class MultiMethodD<ReturnType, DataType> {
 
+	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
 	protected MethodComparatorD<DataType> methodComparator;
 	private ArrayList<DispatchableMethodD<DataType>> dispatchableMethods = new ArrayList<DispatchableMethodD<DataType>>();
@@ -53,6 +57,17 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
 	protected void addMethod(Method method, Object object, DataType data) {
+		
+		// Find the method handle.
+		MethodHandle methodHandle = null;
+		try {
+			methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()))
+									.bindTo(object);
+			
+		} catch (NoSuchMethodException | IllegalAccessException e1) {
+			// Should not happen.
+			System.err.println("Unable to find method handle.");
+		}
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
@@ -92,7 +107,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 			// do nothing
 		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
-		DispatchableMethodD<DataType> dispatchableMethod = new DispatchableMethodD<DataType>(tuple, method, object);
+		DispatchableMethodD<DataType> dispatchableMethod = new DispatchableMethodD<DataType>(tuple, methodHandle, object);
 		dispatchableMethod.setData(data);
 		
 		dispatchableMethods.add(dispatchableMethod);
@@ -110,17 +125,17 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 	}
 	
-	public abstract ReturnType invoke(Object... args) throws InvocationException;
+	public abstract ReturnType invoke(Object arg1) throws Throwable;
 	
-	@SuppressWarnings("unchecked")
-	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws MethodInvocationException {
-		// invoke the method
-		try {
-			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			throw new MethodInvocationException();
-		}
-	}
+//	@SuppressWarnings("unchecked")
+//	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws MethodInvocationException {
+//		// invoke the method
+//		try {
+//			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
+//		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+//			throw new MethodInvocationException();
+//		}
+//	}
 	
 	@SuppressWarnings("unchecked")
 	protected DispatchableMethodD<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {

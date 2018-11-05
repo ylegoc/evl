@@ -2,7 +2,6 @@ package org.bitbucket.evl;
 
 import java.util.Map;
 
-import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
@@ -19,28 +18,42 @@ public abstract class InvokableMethod1D<ReturnType, DataType> extends MultiMetho
 		cache.clear();
 	}
 	
-	public ReturnType invoke(Object... args) throws InvocationException {
-		
-		// search tuple in cache
-		DispatchableMethodD<DataType> method = cache.get(args[0].getClass());
+	public ReturnType invoke(Object arg1) throws Throwable {
 
-		try {
-			// invoke the method
-			return invokeMethod(method, args);
-			
-		} catch (NullPointerException e) {
-			// calculate the invoked method and put it in the cache
-			if (method == null) {			
-				method = processClassTuple(args);
-				cache.put(args[0].getClass(), method);
-				
-			} else {
-				throw e;
-			}
-			
-			// invoke the method
-			return invokeMethod(method, args);
+		// Get the method handle from the cache.
+		DispatchableMethodD<DataType> method = cache.get(arg1.getClass());
+		
+		// Invoke it if it is in the cache.
+		if (method != null) {	
+			return (ReturnType)method.getMethod().invoke(arg1);
 		}
+		
+		// Calculate the invoked method and put it in the cache.
+		Object[] args = {arg1};
+		method = processClassTuple(args);
+		cache.put(arg1.getClass(), method);
+		
+		// Invoke the method.
+		return (ReturnType)method.getMethod().invoke(arg1);
+	}
+	
+	public ReturnType invoke(Object arg1, Object arg2) throws Throwable {
+
+		// Get the method handle from the cache.
+		DispatchableMethodD<DataType> method = cache.get(arg1.getClass());
+		
+		// Invoke it if it is in the cache.
+		if (method != null) {	
+			return (ReturnType)method.getMethod().invoke(arg1, arg2);
+		}
+		
+		// Calculate the invoked method and put it in the cache.
+		Object[] args = {arg1};
+		method = processClassTuple(args);
+		cache.put(arg1.getClass(), method);
+		
+		// Invoke the method.
+		return (ReturnType)method.getMethod().invoke(arg1, arg2);
 	}
 		
 }

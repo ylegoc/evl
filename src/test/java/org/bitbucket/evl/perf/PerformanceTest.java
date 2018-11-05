@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class PerformanceTest {
 
-	static int N = 1 << 20;
+	static int N = 1 << 24;
 	static int[] indexes;
 	static Base[] objects = new Base[8];
 	static long randomAccessTime;
@@ -157,6 +157,38 @@ public class PerformanceTest {
 		System.out.println("method handle in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
+	private static void testMethodBoundHandle() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllBoundHandle(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method bound handle in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+	}
+	
+	private static void testMethodBoundHandleOnObject() {
+		
+		Foo foo = new Foo();
+		
+		Date begin = new Date();
+		
+		int res = 0;
+		for (int i = 0; i < N; i++) {
+			res += foo.processAllBoundHandleOnObject(objects[indexes[i]]);
+		}
+		
+		Date end = new Date();
+		
+		System.out.println("method bound handle on object in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+	}
+	
 	private static void testMethodHandleArray() {
 		
 		Foo foo = new Foo();
@@ -173,7 +205,7 @@ public class PerformanceTest {
 		System.out.println("method handle array in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
-	static void testMultiMethod(Method1<Integer> m) {
+	static void testMultiMethod(Method1<Integer> m) throws Throwable {
 	
 		Foo foo = new Foo();
 		
@@ -276,9 +308,9 @@ public class PerformanceTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
-	public void testAll() {
+	public void testAll() throws Throwable {
 		
 		init();
 		testMethod();
@@ -288,44 +320,46 @@ public class PerformanceTest {
 		testMethodExternArray();
 		testMethodReflect();
 		testMethodHandle();
+		testMethodBoundHandle();
+		testMethodBoundHandleOnObject();
 		testMethodHandleArray();
 		
 		testMultiMethod(new Method1<Integer>()
 								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod2(new Method2<Integer>()
-								.comparator(new AsymmetricComparator()));
-		
-		testMultiMethod3(new Method3<Integer>()
-								.comparator(new AsymmetricComparator()));
-		
-		testMultiMethod(new Method1<Integer>()
-								.comparator(new AsymmetricComparator())
-								.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>()));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(32));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(8));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(7));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(6));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(5));
-		
-		testMultiMethod(new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.boundedCache(4));
+//		testMultiMethod2(new Method2<Integer>()
+//								.comparator(new AsymmetricComparator()));
+//		
+//		testMultiMethod3(new Method3<Integer>()
+//								.comparator(new AsymmetricComparator()));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//								.comparator(new AsymmetricComparator())
+//								.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>()));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(32));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(8));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(7));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(6));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(5));
+//		
+//		testMultiMethod(new Method1<Integer>()
+//				.comparator(new AsymmetricComparator())
+//				.boundedCache(4));
 	}
 
 }
