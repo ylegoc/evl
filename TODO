@@ -1,81 +1,38 @@
 Code
-- Maven: fr.evl, plus tard avec fr.ill.code, evl
+- Maven: fr.evl, later with fr.ill.code, evl
 - Rename packages: fr.evl, plus tar fr.ill.code.evl
 
-- Add invoke arg1, arg2, ... in MultiMethodD
-
 notes:
-- MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
-	We define all the 8 methods.
-- It is possible to generate code like templates: 
-	https://www.optaplanner.org/blog/2018/01/09/JavaReflectionButMuchFaster.html
-	generate a virtual implementation that casts the arguments but that would not improve the perf because it is still needed to downcast.
-	
-	add(method)
-		generate
-		class "method.getName()+method.args" : public CacheItem
-		invoke(Object objs...)
-			return obj."method.getName"(objs 0, objs 1)
-	
-Java 11:
-random access takes 9ms result 5244485
-method in 14ms result 5244485
-instanceof in 19ms result 5244485
-map in 28ms result 5244485
-method extern in 42ms result 5244485
-method extern array in 24ms result 5244485
-method reflect in 84ms result 5244485
-method handle in 70ms result 5244485
-method handle array in 42ms result 5244485
-method 1 in 106ms result 5244485
-method 2 in 158ms result 5244485
-method 3 in 498ms result 5244485
-method 1 in 98ms result 5244485
-method 1 in 361ms result 5244485
-method 1 in 202ms result 5244485
-method 1 in 234ms result 5244485
-method 1 in 540ms result 5244485
-method 1 in 558ms result 5244485
-method 1 in 718ms result 5244485
-
-
 - Review interface
 	Merge data : only a single interface : no data in generics interface
 	Find a simpler syntax : 
 	Method2<Void> copy1 = new Method2<Void>()
-						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
-	becomes ?
-	Or in "builder" syntax:
-				new Method2<Void>()
-						.add(Copier.class, "copy", A.class, B.class).with(copier)
-						.add(Copier.class, "copy", A.class, K.class).with(copier)
-						
-	With data:
-				new Method2D<Void, Integer>()
-						.add(Copier.class, "copy", A.class, B.class).with(copier, 11)
-						.add(Copier.class, "copy", A.class, K.class).with(copier, 12)
-	
-	Static with data:
-						.add(Copier.class, "copy", B.class, B.class).with(null, 13)
-	
-	Or:
+						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier, 12)
+	becomes:
 						.add(copier, "copy", A.class, K.class).data(new Integer(12))
 						.addAll(copier, "copy").data(new Integer(12)) // mark all the last added to set the data
 						.add(Copier.class, "copy", B.class, B.class).data(new Integer(13)) // for static
 	
 	Checks at runtime:
+	- add static: check at it is static.
+	- how to manage that method is static but added with object? Check it is static and do not bind if it is.
 	- return type? impose that the return type has a default constructor: so that it is possible to check OR provide an instance.
 		classInstance.getConstructor().newInstance()
 	- copier must be an instance of Copier.class.
 	- data can be tested using the current comparator.
-	- how to check if a method has no caller: exception at runtime if it is not static.
-	=> unit tests for all possible errors.
 	
-	Ask Stu or ? to check the interface.
+	Change default comparator: add priority to Asymmetric and Symmetric, remove Priority... 
+		Default value is 0
+		Change order: highest value provides more priority: so that it is always possible to force.
 
-- Change default comparator: add priority to Asymmetric and Symmetric, remove Priority... 
-	Default value is 0
-	Change order: highest value provides more priority: so that it is always possible to force.
+	
+Roadmap
+1. Implement add and data in InvokableMethod1D, 2D, etc.
+2. Remove all the methods from Method1, Method1D, Method2, etc.
+3. Remove DataType from every ...D except comparators.
+4. Comparators include priority with default value : Object Comparator.getDefaultValue().
+	
+- unit tests for all possible errors.
 
 - Provide the request list of methods with associated objects.
 
@@ -90,22 +47,22 @@ method 1 in 718ms result 5244485
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
+- Java 9 module?
 - check the classes to be ignored
 	cleanup of the code: the methods to be not accessible to user
 - javadoc (exclude some classes)
 - put the tutorials on web site
 - put javadoc on website
-- test all errors : bad insertion, etc.
-- refine perf tests to see if it would not be better to unfold invokeMethod call in invoke
 
-- add the possibility to dynamically refine the FCOs
-=> a list of FCOs, applied sequentially?
-=> provide refineComparator method that is called after comparator
+- add the possibility to dynamically refine the comparators
+	List of comparators, applied sequentially.
 
 
 Notes
 - Too constraining to implement a cache based on array (define EvlObject class that registers a unique id by using a special factory)
 	Future: mask map should be more suitable
+- MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
+	We define all the 7 methods.
 
 Article
 Explain not a new idea so we need to convince the user
