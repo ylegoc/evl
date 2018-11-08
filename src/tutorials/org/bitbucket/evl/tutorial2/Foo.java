@@ -9,7 +9,7 @@ public class Foo {
 	
 	private Method1<Integer> process = new Method1<Integer>().addAll(Foo.class, "process", this);
 	
-	public int process(Object obj) throws InvocationException {
+	public int process(Object obj) throws Throwable {
 		return process.invoke(obj);
 	}
 	

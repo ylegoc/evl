@@ -2,7 +2,7 @@ package org.bitbucket.evl.tutorial8;
 
 import java.util.HashMap;
 
-import org.bitbucket.evl.DispatchableMethodD;
+import java.lang.invoke.MethodHandle;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Method2D;
@@ -19,7 +19,7 @@ import org.bitbucket.evl.util.Parameter;
  */
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		
 		A b = new B(1, 2);
 		A c = new C(2, -5);
@@ -43,7 +43,7 @@ public class Main {
 		
 		
 		process = new Method1<Integer>()
-				.cache(new HashMap<Class<?>, DispatchableMethodD<Void>>())
+				.cache(new HashMap<Class<?>, MethodHandle>())
 				.addAll(Foo.class, "process", foo);
 
 		System.out.println(process.invoke(b));
@@ -51,7 +51,7 @@ public class Main {
 		
 		
 		Method2<Integer> process2 = new Method2<Integer>()
-				.cache(new HashMap<Method2.ClassTuple, DispatchableMethodD<Void>>())
+				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
 				.addAll(Foo.class, "process2", foo);
 
 
@@ -60,7 +60,7 @@ public class Main {
 		
 		Method2D<Integer, Integer> process2d = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
-				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
 				.add(Foo.class, "process2", Parameter.types(B.class, A.class), foo, 1)
 				.add(Foo.class, "process2", Parameter.types(B.class, C.class), foo, 2);
 

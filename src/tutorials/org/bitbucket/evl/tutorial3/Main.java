@@ -12,7 +12,7 @@ import org.bitbucket.evl.classes.C;
  */
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		
 		A b1 = new B(1, 4);
 		A b2 = new B(3, 7);

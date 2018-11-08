@@ -15,7 +15,7 @@ import org.bitbucket.evl.util.Parameter;
  */
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		
 		B b = new B(1, 4);
 		K k = new K(3, 7);

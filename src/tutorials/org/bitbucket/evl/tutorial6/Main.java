@@ -11,7 +11,7 @@ import org.bitbucket.evl.util.Parameter;
 
 public class Main {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 		
 		A b1 = new B(1, 2);
 		A b2 = new B(2, -5);

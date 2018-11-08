@@ -26,7 +26,7 @@ public class Main {
 	}
 	
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Throwable {
 	
 		Method2<Void> collide = new Method2<Void>().addAll(Main.class, "collide");
 		
