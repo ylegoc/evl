@@ -2,14 +2,14 @@ Code
 - Maven: fr.evl, plus tard avec fr.ill.code, evl
 - Rename packages: fr.evl, plus tar fr.ill.code.evl
 
-- MethodHandle to be tested (compare the branches)
-	Need for reflection to get the return type in Class<?>.
-	Implement better the cache: do not have DispatchableMethodD in values but MethodHandle.
+- Add invoke arg1, arg2, ... in MultiMethodD
 
 notes:
+- MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
+	We define all the 8 methods.
 - It is possible to generate code like templates: 
 	https://www.optaplanner.org/blog/2018/01/09/JavaReflectionButMuchFaster.html
-	generate a virtual implementation that casts the arguments.
+	generate a virtual implementation that casts the arguments but that would not improve the perf because it is still needed to downcast.
 	
 	add(method)
 		generate

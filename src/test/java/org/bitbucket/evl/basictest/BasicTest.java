@@ -1,12 +1,13 @@
-package org.bitbucket.evl.test;
+package org.bitbucket.evl.basictest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 
+import java.lang.invoke.MethodHandle;
+
 import org.bitbucket.evl.AsymmetricComparator;
-import org.bitbucket.evl.DispatchableMethodD;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Method2D;
@@ -52,7 +53,7 @@ public class BasicTest {
 	}
 	
 	//@Test
-	public void test2() throws InvocationException {
+	public void test2() throws Throwable {
 
 		Foo2 foo = new Foo2();
 		
@@ -108,7 +109,7 @@ public class BasicTest {
 		
 		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
-				.cache(new HashMap<Method2D.ClassTuple, DispatchableMethodD<Integer>>())
+				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
 				.add(Foo2.class, "foo", Parameter.types(IA.class, IA.class), foo, 1)
 				.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
 				.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);

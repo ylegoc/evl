@@ -1,4 +1,4 @@
-package org.bitbucket.evl.test;
+package org.bitbucket.evl.basictest;
 
 public class Foo2 {
 

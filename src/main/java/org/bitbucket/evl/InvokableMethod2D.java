@@ -1,9 +1,9 @@
 package org.bitbucket.evl;
 
+import java.lang.invoke.MethodHandle;
 import java.util.Arrays;
 import java.util.Map;
 
-import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
@@ -29,42 +29,34 @@ public abstract class InvokableMethod2D<ReturnType, DataType> extends MultiMetho
 		}
 	}
 	
-	protected Map<ClassTuple, DispatchableMethodD<DataType>> cache;
+	protected Map<ClassTuple, MethodHandle> cache;
 	
 	public InvokableMethod2D() {
 		super(2, new AsymmetricComparatorD<DataType>());
-		this.cache = CacheFactory.<ClassTuple, DispatchableMethodD<DataType>>createUnboundedCache();
+		this.cache = CacheFactory.<ClassTuple, MethodHandle>createUnboundedCache();
 	}
 	
 	protected void resetCache() {
 		cache.clear();
 	}
 	
-	public ReturnType invoke(Object... args) throws InvocationException {
+	protected MethodHandle processAndCache(Object arg1, Object arg2) throws Throwable {
 		
-		// define tuple
-		ClassTuple classTuple = new ClassTuple(args[0].getClass(), args[1].getClass());
-		
-		// search tuple in cache
-		DispatchableMethodD<DataType> method = cache.get(classTuple);
+		Object[] args = {arg1, arg2};
+		MethodHandle method = processClassTuple(args).getMethod();
+		cache.put(new ClassTuple(arg1.getClass(), arg2.getClass()), method);
+		return method;
+	}
+	
+	public ReturnType invoke(Object arg1, Object arg2) throws Throwable {
 
-		try {
-			// invoke the method
-			return invokeMethod(method, args);
-			
-		} catch (NullPointerException e) {
-			// calculate the invoked method and put it in the cache
-			if (method == null) {			
-				method = processClassTuple(args);
-				cache.put(classTuple, method);
-				
-			} else {
-				throw e;
-			}
-			
-			// invoke the method
-			return invokeMethod(method, args);
+		MethodHandle method = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass()));
+		
+		if (method != null) {	
+			return (ReturnType)method.invoke(arg1, arg2);
 		}
+		
+		return (ReturnType)processAndCache(arg1, arg2).invoke(arg1, arg2);
 	}
 		
 }

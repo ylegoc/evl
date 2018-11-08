@@ -4,10 +4,9 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 
-import org.bitbucket.evl.test.E;
-import org.bitbucket.evl.test.Foo;
-import org.bitbucket.evl.test.IA;
-
+import org.bitbucket.evl.basictest.E;
+import org.bitbucket.evl.basictest.Foo;
+import org.bitbucket.evl.basictest.IA;
 import org.junit.Test;
 
 public class MethodHandleTest {
@@ -20,7 +19,6 @@ public class MethodHandleTest {
 		System.out.println("testCall ok");
 	}
 	
-	@Test
 	public void test0() throws Throwable {
 		
 		MethodHandles.Lookup lookup = MethodHandles.lookup();

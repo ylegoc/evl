@@ -1,5 +1,6 @@
 package org.bitbucket.evl;
 
+import java.lang.invoke.MethodHandle;
 import java.util.Map;
 
 import org.bitbucket.evl.exception.MethodInsertionException;
@@ -37,18 +38,18 @@ public class Method2<ReturnType> extends InvokableMethod2D<ReturnType, Void> {
 		return this;
 	}
 	
-	public Method2<ReturnType> cache(Map<ClassTuple, DispatchableMethodD<Void>> cacheMap) {
+	public Method2<ReturnType> cache(Map<ClassTuple, MethodHandle> cacheMap) {
 		this.cache = cacheMap;
 		return this;
 	}
 	
 	public Method2<ReturnType> unboundedCache() {
-		this.cache = CacheFactory.<ClassTuple, DispatchableMethodD<Void>>createUnboundedCache();
+		this.cache = CacheFactory.<ClassTuple, MethodHandle>createUnboundedCache();
 		return this;
 	}
 	
 	public Method2<ReturnType> boundedCache(int capacity) {
-		this.cache = CacheFactory.<ClassTuple, DispatchableMethodD<Void>>createBoundedCache(capacity);
+		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(capacity);
 		return this;
 	}
 	

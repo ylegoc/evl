@@ -125,8 +125,6 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 	}
 	
-	public abstract ReturnType invoke(Object arg1) throws Throwable;
-	
 //	@SuppressWarnings("unchecked")
 //	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws MethodInvocationException {
 //		// invoke the method
