@@ -5,12 +5,13 @@ import java.lang.reflect.Method;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
-public class DispatchableMethodD<DataType> {
+class DispatchableMethodD<DataType> {
 
 	private MethodHandle method;
 	private Object object;
 	private MethodClassTuple tuple;
 	private DataType data;
+	private boolean lastAdded = false;
 	
 	public DispatchableMethodD(MethodClassTuple tuple, MethodHandle method, Object object) {
 		this.method = method;
@@ -36,6 +37,14 @@ public class DispatchableMethodD<DataType> {
 	
 	public DataType getData() {
 		return data;
+	}
+	
+	public void setLastAdded(boolean value) {
+		lastAdded = value;
+	}
+	
+	public boolean isLastAdded() {
+		return lastAdded;
 	}
 	
 }

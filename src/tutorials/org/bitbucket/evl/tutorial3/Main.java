@@ -21,7 +21,7 @@ public class Main {
 		Comparator comparator = new Comparator();
 		
 		Method2<Boolean> compare = new Method2<Boolean>()
-						.addAll(Comparator.class, "compare", comparator);
+						.addAll(comparator, "compare");
 		
 		System.out.println(compare.invoke(b1, b2));
 		System.out.println(compare.invoke(b1, b1));

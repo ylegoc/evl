@@ -20,7 +20,7 @@ public class Main {
 		
 		Method2<Integer> process1 = new Method2<Integer>()
 						.comparator(new SymmetricComparator())
-						.addAll(Agent.class, "process", agent);
+						.addAll(agent, "process");
 
 		try {
 			System.out.println(process1.invoke(b1, b2));
@@ -32,23 +32,23 @@ public class Main {
 		
 		Method2<Integer> process2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.addAll(ExtendedAgent.class, "process", agent2);
+				.addAll(agent2, "process");
 
 		System.out.println(process2.invoke(b1, b2));
 		
 
 		Method2D<Integer, Integer> process3 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
-				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, 1)
-				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, 0);
+				.add(agent, "process", A.class, B.class).data(1)
+				.add(agent, "process", B.class, A.class).data(0);
 
 		System.out.println(process3.invoke(b1, b2));
 
 		
 		Method2D<Integer, String> process4 = new Method2D<Integer, String>()
 				.comparator(new PrioritySymmetricComparator<String>())
-				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent, "first")
-				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent, "second");
+				.add(agent, "process", A.class, B.class).data("first")
+				.add(agent, "process", B.class, A.class).data("second");
 
 		// the test with String parameter does not provide consistent order
 		// an exception is thrown because the minimum found is not the real minimum

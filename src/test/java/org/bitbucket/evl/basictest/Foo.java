@@ -17,4 +17,8 @@ public class Foo {
 	public int bar(double d) {
 		return (int)d;
 	}
+	
+	public static int foo(E e) {
+		return 4;
+	}
 }

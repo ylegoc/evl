@@ -9,28 +9,20 @@ import org.bitbucket.evl.util.CacheFactory;
 
 public class Method4<ReturnType> extends InvokableMethod4D<ReturnType, Void> {
 	
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
-	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object) {
-		try {
-			super.addMethod(classInstance.getMethod(name, parameterTypes), object, null);
-		} catch (NoSuchMethodException | SecurityException e) {
-			throw new MethodInsertionException();
-		}
-		return this;
+	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+		return (Method4<ReturnType>)super.add(classInstance, name, parameterTypes);
 	}
 	
-	public Method4<ReturnType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes) {
-		return add(classInstance, name, parameterTypes, null);
-	}
-	
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	public Method4<ReturnType> addAll(Class<?> classInstance, String name, Object object) {
-		super.addMethodFamily(classInstance, name, object);
-		return this;
+	public Method4<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
+		return (Method4<ReturnType>)super.add(object, name, parameterTypes);
 	}
 	
 	public Method4<ReturnType> addAll(Class<?> classInstance, String name) {
-		return addAll(classInstance, name, null);
+		return (Method4<ReturnType>)super.addAll(classInstance, name);
+	}
+	
+	public Method4<ReturnType> addAll(Object object, String name) {
+		return (Method4<ReturnType>)super.addAll(object, name);
 	}
 	
 	public Method4<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {

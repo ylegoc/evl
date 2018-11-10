@@ -15,9 +15,9 @@ import org.bitbucket.evl.exception.BadNonVirtualParameterTypesException;
 import org.bitbucket.evl.exception.BadNumberOfVirtualParameterTypesException;
 import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.exception.MethodComparatorInstantiationException;
+import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.exception.MethodInvocationException;
 import org.bitbucket.evl.exception.NoCompatibleMethodException;
-import org.bitbucket.evl.util.CompatibleMethod;
 import org.bitbucket.evl.util.MethodClassTuple;
 import org.bitbucket.evl.util.SuperClass;
 
@@ -56,7 +56,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected void addMethod(Method method, Object object, DataType data) {
+	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, DataType data) {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -110,30 +110,93 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		DispatchableMethodD<DataType> dispatchableMethod = new DispatchableMethodD<DataType>(tuple, methodHandle, object);
 		dispatchableMethod.setData(data);
 		
+		// Add the method.
 		dispatchableMethods.add(dispatchableMethod);
+		
+		return dispatchableMethod;
 	}
 	
 	// not possible to set data to all the methods
 	// only for non-data methods
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
 	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) {
+		
+		// Set all the other methods lastAdded to false.
+		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+			m.setLastAdded(false);
+		}
+		
+		// Add all the methods.
 		Method[] methods = classInstance.getMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
-				addMethod(m, object, null);
+				DispatchableMethodD<DataType> dispatchableMethod = addMethod(m, object, null);
+				dispatchableMethod.setLastAdded(true);
 			}
 		}
 	}
 	
-//	@SuppressWarnings("unchecked")
-//	protected ReturnType invokeMethod(DispatchableMethodD<DataType> method, Object[] args) throws MethodInvocationException {
-//		// invoke the method
-//		try {
-//			return (ReturnType)method.getMethod().invoke(method.getObject(), args);
-//		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-//			throw new MethodInvocationException();
-//		}
-//	}
+	public MultiMethodD<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+		
+		// Set all the other methods lastAdded to false.
+		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+			m.setLastAdded(false);
+		}
+		
+		// Add the method.
+		try {
+			DispatchableMethodD<DataType> dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
+			dispatchableMethod.setLastAdded(true);
+			
+		} catch (NoSuchMethodException | SecurityException e) {
+			throw new MethodInsertionException();
+		}
+		
+		return this;
+	}
+	
+	public MultiMethodD<ReturnType, DataType> add(Object object, String name, Class<?>... parameterTypes) {
+		
+		// Set all the other methods lastAdded to false.
+		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+			m.setLastAdded(false);
+		}
+		
+		// Add the method.
+		try {
+			DispatchableMethodD<DataType> dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
+			dispatchableMethod.setLastAdded(true);
+			
+		} catch (NoSuchMethodException | SecurityException e) {
+			throw new MethodInsertionException();
+		}
+		
+		return this;
+	}
+	
+	public MultiMethodD<ReturnType, DataType> data(DataType data) {
+		
+		// Find the last added methods and set data.
+		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+			if (m.isLastAdded()) {
+				m.setData(data);
+			}
+		}
+		
+		return this;
+	}
+	
+	public MultiMethodD<ReturnType, DataType> addAll(Class<?> classInstance, String methodName) {
+		
+		addMethodFamily(classInstance, methodName, null);
+		return this;
+	}
+	
+	public MultiMethodD<ReturnType, DataType> addAll(Object object, String methodName) {
+
+		addMethodFamily(object.getClass(), methodName, object);
+		return this;
+	}
 	
 	@SuppressWarnings("unchecked")
 	protected DispatchableMethodD<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {

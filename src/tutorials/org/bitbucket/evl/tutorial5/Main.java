@@ -23,8 +23,8 @@ public class Main {
 		Copier copier = new Copier();
 		
 		Method2<Void> copy1 = new Method2<Void>()
-						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
-						.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
+						.add(copier, "copy", Parameter.types(A.class, K.class))
+						.add(copier, "copy", Parameter.types(B.class, J.class));
 		
 		copy1.invoke(b, k);
 		
@@ -33,8 +33,8 @@ public class Main {
 		
 		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
-				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier);
+				.add(copier, "copy", Parameter.types(A.class, K.class))
+				.add(copier, "copy", Parameter.types(B.class, J.class));
 
 		try {
 			copy2.invoke(b, k);
@@ -46,9 +46,9 @@ public class Main {
 		
 		Method2<Void> copy3 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier)
-				.add(Copier.class, "copy", Parameter.types(B.class, J.class), copier)
-				.add(Copier.class, "copy", Parameter.types(B.class, K.class), copier);
+				.add(copier, "copy", Parameter.types(A.class, K.class))
+				.add(copier, "copy", Parameter.types(B.class, J.class))
+				.add(copier, "copy", Parameter.types(B.class, K.class));
 
 		copy3.invoke(b, k);
 

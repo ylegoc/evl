@@ -20,7 +20,7 @@ public class Main {
 		Foo foo = new Foo();
 		
 		Method1<Integer> process = new Method1<Integer>()
-						.addAll(Foo.class, "process", foo);
+						.addAll(foo, "process");
 		
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));

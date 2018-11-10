@@ -28,7 +28,7 @@ public class Main {
 		
 		Method1<Integer> process = new Method1<Integer>()
 						.unboundedCache()
-						.addAll(Foo.class, "process", foo);
+						.addAll(foo, "process");
 		
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -36,7 +36,7 @@ public class Main {
 		
 		process = new Method1<Integer>()
 				.boundedCache(2)
-				.addAll(Foo.class, "process", foo);
+				.addAll(foo, "process");
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -44,7 +44,7 @@ public class Main {
 		
 		process = new Method1<Integer>()
 				.cache(new HashMap<Class<?>, MethodHandle>())
-				.addAll(Foo.class, "process", foo);
+				.addAll(foo, "process");
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -52,7 +52,7 @@ public class Main {
 		
 		Method2<Integer> process2 = new Method2<Integer>()
 				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
-				.addAll(Foo.class, "process2", foo);
+				.addAll(foo, "process2");
 
 
 		System.out.println(process2.invoke(b, c));
@@ -61,8 +61,8 @@ public class Main {
 		Method2D<Integer, Integer> process2d = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
 				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
-				.add(Foo.class, "process2", Parameter.types(B.class, A.class), foo, 1)
-				.add(Foo.class, "process2", Parameter.types(B.class, C.class), foo, 2);
+				.add(foo, "process2", B.class, A.class).data(1)
+				.add(foo, "process2", B.class, C.class).data(2);
 
 		System.out.println(process2d.invoke(b, c));
 

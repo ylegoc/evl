@@ -26,8 +26,8 @@ public class BasicTest {
 		
 		Method1<Integer> m = new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.add(Foo.class, "foo", Parameter.types(IA.class), foo)
-				.add(Foo.class, "foo", Parameter.types(D.class), foo);
+				.add(foo, "foo", IA.class)
+				.add(foo, "foo", D.class);
 		
 		E e = new E();
 		
@@ -40,7 +40,7 @@ public class BasicTest {
 		assertEquals(res, 2);
 		
 		// Add a method that will lead to an ambiguity.
-		m.add(Foo.class, "foo", Parameter.types(IC.class), foo);
+		m.add(foo, "foo", IC.class);
 		
 		boolean error = false;
 		try {
@@ -50,16 +50,22 @@ public class BasicTest {
 			error = true;
 		}
 		assertTrue(error);
+		
+/*
+		m.add(Foo.class, "foo", E.class);
+		res = m.invoke(e);
+		assertEquals(res, 4);*/
 	}
 	
-	//@Test
+	
+	@Test
 	public void test2() throws Throwable {
 
 		Foo2 foo = new Foo2();
 		
 		Method2<Integer> m = new Method2<Integer>()
 				.comparator(new AsymmetricComparator())
-				.addAll(Foo2.class, "foo", foo);
+				.addAll(foo, "foo");
 
 		
 		E e = new E();
@@ -75,8 +81,8 @@ public class BasicTest {
 		
 		Method1<Integer> m = new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.add(Bar.class, "bar", Parameter.types(IA.class, int.class), bar)
-				.add(Bar.class, "bar", Parameter.types(D.class, int.class), bar);
+				.add(bar, "bar", IA.class, int.class)
+				.add(bar, "bar", D.class, int.class);
 		
 		E e = new E();
 		
@@ -87,7 +93,7 @@ public class BasicTest {
 		assertEquals(res, 5);
 	}
 	
-	//@Test
+	@Test
 	public void test4() throws Throwable {
 		
 		Foo2 foo = new Foo2();
@@ -96,7 +102,7 @@ public class BasicTest {
 		
 		Method2<Integer> m = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.addAll(Foo2.class, "foo", foo);
+				.addAll(foo, "foo");
 
 		boolean error = false;
 		try {
@@ -110,9 +116,9 @@ public class BasicTest {
 		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
 				.comparator(new PrioritySymmetricComparator<Integer>())
 				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
-				.add(Foo2.class, "foo", Parameter.types(IA.class, IA.class), foo, 1)
-				.add(Foo2.class, "foo", Parameter.types(D.class, IA.class), foo, 2)
-				.add(Foo2.class, "foo", Parameter.types(IA.class, D.class), foo, 3);
+				.add(foo, "foo", IA.class, IA.class).data(1)
+				.add(foo, "foo", D.class, IA.class).data(2)
+				.add(foo, "foo", IA.class, D.class).data(3);
 
 		// Smallest priority wins.
 		int res = m2.invoke(e, e);

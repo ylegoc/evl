@@ -1,9 +1,6 @@
-package org.bitbucket.evl.util;
+package org.bitbucket.evl;
 
 import java.util.HashMap;
-
-import org.bitbucket.evl.DispatchableMethodD;
-import org.bitbucket.evl.MethodItemD;
 
 public class CompatibleMethod {
 

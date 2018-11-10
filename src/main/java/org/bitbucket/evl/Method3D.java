@@ -9,19 +9,24 @@ import org.bitbucket.evl.util.CacheFactory;
 
 public class Method3D<ReturnType, DataType> extends InvokableMethod3D<ReturnType, DataType> {
 	
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
-	public Method3D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, Object object, DataType data) {
-		try {
-			super.addMethod(classInstance.getMethod(name, parameterTypes), object, data);
-		} catch (NoSuchMethodException | SecurityException e) {
-			throw new MethodInsertionException();
-		}
-		return this;
+	public Method3D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+		return (Method3D<ReturnType, DataType>)super.add(classInstance, name, parameterTypes);
 	}
 	
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException, MethodInsertionException
-	public Method3D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>[] parameterTypes, DataType data) {
-		return add(classInstance, name, parameterTypes, null, data);
+	public Method3D<ReturnType, DataType> add(Object object, String name, Class<?>... parameterTypes) {
+		return (Method3D<ReturnType, DataType>)super.add(object, name, parameterTypes);
+	}
+	
+	public Method3D<ReturnType, DataType> addAll(Class<?> classInstance, String name) {
+		return (Method3D<ReturnType, DataType>)super.addAll(classInstance, name);
+	}
+	
+	public Method3D<ReturnType, DataType> addAll(Object object, String name) {
+		return (Method3D<ReturnType, DataType>)super.addAll(object, name);
+	}
+	
+	public Method3D<ReturnType, DataType> data(DataType data) {
+		return (Method3D<ReturnType, DataType>)super.data(data);
 	}
 	
 	public Method3D<ReturnType, DataType> comparator(MethodComparatorD<DataType> methodComparator) {

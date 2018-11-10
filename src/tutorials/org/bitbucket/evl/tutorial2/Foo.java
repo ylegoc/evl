@@ -7,7 +7,7 @@ import org.bitbucket.evl.exception.InvocationException;
 
 public class Foo {
 	
-	private Method1<Integer> process = new Method1<Integer>().addAll(Foo.class, "process", this);
+	private Method1<Integer> process = new Method1<Integer>().addAll(this, "process");
 	
 	public int process(Object obj) throws Throwable {
 		return process.invoke(obj);

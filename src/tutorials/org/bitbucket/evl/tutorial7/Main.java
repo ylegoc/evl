@@ -21,8 +21,8 @@ public class Main {
 		
 		Method2<Integer> process = new Method2<Integer>()
 				.comparator(new ClassNameComparator())
-				.add(Agent.class, "process", Parameter.types(A.class, B.class), agent)
-				.add(Agent.class, "process", Parameter.types(B.class, A.class), agent);
+				.add(agent, "process", A.class, B.class)
+				.add(agent, "process", B.class, A.class);
 
 		System.out.println(process.invoke(b1, b2));
 		

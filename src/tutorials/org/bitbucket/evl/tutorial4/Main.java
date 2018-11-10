@@ -17,10 +17,10 @@ public class Main {
 		A c = new C(2, -5);
 		
 		Foo1 foo1 = new Foo1();
-		Process.method().addAll(Foo1.class, "process", foo1);
+		Process.method().addAll(foo1, "process");
 		
 		Foo2 foo2 = new Foo2();
-		Process.method().addAll(Foo2.class, "process", foo2);
+		Process.method().addAll(foo2, "process");
 		
 		System.out.println(Process.method().invoke(b));
 		System.out.println(Process.method().invoke(c));

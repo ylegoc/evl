@@ -5,11 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 
 import org.bitbucket.evl.AsymmetricComparator;
-import org.bitbucket.evl.DispatchableMethodD;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Method3;
-import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.Parameter;
 import org.junit.Test;
 
@@ -210,14 +208,14 @@ public class PerformanceTest {
 	
 		Foo foo = new Foo();
 		
-		m.add(Foo.class, "processA1", Parameter.types(A1.class), foo);
-		m.add(Foo.class, "processA2", Parameter.types(A2.class), foo);
-		m.add(Foo.class, "processA3", Parameter.types(A3.class), foo);
-		m.add(Foo.class, "processA4", Parameter.types(A4.class), foo);
-		m.add(Foo.class, "processA5", Parameter.types(A5.class), foo);
-		m.add(Foo.class, "processA6", Parameter.types(A6.class), foo);
-		m.add(Foo.class, "processA7", Parameter.types(A7.class), foo);
-		m.add(Foo.class, "processA8", Parameter.types(A8.class), foo);
+		m.add(foo, "processA1", A1.class);
+		m.add(foo, "processA2", A2.class);
+		m.add(foo, "processA3", A3.class);
+		m.add(foo, "processA4", A4.class);
+		m.add(foo, "processA5", A5.class);
+		m.add(foo, "processA6", A6.class);
+		m.add(foo, "processA7", A7.class);
+		m.add(foo, "processA8", A8.class);
 		
 		for (int i = 0; i < 8; i++) {
 			m.invoke(objects[i]);
@@ -239,14 +237,14 @@ public class PerformanceTest {
 		
 		Foo foo = new Foo();
 		
-		m.add(Foo.class, "processA1A1", Parameter.types(A1.class, A1.class), foo);
-		m.add(Foo.class, "processA2A2", Parameter.types(A2.class, A2.class), foo);
-		m.add(Foo.class, "processA3A3", Parameter.types(A3.class, A3.class), foo);
-		m.add(Foo.class, "processA4A4", Parameter.types(A4.class, A4.class), foo);
-		m.add(Foo.class, "processA5A5", Parameter.types(A5.class, A5.class), foo);
-		m.add(Foo.class, "processA6A6", Parameter.types(A6.class, A6.class), foo);
-		m.add(Foo.class, "processA7A7", Parameter.types(A7.class, A7.class), foo);
-		m.add(Foo.class, "processA8A8", Parameter.types(A8.class, A8.class), foo);
+		m.add(foo, "processA1A1", A1.class, A1.class);
+		m.add(foo, "processA2A2", A2.class, A2.class);
+		m.add(foo, "processA3A3", A3.class, A3.class);
+		m.add(foo, "processA4A4", A4.class, A4.class);
+		m.add(foo, "processA5A5", A5.class, A5.class);
+		m.add(foo, "processA6A6", A6.class, A6.class);
+		m.add(foo, "processA7A7", A7.class, A7.class);
+		m.add(foo, "processA8A8", A8.class, A8.class);
 		
 		for (int i = 0; i < 8; i++) {
 			m.invoke(objects[i], objects[i]);
@@ -269,14 +267,14 @@ public class PerformanceTest {
 
 		Foo foo = new Foo();
 		
-		m.add(Foo.class, "processA1A1A1", Parameter.types(A1.class, A1.class, A1.class), foo);
-		m.add(Foo.class, "processA2A2A2", Parameter.types(A2.class, A2.class, A2.class), foo);
-		m.add(Foo.class, "processA3A3A3", Parameter.types(A3.class, A3.class, A3.class), foo);
-		m.add(Foo.class, "processA4A4A4", Parameter.types(A4.class, A4.class, A4.class), foo);
-		m.add(Foo.class, "processA5A5A5", Parameter.types(A5.class, A5.class, A5.class), foo);
-		m.add(Foo.class, "processA6A6A6", Parameter.types(A6.class, A6.class, A6.class), foo);
-		m.add(Foo.class, "processA7A7A7", Parameter.types(A7.class, A7.class, A7.class), foo);
-		m.add(Foo.class, "processA8A8A8", Parameter.types(A8.class, A8.class, A8.class), foo);
+		m.add(foo, "processA1A1A1", A1.class, A1.class, A1.class);
+		m.add(foo, "processA2A2A2", A2.class, A2.class, A2.class);
+		m.add(foo, "processA3A3A3", A3.class, A3.class, A3.class);
+		m.add(foo, "processA4A4A4", A4.class, A4.class, A4.class);
+		m.add(foo, "processA5A5A5", A5.class, A5.class, A5.class);
+		m.add(foo, "processA6A6A6", A6.class, A6.class, A6.class);
+		m.add(foo, "processA7A7A7", A7.class, A7.class, A7.class);
+		m.add(foo, "processA8A8A8", A8.class, A8.class, A8.class);
 		
 		for (int i = 0; i < 8; i++) {
 			m.invoke(objects[i], objects[i], objects[i]);
