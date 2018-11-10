@@ -56,17 +56,25 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, DataType data) {
+	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, DataType data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
 		try {
-			methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()))
-									.bindTo(object);
-			
-		} catch (NoSuchMethodException | IllegalAccessException e1) {
-			// Should not happen.
-			System.err.println("Unable to find method handle.");
+			methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes())).bindTo(object);
+		}
+		catch (ReflectiveOperationException e) {
+			// If static the method is not found.
+		}
+		
+		// Test static method.
+		if (methodHandle == null) {
+			try {
+				methodHandle = lookup.findStatic(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()));
+			}
+			catch (ReflectiveOperationException e) {
+				throw e;
+			}
 		}
 		
 		Class<?>[] newParameterTypes = method.getParameterTypes();
@@ -119,7 +127,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	// not possible to set data to all the methods
 	// only for non-data methods
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) {
+	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
 		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
@@ -148,7 +156,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 			DispatchableMethodD<DataType> dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
 			dispatchableMethod.setLastAdded(true);
 			
-		} catch (NoSuchMethodException | SecurityException e) {
+		} catch (ReflectiveOperationException e) {
 			throw new MethodInsertionException();
 		}
 		
@@ -166,8 +174,8 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		try {
 			DispatchableMethodD<DataType> dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
 			dispatchableMethod.setLastAdded(true);
-			
-		} catch (NoSuchMethodException | SecurityException e) {
+		}
+		catch (ReflectiveOperationException e) {
 			throw new MethodInsertionException();
 		}
 		
@@ -188,13 +196,25 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	
 	public MultiMethodD<ReturnType, DataType> addAll(Class<?> classInstance, String methodName) {
 		
-		addMethodFamily(classInstance, methodName, null);
+		try {
+			addMethodFamily(classInstance, methodName, null);
+		}
+		catch (ReflectiveOperationException e) {
+			throw new MethodInsertionException();
+		}
+		
 		return this;
 	}
 	
 	public MultiMethodD<ReturnType, DataType> addAll(Object object, String methodName) {
 
-		addMethodFamily(object.getClass(), methodName, object);
+		try {
+			addMethodFamily(object.getClass(), methodName, object);
+		}
+		catch (ReflectiveOperationException e) {
+			throw new MethodInsertionException();
+		}
+		
 		return this;
 	}
 	

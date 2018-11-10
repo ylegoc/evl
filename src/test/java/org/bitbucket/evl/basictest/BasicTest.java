@@ -51,10 +51,9 @@ public class BasicTest {
 		}
 		assertTrue(error);
 		
-/*
 		m.add(Foo.class, "foo", E.class);
 		res = m.invoke(e);
-		assertEquals(res, 4);*/
+		assertEquals(res, 4);
 	}
 	
 	
