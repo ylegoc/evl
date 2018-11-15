@@ -6,7 +6,7 @@ import java.util.Map;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public abstract class InvokableMethod1D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
+public abstract class InvokableMethod1D<ReturnType> extends MultiMethodD<ReturnType> {
 	
 	protected Map<Class<?>, MethodHandle> cache;
 	

@@ -2,7 +2,7 @@ package org.bitbucket.evl;
 
 
 
-public class PrioritySymmetricComparator<DataType extends Comparable<DataType>> extends SymmetricComparator {
+public class PrioritySymmetricComparator extends SymmetricComparator {
 
 	@Override
 	public int compare(MethodItemD m1, MethodItemD m2) {

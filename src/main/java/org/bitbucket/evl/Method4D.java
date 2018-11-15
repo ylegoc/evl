@@ -7,7 +7,7 @@ import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public class Method4D<ReturnType, DataType> extends InvokableMethod4D<ReturnType, DataType> {
+public class Method4D<ReturnType, DataType> extends InvokableMethod4D<ReturnType> {
 	
 	public Method4D<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		return (Method4D<ReturnType, DataType>)super.add(classInstance, name, parameterTypes);

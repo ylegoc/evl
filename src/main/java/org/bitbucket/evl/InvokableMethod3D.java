@@ -9,7 +9,7 @@ import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public abstract class InvokableMethod3D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
+public abstract class InvokableMethod3D<ReturnType> extends MultiMethodD<ReturnType> {
 	
 	public static class ClassTuple {
 		

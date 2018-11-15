@@ -7,7 +7,7 @@ import java.util.Map;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public abstract class InvokableMethod2D<ReturnType, DataType> extends MultiMethodD<ReturnType, DataType> {
+public abstract class InvokableMethod2D<ReturnType> extends MultiMethodD<ReturnType> {
 	
 	public static class ClassTuple {
 		

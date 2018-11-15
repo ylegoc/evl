@@ -7,7 +7,7 @@ import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public class Method3<ReturnType> extends InvokableMethod3D<ReturnType, Void> {
+public class Method3<ReturnType> extends InvokableMethod3D<ReturnType> {
 	
 	public Method3<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		return (Method3<ReturnType>)super.add(classInstance, name, parameterTypes);

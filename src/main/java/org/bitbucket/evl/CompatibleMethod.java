@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class CompatibleMethod {
 
-	public static <ReturnType, DataType> MethodItemD calculate(HashMap<Class<?>, Integer>[] superClassSet, DispatchableMethodD method) {
+	public static MethodItemD calculate(HashMap<Class<?>, Integer>[] superClassSet, DispatchableMethodD method) {
 		
 		Class<?>[] classTuple = method.getClassTuple().get();
 		int[] distanceTuple = new int[superClassSet.length];

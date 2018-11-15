@@ -113,7 +113,7 @@ public class BasicTest {
 		assertTrue(error);
 		
 		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
-				.comparator(new PrioritySymmetricComparator<Integer>())
+				.comparator(new PrioritySymmetricComparator())
 				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
 				.add(foo, "foo", IA.class, IA.class).data(1)
 				.add(foo, "foo", D.class, IA.class).data(2)

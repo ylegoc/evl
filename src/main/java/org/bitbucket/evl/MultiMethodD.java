@@ -36,7 +36,7 @@ import org.bitbucket.evl.util.SuperClass;
  * that would be only possible with code template (C++) to generate it.
  * At least the virtual arguments could be avoided to be checked.
  */
-public abstract class MultiMethodD<ReturnType, DataType> {
+public abstract class MultiMethodD<ReturnType> {
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
@@ -144,7 +144,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 	}
 	
-	public MultiMethodD<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+	public MultiMethodD<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
 		for (DispatchableMethodD m : dispatchableMethods) {
@@ -163,7 +163,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType, DataType> add(Object object, String name, Class<?>... parameterTypes) {
+	public MultiMethodD<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
 		for (DispatchableMethodD m : dispatchableMethods) {
@@ -182,7 +182,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType, DataType> data(Comparable<?> data) {
+	public MultiMethodD<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
 		for (DispatchableMethodD m : dispatchableMethods) {
@@ -194,7 +194,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType, DataType> addAll(Class<?> classInstance, String methodName) {
+	public MultiMethodD<ReturnType> addAll(Class<?> classInstance, String methodName) {
 		
 		try {
 			addMethodFamily(classInstance, methodName, null);
@@ -206,7 +206,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType, DataType> addAll(Object object, String methodName) {
+	public MultiMethodD<ReturnType> addAll(Object object, String methodName) {
 
 		try {
 			addMethodFamily(object.getClass(), methodName, object);
