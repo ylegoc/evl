@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.bitbucket.evl.AsymmetricComparator;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
-import org.bitbucket.evl.PrioritySymmetricComparator;
+import org.bitbucket.evl.Priority;
 import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.exception.InvocationException;
 import org.junit.Test;
@@ -110,11 +110,11 @@ public class BasicTest {
 		assertTrue(error);
 		
 		Method2<Integer> m2 = new Method2<Integer>()
-				.comparator(new PrioritySymmetricComparator())
+				.comparator(new SymmetricComparator())
 				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
-				.add(foo, "foo", IA.class, IA.class).data(1)
-				.add(foo, "foo", D.class, IA.class).data(2)
-				.add(foo, "foo", IA.class, D.class).data(3);
+				.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(1))
+				.add(foo, "foo", D.class, IA.class).data(Priority.valueOf(2))
+				.add(foo, "foo", IA.class, D.class).data(Priority.valueOf(3));
 
 		// Smallest priority wins.
 		int res = m2.invoke(e, e);

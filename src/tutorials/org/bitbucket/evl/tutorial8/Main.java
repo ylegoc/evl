@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
-import org.bitbucket.evl.Method2D;
-import org.bitbucket.evl.PrioritySymmetricComparator;
+import org.bitbucket.evl.Priority;
+import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;
@@ -57,11 +57,11 @@ public class Main {
 		System.out.println(process2.invoke(b, c));
 
 		
-		Method2D<Integer, Integer> process2d = new Method2D<Integer, Integer>()
-				.comparator(new PrioritySymmetricComparator<Integer>())
-				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
-				.add(foo, "process2", B.class, A.class).data(1)
-				.add(foo, "process2", B.class, C.class).data(2);
+		Method2<Integer> process2d = new Method2<Integer>()
+				.comparator(new SymmetricComparator())
+				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
+				.add(foo, "process2", B.class, A.class).data(Priority.valueOf(1))
+				.add(foo, "process2", B.class, C.class).data(Priority.valueOf(2));
 
 		System.out.println(process2d.invoke(b, c));
 

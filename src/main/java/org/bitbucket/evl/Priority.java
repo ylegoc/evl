@@ -8,7 +8,7 @@ public class Priority implements Comparable<Priority> {
 		this.value = value;
 	}
 	
-	public Priority valueOf(int value) {
+	public static Priority valueOf(int value) {
 		return new Priority(value);
 	}
 	

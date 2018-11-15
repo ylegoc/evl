@@ -3,10 +3,10 @@ package org.bitbucket.evl.tutorial7;
 import org.bitbucket.evl.MethodComparator;
 import org.bitbucket.evl.MethodItem;
 
-public class ClassNameComparator extends MethodComparator<Void> {
+public class ClassNameComparator extends MethodComparator {
 
 	@Override
-	public int compare(MethodItem<Void> m1, MethodItem<Void> m2) {
+	public int compare(MethodItem m1, MethodItem m2) {
 		
 		int length = m1.getClassTuple().get().length;
 		String name1 = "";
