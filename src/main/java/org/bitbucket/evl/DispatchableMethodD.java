@@ -10,7 +10,7 @@ class DispatchableMethodD<DataType> {
 	private MethodHandle method;
 	private Object object;
 	private MethodClassTuple tuple;
-	private DataType data;
+	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
 	public DispatchableMethodD(MethodClassTuple tuple, MethodHandle method, Object object) {
@@ -31,11 +31,11 @@ class DispatchableMethodD<DataType> {
 		return tuple;
 	}
 
-	public void setData(DataType data) {
+	public void setData(Comparable<?> data) {
 		this.data = data;
 	}
 	
-	public DataType getData() {
+	public Comparable<?> getData() {
 		return data;
 	}
 	

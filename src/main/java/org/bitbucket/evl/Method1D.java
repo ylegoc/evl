@@ -25,7 +25,7 @@ public class Method1D<ReturnType, DataType> extends InvokableMethod1D<ReturnType
 		return (Method1D<ReturnType, DataType>)super.addAll(object, name);
 	}
 	
-	public Method1D<ReturnType, DataType> data(DataType data) {
+	public Method1D<ReturnType, DataType> data(Comparable<?> data) {
 		return (Method1D<ReturnType, DataType>)super.data(data);
 	}
 	

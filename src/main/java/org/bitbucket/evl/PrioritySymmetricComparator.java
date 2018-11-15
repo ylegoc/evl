@@ -9,7 +9,9 @@ public class PrioritySymmetricComparator<DataType extends Comparable<DataType>> 
 		
 		int comparison = super.compare(m1, m2);
 		if (comparison == 0) {
-			return m1.getData().compareTo(m2.getData());
+			Integer data1 = (Integer)m1.getData();
+			Integer data2 = (Integer)m2.getData();
+			return data1.compareTo(data2);
 		}
 		
 		return comparison;

@@ -56,7 +56,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, DataType data) throws ReflectiveOperationException {
+	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -182,7 +182,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType, DataType> data(DataType data) {
+	public MultiMethodD<ReturnType, DataType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
 		for (DispatchableMethodD<DataType> m : dispatchableMethods) {

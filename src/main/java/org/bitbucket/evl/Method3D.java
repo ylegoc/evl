@@ -25,7 +25,7 @@ public class Method3D<ReturnType, DataType> extends InvokableMethod3D<ReturnType
 		return (Method3D<ReturnType, DataType>)super.addAll(object, name);
 	}
 	
-	public Method3D<ReturnType, DataType> data(DataType data) {
+	public Method3D<ReturnType, DataType> data(Comparable<?> data) {
 		return (Method3D<ReturnType, DataType>)super.data(data);
 	}
 	

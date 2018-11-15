@@ -9,7 +9,7 @@ notes:
 	Method2<Void> copy1 = new Method2<Void>()
 						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier, 12)
 	becomes:
-						.add(copier, "copy", A.class, K.class).data(new Integer(12))
+						.add(copier, "copy", A.class, K.class).data(Priority.valueOf(12))
 						.addAll(copier, "copy").data(new Integer(12)) // mark all the last added to set the data
 						.add(Copier.class, "copy", B.class, B.class).data(new Integer(13)) // for static
 	
@@ -25,13 +25,15 @@ notes:
 		Default value is 0
 		Change order: highest value provides more priority: so that it is always possible to force.
 
+	- Rename methods get... without get? Check last standard.
 	
 Roadmap
-1. Implement add and data in InvokableMethod1D, 2D, etc.
-2. Remove all the methods from Method1, Method1D, Method2, etc.
+1. Implement add and data in InvokableMethod1D, 2D, etc.: ok
+2. Remove all the methods from Method1, Method1D, Method2, etc. : ok
 3. Remove DataType from every ...D except comparators.
 4. Remove ParameterTypes class.
-5. Comparators include priority with default value : Object Comparator.getDefaultValue().
+5. Comparators include priority with default value : Object Comparator.defaultValue().
+6. Reimplement PredicateComparator with Comparable interface.
 	
 - unit tests for all possible errors.
 

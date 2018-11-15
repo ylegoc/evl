@@ -25,7 +25,7 @@ public class Method2D<ReturnType, DataType> extends InvokableMethod2D<ReturnType
 		return (Method2D<ReturnType, DataType>)super.addAll(object, name);
 	}
 	
-	public Method2D<ReturnType, DataType> data(DataType data) {
+	public Method2D<ReturnType, DataType> data(Comparable<?> data) {
 		return (Method2D<ReturnType, DataType>)super.data(data);
 	}
 	
