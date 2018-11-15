@@ -2,10 +2,10 @@ package org.bitbucket.evl;
 
 import org.bitbucket.evl.comparators.LexicographicDistanceComparator;
 
-public class AsymmetricComparator extends MethodComparatorD<Void> {
+public class AsymmetricComparator extends MethodComparatorD {
 
 	@Override
-	public int compare(MethodItemD<Void> m1, MethodItemD<Void> m2) {
+	public int compare(MethodItemD m1, MethodItemD m2) {
 		int comparison = LexicographicDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
 		if (comparison == 0) {
 			Priority priority1 = null;

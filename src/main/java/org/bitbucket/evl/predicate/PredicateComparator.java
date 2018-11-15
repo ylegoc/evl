@@ -7,10 +7,10 @@ import org.bitbucket.evl.MethodComparatorD;
 import org.bitbucket.evl.MethodItemD;
 import org.bitbucket.evl.comparators.ProductDistanceComparator;
 
-public class PredicateComparator extends MethodComparatorD<Method> {
+public class PredicateComparator extends MethodComparatorD {
 
 	@Override
-	public int compare(MethodItemD<Method> m1, MethodItemD<Method> m2) {
+	public int compare(MethodItemD m1, MethodItemD m2) {
 		/*
 		boolean m2Value = false;
 		

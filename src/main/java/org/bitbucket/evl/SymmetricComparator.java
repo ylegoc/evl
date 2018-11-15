@@ -2,10 +2,10 @@ package org.bitbucket.evl;
 
 import org.bitbucket.evl.comparators.ProductDistanceComparator;
 
-public class SymmetricComparator extends MethodComparatorD<Void> {
+public class SymmetricComparator extends MethodComparatorD {
 
 	@Override
-	public int compare(MethodItemD<Void> m1, MethodItemD<Void> m2) {
+	public int compare(MethodItemD m1, MethodItemD m2) {
 		int comparison = ProductDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
 		if (comparison == 0) {
 			Priority priority1 = null;

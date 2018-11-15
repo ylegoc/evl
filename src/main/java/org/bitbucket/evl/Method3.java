@@ -25,7 +25,7 @@ public class Method3<ReturnType> extends InvokableMethod3D<ReturnType, Void> {
 		return (Method3<ReturnType>)super.addAll(object, name);
 	}
 	
-	public Method3<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
+	public Method3<ReturnType> comparator(MethodComparatorD methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;
 	}

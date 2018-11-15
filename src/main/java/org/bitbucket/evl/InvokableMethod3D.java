@@ -35,7 +35,7 @@ public abstract class InvokableMethod3D<ReturnType, DataType> extends MultiMetho
 	protected Map<ClassTuple, MethodHandle> cache;
 	
 	public InvokableMethod3D() {
-		super(3, new AsymmetricComparatorD<DataType>());
+		super(3, new AsymmetricComparator());
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(1000);
 	}
 	

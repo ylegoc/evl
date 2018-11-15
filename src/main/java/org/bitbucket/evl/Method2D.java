@@ -29,7 +29,7 @@ public class Method2D<ReturnType, DataType> extends InvokableMethod2D<ReturnType
 		return (Method2D<ReturnType, DataType>)super.data(data);
 	}
 	
-	public Method2D<ReturnType, DataType> comparator(MethodComparatorD<DataType> methodComparator) {
+	public Method2D<ReturnType, DataType> comparator(MethodComparatorD methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;
 	}

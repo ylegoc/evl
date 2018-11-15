@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
-class DispatchableMethodD<DataType> {
+class DispatchableMethodD {
 
 	private MethodHandle method;
 	private Object object;

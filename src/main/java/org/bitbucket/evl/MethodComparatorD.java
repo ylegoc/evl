@@ -1,7 +1,7 @@
 package org.bitbucket.evl;
 
 
-public abstract class MethodComparatorD<Data> {
+public abstract class MethodComparatorD {
 
 	private Object[] args;
 	
@@ -13,6 +13,6 @@ public abstract class MethodComparatorD<Data> {
 		this.args = args;
 	}
 	
-	public abstract int compare(MethodItemD<Data> m1, MethodItemD<Data> m2);
+	public abstract int compare(MethodItemD m1, MethodItemD m2);
 	
 }

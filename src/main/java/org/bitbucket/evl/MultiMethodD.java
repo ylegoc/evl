@@ -40,11 +40,11 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
-	protected MethodComparatorD<DataType> methodComparator;
-	private ArrayList<DispatchableMethodD<DataType>> dispatchableMethods = new ArrayList<DispatchableMethodD<DataType>>();
+	protected MethodComparatorD methodComparator;
+	private ArrayList<DispatchableMethodD> dispatchableMethods = new ArrayList<DispatchableMethodD>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	MultiMethodD(int dimension, MethodComparatorD<DataType> methodComparator) {
+	MultiMethodD(int dimension, MethodComparatorD methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 	}
@@ -56,7 +56,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethodD<DataType> addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
+	protected DispatchableMethodD addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -115,7 +115,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 			// do nothing
 		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
-		DispatchableMethodD<DataType> dispatchableMethod = new DispatchableMethodD<DataType>(tuple, methodHandle, object);
+		DispatchableMethodD dispatchableMethod = new DispatchableMethodD(tuple, methodHandle, object);
 		dispatchableMethod.setData(data);
 		
 		// Add the method.
@@ -130,7 +130,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+		for (DispatchableMethodD m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
@@ -138,7 +138,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		Method[] methods = classInstance.getMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
-				DispatchableMethodD<DataType> dispatchableMethod = addMethod(m, object, null);
+				DispatchableMethodD dispatchableMethod = addMethod(m, object, null);
 				dispatchableMethod.setLastAdded(true);
 			}
 		}
@@ -147,13 +147,13 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	public MultiMethodD<ReturnType, DataType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+		for (DispatchableMethodD m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethodD<DataType> dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
+			DispatchableMethodD dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
 			dispatchableMethod.setLastAdded(true);
 			
 		} catch (ReflectiveOperationException e) {
@@ -166,13 +166,13 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	public MultiMethodD<ReturnType, DataType> add(Object object, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+		for (DispatchableMethodD m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethodD<DataType> dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
+			DispatchableMethodD dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
 			dispatchableMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
@@ -185,7 +185,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	public MultiMethodD<ReturnType, DataType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
-		for (DispatchableMethodD<DataType> m : dispatchableMethods) {
+		for (DispatchableMethodD m : dispatchableMethods) {
 			if (m.isLastAdded()) {
 				m.setData(data);
 			}
@@ -219,7 +219,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected DispatchableMethodD<DataType> processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
+	protected DispatchableMethodD processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -229,7 +229,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		MethodComparatorD<DataType> methodComparatorCopy;
+		MethodComparatorD methodComparatorCopy;
 		
 		try {
 			methodComparatorCopy = this.methodComparator.getClass().newInstance();
@@ -243,14 +243,14 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
-	private DispatchableMethodD<DataType> processClassTuple(MethodComparatorD<DataType> methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private DispatchableMethodD processClassTuple(MethodComparatorD methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
-		ArrayList<MethodItemD<DataType>> compatibleMethodItems = new ArrayList<MethodItemD<DataType>>();
+		ArrayList<MethodItemD> compatibleMethodItems = new ArrayList<MethodItemD>();
 		
 		// iterate the list
-		for (DispatchableMethodD<DataType> method : dispatchableMethods) {
-			MethodItemD<DataType> item = CompatibleMethod.calculate(superClassSet, method);
+		for (DispatchableMethodD method : dispatchableMethods) {
+			MethodItemD item = CompatibleMethod.calculate(superClassSet, method);
 			
 			if (item != null) {
 				
@@ -263,19 +263,19 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 		
 		// search for the minimum method item
-		ArrayList<MethodItemD<DataType>> minMethodItems = new ArrayList<MethodItemD<DataType>>();
+		ArrayList<MethodItemD> minMethodItems = new ArrayList<MethodItemD>();
 		
 		if (compatibleMethodItems.isEmpty()) {
 			throw new NoCompatibleMethodException(tuple);
 		}
 
 		// there is at least 1 item
-		Iterator<MethodItemD<DataType>> i = compatibleMethodItems.iterator();
+		Iterator<MethodItemD> i = compatibleMethodItems.iterator();
 		minMethodItems.add(i.next());
 		
 		while (i.hasNext()) {
 			
-			MethodItemD<DataType> item = i.next();
+			MethodItemD item = i.next();
 			
 			int result = methodComparator.compare(item, minMethodItems.get(0));
 			
@@ -291,13 +291,13 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		if (minMethodItems.size() == 1) {
 			
 			// check that min is really min
-			MethodItemD<DataType> minItem = minMethodItems.get(0);
+			MethodItemD minItem = minMethodItems.get(0);
 			
 			i = compatibleMethodItems.iterator();
 			minMethodItems.add(i.next());
 			
 			while (i.hasNext()) {
-				MethodItemD<DataType> item = i.next();
+				MethodItemD item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
 					// minItem is not the real minimum
 					throw new NoCompatibleMethodException(tuple);
@@ -308,7 +308,7 @@ public abstract class MultiMethodD<ReturnType, DataType> {
 		}
 		
 		String possibleMethods = "";
-		for (MethodItemD<DataType> item : minMethodItems) {
+		for (MethodItemD item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";
 		}
 		

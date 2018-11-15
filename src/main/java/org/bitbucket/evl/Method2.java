@@ -25,7 +25,7 @@ public class Method2<ReturnType> extends InvokableMethod2D<ReturnType, Void> {
 		return (Method2<ReturnType>)super.addAll(object, name);
 	}
 	
-	public Method2<ReturnType> comparator(MethodComparatorD<Void> methodComparator) {
+	public Method2<ReturnType> comparator(MethodComparatorD methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;
 	}

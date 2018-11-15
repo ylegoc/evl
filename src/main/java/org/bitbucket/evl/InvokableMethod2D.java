@@ -32,7 +32,7 @@ public abstract class InvokableMethod2D<ReturnType, DataType> extends MultiMetho
 	protected Map<ClassTuple, MethodHandle> cache;
 	
 	public InvokableMethod2D() {
-		super(2, new AsymmetricComparatorD<DataType>());
+		super(2, new AsymmetricComparator());
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createUnboundedCache();
 	}
 	

@@ -2,10 +2,10 @@ package org.bitbucket.evl;
 
 
 
-public class PrioritySymmetricComparator<DataType extends Comparable<DataType>> extends SymmetricComparatorD<DataType> {
+public class PrioritySymmetricComparator<DataType extends Comparable<DataType>> extends SymmetricComparator {
 
 	@Override
-	public int compare(MethodItemD<DataType> m1, MethodItemD<DataType> m2) {
+	public int compare(MethodItemD m1, MethodItemD m2) {
 		
 		int comparison = super.compare(m1, m2);
 		if (comparison == 0) {

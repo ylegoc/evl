@@ -11,7 +11,7 @@ public abstract class InvokableMethod1D<ReturnType, DataType> extends MultiMetho
 	protected Map<Class<?>, MethodHandle> cache;
 	
 	public InvokableMethod1D() {
-		super(1, new AsymmetricComparatorD<DataType>());
+		super(1, new AsymmetricComparator());
 		this.cache = CacheFactory.<Class<?>, MethodHandle>createUnboundedCache();
 	}
 	

@@ -36,7 +36,7 @@ public abstract class InvokableMethod4D<ReturnType, DataType> extends MultiMetho
 	protected Map<ClassTuple, MethodHandle> cache;
 	
 	public InvokableMethod4D() {
-		super(4, new AsymmetricComparatorD<DataType>());
+		super(4, new AsymmetricComparator());
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(10000);
 	}
 	
