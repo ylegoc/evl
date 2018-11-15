@@ -3,7 +3,6 @@ package org.bitbucket.evl.tutorial2;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;
-import org.bitbucket.evl.exception.InvocationException;
 
 public class Foo {
 	

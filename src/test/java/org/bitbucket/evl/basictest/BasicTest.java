@@ -3,18 +3,15 @@ package org.bitbucket.evl.basictest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
-
 import java.lang.invoke.MethodHandle;
+import java.util.HashMap;
 
 import org.bitbucket.evl.AsymmetricComparator;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
-import org.bitbucket.evl.Method2D;
 import org.bitbucket.evl.PrioritySymmetricComparator;
 import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.exception.InvocationException;
-import org.bitbucket.evl.util.Parameter;
 import org.junit.Test;
 
 public class BasicTest {
@@ -112,9 +109,9 @@ public class BasicTest {
 		}
 		assertTrue(error);
 		
-		Method2D<Integer, Integer> m2 = new Method2D<Integer, Integer>()
+		Method2<Integer> m2 = new Method2<Integer>()
 				.comparator(new PrioritySymmetricComparator())
-				.cache(new HashMap<Method2D.ClassTuple, MethodHandle>())
+				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
 				.add(foo, "foo", IA.class, IA.class).data(1)
 				.add(foo, "foo", D.class, IA.class).data(2)
 				.add(foo, "foo", IA.class, D.class).data(3);

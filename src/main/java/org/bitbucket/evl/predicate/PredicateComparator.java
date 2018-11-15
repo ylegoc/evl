@@ -1,8 +1,5 @@
 package org.bitbucket.evl.predicate;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import org.bitbucket.evl.MethodComparatorD;
 import org.bitbucket.evl.MethodItemD;
 import org.bitbucket.evl.comparators.ProductDistanceComparator;

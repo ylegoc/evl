@@ -7,7 +7,6 @@ import java.lang.invoke.MethodType;
 import org.bitbucket.evl.basictest.E;
 import org.bitbucket.evl.basictest.Foo;
 import org.bitbucket.evl.basictest.IA;
-import org.junit.Test;
 
 public class MethodHandleTest {
 

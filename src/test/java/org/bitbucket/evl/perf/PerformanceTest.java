@@ -8,7 +8,6 @@ import org.bitbucket.evl.AsymmetricComparator;
 import org.bitbucket.evl.Method1;
 import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Method3;
-import org.bitbucket.evl.util.Parameter;
 import org.junit.Test;
 
 public class PerformanceTest {

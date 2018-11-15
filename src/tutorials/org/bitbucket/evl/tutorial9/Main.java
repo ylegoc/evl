@@ -4,7 +4,6 @@ import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.predicate.PredicateMethod1;
-import org.bitbucket.evl.util.Parameter;
 
 /**
  * Example with predicate dispatch in data.

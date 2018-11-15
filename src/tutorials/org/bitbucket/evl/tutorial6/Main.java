@@ -7,7 +7,6 @@ import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.exception.InvocationException;
-import org.bitbucket.evl.util.Parameter;
 
 public class Main {
 	

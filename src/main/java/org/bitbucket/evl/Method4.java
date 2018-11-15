@@ -3,7 +3,6 @@ package org.bitbucket.evl;
 import java.lang.invoke.MethodHandle;
 import java.util.Map;
 
-import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
@@ -23,6 +22,10 @@ public class Method4<ReturnType> extends InvokableMethod4D<ReturnType> {
 	
 	public Method4<ReturnType> addAll(Object object, String name) {
 		return (Method4<ReturnType>)super.addAll(object, name);
+	}
+
+	public Method4<ReturnType> data(Comparable<?> data) {
+		return (Method4<ReturnType>)super.data(data);
 	}
 	
 	public Method4<ReturnType> comparator(MethodComparatorD methodComparator) {

@@ -4,8 +4,6 @@ import java.lang.invoke.MethodHandle;
 import java.util.Arrays;
 import java.util.Map;
 
-import org.bitbucket.evl.InvokableMethod2D.ClassTuple;
-import org.bitbucket.evl.exception.InvocationException;
 import org.bitbucket.evl.util.CacheFactory;
 
 

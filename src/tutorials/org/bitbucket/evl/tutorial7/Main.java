@@ -3,7 +3,6 @@ package org.bitbucket.evl.tutorial7;
 import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
-import org.bitbucket.evl.util.Parameter;
 
 /**
  * Example of custom method comparator.

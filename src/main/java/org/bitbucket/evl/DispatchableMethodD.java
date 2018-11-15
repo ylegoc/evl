@@ -1,7 +1,6 @@
 package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
-import java.lang.reflect.Method;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
