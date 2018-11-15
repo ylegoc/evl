@@ -1,12 +1,12 @@
 package org.bitbucket.evl.tutorial7;
 
-import org.bitbucket.evl.MethodComparatorD;
-import org.bitbucket.evl.MethodItemD;
+import org.bitbucket.evl.MethodComparator;
+import org.bitbucket.evl.MethodItem;
 
-public class ClassNameComparator extends MethodComparatorD<Void> {
+public class ClassNameComparator extends MethodComparator<Void> {
 
 	@Override
-	public int compare(MethodItemD<Void> m1, MethodItemD<Void> m2) {
+	public int compare(MethodItem<Void> m1, MethodItem<Void> m2) {
 		
 		int length = m1.getClassTuple().get().length;
 		String name1 = "";

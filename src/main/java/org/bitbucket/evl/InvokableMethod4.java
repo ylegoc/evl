@@ -7,7 +7,7 @@ import java.util.Map;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public abstract class InvokableMethod4D<ReturnType> extends MultiMethodD<ReturnType> {
+public abstract class InvokableMethod4<ReturnType> extends MultiMethod<ReturnType> {
 	
 	public static class ClassTuple {
 		
@@ -33,7 +33,7 @@ public abstract class InvokableMethod4D<ReturnType> extends MultiMethodD<ReturnT
 	
 	protected Map<ClassTuple, MethodHandle> cache;
 	
-	public InvokableMethod4D() {
+	public InvokableMethod4() {
 		super(4, new AsymmetricComparator());
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(10000);
 	}

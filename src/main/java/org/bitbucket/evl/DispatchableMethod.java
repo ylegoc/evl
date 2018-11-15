@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandle;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
-class DispatchableMethodD {
+class DispatchableMethod {
 
 	private MethodHandle method;
 	private Object object;
@@ -12,7 +12,7 @@ class DispatchableMethodD {
 	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
-	public DispatchableMethodD(MethodClassTuple tuple, MethodHandle method, Object object) {
+	public DispatchableMethod(MethodClassTuple tuple, MethodHandle method, Object object) {
 		this.method = method;
 		this.object = object;
 		this.tuple = tuple;

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public class Method2<ReturnType> extends InvokableMethod2D<ReturnType> {
+public class Method2<ReturnType> extends InvokableMethod2<ReturnType> {
 	
 	public Method2<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		return (Method2<ReturnType>)super.add(classInstance, name, parameterTypes);
@@ -28,7 +28,7 @@ public class Method2<ReturnType> extends InvokableMethod2D<ReturnType> {
 		return (Method2<ReturnType>)super.data(data);
 	}
 	
-	public Method2<ReturnType> comparator(MethodComparatorD methodComparator) {
+	public Method2<ReturnType> comparator(MethodComparator methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;
 	}

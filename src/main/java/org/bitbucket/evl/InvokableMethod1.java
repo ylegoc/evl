@@ -6,11 +6,11 @@ import java.util.Map;
 import org.bitbucket.evl.util.CacheFactory;
 
 
-public abstract class InvokableMethod1D<ReturnType> extends MultiMethodD<ReturnType> {
+public abstract class InvokableMethod1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	protected Map<Class<?>, MethodHandle> cache;
 	
-	public InvokableMethod1D() {
+	public InvokableMethod1() {
 		super(1, new AsymmetricComparator());
 		this.cache = CacheFactory.<Class<?>, MethodHandle>createUnboundedCache();
 	}

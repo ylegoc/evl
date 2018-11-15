@@ -33,15 +33,15 @@ import org.bitbucket.evl.util.SuperClass;
  * that would be only possible with code template (C++) to generate it.
  * At least the virtual arguments could be avoided to be checked.
  */
-public abstract class MultiMethodD<ReturnType> {
+public abstract class MultiMethod<ReturnType> {
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
-	protected MethodComparatorD methodComparator;
-	private ArrayList<DispatchableMethodD> dispatchableMethods = new ArrayList<DispatchableMethodD>();
+	protected MethodComparator methodComparator;
+	private ArrayList<DispatchableMethod> dispatchableMethods = new ArrayList<DispatchableMethod>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	MultiMethodD(int dimension, MethodComparatorD methodComparator) {
+	MultiMethod(int dimension, MethodComparator methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 	}
@@ -53,7 +53,7 @@ public abstract class MultiMethodD<ReturnType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethodD addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
+	protected DispatchableMethod addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -112,7 +112,7 @@ public abstract class MultiMethodD<ReturnType> {
 			// do nothing
 		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
-		DispatchableMethodD dispatchableMethod = new DispatchableMethodD(tuple, methodHandle, object);
+		DispatchableMethod dispatchableMethod = new DispatchableMethod(tuple, methodHandle, object);
 		dispatchableMethod.setData(data);
 		
 		// Add the method.
@@ -127,7 +127,7 @@ public abstract class MultiMethodD<ReturnType> {
 	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD m : dispatchableMethods) {
+		for (DispatchableMethod m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
@@ -135,22 +135,22 @@ public abstract class MultiMethodD<ReturnType> {
 		Method[] methods = classInstance.getMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
-				DispatchableMethodD dispatchableMethod = addMethod(m, object, null);
+				DispatchableMethod dispatchableMethod = addMethod(m, object, null);
 				dispatchableMethod.setLastAdded(true);
 			}
 		}
 	}
 	
-	public MultiMethodD<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+	public MultiMethod<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD m : dispatchableMethods) {
+		for (DispatchableMethod m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethodD dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
+			DispatchableMethod dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
 			dispatchableMethod.setLastAdded(true);
 			
 		} catch (ReflectiveOperationException e) {
@@ -160,16 +160,16 @@ public abstract class MultiMethodD<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
+	public MultiMethod<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethodD m : dispatchableMethods) {
+		for (DispatchableMethod m : dispatchableMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethodD dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
+			DispatchableMethod dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
 			dispatchableMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
@@ -179,10 +179,10 @@ public abstract class MultiMethodD<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType> data(Comparable<?> data) {
+	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
-		for (DispatchableMethodD m : dispatchableMethods) {
+		for (DispatchableMethod m : dispatchableMethods) {
 			if (m.isLastAdded()) {
 				m.setData(data);
 			}
@@ -191,7 +191,7 @@ public abstract class MultiMethodD<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType> addAll(Class<?> classInstance, String methodName) {
+	public MultiMethod<ReturnType> addAll(Class<?> classInstance, String methodName) {
 		
 		try {
 			addMethodFamily(classInstance, methodName, null);
@@ -203,7 +203,7 @@ public abstract class MultiMethodD<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethodD<ReturnType> addAll(Object object, String methodName) {
+	public MultiMethod<ReturnType> addAll(Object object, String methodName) {
 
 		try {
 			addMethodFamily(object.getClass(), methodName, object);
@@ -216,7 +216,7 @@ public abstract class MultiMethodD<ReturnType> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected DispatchableMethodD processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
+	protected DispatchableMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -226,7 +226,7 @@ public abstract class MultiMethodD<ReturnType> {
 		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
 		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		MethodComparatorD methodComparatorCopy;
+		MethodComparator methodComparatorCopy;
 		
 		try {
 			methodComparatorCopy = this.methodComparator.getClass().newInstance();
@@ -240,14 +240,14 @@ public abstract class MultiMethodD<ReturnType> {
 		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
-	private DispatchableMethodD processClassTuple(MethodComparatorD methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private DispatchableMethod processClassTuple(MethodComparator methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
-		ArrayList<MethodItemD> compatibleMethodItems = new ArrayList<MethodItemD>();
+		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();
 		
 		// iterate the list
-		for (DispatchableMethodD method : dispatchableMethods) {
-			MethodItemD item = CompatibleMethod.calculate(superClassSet, method);
+		for (DispatchableMethod method : dispatchableMethods) {
+			MethodItem item = CompatibleMethod.calculate(superClassSet, method);
 			
 			if (item != null) {
 				
@@ -260,19 +260,19 @@ public abstract class MultiMethodD<ReturnType> {
 		}
 		
 		// search for the minimum method item
-		ArrayList<MethodItemD> minMethodItems = new ArrayList<MethodItemD>();
+		ArrayList<MethodItem> minMethodItems = new ArrayList<MethodItem>();
 		
 		if (compatibleMethodItems.isEmpty()) {
 			throw new NoCompatibleMethodException(tuple);
 		}
 
 		// there is at least 1 item
-		Iterator<MethodItemD> i = compatibleMethodItems.iterator();
+		Iterator<MethodItem> i = compatibleMethodItems.iterator();
 		minMethodItems.add(i.next());
 		
 		while (i.hasNext()) {
 			
-			MethodItemD item = i.next();
+			MethodItem item = i.next();
 			
 			int result = methodComparator.compare(item, minMethodItems.get(0));
 			
@@ -288,13 +288,13 @@ public abstract class MultiMethodD<ReturnType> {
 		if (minMethodItems.size() == 1) {
 			
 			// check that min is really min
-			MethodItemD minItem = minMethodItems.get(0);
+			MethodItem minItem = minMethodItems.get(0);
 			
 			i = compatibleMethodItems.iterator();
 			minMethodItems.add(i.next());
 			
 			while (i.hasNext()) {
-				MethodItemD item = i.next();
+				MethodItem item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
 					// minItem is not the real minimum
 					throw new NoCompatibleMethodException(tuple);
@@ -305,7 +305,7 @@ public abstract class MultiMethodD<ReturnType> {
 		}
 		
 		String possibleMethods = "";
-		for (MethodItemD item : minMethodItems) {
+		for (MethodItem item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";
 		}
 		
