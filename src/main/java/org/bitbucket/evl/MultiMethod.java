@@ -215,7 +215,6 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	@SuppressWarnings("unchecked")
 	protected DispatchableMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments

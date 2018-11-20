@@ -8,36 +8,43 @@ public class PredicateComparator extends MethodComparator {
 
 	@Override
 	public int compare(MethodItem m1, MethodItem m2) {
-		/*
-		boolean m2Value = false;
 		
-		try {
-			Method m2Method = (Method)m2.getData();
-			m2Value = (Boolean)m2Method.invoke(m2.getObject(), getArgs());
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// ?
-			System.err.println("error when invoking predicate of " + m2.getClassTuple());
+		// We first compare the methods.
+		Predicate predicate1 = null;
+		if (m1.getData() instanceof Predicate) {
+			predicate1 = (Predicate)m1.getData();
+			
+			// Set the current args.
+			predicate1.setArgs(getArgs());
 		}
 		
-		if (!m2Value) {
-			return -1;
+		Predicate predicate2 = null;
+		if (m2.getData() instanceof Predicate) {
+			predicate2 = (Predicate)m2.getData();
+			
+			// Set the current args.
+			predicate2.setArgs(getArgs());
 		}
 		
-		boolean m1Value = false;
+		int comparison = 0;
 		
-		try {
-			m1Value = (Boolean)m1.getData().invoke(m1.getObject(), getArgs());
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// ?
-			System.err.println("error when invoking predicate of " + m1.getClassTuple());
+		if (predicate1 != null) {
+			// We search for the "closest" tuple, so if we want to choose m1 if it has greater boolean value i.e. m1 < m2, 
+			// then we need to invert the result. 
+			comparison = -predicate1.compareTo(predicate2);
 		}
 		
-		if (!m1Value) {
-			return 1;
-		}*/
+		if (comparison == 0 && predicate2 != null) {
+			// Highest priority wins, so we let the result because we compare predicate2 < predicate1.
+			comparison = predicate2.compareTo(predicate1);
+		}
 		
-		// equality, compare with symmetric comparison
-		return ProductDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
+		if (comparison == 0) {
+			// Equality, compare with symmetric comparison
+			return ProductDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
+		}
+		
+		return comparison;
 	}
 
 }

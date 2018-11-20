@@ -6,20 +6,20 @@ import org.bitbucket.evl.util.MethodClassTuple;
 
 class DispatchableMethod {
 
-	private MethodHandle method;
+	private MethodHandle methodHandle;
 	private Object object;
 	private MethodClassTuple tuple;
 	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
 	public DispatchableMethod(MethodClassTuple tuple, MethodHandle method, Object object) {
-		this.method = method;
+		this.methodHandle = method;
 		this.object = object;
 		this.tuple = tuple;
 	}
 	
 	public MethodHandle getMethod() {
-		return method;
+		return methodHandle;
 	}
 	
 	public Object getObject() {

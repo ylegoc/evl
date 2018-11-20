@@ -42,11 +42,10 @@ public abstract class InvokableMethod4<ReturnType> extends MultiMethod<ReturnTyp
 		cache.clear();
 	}
 	
-	protected MethodHandle processAndCache(Object arg1, Object arg2, Object arg3, Object arg4) throws Throwable {
+	protected MethodHandle processAndCache(Object... args) throws Throwable {
 		
-		Object[] args = {arg1, arg2, arg3, arg4};
 		MethodHandle method = processClassTuple(args).getMethod();
-		cache.put(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()), method);
+		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass(), args[2].getClass(), args[3].getClass()), method);
 		return method;
 	}
 	
@@ -69,7 +68,7 @@ public abstract class InvokableMethod4<ReturnType> extends MultiMethod<ReturnTyp
 			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5);
 		}
 		
-		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4).invoke(arg1, arg2, arg3, arg4, arg5);
+		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5).invoke(arg1, arg2, arg3, arg4, arg5);
 	}
 	
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6) throws Throwable {
@@ -80,7 +79,7 @@ public abstract class InvokableMethod4<ReturnType> extends MultiMethod<ReturnTyp
 			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5, arg6);
 		}
 		
-		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4).invoke(arg1, arg2, arg3, arg4, arg5, arg6);
+		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5, arg6).invoke(arg1, arg2, arg3, arg4, arg5, arg6);
 	}
 	
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7) throws Throwable {
@@ -91,6 +90,6 @@ public abstract class InvokableMethod4<ReturnType> extends MultiMethod<ReturnTyp
 			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 		}
 		
-		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4).invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5, arg6, arg7).invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 	}	
 }

@@ -19,10 +19,13 @@ public class SymmetricComparator extends MethodComparator {
 			}
 			
 			if (priority1 != null) {
-				return priority1.compareTo(priority2);
+				// We search for the "closest" tuple, so if we want to choose m1 if it has greater priority i.e. m1 < m2, 
+				// then we need to invert the result. 
+				return -priority1.compareTo(priority2);
 			}
 			
 			if (priority2 != null) {
+				// We let the result because we compare priority2 < priority1.
 				return priority2.compareTo(priority1);
 			}
 		}

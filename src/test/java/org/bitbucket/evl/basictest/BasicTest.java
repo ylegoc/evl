@@ -112,11 +112,11 @@ public class BasicTest {
 		Method2<Integer> m2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
 				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
-				.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(1))
+				.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(3))
 				.add(foo, "foo", D.class, IA.class).data(Priority.valueOf(2))
-				.add(foo, "foo", IA.class, D.class).data(Priority.valueOf(3));
+				.add(foo, "foo", IA.class, D.class).data(Priority.valueOf(1));
 
-		// Smallest priority wins.
+		// Highest priority wins.
 		int res = m2.invoke(e, e);
 		assertEquals(res, 2);
 	}
