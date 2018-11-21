@@ -4,38 +4,12 @@ Code
 
 notes:
 - Review interface
-	Merge data : only a single interface : no data in generics interface
-	Find a simpler syntax : 
-	Method2<Void> copy1 = new Method2<Void>()
-						.add(Copier.class, "copy", Parameter.types(A.class, K.class), copier, 12)
-	becomes:
-						.add(copier, "copy", A.class, K.class).data(Priority.valueOf(12))
-						.addAll(copier, "copy").data(new Integer(12)) // mark all the last added to set the data
-						.add(Copier.class, "copy", B.class, B.class).data(new Integer(13)) // for static
-	
-	Checks at runtime:
-	- add static: check at it is static.
-	- how to manage that method is static but added with object? Check it is static and do not bind if it is.
-	- return type? impose that the return type has a default constructor: so that it is possible to check OR provide an instance.
-		classInstance.getConstructor().newInstance()
-	- copier must be an instance of Copier.class.
-	- data can be tested using the current comparator.
-	
-	Change default comparator: add priority to Asymmetric and Symmetric, remove Priority... 
-		Default value is 0
-		Change order: highest value provides more priority: so that it is always possible to force.
+	Rename methods get... without get? Check last standard.
+	Implement the Methods class (cf MethodHandleTest)
 
-	- Rename methods get... without get? Check last standard.
+- Concurrent access to be reviewed : copy of MethodComparator: synchronize? thread specific data?
 	
-Roadmap
-1. Implement add and data in InvokableMethod1D, 2D, etc.: ok
-2. Remove all the methods from Method1, Method1D, Method2, etc. : ok
-3. Remove DataType from every ...D except comparators. : ok
-5. Comparators include priority : ok
-6. Reimplement PredicateComparator with Comparable interface : ok
-7. Merge InvokableMethod* and Method*
-	
-- unit tests for all possible errors.
+- Unit tests for all possible errors.
 
 - Provide the request list of methods with associated objects.
 
@@ -44,9 +18,7 @@ Roadmap
 	Find another name for process (mm? see the name given in reflection examples).
 	Rename Process.method in tuto 4
 
-
 - Test Caffeine Cache class.	
-- See if lambdas can be used
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
@@ -66,6 +38,7 @@ Notes
 	Future: mask map should be more suitable
 - MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
 	We define all the 7 methods.
+- Lambdas cannot be used because it is not possible to get abstract objects and runtime type information.
 
 Article
 Explain not a new idea so we need to convince the user

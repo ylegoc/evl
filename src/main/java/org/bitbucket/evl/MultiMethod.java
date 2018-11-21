@@ -61,7 +61,7 @@ public abstract class MultiMethod<ReturnType> {
 			methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes())).bindTo(object);
 		}
 		catch (ReflectiveOperationException e) {
-			// If static the method is not found.
+			// If static, the method is not found.
 		}
 		
 		// Test static method.
