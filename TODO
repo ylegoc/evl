@@ -32,7 +32,8 @@ Roadmap
 2. Remove all the methods from Method1, Method1D, Method2, etc. : ok
 3. Remove DataType from every ...D except comparators. : ok
 5. Comparators include priority : ok
-6. Reimplement PredicateComparator with Comparable interface (use MethodHandle?).
+6. Reimplement PredicateComparator with Comparable interface : ok
+7. Merge InvokableMethod* and Method*
 	
 - unit tests for all possible errors.
 
