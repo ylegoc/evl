@@ -6,6 +6,7 @@ notes:
 - Review interface
 	Rename methods get... without get? Check last standard.
 	Implement the Methods class (cf MethodHandleTest)
+		Filter on the match name.
 
 - Concurrent access to be reviewed : copy of MethodComparator: synchronize? thread specific data?
 	

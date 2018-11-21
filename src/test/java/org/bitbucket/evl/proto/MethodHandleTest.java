@@ -141,10 +141,12 @@ public class MethodHandleTest {
 		
 		// Ok
         testAdd(new Methods() {
-			void test(MyClass c) {
+        	
+			void match(MyClass c) {
         		System.out.println("Hello " + c.value());
         	}
-        	void test(MyClass2 c) {
+			
+        	void match(MyClass2 c) {
         		System.out.println("World " + c.value());
         	}
         });
