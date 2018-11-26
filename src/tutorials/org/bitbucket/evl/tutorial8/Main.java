@@ -27,7 +27,7 @@ public class Main {
 		
 		Method1<Integer> process = new Method1<Integer>()
 						.unboundedCache()
-						.addAll(foo, "process");
+						.add(foo, "process");
 		
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -35,7 +35,7 @@ public class Main {
 		
 		process = new Method1<Integer>()
 				.boundedCache(2)
-				.addAll(foo, "process");
+				.add(foo, "process");
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -43,7 +43,7 @@ public class Main {
 		
 		process = new Method1<Integer>()
 				.cache(new HashMap<Class<?>, MethodHandle>())
-				.addAll(foo, "process");
+				.add(foo, "process");
 
 		System.out.println(process.invoke(b));
 		System.out.println(process.invoke(c));
@@ -51,7 +51,7 @@ public class Main {
 		
 		Method2<Integer> process2 = new Method2<Integer>()
 				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
-				.addAll(foo, "process2");
+				.add(foo, "process2");
 
 
 		System.out.println(process2.invoke(b, c));

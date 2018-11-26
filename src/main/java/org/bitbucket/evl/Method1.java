@@ -1,8 +1,10 @@
 package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.util.Map;
 
+import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
@@ -27,13 +29,55 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method1<ReturnType>)super.add(object, name, parameterTypes);
 	}
 	
-	public Method1<ReturnType> addAll(Class<?> classInstance, String name) {
-		return (Method1<ReturnType>)super.addAll(classInstance, name);
+	public Method1<ReturnType> add(Class<?> classInstance, String name) {
+		return (Method1<ReturnType>)super.add(classInstance, name);
 	}
 	
-	public Method1<ReturnType> addAll(Object object, String name) {
-		return (Method1<ReturnType>)super.addAll(object, name);
+	public Method1<ReturnType> add(Object object, String name) {
+		return (Method1<ReturnType>)super.add(object, name);
 	}
+	
+	public Method1<ReturnType> add(Object object) {
+		return (Method1<ReturnType>)super.add(object);
+	}
+	
+	public Method1<ReturnType> add(MethodHandles.Lookup lookup, Methods object) {
+		
+		object.check(lookup);
+		
+		return this;
+	}
+	
+	public Method1<ReturnType> add(Methods object) {
+		
+		Class<?> m = object.getClass();
+		System.out.println("");
+		System.out.println("Methods class " + m);
+		System.out.println("  declaring class " + m.getDeclaringClass());
+		System.out.println("  enclosing class " + m.getEnclosingClass());
+		System.out.println("");
+		
+		MethodHandles.Lookup lookup = MethodHandles.lookup();
+		try {
+			lookup = MethodHandles.privateLookupIn(m.getEnclosingClass(), lookup);
+			object.check(lookup);
+			
+			try {
+				addMethodFamily(lookup, object.getClass(), "match", object);
+			}
+			catch (ReflectiveOperationException e) {
+				e.printStackTrace();
+				throw new MethodInsertionException();
+			}
+			
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return this;
+	}
+	
 	
 	public Method1<ReturnType> data(Comparable<?> data) {
 		return (Method1<ReturnType>)super.data(data);

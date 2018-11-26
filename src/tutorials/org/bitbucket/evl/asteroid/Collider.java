@@ -7,28 +7,28 @@ import org.bitbucket.evl.Method2;
  * @author yan
  *
  */
-public class Main {
+public class Collider {
 
-	public static void collide(Asteroid a, Asteroid b) {
+	public static void match(Asteroid a, Asteroid b) {
 		System.out.println("BAM! Two asteroids collide!");
 	}
 	
-	public static void collide(Asteroid a, Spaceship b) {
+	public static void match(Asteroid a, Spaceship b) {
 		System.out.println("BOUM! Asteroid collides spaceship!");
 	}
 	
-	public static void collide(Spaceship a, Asteroid b) {
+	public static void match(Spaceship a, Asteroid b) {
 		System.out.println("BOUM! Spaceship collides asteroid!");
 	}
 	
-	public static void collide(Spaceship a, Spaceship b) {
+	public static void match(Spaceship a, Spaceship b) {
 		System.out.println("CRASH! Two spaceships collide!");
 	}
 	
 	
 	public static void main(String[] args) throws Throwable {
 	
-		Method2<Void> collide = new Method2<Void>().addAll(Main.class, "collide");
+		Method2<Void> collide = new Method2<Void>().add(new Collider());
 		
 		collide.invoke(new Asteroid(), new Asteroid());
 		collide.invoke(new Asteroid(), new Spaceship());

@@ -34,6 +34,8 @@ import org.bitbucket.evl.util.SuperClass;
  * At least the virtual arguments could be avoided to be checked.
  */
 public abstract class MultiMethod<ReturnType> {
+	
+	private static final String DEFAULT_METHOD_NAME = "match";
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
@@ -53,7 +55,7 @@ public abstract class MultiMethod<ReturnType> {
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethod addMethod(Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
+	protected DispatchableMethod addMethod(MethodHandles.Lookup lookup, Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -124,7 +126,7 @@ public abstract class MultiMethod<ReturnType> {
 	// not possible to set data to all the methods
 	// only for non-data methods
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected void addMethodFamily(Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
+	protected void addMethodFamily(MethodHandles.Lookup lookup, Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
 		for (DispatchableMethod m : dispatchableMethods) {
@@ -132,10 +134,10 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		// Add all the methods.
-		Method[] methods = classInstance.getMethods();
+		Method[] methods = classInstance.getDeclaredMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
-				DispatchableMethod dispatchableMethod = addMethod(m, object, null);
+				DispatchableMethod dispatchableMethod = addMethod(lookup, m, object, null);
 				dispatchableMethod.setLastAdded(true);
 			}
 		}
@@ -150,7 +152,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			DispatchableMethod dispatchableMethod = addMethod(classInstance.getMethod(name, parameterTypes), null, null);
+			DispatchableMethod dispatchableMethod = addMethod(lookup, classInstance.getMethod(name, parameterTypes), null, null);
 			dispatchableMethod.setLastAdded(true);
 			
 		} catch (ReflectiveOperationException e) {
@@ -169,7 +171,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			DispatchableMethod dispatchableMethod = addMethod(object.getClass().getMethod(name, parameterTypes), object, null);
+			DispatchableMethod dispatchableMethod = addMethod(lookup, object.getClass().getMethod(name, parameterTypes), object, null);
 			dispatchableMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
@@ -191,10 +193,10 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethod<ReturnType> addAll(Class<?> classInstance, String methodName) {
+	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName) {
 		
 		try {
-			addMethodFamily(classInstance, methodName, null);
+			addMethodFamily(lookup, classInstance, methodName, null);
 		}
 		catch (ReflectiveOperationException e) {
 			throw new MethodInsertionException();
@@ -203,16 +205,22 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethod<ReturnType> addAll(Object object, String methodName) {
+	public MultiMethod<ReturnType> add(Object object, String methodName) {
 
 		try {
-			addMethodFamily(object.getClass(), methodName, object);
+			addMethodFamily(lookup, object.getClass(), methodName, object);
 		}
 		catch (ReflectiveOperationException e) {
+			e.printStackTrace();
 			throw new MethodInsertionException();
 		}
 		
 		return this;
+	}
+	
+	public MultiMethod<ReturnType> add(Object object) {
+		
+		return this.add(object, DEFAULT_METHOD_NAME);
 	}
 	
 	protected DispatchableMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {

@@ -1,6 +1,6 @@
 Code
 - Maven: fr.evl, later with fr.ill.code, evl
-- Rename packages: fr.evl, plus tar fr.ill.code.evl
+- Rename packages: find a name?
 
 notes:
 - Review interface
@@ -8,7 +8,9 @@ notes:
 	Implement the Methods class (cf MethodHandleTest)
 		Filter on the match name.
 
-- Concurrent access to be reviewed : copy of MethodComparator: synchronize? thread specific data?
+	Review all add methods to add lookup, default implementation add(Methods) calls MethodHandles.privateLookupIn(m.getEnclosingClass(), lookup) to get the allowed lookup for anonymous classes
+
+- Test with modules.
 	
 - Unit tests for all possible errors.
 

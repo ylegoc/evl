@@ -6,7 +6,7 @@ import org.bitbucket.evl.classes.C;
 
 public class Foo {
 	
-	private Method1<Integer> process = new Method1<Integer>().addAll(this, "process");
+	private Method1<Integer> process = new Method1<Integer>().add(this, "process");
 	
 	public int process(Object obj) throws Throwable {
 		return process.invoke(obj);

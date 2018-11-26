@@ -62,10 +62,11 @@ public class MethodHandleTest {
 		
 	}
 	
+	MethodHandles.Lookup lookup = MethodHandles.lookup();
 	Method[] methods;
-	Methods mm;
+	Object mm;
 	
-	void testAdd(Methods f) {
+	void testAdd(Object f) {
 		mm = f;
 		methods = f.getClass().getDeclaredMethods();
 	}
@@ -79,9 +80,13 @@ public class MethodHandleTest {
 				e.printStackTrace();
 			}
 			
-			MethodHandles.Lookup lookup = MethodHandles.lookup();
+			
 			MethodHandle methodHandle = null;
 			try {
+				System.out.println("findVirtual " + m.getDeclaringClass() + " " + m.getName() + " " + m.getReturnType() + " " + m.getParameterTypes());
+				
+				System.out.println("lookup = " + lookup);
+				
 				methodHandle = lookup.findVirtual(m.getDeclaringClass(), m.getName(), MethodType.methodType(m.getReturnType(), m.getParameterTypes()));
 				methodHandle.invoke(mm, obj);
 			}

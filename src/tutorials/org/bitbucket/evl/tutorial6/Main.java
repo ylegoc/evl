@@ -18,7 +18,7 @@ public class Main {
 		
 		Method2<Integer> process1 = new Method2<Integer>()
 						.comparator(new SymmetricComparator())
-						.addAll(agent, "process");
+						.add(agent, "process");
 
 		try {
 			System.out.println(process1.invoke(b1, b2));
@@ -30,7 +30,7 @@ public class Main {
 		
 		Method2<Integer> process2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.addAll(agent2, "process");
+				.add(agent2, "process");
 
 		System.out.println(process2.invoke(b1, b2));
 		

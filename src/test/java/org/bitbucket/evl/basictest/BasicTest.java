@@ -61,7 +61,7 @@ public class BasicTest {
 		
 		Method2<Integer> m = new Method2<Integer>()
 				.comparator(new AsymmetricComparator())
-				.addAll(foo, "foo");
+				.add(foo, "foo");
 
 		
 		E e = new E();
@@ -98,7 +98,7 @@ public class BasicTest {
 		
 		Method2<Integer> m = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.addAll(foo, "foo");
+				.add(foo, "foo");
 
 		boolean error = false;
 		try {

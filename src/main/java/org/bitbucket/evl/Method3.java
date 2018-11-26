@@ -49,14 +49,18 @@ public class Method3<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method3<ReturnType>)super.add(object, name, parameterTypes);
 	}
 	
-	public Method3<ReturnType> addAll(Class<?> classInstance, String name) {
-		return (Method3<ReturnType>)super.addAll(classInstance, name);
+	public Method3<ReturnType> add(Class<?> classInstance, String name) {
+		return (Method3<ReturnType>)super.add(classInstance, name);
 	}
 	
-	public Method3<ReturnType> addAll(Object object, String name) {
-		return (Method3<ReturnType>)super.addAll(object, name);
+	public Method3<ReturnType> add(Object object, String name) {
+		return (Method3<ReturnType>)super.add(object, name);
 	}
 
+	public Method3<ReturnType> add(Object object) {
+		return (Method3<ReturnType>)super.add(object);
+	}
+	
 	public Method3<ReturnType> data(Comparable<?> data) {
 		return (Method3<ReturnType>)super.data(data);
 	}
