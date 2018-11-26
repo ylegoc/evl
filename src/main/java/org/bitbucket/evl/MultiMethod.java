@@ -224,22 +224,13 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
 		
-		// the method comparator is copied to avoid concurrent calls if the comparator memorizes states
-		MethodComparator methodComparatorCopy;
+		// set the args to the comparator.
+		methodComparator.setArgs(args);
 		
-		try {
-			methodComparatorCopy = this.methodComparator.getClass().newInstance();
-		} catch (InstantiationException | IllegalAccessException e) {
-			throw new MethodComparatorInstantiationException();
-		}
-		
-		// set the args to the comparator
-		methodComparatorCopy.setArgs(args);
-		
-		return processClassTuple(methodComparatorCopy, methodTuple, SuperClass.calculate(methodTuple));
+		return processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
 	}
 	
-	private DispatchableMethod processClassTuple(MethodComparator methodComparator, MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private DispatchableMethod processClassTuple(MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
 		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();

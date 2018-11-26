@@ -15,7 +15,7 @@ public class PredicateComparator extends MethodComparator {
 			predicate1 = (Predicate)m1.getData();
 			
 			// Set the current args.
-			predicate1.setArgs(getArgs());
+			predicate1.setArgs(args());
 		}
 		
 		Predicate predicate2 = null;
@@ -23,7 +23,7 @@ public class PredicateComparator extends MethodComparator {
 			predicate2 = (Predicate)m2.getData();
 			
 			// Set the current args.
-			predicate2.setArgs(getArgs());
+			predicate2.setArgs(args());
 		}
 		
 		int comparison = 0;

@@ -18,7 +18,7 @@ public class Predicate implements Comparable<Predicate> {
 	
 	private Method method;
 	private Object object;
-	private Object[] args;
+	private ThreadLocal<Object[]> threadLocalArgs = new ThreadLocal<Object[]>();
 	
 	public Predicate(Object object, String name, Class<?>... parameterTypes) {
 		
@@ -34,7 +34,7 @@ public class Predicate implements Comparable<Predicate> {
 	}
 	
 	public void setArgs(Object[] args) {
-		this.args = args;
+		threadLocalArgs.set(args);
 	}
 	
 	@Override
@@ -45,8 +45,8 @@ public class Predicate implements Comparable<Predicate> {
 		}
 		
 		try {
-			Boolean thisValue = (Boolean)method.invoke(object, args);
-			Boolean otherValue = (Boolean)other.method.invoke(other.object, args);
+			Boolean thisValue = (Boolean)method.invoke(object, threadLocalArgs.get());
+			Boolean otherValue = (Boolean)other.method.invoke(other.object, threadLocalArgs.get());
 		
 			return thisValue.compareTo(otherValue);
 		}
