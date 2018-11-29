@@ -9,8 +9,7 @@ import org.bitbucket.evl.classes.K;
 import org.bitbucket.evl.util.Parameter;
 
 /**
- * Symmetric and asymmetric dispatch.
- * @author yan
+ * Symmetric and asymmetric double dispatch using methods with special name "copy".
  *
  */
 public class Main {

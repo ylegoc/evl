@@ -40,6 +40,13 @@ public class Method2<ReturnType> extends MultiMethod<ReturnType> {
 		cache.clear();
 	}
 	
+	protected MethodHandle processAndCache(Object... args) throws Throwable {
+		
+		MethodHandle method = processClassTuple(args).getMethod();
+		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass()), method);
+		return method;
+	}
+	
 	public Method2<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		return (Method2<ReturnType>)super.add(classInstance, name, parameterTypes);
 	}
@@ -58,6 +65,10 @@ public class Method2<ReturnType> extends MultiMethod<ReturnType> {
 	
 	public Method2<ReturnType> add(Object object) {
 		return (Method2<ReturnType>)super.add(object);
+	}
+	
+	public Method2<ReturnType> add(Cases cases) {
+		return (Method2<ReturnType>)super.add(cases);
 	}
 	
 	public Method2<ReturnType> data(Comparable<?> data) {
@@ -82,13 +93,6 @@ public class Method2<ReturnType> extends MultiMethod<ReturnType> {
 	public Method2<ReturnType> boundedCache(int capacity) {
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(capacity);
 		return this;
-	}
-	
-protected MethodHandle processAndCache(Object... args) throws Throwable {
-		
-		MethodHandle method = processClassTuple(args).getMethod();
-		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass()), method);
-		return method;
 	}
 	
 	public ReturnType invoke(Object arg1, Object arg2) throws Throwable {

@@ -29,7 +29,7 @@ public class Predicate implements Comparable<Predicate> {
 			this.object = object;	
 		}
 		catch (NoSuchMethodException | SecurityException e) {
-			throw new MethodInsertionException();
+			throw new MethodInsertionException(e.getMessage());
 		}
 	}
 	

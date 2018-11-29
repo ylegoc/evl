@@ -42,6 +42,8 @@ Notes
 - MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
 	We define all the 7 methods.
 - Lambdas cannot be used because it is not possible to get abstract objects and runtime type information.
+- The MethodHandle lookup is not easy to manage. If necessary, we can add an optional parameter lookup for all add methods.
+	https://docs.oracle.com/javase/10/docs/api/java/lang/invoke/MethodHandles.Lookup.html
 
 Article
 Explain not a new idea so we need to convince the user

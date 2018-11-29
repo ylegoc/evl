@@ -5,11 +5,24 @@ import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;
 
 /**
- * Open-method example.
- * @author yan
+ * "Open-method" example. A singleton multi-method can be configured anywhere.
  *
  */
 public class Main {
+	
+	public static class Foo1 {
+
+		public int match(B obj) {
+			return 1 + obj.getB();
+		}
+	}
+	
+	public static class Foo2 {
+
+		public int match(C obj) {
+			return 2 + obj.getC();
+		}
+	}
 	
 	public static void main(String[] args) throws Throwable {
 		
@@ -17,12 +30,12 @@ public class Main {
 		A c = new C(2, -5);
 		
 		Foo1 foo1 = new Foo1();
-		Process.method().add(foo1, "process");
+		Process.instance().add(foo1);
 		
 		Foo2 foo2 = new Foo2();
-		Process.method().add(foo2, "process");
+		Process.instance().add(foo2);
 		
-		System.out.println(Process.method().invoke(b));
-		System.out.println(Process.method().invoke(c));
+		System.out.println(Process.instance().invoke(b));
+		System.out.println(Process.instance().invoke(c));
 	}
 }

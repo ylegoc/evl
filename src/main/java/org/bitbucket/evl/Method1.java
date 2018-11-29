@@ -1,10 +1,8 @@
 package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.util.Map;
 
-import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.util.CacheFactory;
 
 
@@ -19,6 +17,13 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	protected void resetCache() {
 		cache.clear();
+	}
+
+	protected MethodHandle processAndCache(Object... args) throws Throwable {
+		
+		MethodHandle method = processClassTuple(args).getMethod();
+		cache.put(args[0].getClass(), method);
+		return method;
 	}
 	
 	public Method1<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
@@ -41,43 +46,9 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method1<ReturnType>)super.add(object);
 	}
 	
-	public Method1<ReturnType> add(MethodHandles.Lookup lookup, Methods object) {
-		
-		object.check(lookup);
-		
-		return this;
+	public Method1<ReturnType> add(Cases cases) {
+		return (Method1<ReturnType>)super.add(cases);
 	}
-	
-	public Method1<ReturnType> add(Methods object) {
-		
-		Class<?> m = object.getClass();
-		System.out.println("");
-		System.out.println("Methods class " + m);
-		System.out.println("  declaring class " + m.getDeclaringClass());
-		System.out.println("  enclosing class " + m.getEnclosingClass());
-		System.out.println("");
-		
-		MethodHandles.Lookup lookup = MethodHandles.lookup();
-		try {
-			lookup = MethodHandles.privateLookupIn(m.getEnclosingClass(), lookup);
-			object.check(lookup);
-			
-			try {
-				addMethodFamily(lookup, object.getClass(), "match", object);
-			}
-			catch (ReflectiveOperationException e) {
-				e.printStackTrace();
-				throw new MethodInsertionException();
-			}
-			
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return this;
-	}
-	
 	
 	public Method1<ReturnType> data(Comparable<?> data) {
 		return (Method1<ReturnType>)super.data(data);
@@ -101,13 +72,6 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	public Method1<ReturnType> boundedCache(int capacity) {
 		this.cache = CacheFactory.<Class<?>, MethodHandle>createBoundedCache(capacity);
 		return this;
-	}
-	
-protected MethodHandle processAndCache(Object... args) throws Throwable {
-		
-		MethodHandle method = processClassTuple(args).getMethod();
-		cache.put(args[0].getClass(), method);
-		return method;
 	}
 	
 	public ReturnType invoke(Object arg1) throws Throwable {

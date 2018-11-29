@@ -156,7 +156,7 @@ public abstract class MultiMethod<ReturnType> {
 			dispatchableMethod.setLastAdded(true);
 			
 		} catch (ReflectiveOperationException e) {
-			throw new MethodInsertionException();
+			throw new MethodInsertionException(e.getMessage());
 		}
 		
 		return this;
@@ -175,7 +175,7 @@ public abstract class MultiMethod<ReturnType> {
 			dispatchableMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodInsertionException();
+			throw new MethodInsertionException(e.getMessage());
 		}
 		
 		return this;
@@ -199,7 +199,7 @@ public abstract class MultiMethod<ReturnType> {
 			addMethodFamily(lookup, classInstance, methodName, null);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodInsertionException();
+			throw new MethodInsertionException(e.getMessage());
 		}
 		
 		return this;
@@ -212,7 +212,7 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		catch (ReflectiveOperationException e) {
 			e.printStackTrace();
-			throw new MethodInsertionException();
+			throw new MethodInsertionException(e.getMessage());
 		}
 		
 		return this;
@@ -221,6 +221,28 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Object object) {
 		
 		return this.add(object, DEFAULT_METHOD_NAME);
+	}
+	
+	public MultiMethod<ReturnType> add(Cases cases) {
+		
+		// Get the current lookup.
+		MethodHandles.Lookup lookup = MethodHandles.lookup();
+		try {
+			// Access to the lookup of the anonymous Cases object.
+			lookup = MethodHandles.privateLookupIn(cases.getClass().getEnclosingClass(), lookup);
+			
+			try {
+				addMethodFamily(lookup, cases.getClass(), "match", cases);
+			}
+			catch (ReflectiveOperationException e) {
+				throw new MethodInsertionException(e.getMessage());
+			}
+			
+		} catch (IllegalAccessException e) {
+			throw new MethodInsertionException(e.getMessage());
+		}
+		
+		return this;
 	}
 	
 	protected DispatchableMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
