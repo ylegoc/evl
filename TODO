@@ -3,29 +3,14 @@ Code
 - Rename packages: find a name?
 
 notes:
-- Review interface
-	Rename methods get... without get? Check last standard.
-	Implement the Methods class (cf MethodHandleTest)
-		Filter on the match name.
-
-	Review all add methods to add lookup, default implementation add(Methods) calls MethodHandles.privateLookupIn(m.getEnclosingClass(), lookup) to get the allowed lookup for anonymous classes
-
-- Test with modules.
-	
 - Unit tests for all possible errors.
-
 - Provide the request list of methods with associated objects.
-
-- Tutorials
-	Merge Main.java and Foo.java into the same class.
-	Find another name for process (mm? see the name given in reflection examples).
-	Rename Process.method in tuto 4
 
 - Test Caffeine Cache class.	
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
-- Java 9 module?
+- Java 9 modules
 - check the classes to be ignored
 	cleanup of the code: the methods to be not accessible to user
 - javadoc (exclude some classes)
