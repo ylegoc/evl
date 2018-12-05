@@ -30,7 +30,7 @@ class DispatchableMethod {
 		return tuple;
 	}
 
-	public void setData(Comparable<?> data) {
+	void setData(Comparable<?> data) {
 		this.data = data;
 	}
 	
@@ -38,11 +38,11 @@ class DispatchableMethod {
 		return data;
 	}
 	
-	public void setLastAdded(boolean value) {
+	void setLastAdded(boolean value) {
 		lastAdded = value;
 	}
 	
-	public boolean isLastAdded() {
+	boolean isLastAdded() {
 		return lastAdded;
 	}
 	
