@@ -15,7 +15,7 @@ import org.bitbucket.evl.classes.C;
  * Disambiguate with Priority data.
  * 
  */
-public class Main {
+public class Tutorial8 {
 	
 	public static class Foo {
 
@@ -33,7 +33,7 @@ public class Main {
 	}
 
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b = new B(1, 2);
 		A c = new C(2, -5);

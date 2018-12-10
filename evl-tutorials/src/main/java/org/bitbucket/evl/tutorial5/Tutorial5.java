@@ -12,9 +12,9 @@ import org.bitbucket.evl.util.Parameter;
  * Symmetric and asymmetric double dispatch using methods with special name "copy".
  *
  */
-public class Main {
+public class Tutorial5 {
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		B b = new B(1, 4);
 		K k = new K(3, 7);

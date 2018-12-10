@@ -11,9 +11,9 @@ import org.bitbucket.evl.exception.InvocationException;
  * Example on how to extend an "agent" class.
  *
  */
-public class Main {
+public class Tutorial6 {
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b1 = new B(1, 2);
 		A b2 = new B(2, -5);

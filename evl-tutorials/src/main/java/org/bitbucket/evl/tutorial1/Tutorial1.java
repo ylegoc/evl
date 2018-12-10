@@ -10,9 +10,9 @@ import org.bitbucket.evl.classes.C;
  * Simple example showing the minimum amount of code to be written for defining a multi-method.
  * 
  */
-public class Main {
+public class Tutorial1 {
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 
 		Method1<Integer> method = new Method1<Integer>().add(new Cases() {
 

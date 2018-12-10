@@ -10,7 +10,7 @@ import org.bitbucket.evl.predicate.PredicateMethod1;
  * Example with predicate dispatch in data.
  * 
  */
-public class Main {
+public class Tutorial9 {
 	
 	public static class Foo {
 
@@ -39,7 +39,7 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b = new B(2, -5);
 		

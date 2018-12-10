@@ -15,7 +15,7 @@ public class Collider {
 	public static class Spaceship {
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 	
 		Method2<Void> collide = new Method2<Void>().add(new Cases() {
 			

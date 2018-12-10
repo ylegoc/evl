@@ -9,7 +9,7 @@ import org.bitbucket.evl.classes.C;
  * Example of a stateful "agent" that counts objects.
  *
  */
-public class Main {
+public class Tutorial2 {
 	
 	public static class Counter {
 
@@ -24,7 +24,7 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		Counter counter = new Counter();
 		

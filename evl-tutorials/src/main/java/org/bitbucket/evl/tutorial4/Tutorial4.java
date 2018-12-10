@@ -8,7 +8,7 @@ import org.bitbucket.evl.classes.C;
  * "Open-method" example. A singleton multi-method can be configured anywhere.
  *
  */
-public class Main {
+public class Tutorial4 {
 	
 	public static class Foo1 {
 
@@ -24,7 +24,7 @@ public class Main {
 		}
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b = new B(1, 2);
 		A c = new C(2, -5);

@@ -11,7 +11,7 @@ import org.bitbucket.evl.classes.B;
  * Example of a custom method comparator.
  *
  */
-public class Main {
+public class Tutorial7 {
 	
 	public static class ClassNameComparator extends MethodComparator {
 
@@ -34,7 +34,7 @@ public class Main {
 
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b1 = new B(1, 2);
 		A b2 = new B(2, -5);

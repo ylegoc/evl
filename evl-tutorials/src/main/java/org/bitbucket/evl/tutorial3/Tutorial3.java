@@ -10,9 +10,9 @@ import org.bitbucket.evl.classes.C;
  * Binary method example.
  *
  */
-public class Main {
+public class Tutorial3 {
 	
-	public static void main(String[] args) throws Throwable {
+	public static void run() throws Throwable {
 		
 		A b1 = new B(1, 4);
 		A b2 = new B(3, 7);
