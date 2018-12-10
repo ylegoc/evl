@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
+		<module>evl-lookup</module>
 		<module>evl</module>
 	</modules>
 </project>
