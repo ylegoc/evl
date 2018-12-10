@@ -20,10 +20,10 @@
 			<version>2.6.2</version>
 		</dependency>
 		<dependency>
-    <groupId>org.apache.cayenne</groupId>
-    <artifactId>cayenne-server</artifactId>
-    <version>4.1.M2</version>
-</dependency>
+			<groupId>org.apache.cayenne</groupId>
+			<artifactId>cayenne-server</artifactId>
+			<version>4.1.M2</version>
+		</dependency>
 
 	</dependencies>
 
