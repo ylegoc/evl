@@ -10,5 +10,6 @@
 	<modules>
 		<module>evl-lookup</module>
 		<module>evl</module>
+		<module>evl-tutorials</module>
 	</modules>
 </project>
