@@ -1,7 +1,6 @@
 package org.bitbucket.evl.tutorial6;
 
 import org.bitbucket.evl.Method2;
-import org.bitbucket.evl.Priority;
 import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
