@@ -15,6 +15,7 @@ import org.bitbucket.evl.exception.BadNumberOfVirtualParameterTypesException;
 import org.bitbucket.evl.exception.MethodComparatorInstantiationException;
 import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.exception.NoCompatibleMethodException;
+import org.bitbucket.evl.lookup.CasesLookup;
 import org.bitbucket.evl.util.MethodClassTuple;
 import org.bitbucket.evl.util.SuperClass;
 
@@ -229,7 +230,7 @@ public abstract class MultiMethod<ReturnType> {
 		MethodHandles.Lookup lookup = MethodHandles.lookup();
 		try {
 			// Access to the lookup of the anonymous Cases object.
-			lookup = MethodHandles.privateLookupIn(cases.getClass().getEnclosingClass(), lookup);
+			lookup = CasesLookup.privateLookupIn(cases.getClass(), lookup);
 			
 			try {
 				addMethodFamily(lookup, cases.getClass(), "match", cases);

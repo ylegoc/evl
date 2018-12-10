@@ -9,5 +9,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>evl-lookup-default</module>
+  	<module>evl-lookup-null</module>
   </modules>
 </project>
