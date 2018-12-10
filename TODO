@@ -1,25 +1,19 @@
 Code
-- Maven: fr.evl, later with fr.ill.code, evl
 - Rename packages: find a name?
 
 notes:
 - Unit tests for all possible errors.
 - Provide the request list of methods with associated objects.
+	tuples with data toString method
 
 - Test Caffeine Cache class.	
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
 - implement toString method of MultiMethodD
-- Java 9 modules
-- check the classes to be ignored
-	cleanup of the code: the methods to be not accessible to user
+- Java 9 modules?
 - javadoc (exclude some classes)
 - put the tutorials on web site
 - put javadoc on website
-
-- add the possibility to dynamically refine the comparators
-	List of comparators, applied sequentially.
-
 
 Notes
 - Too constraining to implement a cache based on array (define EvlObject class that registers a unique id by using a special factory)
