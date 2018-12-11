@@ -1,10 +1,11 @@
 Code
-- Rename packages: find a name?
+- Add the syntactic sugar class:
 
-notes:
+	Switch extends Method1<Void>
+		static Switch with(Cases)
+
+- Rename packages: find a name?
 - Unit tests for all possible errors.
-- Provide the request list of methods with associated objects.
-	tuples with data toString method
 
 - Test Caffeine Cache class.	
 - reimplement the comparators by a list of comparators
