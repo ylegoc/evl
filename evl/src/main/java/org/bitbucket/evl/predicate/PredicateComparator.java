@@ -1,13 +1,13 @@
 package org.bitbucket.evl.predicate;
 
-import org.bitbucket.evl.MethodComparator;
-import org.bitbucket.evl.MethodItem;
+import org.bitbucket.evl.MatchMethodComparator;
+import org.bitbucket.evl.MatchMethodItem;
 import org.bitbucket.evl.comparators.ProductDistanceComparator;
 
-public class PredicateComparator extends MethodComparator {
+public class PredicateComparator extends MatchMethodComparator {
 
 	@Override
-	public int compare(MethodItem m1, MethodItem m2) {
+	public int compare(MatchMethodItem m1, MatchMethodItem m2) {
 		
 		// We first compare the methods.
 		Predicate predicate1 = null;

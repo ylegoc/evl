@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 import org.bitbucket.evl.exception.AmbiguousMethodException;
 import org.bitbucket.evl.exception.BadNonVirtualParameterTypesException;
@@ -29,10 +30,6 @@ import org.bitbucket.evl.util.SuperClass;
  * - Use static methods with null objects has no incidence 
  * - No need for invokeCache since performance is not good enough
  * 
- * It is not possible to optimize with MethodHandle objects.
- * Only the MethodHandle.invokeExact is fast, but it requires to define a bridge 
- * that would be only possible with code template (C++) to generate it.
- * At least the virtual arguments could be avoided to be checked.
  */
 public abstract class MultiMethod<ReturnType> {
 	
@@ -40,11 +37,11 @@ public abstract class MultiMethod<ReturnType> {
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
-	protected MethodComparator methodComparator;
-	private ArrayList<DispatchableMethod> dispatchableMethods = new ArrayList<DispatchableMethod>();
+	protected MatchMethodComparator methodComparator;
+	private ArrayList<MatchMethod> matchMethods = new ArrayList<MatchMethod>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
-	MultiMethod(int dimension, MethodComparator methodComparator) {
+	MultiMethod(int dimension, MatchMethodComparator methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 	}
@@ -53,10 +50,14 @@ public abstract class MultiMethod<ReturnType> {
 		return dimension;
 	}
 	
+	public List<MatchMethod> getMatchMethods() {
+		return matchMethods;
+	}
+	
 	protected abstract void resetCache();
 	
 	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
-	protected DispatchableMethod addMethod(MethodHandles.Lookup lookup, Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
+	protected MatchMethod addMethod(MethodHandles.Lookup lookup, Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
 		MethodHandle methodHandle = null;
@@ -115,13 +116,13 @@ public abstract class MultiMethod<ReturnType> {
 			// do nothing
 		}
 		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
-		DispatchableMethod dispatchableMethod = new DispatchableMethod(tuple, methodHandle, object);
-		dispatchableMethod.setData(data);
+		MatchMethod MatchMethod = new MatchMethod(tuple, methodHandle, object);
+		MatchMethod.setData(data);
 		
 		// Add the method.
-		dispatchableMethods.add(dispatchableMethod);
+		matchMethods.add(MatchMethod);
 		
-		return dispatchableMethod;
+		return MatchMethod;
 	}
 	
 	// not possible to set data to all the methods
@@ -130,7 +131,7 @@ public abstract class MultiMethod<ReturnType> {
 	protected void addMethodFamily(MethodHandles.Lookup lookup, Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethod m : dispatchableMethods) {
+		for (MatchMethod m : matchMethods) {
 			m.setLastAdded(false);
 		}
 		
@@ -138,8 +139,8 @@ public abstract class MultiMethod<ReturnType> {
 		Method[] methods = classInstance.getDeclaredMethods();
 		for (Method m : methods) {
 			if (m.getName().equals(methodName)) {
-				DispatchableMethod dispatchableMethod = addMethod(lookup, m, object, null);
-				dispatchableMethod.setLastAdded(true);
+				MatchMethod MatchMethod = addMethod(lookup, m, object, null);
+				MatchMethod.setLastAdded(true);
 			}
 		}
 	}
@@ -147,14 +148,14 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethod m : dispatchableMethods) {
+		for (MatchMethod m : matchMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethod dispatchableMethod = addMethod(lookup, classInstance.getMethod(name, parameterTypes), null, null);
-			dispatchableMethod.setLastAdded(true);
+			MatchMethod MatchMethod = addMethod(lookup, classInstance.getMethod(name, parameterTypes), null, null);
+			MatchMethod.setLastAdded(true);
 			
 		} catch (ReflectiveOperationException e) {
 			throw new MethodInsertionException(e.getMessage());
@@ -166,14 +167,14 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (DispatchableMethod m : dispatchableMethods) {
+		for (MatchMethod m : matchMethods) {
 			m.setLastAdded(false);
 		}
 		
 		// Add the method.
 		try {
-			DispatchableMethod dispatchableMethod = addMethod(lookup, object.getClass().getMethod(name, parameterTypes), object, null);
-			dispatchableMethod.setLastAdded(true);
+			MatchMethod MatchMethod = addMethod(lookup, object.getClass().getMethod(name, parameterTypes), object, null);
+			MatchMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
 			throw new MethodInsertionException(e.getMessage());
@@ -185,7 +186,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
-		for (DispatchableMethod m : dispatchableMethods) {
+		for (MatchMethod m : matchMethods) {
 			if (m.isLastAdded()) {
 				m.setData(data);
 			}
@@ -246,7 +247,7 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	protected DispatchableMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
+	protected MatchMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -260,15 +261,35 @@ public abstract class MultiMethod<ReturnType> {
 		
 		return processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
 	}
+
+	protected static MatchMethodItem calculateCompatibleMethod(HashMap<Class<?>, Integer>[] superClassSet, MatchMethod method) {
+		
+		Class<?>[] classTuple = method.getClassTuple().get();
+		int[] distanceTuple = new int[superClassSet.length];
+		
+		for (int i = 0; i < superClassSet.length; ++i) {
+			
+			Integer distance = superClassSet[i].get(classTuple[i]);
+			
+			if (distance != null) {
+				distanceTuple[i] = distance;
+				
+			} else {
+				return null;
+			}
+		}
+		
+		return new MatchMethodItem(method, distanceTuple);
+	}
 	
-	private DispatchableMethod processClassTuple(MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private MatchMethod processClassTuple(MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
-		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();
+		ArrayList<MatchMethodItem> compatibleMethodItems = new ArrayList<MatchMethodItem>();
 		
 		// iterate the list
-		for (DispatchableMethod method : dispatchableMethods) {
-			MethodItem item = CompatibleMethod.calculate(superClassSet, method);
+		for (MatchMethod method : matchMethods) {
+			MatchMethodItem item = calculateCompatibleMethod(superClassSet, method);
 			
 			if (item != null) {
 				
@@ -281,19 +302,19 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		// search for the minimum method item
-		ArrayList<MethodItem> minMethodItems = new ArrayList<MethodItem>();
+		ArrayList<MatchMethodItem> minMethodItems = new ArrayList<MatchMethodItem>();
 		
 		if (compatibleMethodItems.isEmpty()) {
 			throw new NoCompatibleMethodException(tuple);
 		}
 
 		// there is at least 1 item
-		Iterator<MethodItem> i = compatibleMethodItems.iterator();
+		Iterator<MatchMethodItem> i = compatibleMethodItems.iterator();
 		minMethodItems.add(i.next());
 		
 		while (i.hasNext()) {
 			
-			MethodItem item = i.next();
+			MatchMethodItem item = i.next();
 			
 			int result = methodComparator.compare(item, minMethodItems.get(0));
 			
@@ -309,13 +330,13 @@ public abstract class MultiMethod<ReturnType> {
 		if (minMethodItems.size() == 1) {
 			
 			// check that min is really min
-			MethodItem minItem = minMethodItems.get(0);
+			MatchMethodItem minItem = minMethodItems.get(0);
 			
 			i = compatibleMethodItems.iterator();
 			minMethodItems.add(i.next());
 			
 			while (i.hasNext()) {
-				MethodItem item = i.next();
+				MatchMethodItem item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
 					// minItem is not the real minimum
 					throw new NoCompatibleMethodException(tuple);
@@ -326,7 +347,7 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		String possibleMethods = "";
-		for (MethodItem item : minMethodItems) {
+		for (MatchMethodItem item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";
 		}
 		
@@ -335,9 +356,9 @@ public abstract class MultiMethod<ReturnType> {
 
 	@Override
 	public String toString() {
-		return "MultiMethodD [dimension=" + dimension + ", methodComparator="
-				+ methodComparator + ", dispatchableMethods="
-				+ dispatchableMethods + ", nonVirtualParameterTypes="
+		return "MultiMethod [dimension=" + dimension + ", methodComparator="
+				+ methodComparator + ", MatchMethods="
+				+ matchMethods + ", nonVirtualParameterTypes="
 				+ Arrays.toString(nonVirtualParameterTypes) + "]";
 	}
 	

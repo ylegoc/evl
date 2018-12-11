@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandle;
 
 import org.bitbucket.evl.util.MethodClassTuple;
 
-class DispatchableMethod {
+class MatchMethod {
 
 	private MethodHandle methodHandle;
 	private Object object;
@@ -12,10 +12,18 @@ class DispatchableMethod {
 	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
-	public DispatchableMethod(MethodClassTuple tuple, MethodHandle method, Object object) {
+	MatchMethod(MethodClassTuple tuple, MethodHandle method, Object object) {
 		this.methodHandle = method;
 		this.object = object;
 		this.tuple = tuple;
+	}
+	
+	void setLastAdded(boolean value) {
+		lastAdded = value;
+	}
+	
+	boolean isLastAdded() {
+		return lastAdded;
 	}
 	
 	public MethodHandle getMethod() {
@@ -30,20 +38,12 @@ class DispatchableMethod {
 		return tuple;
 	}
 
-	void setData(Comparable<?> data) {
+	public void setData(Comparable<?> data) {
 		this.data = data;
 	}
 	
 	public Comparable<?> getData() {
 		return data;
-	}
-	
-	void setLastAdded(boolean value) {
-		lastAdded = value;
-	}
-	
-	boolean isLastAdded() {
-		return lastAdded;
 	}
 	
 }

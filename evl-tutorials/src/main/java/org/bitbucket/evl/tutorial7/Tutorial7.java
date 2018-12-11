@@ -2,8 +2,8 @@ package org.bitbucket.evl.tutorial7;
 
 import org.bitbucket.evl.Cases;
 import org.bitbucket.evl.Method2;
-import org.bitbucket.evl.MethodComparator;
-import org.bitbucket.evl.MethodItem;
+import org.bitbucket.evl.MatchMethodComparator;
+import org.bitbucket.evl.MatchMethodItem;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 
@@ -13,10 +13,10 @@ import org.bitbucket.evl.classes.B;
  */
 public class Tutorial7 {
 	
-	public static class ClassNameComparator extends MethodComparator {
+	public static class ClassNameComparator extends MatchMethodComparator {
 
 		@Override
-		public int compare(MethodItem m1, MethodItem m2) {
+		public int compare(MatchMethodItem m1, MatchMethodItem m2) {
 			
 			int length = m1.getClassTuple().get().length;
 			String name1 = "";

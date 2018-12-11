@@ -54,7 +54,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method1<ReturnType>)super.data(data);
 	}
 	
-	public Method1<ReturnType> comparator(MethodComparator methodComparator) {
+	public Method1<ReturnType> comparator(MatchMethodComparator methodComparator) {
 		this.methodComparator = methodComparator;
 		return this;
 	}

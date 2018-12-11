@@ -2,11 +2,11 @@ package org.bitbucket.evl;
 
 
 
-public class MethodItem extends DispatchableMethod {
+public class MatchMethodItem extends MatchMethod {
 
 	private int[] distance;
 	
-	public MethodItem(DispatchableMethod method, int[] distance) {
+	MatchMethodItem(MatchMethod method, int[] distance) {
 		super(method.getClassTuple(), method.getMethod(), method.getObject());
 		setData(method.getData());
 		
