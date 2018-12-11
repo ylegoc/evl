@@ -9,6 +9,7 @@ import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.classes.A;
 import org.bitbucket.evl.classes.B;
 import org.bitbucket.evl.classes.C;
+import org.bitbucket.evl.util.ClassTuple;
 
 /**
  * Example with different cache strategies.
@@ -41,34 +42,31 @@ public class Tutorial8 {
 		Foo foo = new Foo();
 		
 		
-		Method2<Integer> process2 = new Method2<Integer>()
+		Method2<Integer> method = new Method2<Integer>()
 				.unboundedCache()
 				.add(foo);
 
 
-		System.out.println(process2.invoke(b, c));
+		System.out.println(method.invoke(b, c));
 		
-		process2 = new Method2<Integer>()
+		method = new Method2<Integer>()
 				.boundedCache(2)
 				.add(foo);
 
-		System.out.println(process2.invoke(b, c));
+		System.out.println(method.invoke(b, c));
 		
-		
-		process2 = new Method2<Integer>()
-				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
+		method = new Method2<Integer>()
+				.cache(new HashMap<ClassTuple, MethodHandle>())
 				.add(foo);
 
-		System.out.println(process2.invoke(b, c));
+		System.out.println(method.invoke(b, c));
 		
-		
-		process2 = new Method2<Integer>()
+		method = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, MethodHandle>())
 				.add(foo, "match", B.class, A.class).data(Priority.valueOf(1))
 				.add(foo, "match", A.class, C.class).data(Priority.valueOf(2));
 
-		System.out.println(process2.invoke(b, c));
-
+		System.out.println(method.invoke(b, c));
 	}
 }

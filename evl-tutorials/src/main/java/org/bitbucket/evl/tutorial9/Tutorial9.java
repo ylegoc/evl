@@ -45,23 +45,24 @@ public class Tutorial9 {
 		
 		Foo foo = new Foo();
 		
-		PredicateMethod1<Integer> process = new PredicateMethod1<Integer>();
+		PredicateMethod1<Integer> predicateMethod = new PredicateMethod1<Integer>();
 						
-		process.add(foo, "process", A.class, int.class).data(new Predicate(foo, "test", A.class, int.class));
-		process.add(foo, "process", B.class, int.class).data(new Predicate(foo, "test", B.class, int.class));
-		process.add(foo, "process2", B.class, int.class).data(new Predicate(foo, "test2", B.class, int.class));
+		predicateMethod.add(foo, "process", A.class, int.class).data(new Predicate(foo, "test", A.class, int.class));
+		predicateMethod.add(foo, "process", B.class, int.class).data(new Predicate(foo, "test", B.class, int.class));
+		predicateMethod.add(foo, "process2", B.class, int.class).data(new Predicate(foo, "test2", B.class, int.class));
 		
-		System.out.println(process.invoke(b, -1));
+		System.out.println(predicateMethod.invoke(b, -1));
 		
 		try {
-			System.out.println(process.invoke(b, 1));
+			System.out.println(predicateMethod.invoke(b, 1));
 		}
 		catch (InvocationException e) {
 			System.out.println("no function for x = 1");
 		}
 		
-		System.out.println(process.invoke(b, 11));
-		System.out.println(process.invoke(b, 21));
-
+		System.out.println(predicateMethod.invoke(b, 11));
+		System.out.println(predicateMethod.invoke(b, 21));
+		
+		System.out.println("PredicateMethod = " + predicateMethod);
 	}
 }

@@ -29,7 +29,6 @@ public class Tutorial5 {
 		
 		System.out.println(b.getB() + " == " + k.getJ());
 		
-		
 		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
 				.add(copier, "copy", Parameter.types(A.class, K.class))

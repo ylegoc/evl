@@ -19,22 +19,22 @@ public class Tutorial6 {
 		
 		Agent agent = new Agent();
 		
-		Method2<Integer> process1 = new Method2<Integer>()
+		Method2<Integer> method = new Method2<Integer>()
 						.comparator(new SymmetricComparator())
 						.add(agent, "process");
 
 		try {
-			System.out.println(process1.invoke(b1, b2));
+			System.out.println(method.invoke(b1, b2));
 		} catch (InvocationException e) {
 			System.out.println("error : " + e.getMessage());
 		}
 		
 		ExtendedAgent agent2 = new ExtendedAgent();
 		
-		Method2<Integer> process2 = new Method2<Integer>()
+		method = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
 				.add(agent2, "process");
 
-		System.out.println(process2.invoke(b1, b2));
+		System.out.println(method.invoke(b1, b2));
 	}
 }

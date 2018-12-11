@@ -7,6 +7,6 @@ public class AmbiguousMethodException extends InvocationException {
 	private static final long serialVersionUID = 5L;
 	
 	public AmbiguousMethodException(ClassTuple tuple, String possibleMethods) {
-		super("Ambiguity for tuple of types " + tuple + ", possible methods are\n" + possibleMethods);
+		super("Ambiguity for class tuple " + tuple + ", possible match methods are\n" + possibleMethods);
 	}
 }

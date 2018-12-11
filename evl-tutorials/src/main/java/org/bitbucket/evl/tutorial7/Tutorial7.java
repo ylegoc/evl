@@ -39,7 +39,7 @@ public class Tutorial7 {
 		A b1 = new B(1, 2);
 		A b2 = new B(2, -5);
 		
-		Method2<Integer> process = new Method2<Integer>()
+		Method2<Integer> method = new Method2<Integer>()
 				.comparator(new ClassNameComparator())
 				.add(new Cases() {
 					public int match(A a, B b) {
@@ -51,7 +51,6 @@ public class Tutorial7 {
 					}
 				});
 
-		System.out.println(process.invoke(b1, b2));
-		
+		System.out.println(method.invoke(b1, b2));
 	}
 }

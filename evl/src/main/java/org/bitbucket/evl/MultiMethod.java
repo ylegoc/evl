@@ -356,9 +356,9 @@ public abstract class MultiMethod<ReturnType> {
 
 	@Override
 	public String toString() {
-		return "MultiMethod [dimension=" + dimension + ", methodComparator="
-				+ methodComparator + ", MatchMethods="
-				+ matchMethods + ", nonVirtualParameterTypes="
+		return "MultiMethod [dimension=" + dimension + ", matchMethodComparator="
+				+ methodComparator.getClass().getCanonicalName() + ", matchMethods="
+				+ matchMethods.size() + ", nonVirtualParameterTypes="
 				+ Arrays.toString(nonVirtualParameterTypes) + "]";
 	}
 	
