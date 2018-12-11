@@ -2,11 +2,11 @@ package org.bitbucket.evl.util;
 
 import java.util.Arrays;
 
-public class MethodClassTuple {
+public class ClassTuple {
 
 	private Class<?>[] tuple;
 	
-	public MethodClassTuple(Class<?>[] tuple) {
+	public ClassTuple(Class<?>... tuple) {
 		this.tuple = tuple;
 	}
 	
@@ -33,7 +33,7 @@ public class MethodClassTuple {
 			return false;
 		}
 
-		MethodClassTuple other = (MethodClassTuple) obj;
+		ClassTuple other = (ClassTuple) obj;
 		if (!Arrays.equals(tuple, other.tuple)) {
 			return false;
 		}

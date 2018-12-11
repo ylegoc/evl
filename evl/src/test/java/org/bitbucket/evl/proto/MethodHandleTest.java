@@ -97,6 +97,12 @@ public class MethodHandleTest {
 		}
 	}
 	
+	void testClassTuple(Class<?>... classes) {
+		for (int i = 0; i < classes.length; ++i) {
+			System.out.println("class " + classes[i]);
+		}
+	}
+	
 	public void test0() throws Throwable {
 		
 		MethodHandles.Lookup lookup = MethodHandles.lookup();
@@ -164,7 +170,11 @@ public class MethodHandleTest {
         });
         
         testExec(new MyClass3());
+        
+        testClassTuple(Integer.class, Float.class);
 	}
+	
+	
 	
 	public static void main(String[] args) throws Throwable {
 	

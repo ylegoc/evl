@@ -2,17 +2,17 @@ package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
 
-import org.bitbucket.evl.util.MethodClassTuple;
+import org.bitbucket.evl.util.ClassTuple;
 
 class MatchMethod {
 
 	private MethodHandle methodHandle;
 	private Object object;
-	private MethodClassTuple tuple;
+	private ClassTuple tuple;
 	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
-	MatchMethod(MethodClassTuple tuple, MethodHandle method, Object object) {
+	MatchMethod(ClassTuple tuple, MethodHandle method, Object object) {
 		this.methodHandle = method;
 		this.object = object;
 		this.tuple = tuple;
@@ -34,7 +34,7 @@ class MatchMethod {
 		return object;
 	}
 	
-	public MethodClassTuple getClassTuple() {
+	public ClassTuple getClassTuple() {
 		return tuple;
 	}
 

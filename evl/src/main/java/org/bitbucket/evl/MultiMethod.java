@@ -17,7 +17,7 @@ import org.bitbucket.evl.exception.MethodComparatorInstantiationException;
 import org.bitbucket.evl.exception.MethodInsertionException;
 import org.bitbucket.evl.exception.NoCompatibleMethodException;
 import org.bitbucket.evl.lookup.CasesLookup;
-import org.bitbucket.evl.util.MethodClassTuple;
+import org.bitbucket.evl.util.ClassTuple;
 import org.bitbucket.evl.util.SuperClass;
 
 /*
@@ -115,7 +115,7 @@ public abstract class MultiMethod<ReturnType> {
 		} catch (SecurityException e) {
 			// do nothing
 		}
-		MethodClassTuple tuple = new MethodClassTuple(newVirtualParameterTypes);
+		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
 		MatchMethod MatchMethod = new MatchMethod(tuple, methodHandle, object);
 		MatchMethod.setData(data);
 		
@@ -254,7 +254,7 @@ public abstract class MultiMethod<ReturnType> {
 		for (int i = 0; i < getDimension(); ++i) {
 			virtualParameterTypes[i] = args[i].getClass();
 		}
-		MethodClassTuple methodTuple = new MethodClassTuple(virtualParameterTypes);
+		ClassTuple methodTuple = new ClassTuple(virtualParameterTypes);
 		
 		// set the args to the comparator.
 		methodComparator.setArgs(args);
@@ -282,7 +282,7 @@ public abstract class MultiMethod<ReturnType> {
 		return new MatchMethodItem(method, distanceTuple);
 	}
 	
-	private MatchMethod processClassTuple(MethodClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private MatchMethod processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
 		ArrayList<MatchMethodItem> compatibleMethodItems = new ArrayList<MatchMethodItem>();

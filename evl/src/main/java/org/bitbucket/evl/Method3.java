@@ -1,35 +1,14 @@
 package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
-import java.util.Arrays;
 import java.util.Map;
 
 import org.bitbucket.evl.util.CacheFactory;
+import org.bitbucket.evl.util.ClassTuple;
 
 
 public class Method3<ReturnType> extends MultiMethod<ReturnType> {
-	
-	public static class ClassTuple {
 		
-		private Class<?>[] tuple = new Class<?>[3];
-		
-		ClassTuple(Class<?> class1, Class<?> class2, Class<?> class3) {
-			tuple[0] = class1;
-			tuple[1] = class2;
-			tuple[2] = class3;
-		}
-		
-		@Override
-		public int hashCode() {
-			return Arrays.hashCode(tuple);
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			return Arrays.equals(tuple, ((ClassTuple)obj).tuple);
-		}
-	}
-	
 	protected Map<ClassTuple, MethodHandle> cache;
 	
 	public Method3() {

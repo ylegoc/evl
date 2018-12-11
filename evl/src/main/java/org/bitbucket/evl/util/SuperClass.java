@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class SuperClass {
 
-	public static HashMap<Class<?>, Integer>[] calculate(MethodClassTuple tuple) {
+	public static HashMap<Class<?>, Integer>[] calculate(ClassTuple tuple) {
 		
 		@SuppressWarnings("unchecked")
 		HashMap<Class<?>, Integer>[] result = new HashMap[tuple.get().length];

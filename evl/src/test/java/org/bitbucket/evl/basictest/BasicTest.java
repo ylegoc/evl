@@ -12,6 +12,7 @@ import org.bitbucket.evl.Method2;
 import org.bitbucket.evl.Priority;
 import org.bitbucket.evl.SymmetricComparator;
 import org.bitbucket.evl.exception.InvocationException;
+import org.bitbucket.evl.util.ClassTuple;
 import org.junit.Test;
 
 public class BasicTest {
@@ -111,7 +112,7 @@ public class BasicTest {
 		
 		Method2<Integer> m2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.cache(new HashMap<Method2.ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, MethodHandle>())
 				.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(3))
 				.add(foo, "foo", D.class, IA.class).data(Priority.valueOf(2))
 				.add(foo, "foo", IA.class, D.class).data(Priority.valueOf(1));
