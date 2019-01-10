@@ -2,6 +2,7 @@ package org.bitbucket.evl;
 
 import java.lang.invoke.MethodHandle;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bitbucket.evl.util.CacheFactory;
 import org.bitbucket.evl.util.ClassTuple;
@@ -16,8 +17,14 @@ public class Method3<ReturnType> extends MultiMethod<ReturnType> {
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(1000);
 	}
 	
-	protected void resetCache() {
+	public void resetCache() {
 		cache.clear();
+	}
+	
+	public void printCache() {
+		for (Entry<ClassTuple, MethodHandle> e : cache.entrySet()) {
+			System.out.println(e.getKey() + " -> " + e.getValue());
+		}
 	}
 	
 	protected MethodHandle processAndCache(Object... args) throws Throwable {

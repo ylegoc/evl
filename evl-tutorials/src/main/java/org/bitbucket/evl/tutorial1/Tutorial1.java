@@ -32,5 +32,7 @@ public class Tutorial1 {
 		System.out.println(method.invoke(c));
 		
 		System.out.println("Method = " + method);
+		
+		method.printCache();
 	}
 }

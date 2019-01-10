@@ -38,5 +38,6 @@ public class Tutorial3 {
 		System.out.println(compare.invoke(b1, c1));
 		
 		System.out.println("Compare = " + compare);
+		compare.printCache();
 	}
 }

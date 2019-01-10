@@ -3,6 +3,8 @@ Code
 
 	Switch extends Method1<Void>
 		static Switch with(Cases)
+		
+- Deploy on maven central
 
 - Rename packages: find a name?
 - Unit tests for all possible errors.
@@ -13,7 +15,7 @@ Code
 - implement toString method of MultiMethodD
 - Java 9 modules?
 - javadoc (exclude some classes)
-- put the tutorials on web site
+- put the tutorials on website
 - put javadoc on website
 
 Notes
