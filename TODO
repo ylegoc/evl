@@ -1,18 +1,12 @@
 Code
-- Add the syntactic sugar class:
-
-	Switch extends Method1<Void>
-		static Switch with(Cases)
-		
+- Rename packages: find a name?
 - Deploy on maven central
 
-- Rename packages: find a name?
 - Unit tests for all possible errors.
 
 - Test Caffeine Cache class.	
 - reimplement the comparators by a list of comparators
 	possibility to add a comparator dynamically
-- implement toString method of MultiMethodD
 - Java 9 modules?
 - javadoc (exclude some classes)
 - put the tutorials on website
