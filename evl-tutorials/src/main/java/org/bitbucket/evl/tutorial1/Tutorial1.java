@@ -16,11 +16,11 @@ public class Tutorial1 {
 
 		Method1<Integer> method = new Method1<Integer>().add(new Cases() {
 
-			public int match(B obj) {
+			int match(B obj) {
 				return 1 + obj.getB();
 			}
 
-			public int match(C obj) {
+			int match(C obj) {
 				return 2 + obj.getC();
 			}
 		});

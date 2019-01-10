@@ -20,15 +20,15 @@ public class Tutorial3 {
 		
 		Method2<Boolean> compare = new Method2<Boolean>().add(new Cases() {
 			
-			public boolean match(A a1, A a2) {
+			boolean match(A a1, A a2) {
 				return a1.getA() == a2.getA();
 			}
 			
-			public boolean match(B b1, B b2) {
+			boolean match(B b1, B b2) {
 				return match((A)b1, (A)b2) && b1.getB() == b2.getB();
 			}
 			
-			public boolean match(C c1, C c2) {
+			boolean match(C c1, C c2) {
 				return match((A)c1, (A)c2) && c1.getC() == c2.getC();
 			}
 		});

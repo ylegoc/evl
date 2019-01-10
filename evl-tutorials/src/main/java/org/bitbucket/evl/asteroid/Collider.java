@@ -19,19 +19,19 @@ public class Collider {
 	
 		Method2<Void> collide = new Method2<Void>().add(new Cases() {
 			
-			public void match(Asteroid a, Asteroid b) {
+			void match(Asteroid a, Asteroid b) {
 				System.out.println("BAM! Two asteroids collide!");
 			}
 			
-			public void match(Asteroid a, Spaceship b) {
+			void match(Asteroid a, Spaceship b) {
 				System.out.println("BOUM! Asteroid collides spaceship!");
 			}
 			
-			public void match(Spaceship a, Asteroid b) {
+			void match(Spaceship a, Asteroid b) {
 				System.out.println("BOUM! Spaceship collides asteroid!");
 			}
 			
-			public void match(Spaceship a, Spaceship b) {
+			void match(Spaceship a, Spaceship b) {
 				System.out.println("CRASH! Two spaceships collide!");
 			}
 		});

@@ -1,6 +1,7 @@
 package org.bitbucket.evl;
 
 import org.bitbucket.evl.asteroid.Collider;
+import org.bitbucket.evl.example.Example;
 import org.bitbucket.evl.tutorial1.Tutorial1;
 import org.bitbucket.evl.tutorial2.Tutorial2;
 import org.bitbucket.evl.tutorial3.Tutorial3;
@@ -16,6 +17,11 @@ public class Tutorials {
 	public static void main(String[] args) throws Throwable {
 	
 		System.out.println("EVL Tutorials");
+		
+		System.out.println("");
+		System.out.println("*** Example ***");
+		Example.run();
+		System.out.println("");
 		
 		System.out.println("");
 		System.out.println("*** Asteroid ***");

@@ -42,11 +42,11 @@ public class Tutorial7 {
 		Method2<Integer> method = new Method2<Integer>()
 				.comparator(new ClassNameComparator())
 				.add(new Cases() {
-					public int match(A a, B b) {
+					int match(A a, B b) {
 						return a.getA() + b.getB();
 					}
 				
-					public int match(B b, A a) {
+					int match(B b, A a) {
 						return a.getA() - b.getB();
 					}
 				});
