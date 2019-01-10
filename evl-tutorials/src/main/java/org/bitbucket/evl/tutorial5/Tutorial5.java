@@ -23,8 +23,8 @@ public class Tutorial5 {
 		Copier copier = new Copier();
 		
 		Method2<Void> copy1 = new Method2<Void>()
-						.add(copier, "copy", Parameter.types(A.class, K.class))
-						.add(copier, "copy", Parameter.types(B.class, J.class));
+				.add(copier, "copy", Parameter.types(A.class, K.class))
+				.add(copier, "copy", Parameter.types(B.class, J.class));
 		
 		copy1.invoke(b, k);
 		
