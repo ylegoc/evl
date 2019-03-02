@@ -80,7 +80,6 @@ Add index.html that let the choice between java and cpp implementations:
 
 java:
 Do like concurrentlinkedhashmap?
-- provide link to bitbuckets web site (in Downloads & installation that will be renamed)
 - remove Documentation
 - javadoc
 
