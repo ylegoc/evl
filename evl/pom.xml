@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.evl</groupId>
+	<groupId>eu.daproject.evl</groupId>
 	<artifactId>evl</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
@@ -13,18 +13,13 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>com.github.ben-manes.caffeine</groupId>
-			<artifactId>caffeine</artifactId>
-			<version>2.6.2</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.apache.cayenne</groupId>
 			<artifactId>cayenne-server</artifactId>
 			<version>4.1.M2</version>
 		</dependency>
 		<dependency>
-			<groupId>fr.evl</groupId>
+			<groupId>eu.daproject.evl</groupId>
 			<artifactId>evl-lookup-default</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
