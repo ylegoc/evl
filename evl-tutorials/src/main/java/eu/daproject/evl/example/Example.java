@@ -16,7 +16,6 @@
 package eu.daproject.evl.example;
 
 import eu.daproject.evl.Cases;
-import eu.daproject.evl.Method2;
 import eu.daproject.evl.Switch;
 
 /**
