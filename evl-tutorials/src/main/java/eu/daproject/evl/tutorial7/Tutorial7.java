@@ -16,8 +16,8 @@
 package eu.daproject.evl.tutorial7;
 
 import eu.daproject.evl.Cases;
-import eu.daproject.evl.MatchMethodComparator;
-import eu.daproject.evl.MatchMethodItem;
+import eu.daproject.evl.MethodComparator;
+import eu.daproject.evl.MethodItem;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.classes.A;
 import eu.daproject.evl.classes.B;
@@ -28,10 +28,10 @@ import eu.daproject.evl.classes.B;
  */
 public class Tutorial7 {
 	
-	public static class ClassNameComparator extends MatchMethodComparator {
+	public static class ClassNameComparator extends MethodComparator {
 
 		@Override
-		public int compare(MatchMethodItem m1, MatchMethodItem m2) {
+		public int compare(MethodItem m1, MethodItem m2) {
 			
 			int length = m1.getClassTuple().get().length;
 			String name1 = "";

@@ -15,14 +15,14 @@
  ******************************************************************************/
 package eu.daproject.evl.predicate;
 
-import eu.daproject.evl.MatchMethodComparator;
-import eu.daproject.evl.MatchMethodItem;
+import eu.daproject.evl.MethodComparator;
+import eu.daproject.evl.MethodItem;
 import eu.daproject.evl.comparators.ProductDistanceComparator;
 
-public class PredicateComparator extends MatchMethodComparator {
+public class PredicateComparator extends MethodComparator {
 
 	@Override
-	public int compare(MatchMethodItem m1, MatchMethodItem m2) {
+	public int compare(MethodItem m1, MethodItem m2) {
 		
 		// We first compare the methods.
 		Predicate predicate1 = null;

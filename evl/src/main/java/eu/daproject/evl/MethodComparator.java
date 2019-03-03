@@ -15,50 +15,22 @@
  ******************************************************************************/
 package eu.daproject.evl;
 
-import java.lang.invoke.MethodHandle;
+/**
+ * Class providing a base for the method comparators. The arguments passed to the calling invoke are set at thread-local.
+ * They can be used for predicate based dispatch where there is no cache.
+ */
+public abstract class MethodComparator {
 
-import eu.daproject.evl.util.ClassTuple;
-
-class MatchMethod {
-
-	private MethodHandle methodHandle;
-	private Object object;
-	private ClassTuple tuple;
-	private Comparable<?> data;
-	private boolean lastAdded = false;
+	private ThreadLocal<Object[]> threadLocalArgs = new ThreadLocal<Object[]>();
 	
-	MatchMethod(ClassTuple tuple, MethodHandle method, Object object) {
-		this.methodHandle = method;
-		this.object = object;
-		this.tuple = tuple;
-	}
-	
-	void setLastAdded(boolean value) {
-		lastAdded = value;
-	}
-	
-	boolean isLastAdded() {
-		return lastAdded;
-	}
-	
-	public MethodHandle getMethod() {
-		return methodHandle;
-	}
-	
-	public Object getObject() {
-		return object;
-	}
-	
-	public ClassTuple getClassTuple() {
-		return tuple;
+	public Object[] args() {
+		return threadLocalArgs.get();
 	}
 
-	public void setData(Comparable<?> data) {
-		this.data = data;
+	void setArgs(Object[] args) {
+		threadLocalArgs.set(args);
 	}
 	
-	public Comparable<?> getData() {
-		return data;
-	}
+	public abstract int compare(MethodItem m1, MethodItem m2);
 	
 }

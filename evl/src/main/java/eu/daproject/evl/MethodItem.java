@@ -17,11 +17,11 @@ package eu.daproject.evl;
 
 
 
-public class MatchMethodItem extends MatchMethod {
+public class MethodItem extends Method {
 
 	private int[] distance;
 	
-	MatchMethodItem(MatchMethod method, int[] distance) {
+	MethodItem(Method method, int[] distance) {
 		super(method.getClassTuple(), method.getMethod(), method.getObject());
 		setData(method.getData());
 		
