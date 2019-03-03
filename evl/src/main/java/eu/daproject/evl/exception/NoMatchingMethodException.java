@@ -15,12 +15,21 @@
  ******************************************************************************/
 package eu.daproject.evl.exception;
 
+import eu.daproject.evl.util.ClassTuple;
 
-public class MethodInvocationException extends InvocationException {
+/**
+ * Exception when there is no matching method available in the multimethod.
+ *
+ */
+public class NoMatchingMethodException extends InvocationException {
 
-	private static final long serialVersionUID = 6L;
+	private static final long serialVersionUID = 7L;
 	
-	public MethodInvocationException() {
-		super("Method invocation exception");
+	/**
+	 * Constructs an exception with the class tuple.
+	 * @param tuple the class tuple
+	 */
+	public NoMatchingMethodException(ClassTuple tuple) {
+		super("No matching method for " + tuple);
 	}
 }

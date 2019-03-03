@@ -15,10 +15,18 @@
  ******************************************************************************/
 package eu.daproject.evl.exception;
 
+/**
+ * Base exception class for the EVL library.
+ *
+ */
 public class InvocationException extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructs an exception with the message.
+	 * @param message the message of the exception
+	 */
 	public InvocationException(String message) {
 		super(message);
 	}

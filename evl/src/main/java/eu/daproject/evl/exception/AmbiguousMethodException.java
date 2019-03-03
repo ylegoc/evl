@@ -17,10 +17,19 @@ package eu.daproject.evl.exception;
 
 import eu.daproject.evl.util.ClassTuple;
 
+/**
+ * Exception for the ambiguous method resolution when there are at least two matching methods. 
+ *
+ */
 public class AmbiguousMethodException extends InvocationException {
 
 	private static final long serialVersionUID = 5L;
 	
+	/**
+	 * Constructs an exception by defining the message from the tuple and the possible methods.
+	 * @param tuple the tuple
+	 * @param possibleMethods the string of possible methods
+	 */
 	public AmbiguousMethodException(ClassTuple tuple, String possibleMethods) {
 		super("Ambiguity for class tuple " + tuple + ", possible match methods are\n" + possibleMethods);
 	}

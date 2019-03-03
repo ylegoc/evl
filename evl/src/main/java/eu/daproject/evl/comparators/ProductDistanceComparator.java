@@ -15,8 +15,18 @@
  ******************************************************************************/
 package eu.daproject.evl.comparators;
 
+/**
+ * Class providing a comparator for the product distance.
+ *
+ */
 public class ProductDistanceComparator {
 
+	/**
+	 * Compares the tuples with a product distance.
+	 * @param d1 the first tuple of integers
+	 * @param d2 the second tuple of integers
+	 * @return -1 if d1 is less than d2, 1 if d1 is greater than d2, 0 otherwise.
+	 */
 	public static int compare(int[] d1, int[] d2) {
 		
 		int less = 0;

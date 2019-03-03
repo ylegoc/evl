@@ -28,9 +28,8 @@ import java.util.List;
 import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
-import eu.daproject.evl.exception.MethodComparatorInstantiationException;
 import eu.daproject.evl.exception.MethodInsertionException;
-import eu.daproject.evl.exception.NoCompatibleMethodException;
+import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.lookup.CasesLookup;
 import eu.daproject.evl.util.ClassTuple;
 import eu.daproject.evl.util.SuperClass;
@@ -114,8 +113,8 @@ public abstract class MultiMethod<ReturnType> {
 		if (nonVirtualParameterTypes == null) {
 			// first inserted method
 			nonVirtualParameterTypes = newNonVirtualParameterTypes;
-			
-		} else {
+		}
+		else {
 			// check the equality with non virtual parameter types
 			if (!Arrays.equals(nonVirtualParameterTypes, newNonVirtualParameterTypes)) {
 				throw new BadNonVirtualParameterTypesException();
@@ -262,7 +261,7 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	protected MatchMethod processClassTuple(Object[] args) throws MethodComparatorInstantiationException, NoCompatibleMethodException, AmbiguousMethodException {
+	protected MatchMethod processClassTuple(Object[] args) throws NoMatchingMethodException, AmbiguousMethodException {
 		
 		// create ClassTuple from arguments
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -297,7 +296,7 @@ public abstract class MultiMethod<ReturnType> {
 		return new MatchMethodItem(method, distanceTuple);
 	}
 	
-	private MatchMethod processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoCompatibleMethodException, AmbiguousMethodException {
+	private MatchMethod processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoMatchingMethodException, AmbiguousMethodException {
 		
 		// search compatible methods
 		ArrayList<MatchMethodItem> compatibleMethodItems = new ArrayList<MatchMethodItem>();
@@ -320,7 +319,7 @@ public abstract class MultiMethod<ReturnType> {
 		ArrayList<MatchMethodItem> minMethodItems = new ArrayList<MatchMethodItem>();
 		
 		if (compatibleMethodItems.isEmpty()) {
-			throw new NoCompatibleMethodException(tuple);
+			throw new NoMatchingMethodException(tuple);
 		}
 
 		// there is at least 1 item
@@ -354,7 +353,7 @@ public abstract class MultiMethod<ReturnType> {
 				MatchMethodItem item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
 					// minItem is not the real minimum
-					throw new NoCompatibleMethodException(tuple);
+					throw new NoMatchingMethodException(tuple);
 				}
 			}
 			

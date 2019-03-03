@@ -17,8 +17,23 @@ package eu.daproject.evl.lookup;
 
 import java.lang.invoke.MethodHandles;
 
+/**
+ * 
+ * Class implementing the private lookup in the method handles.
+ * It is simply returning the lookup passed in parameters.
+ * This implementation is provided for JVM versions until 8.
+ *
+ */
 public class CasesLookup {
 
+	/**
+	 * Returns the <code>lookup</code>.
+	 * @param classInstance the class instance
+	 * @param lookup the lookup
+	 * @return the lookup
+	 * @throws IllegalAccessException
+	 * @throws SecurityException
+	 */
 	public static MethodHandles.Lookup privateLookupIn(Class<?> classInstance, MethodHandles.Lookup lookup) throws IllegalAccessException, SecurityException {
 		return lookup;
 	}

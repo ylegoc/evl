@@ -15,10 +15,17 @@
  ******************************************************************************/
 package eu.daproject.evl.exception;
 
+/**
+ * Exception for bad number of non virtual parameters when inserting a new method.
+ *
+ */
 public class BadNumberOfVirtualParameterTypesException extends RuntimeException {
 
 	private static final long serialVersionUID = 2L;
 	
+	/**
+	 * Constructs an exception with predefined message.
+	 */
 	public BadNumberOfVirtualParameterTypesException() {
 		super("Bad number of virtual parameter types");
 	}

@@ -15,10 +15,18 @@
  ******************************************************************************/
 package eu.daproject.evl.exception;
 
+/**
+ * Exception for methods for which it is not possible to obtain the method handle.
+ *
+ */
 public class MethodInsertionException extends RuntimeException {
 
 	private static final long serialVersionUID = 8L;
 
+	/**
+	 * Constructs an exception with the message.
+	 * @param message the message
+	 */
 	public MethodInsertionException(String message) {
 		super(message);
 	}
