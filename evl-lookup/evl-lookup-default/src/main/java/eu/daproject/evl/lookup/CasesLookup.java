@@ -19,13 +19,13 @@ import java.lang.invoke.MethodHandles;
 
 /**
  * Class implementing the private lookup in the method handles.
- * It is simply calling the Java 9 <code>MethodHandles.privateLookupIn()</code> method.
+ * It is simply calling the Java 9 <code>MethodHandles.privateLookupIn</code> method.
  *
  */
 public class CasesLookup {
 
 	/**
-	 * Returns the <code>MethodHandles.privateLookupIn()</code> result available since Java 9.
+	 * Returns the <code>MethodHandles.privateLookupIn</code> result available since Java 9.
 	 * @param classInstance the class instance
 	 * @param lookup the lookup
 	 * @return the new lookup
