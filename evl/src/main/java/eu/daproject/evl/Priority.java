@@ -15,18 +15,40 @@
  ******************************************************************************/
 package eu.daproject.evl;
 
+/**
+ * Class defining a priority used for make non ambiguous calls.
+ * It is typically used to prefer a method over others when a multimethod call leads to an ambiguity.
+ * It is used by setting the data associated to a method.
+ * Example:
+ * <pre>
+ *    Method1<Void> foo = new Method1<Void>().add(obj, "foo", A.class).data(Priority.valueOf(2));
+ * </pre>
+ *
+ */
 public class Priority implements Comparable<Priority> {
 
 	private int value;
 	
+	/**
+	 * Constructs a priority object with the value.
+	 * @param value
+	 */
 	protected Priority(int value) {
 		this.value = value;
 	}
 	
+	/**
+	 * Returns a priority object with the value.
+	 * @param value the value
+	 * @return the priority object
+	 */
 	public static Priority valueOf(int value) {
 		return new Priority(value);
 	}
 	
+	/**
+	 * Compares two priority objects by comparing their values.
+	 */
 	@Override
 	public int compareTo(Priority other) {
 		

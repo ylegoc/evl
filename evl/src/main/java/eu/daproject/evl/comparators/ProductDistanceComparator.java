@@ -48,7 +48,7 @@ public class ProductDistanceComparator {
 			return 1;
 		}
 		
-		// equality
+		// Equality.
 		return 0;
 	}
 }

@@ -17,8 +17,17 @@ package eu.daproject.evl.util;
 
 import java.util.HashMap;
 
+/**
+ * Helper class to calculate the tuple of super classes of a class tuple.
+ *
+ */
 public class SuperClass {
 
+	/**
+	 * Calculates the super classes of a tuple of class with their distance.
+	 * @param tuple the class tuple
+	 * @return the array of super classes with their distance - number of classes separating - to each element of the tuple
+	 */
 	public static HashMap<Class<?>, Integer>[] calculate(ClassTuple tuple) {
 		
 		@SuppressWarnings("unchecked")
@@ -31,6 +40,11 @@ public class SuperClass {
 		return result;
 	}
 
+	/**
+	 * Calculates the super classes of a class with their distance.
+	 * @param classInstance the class object
+	 * @return the map of super classes with their distance to the class
+	 */
 	public static HashMap<Class<?>, Integer> calculate(Class<?> classInstance) {
 		
 		HashMap<Class<?>, Integer> result = new HashMap<Class<?>, Integer>();
@@ -42,16 +56,22 @@ public class SuperClass {
 		return result;
 	}
 	
+	/**
+	 * Gets the super classes and interfaces.
+	 * @param classInstance the class object
+	 * @param classDistanceMap the map of class object with the distance
+	 * @param distance the distance
+	 */
 	private static void getSuperClassesAndInterfaces(Class<?> classInstance, HashMap<Class<?>, Integer> classDistanceMap, int distance) {
 	
-		// super class
+		// Process the super class.
 		Class<?> superClass = classInstance.getSuperclass();
 		
 		if (superClass != null) {
 			processSuperClass(classDistanceMap, superClass, distance);
 		}
 		
-		// interfaces
+		// Process the interfaces.
 		Class<?>[] interfaces = classInstance.getInterfaces();
 		
 		for (int i = 0; i < interfaces.length; ++i) {
@@ -59,20 +79,29 @@ public class SuperClass {
 		}
 	}
 	
+	/**
+	 * Process the super class of a class.
+	 * @param classDistanceMap the map of class object with the distance
+	 * @param superClass the super class object
+	 * @param distance the distance
+	 */
 	private static void processSuperClass(HashMap<Class<?>, Integer> classDistanceMap, Class<?> superClass, int distance) {
-		// search super class in map
+		
+		// Search the super class in the map.
 		Integer superClassDistance = classDistanceMap.get(superClass);
+		
 		if (superClassDistance == null) {
-			
+			// Put it in the map if it is not already in.
 			classDistanceMap.put(superClass, distance);
-			
-		} else {
-			// update distance
+		}
+		else {
+			// Update the distance i.e. there is a smaller path joining the two classes.
 			if (superClassDistance < distance) {
 				superClassDistance = distance;
 			}
 		}
 		
+		// Continue with the distance + 1.
 		getSuperClassesAndInterfaces(superClass, classDistanceMap, distance + 1);
 	}
 }

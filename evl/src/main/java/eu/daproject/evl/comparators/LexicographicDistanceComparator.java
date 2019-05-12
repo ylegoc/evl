@@ -37,6 +37,7 @@ public class LexicographicDistanceComparator {
 			}
 		}
 		
+		// Equality.
 		return 0;
 	}
 }

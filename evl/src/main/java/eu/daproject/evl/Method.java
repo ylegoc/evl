@@ -19,6 +19,10 @@ import java.lang.invoke.MethodHandle;
 
 import eu.daproject.evl.util.ClassTuple;
 
+/**
+ * Class defining a method for the EVL library as the extension of a {@link MethodHandle} with the caller object, the class tuple of "virtual" arguments and some additional data.
+ *
+ */
 class Method {
 
 	private MethodHandle methodHandle;
@@ -27,36 +31,70 @@ class Method {
 	private Comparable<?> data;
 	private boolean lastAdded = false;
 	
+	/**
+	 * Constructs a method.
+	 * @param tuple the class tuple
+	 * @param method the method handle
+	 * @param object the caller object
+	 */
 	Method(ClassTuple tuple, MethodHandle method, Object object) {
 		this.methodHandle = method;
 		this.object = object;
 		this.tuple = tuple;
 	}
 	
+	/**
+	 * Sets last added.
+	 * @param value
+	 */
 	void setLastAdded(boolean value) {
 		lastAdded = value;
 	}
 	
+	/**
+	 * Returns true if is last added.
+	 * @return
+	 */
 	boolean isLastAdded() {
 		return lastAdded;
 	}
 	
+	/**
+	 * Gets the method handle.
+	 * @return the method handle
+	 */
 	public MethodHandle getMethod() {
 		return methodHandle;
 	}
 	
+	/**
+	 * Gets the caller object.
+	 * @return the caller object
+	 */
 	public Object getObject() {
 		return object;
 	}
 	
+	/**
+	 * Gets the class tuple.
+	 * @return the class tuple
+	 */
 	public ClassTuple getClassTuple() {
 		return tuple;
 	}
 
+	/**
+	 * Sets the associated data e.g. a {@link Priority} object.
+	 * @param data the associated data
+	 */
 	public void setData(Comparable<?> data) {
 		this.data = data;
 	}
 	
+	/**
+	 * Gets the associated data.
+	 * @return the associated data.
+	 */
 	public Comparable<?> getData() {
 		return data;
 	}

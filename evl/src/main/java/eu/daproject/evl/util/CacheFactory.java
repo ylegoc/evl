@@ -20,12 +20,29 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
+/**
+ * Helper class to create a bounded or unbounded cache. The factory returns:
+ * <ul>
+ *   <li>Unbounded cache : an instance of {@link java.util.concurrent.ConcurrentHashMap}.
+ *   <li>Bounded cache : an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap} with maximum weighted capacity.
+ * </ul>
+ *
+ */
 public class CacheFactory {
 
+	/**
+	 * Creates an unbounded cache.
+	 * @return an instance of {@link java.util.concurrent.ConcurrentHashMap}
+	 */
 	public static <Key, Value> Map<Key, Value> createUnboundedCache() {
 		return new ConcurrentHashMap<Key, Value>();
 	}
 	
+	/**
+	 * Creates a bounded cache.
+	 * @param capacity the capacity of the cache
+	 * @return an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap}
+	 */
 	public static <Key, Value> Map<Key, Value> createBoundedCache(int capacity) {
 		return new ConcurrentLinkedHashMap.Builder<Key, Value>().maximumWeightedCapacity(capacity).build();
 	}

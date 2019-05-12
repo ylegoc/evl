@@ -19,81 +19,107 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
-
+/**
+ * Empty map class used by the {@link eu.daproject.evl.predicate.PredicateMethod1} and other predicate multimethods that cannot use a cache.
+ * The methods do nothing.
+ *
+ * @param <V> the value type
+ * @param <K> the key type
+ */
 public class EmptyMap<V, K> implements Map<V, K> {
 
+	/**
+	 * Does nothing.
+	 */
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Returns false.
+	 */
 	@Override
 	public boolean containsKey(Object key) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Returns false.
+	 */
 	@Override
 	public boolean containsValue(Object value) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public Set<java.util.Map.Entry<V, K>> entrySet() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public K get(Object key) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Returns false.
+	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public Set<V> keySet() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public K put(V key, K value) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Does nothing.
+	 */
 	@Override
 	public void putAll(Map<? extends V, ? extends K> m) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public K remove(Object key) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Returns 0.
+	 */
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * Returns null.
+	 */
 	@Override
 	public Collection<K> values() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 
 }

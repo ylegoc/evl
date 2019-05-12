@@ -17,10 +17,19 @@ package eu.daproject.evl;
 
 import eu.daproject.evl.comparators.ProductDistanceComparator;
 
+/**
+ * Class defining a symmetric method comparator using the product distance comparison to compare two multimethods.
+ *
+ */
 public class SymmetricComparator extends MethodComparator {
 
+	/**
+	 *  Compares two {@link MethodItem} objects using the lexicographic distance comparison.
+	 */
 	@Override
 	public int compare(MethodItem m1, MethodItem m2) {
+		
+		// Compare the distance tuple of each multimethod.
 		int comparison = ProductDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
 		if (comparison == 0) {
 			Priority priority1 = null;

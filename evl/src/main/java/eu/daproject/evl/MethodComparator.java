@@ -16,21 +16,36 @@
 package eu.daproject.evl;
 
 /**
- * Class providing a base for the method comparators. The arguments passed to the calling invoke are set at thread-local.
- * They can be used for predicate based dispatch where there is no cache.
+ * Class providing a base class for the method comparators.
+ * The arguments passed to the calling invoke are set at thread-local and can be used for predicate based dispatch where there is no cache.
  */
 public abstract class MethodComparator {
 
 	private ThreadLocal<Object[]> threadLocalArgs = new ThreadLocal<Object[]>();
 	
+	/**
+	 * Gets the arguments.
+	 * @return the arguments
+	 */
 	public Object[] args() {
 		return threadLocalArgs.get();
 	}
 
+	/**
+	 * Sets the arguments.
+	 * @param args the arguments
+	 */
 	void setArgs(Object[] args) {
 		threadLocalArgs.set(args);
 	}
 	
+	/**
+	 * Compares two {@link MethodItem} objects.
+	 * The method must be implemented in the concrete method comparator.
+	 * @param m1 the first method item
+	 * @param m2 the second method item
+	 * @return
+	 */
 	public abstract int compare(MethodItem m1, MethodItem m2);
 	
 }

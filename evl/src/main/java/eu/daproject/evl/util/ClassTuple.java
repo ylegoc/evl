@@ -17,23 +17,41 @@ package eu.daproject.evl.util;
 
 import java.util.Arrays;
 
+/**
+ * Class representing a class tuple by encapsulating an array of {@link java.lang.Class}.
+ * The class tuple is used to represent the "virtual" parameters of the multimethods.
+ * 
+ */
 public class ClassTuple {
 
 	private Class<?>[] tuple;
 	
+	/**
+	 * Constructs a class tuple with a variable number of classes.
+	 * @param tuple the class objects
+	 */
 	public ClassTuple(Class<?>... tuple) {
 		this.tuple = tuple;
 	}
 	
+	/**
+	 * Returns the array of class objects.
+	 */
 	public Class<?>[] get() {
 		return tuple;
 	}
 
+	/**
+	 * Returns the hash code based on the array of objects.
+	 */
 	@Override
 	public int hashCode() {
 		return Arrays.hashCode(tuple);
 	}
 
+	/**
+	 * Redefines the equals method for the array of class objects.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -56,6 +74,9 @@ public class ClassTuple {
 		return true;
 	}
 
+	/**
+	 * Redefines the toString method to print the tuple.
+	 */
 	@Override
 	public String toString() {
 		String result = "<";

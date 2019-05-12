@@ -15,6 +15,24 @@
  ******************************************************************************/
 package eu.daproject.evl;
 
+/**
+ * Class definition for declaring the existence of the class Cases.
+ * It is used to define anonymous classes where the match method is redefined for different tuple of classes.
+ * Example:
+ * <pre>
+ * Method1<Integer> method = new Method1<Integer>().add(new Cases() {
+ *
+ *			int match(B obj) {
+ *				return 1 + obj.getB();
+ *			}
+ *
+ *			int match(C obj) {
+ *				return 2 + obj.getC();
+ *			}
+ *		});
+ * </pre>
+ *
+ */
 public class Cases {
 
 }

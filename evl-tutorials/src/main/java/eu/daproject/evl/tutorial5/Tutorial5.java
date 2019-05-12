@@ -22,7 +22,6 @@ import eu.daproject.evl.classes.A;
 import eu.daproject.evl.classes.B;
 import eu.daproject.evl.classes.J;
 import eu.daproject.evl.classes.K;
-import eu.daproject.evl.util.Parameter;
 
 /**
  * Symmetric and asymmetric double dispatch using methods with special name "copy".
@@ -38,8 +37,8 @@ public class Tutorial5 {
 		Copier copier = new Copier();
 		
 		Method2<Void> copy1 = new Method2<Void>()
-				.add(copier, "copy", Parameter.types(A.class, K.class))
-				.add(copier, "copy", Parameter.types(B.class, J.class));
+				.add(copier, "copy", A.class, K.class)
+				.add(copier, "copy", B.class, J.class);
 		
 		copy1.invoke(b, k);
 		
@@ -47,8 +46,8 @@ public class Tutorial5 {
 		
 		Method2<Void> copy2 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(copier, "copy", Parameter.types(A.class, K.class))
-				.add(copier, "copy", Parameter.types(B.class, J.class));
+				.add(copier, "copy", A.class, K.class)
+				.add(copier, "copy", B.class, J.class);
 
 		// The invocation generates an ambiguity. 
 		try {
@@ -61,9 +60,9 @@ public class Tutorial5 {
 		// It can be resolved explicitly by defining a method for the ambiguous class tuple.
 		Method2<Void> copy3 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(copier, "copy", Parameter.types(A.class, K.class))
-				.add(copier, "copy", Parameter.types(B.class, J.class))
-				.add(copier, "copy", Parameter.types(B.class, K.class));
+				.add(copier, "copy", A.class, K.class)
+				.add(copier, "copy", B.class, J.class)
+				.add(copier, "copy", B.class, K.class);
 
 		copy3.invoke(b, k);
 
@@ -72,8 +71,8 @@ public class Tutorial5 {
 		// It can be resolved implicitly by changing the priority of a method.
 		Method2<Void> copy4 = new Method2<Void>()
 				.comparator(new SymmetricComparator())
-				.add(copier, "copy", Parameter.types(A.class, K.class))
-				.add(copier, "copy", Parameter.types(B.class, J.class)).data(Priority.valueOf(1));
+				.add(copier, "copy", A.class, K.class)
+				.add(copier, "copy", B.class, J.class).data(Priority.valueOf(1));
 
 		copy4.invoke(b, k);
 		
