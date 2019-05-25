@@ -19,6 +19,10 @@ import eu.daproject.evl.MethodComparator;
 import eu.daproject.evl.MethodItem;
 import eu.daproject.evl.comparators.ProductDistanceComparator;
 
+/**
+ * Class defining a method comparator for the predicate multimethods using {@link Predicate} data objects.
+ *
+ */
 public class PredicateComparator extends MethodComparator {
 
 	@Override

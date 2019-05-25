@@ -26,8 +26,8 @@ public class MethodItem extends Method {
 	
 	/**
 	 * Constructs a method item.
-	 * @param method the method
-	 * @param distance the distance
+	 * @param method the method.
+	 * @param distance the distance.
 	 */
 	MethodItem(Method method, int[] distance) {
 		super(method.getClassTuple(), method.getMethod(), method.getObject());
@@ -38,7 +38,7 @@ public class MethodItem extends Method {
 	
 	/**
 	 * Gets the distance tuple.
-	 * @return the distance tuple
+	 * @return the distance tuple.
 	 */
 	public int[] getDistanceTuple() {
 		return distance;

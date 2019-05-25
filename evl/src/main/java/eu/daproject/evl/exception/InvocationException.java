@@ -25,7 +25,7 @@ public class InvocationException extends Exception {
 
 	/**
 	 * Constructs an exception with the message.
-	 * @param message the message of the exception
+	 * @param message the message of the exception.
 	 */
 	public InvocationException(String message) {
 		super(message);

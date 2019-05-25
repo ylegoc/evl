@@ -31,7 +31,7 @@ public class Priority implements Comparable<Priority> {
 	
 	/**
 	 * Constructs a priority object with the value.
-	 * @param value
+	 * @param value the priority value.
 	 */
 	protected Priority(int value) {
 		this.value = value;
@@ -39,8 +39,8 @@ public class Priority implements Comparable<Priority> {
 	
 	/**
 	 * Returns a priority object with the value.
-	 * @param value the value
-	 * @return the priority object
+	 * @param value the priority value.
+	 * @return the priority object.
 	 */
 	public static Priority valueOf(int value) {
 		return new Priority(value);

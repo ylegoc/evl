@@ -21,9 +21,17 @@ import eu.daproject.evl.Method2;
 import eu.daproject.evl.util.ClassTuple;
 import eu.daproject.evl.util.EmptyMap;
 
-
+/**
+ * Class defining a predicate multimethod of dimension 2.
+ * The method comparator is set to {@link PredicateComparator} and the cache a {@link EmptyMap} instance that is always empty.
+ *
+ * @param <ReturnType> the return type.
+ */
 public class PredicateMethod2<ReturnType> extends Method2<ReturnType> {
 	
+	/**
+	 * Constructs an empty multimethod.
+	 */
 	public PredicateMethod2() {
 		comparator(new PredicateComparator());
 		cache(new EmptyMap<ClassTuple, MethodHandle>());

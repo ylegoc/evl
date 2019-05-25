@@ -20,9 +20,17 @@ import java.lang.invoke.MethodHandle;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.util.EmptyMap;
 
-
+/**
+ * Class defining a predicate multimethod of dimension 1.
+ * The method comparator is set to {@link PredicateComparator} and the cache a {@link EmptyMap} instance that is always empty.
+ *
+ * @param <ReturnType> the return type.
+ */
 public class PredicateMethod1<ReturnType> extends Method1<ReturnType> {
 	
+	/**
+	 * Constructs an empty multimethod.
+	 */
 	public PredicateMethod1() {
 		comparator(new PredicateComparator());
 		cache(new EmptyMap<Class<?>, MethodHandle>());

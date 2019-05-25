@@ -33,16 +33,10 @@ import eu.daproject.evl.lookup.CasesLookup;
 import eu.daproject.evl.util.ClassTuple;
 import eu.daproject.evl.util.SuperClass;
 
-/*
- * Performance tests show that:
- * - MultiMethod call is 9 times slower than method call
- * - Time is spent approximatively:
- *  - 25% method call
- *  - 25% cache search for HashMap
- *  - 50% reflection method invocation
- * - Use static methods with null objects has no incidence 
- * - No need for invokeCache since performance is not good enough
- * 
+/**
+ * Main class of the EVL library providing an abstract multimethod with a dimension which represents the number of "virtual" parameters.
+ *
+ * @param <ReturnType> the return type.
  */
 public abstract class MultiMethod<ReturnType> {
 	
@@ -54,22 +48,58 @@ public abstract class MultiMethod<ReturnType> {
 	private ArrayList<Method> methods = new ArrayList<Method>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
+	/**
+	 * Constructs a multimethod with the dimension and a method comparator.
+	 * @param dimension the number of "virtual" parameters.
+	 * @param methodComparator the method comparator.
+	 */
 	MultiMethod(int dimension, MethodComparator methodComparator) {
 		this.dimension = dimension;
 		this.methodComparator = methodComparator;
 	}
 
+	/**
+	 * Returns the dimension of the multimethod.
+	 * @return the dimension.
+	 */
 	public int getDimension() {
 		return dimension;
 	}
 	
+	/**
+	 * Returns the list of added methods.
+	 * @return the list of methods.
+	 */
 	public List<Method> getMethods() {
 		return methods;
 	}
 	
+	/**
+	 * Resets the cache.
+	 */
 	protected abstract void resetCache();
 	
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
+	/**
+	 * Sets the method comparator.
+	 * @param methodComparator the method comparator.
+	 * @return this instance.
+	 */
+	protected MultiMethod<ReturnType> comparator(MethodComparator methodComparator) {
+		this.methodComparator = methodComparator;
+		return this;
+	}
+	
+	/**
+	 * Adds a method with the caller and the associated lookup and some optional data.
+	 * @param lookup the lookup.
+	 * @param method the method.
+	 * @param object the caller.
+	 * @param data the data.
+	 * @return the inserted method.
+	 * @throws ReflectiveOperationException
+	 * @throws BadNumberOfVirtualParameterTypesException
+	 * @throws BadNonVirtualParameterTypesException
+	 */
 	protected Method addMethod(MethodHandles.Lookup lookup, java.lang.reflect.Method method, Object object, Comparable<?> data) throws ReflectiveOperationException {
 		
 		// Find the method handle.
@@ -81,19 +111,20 @@ public abstract class MultiMethod<ReturnType> {
 			// If static, the method is not found.
 		}
 		
-		// Test static method.
+		// If the method handle has not been found, test if the method is static.
 		if (methodHandle == null) {
 			try {
 				methodHandle = lookup.findStatic(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()));
 			}
 			catch (ReflectiveOperationException e) {
+				// The method is not found, so we throw the exception.
 				throw e;
 			}
 		}
 		
+		// Check the parameter types.
 		Class<?>[] newParameterTypes = method.getParameterTypes();
 		
-		// check parameter types
 		if (newParameterTypes.length < dimension) {
 			throw new BadNumberOfVirtualParameterTypesException();
 		} 
@@ -109,41 +140,39 @@ public abstract class MultiMethod<ReturnType> {
 			newNonVirtualParameterTypes[i - dimension] = newParameterTypes[i];
 		}
 		
+		// Update the non virtual parameter types if this is the first inserted method.
 		if (nonVirtualParameterTypes == null) {
-			// first inserted method
 			nonVirtualParameterTypes = newNonVirtualParameterTypes;
 		}
 		else {
-			// check the equality with non virtual parameter types
+			// Check the equality with the non virtual parameter types of the first inserted method.
 			if (!Arrays.equals(nonVirtualParameterTypes, newNonVirtualParameterTypes)) {
 				throw new BadNonVirtualParameterTypesException();
 			}
 		}
 		
-		// the cache must be cleared
+		// The cache must be cleared.
 		resetCache();
 
-		// This code should be removed as the method is not called for dispatch but the method handle is.
-		try {
-			method.setAccessible(true);
-		}
-		catch (SecurityException e) {
-			// do nothing
-		}
-		
+		// Create the class tuple and add the new method.
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
 		Method newMethod = new Method(tuple, methodHandle, object);
 		newMethod.setData(data);
-		
-		// Add the method.
 		methods.add(newMethod);
 		
 		return newMethod;
 	}
 	
-	// not possible to set data to all the methods
-	// only for non-data methods
-	// throws BadNumberOfVirtualParameterTypesException, BadNonVirtualParameterTypesException
+	/**
+	 * Adds a family of methods with the caller.
+	 * @param lookup the lookup.
+	 * @param classInstance the class instance.
+	 * @param methodName the method name, all the overloaded methods with this name are added.
+	 * @param object the caller.
+	 * @throws ReflectiveOperationException
+	 * @throws BadNumberOfVirtualParameterTypesException
+	 * @throws BadNonVirtualParameterTypesException
+	 */
 	protected void addMethodFamily(MethodHandles.Lookup lookup, Class<?> classInstance, String methodName, Object object) throws ReflectiveOperationException {
 		
 		// Set all the other methods lastAdded to false.
@@ -161,7 +190,14 @@ public abstract class MultiMethod<ReturnType> {
 		}
 	}
 	
-	public MultiMethod<ReturnType> add(Class<?> classInstance, String name, Class<?>... parameterTypes) {
+	/**
+	 * Adds a static method.
+	 * @param classInstance the class instance.
+	 * @param methodName the name of the method.
+	 * @param parameterTypes the parameter types of the wanted method.
+	 * @return this instance.
+	 */
+	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
 		for (Method m : methods) {
@@ -170,7 +206,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			Method newMethod = addMethod(lookup, classInstance.getMethod(name, parameterTypes), null, null);
+			Method newMethod = addMethod(lookup, classInstance.getMethod(methodName, parameterTypes), null, null);
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
@@ -180,7 +216,14 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
-	public MultiMethod<ReturnType> add(Object object, String name, Class<?>... parameterTypes) {
+	/**
+	 * Adds a method.
+	 * @param object the caller.
+	 * @param methodName the name of the method.
+	 * @param parameterTypes the parameter types of the wanted method.
+	 * @return this instance.
+	 */
+	public MultiMethod<ReturnType> add(Object object, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
 		for (Method m : methods) {
@@ -189,7 +232,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			Method newMethod = addMethod(lookup, object.getClass().getMethod(name, parameterTypes), object, null);
+			Method newMethod = addMethod(lookup, object.getClass().getMethod(methodName, parameterTypes), object, null);
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
@@ -199,6 +242,11 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
+	/**
+	 * Sets the data for all the last added methods i.e. the methods added during the last call to the <code>add</code> method.
+	 * @param data the data.
+	 * @return this instance.
+	 */
 	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
@@ -211,6 +259,12 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
+	/**
+	 * Adds a family of static methods.
+	 * @param classInstance the class instance.
+	 * @param methodName the method name.
+	 * @return this instance.
+	 */
 	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName) {
 		
 		try {
@@ -223,6 +277,12 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
+	/**
+	 * Adds a family of methods.
+	 * @param object the caller.
+	 * @param methodName the method name.
+	 * @return this instance.
+	 */
 	public MultiMethod<ReturnType> add(Object object, String methodName) {
 
 		try {
@@ -236,11 +296,21 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
+	/**
+	 * Adds the family of methods with the name <code>match</code>.
+	 * @param object the caller.
+	 * @return this instance.
+	 */
 	public MultiMethod<ReturnType> add(Object object) {
 		
 		return this.add(object, DEFAULT_METHOD_NAME);
 	}
 	
+	/**
+	 * Adds the family of methods with the name <code>match</code> defined in the anonymous class deriving <code>Cases</code>.
+	 * @param cases the anonymous class defining the methods.
+	 * @return this instance.
+	 */
 	public MultiMethod<ReturnType> add(Cases cases) {
 		
 		// Get the current lookup.
@@ -263,21 +333,34 @@ public abstract class MultiMethod<ReturnType> {
 		return this;
 	}
 	
+	/**
+	 * Processes the class tuple.
+	 * @param args the arguments.
+	 * @return the matching method.
+	 * @throws NoMatchingMethodException
+	 * @throws AmbiguousMethodException
+	 */
 	protected Method processClassTuple(Object[] args) throws NoMatchingMethodException, AmbiguousMethodException {
 		
-		// create ClassTuple from arguments
+		// Create a ClassTuple from the arguments.
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
 		for (int i = 0; i < getDimension(); ++i) {
 			virtualParameterTypes[i] = args[i].getClass();
 		}
 		ClassTuple methodTuple = new ClassTuple(virtualParameterTypes);
 		
-		// set the args to the comparator.
+		// Set the args to the comparator.
 		methodComparator.setArgs(args);
 		
 		return processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
 	}
 
+	/**
+	 * Calculates the compatible method with the associated distance tuple.
+	 * @param superClassSet the set of super classes.
+	 * @param method the method.
+	 * @return the method item.
+	 */
 	protected static MethodItem calculateCompatibleMethod(HashMap<Class<?>, Integer>[] superClassSet, Method method) {
 		
 		Class<?>[] classTuple = method.getClassTuple().get();
@@ -289,8 +372,8 @@ public abstract class MultiMethod<ReturnType> {
 			
 			if (distance != null) {
 				distanceTuple[i] = distance;
-				
-			} else {
+			}
+			else {
 				return null;
 			}
 		}
@@ -298,59 +381,77 @@ public abstract class MultiMethod<ReturnType> {
 		return new MethodItem(method, distanceTuple);
 	}
 	
+	/**
+	 * Processes the class tuple. This is the main method which selects the "closest" method in terms of arguments using the distance tuple.
+	 * The method comparator is used to compare the methods i.e. result varies depending on the implementation of the comparator.
+	 * @param tuple the class tuple.
+	 * @param superClassSet the set of super classes.
+	 * @return the matching method.
+	 * @throws NoMatchingMethodException
+	 * @throws AmbiguousMethodException
+	 */
 	private Method processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoMatchingMethodException, AmbiguousMethodException {
 		
-		// search compatible methods
+		// Search for compatible methods.
 		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();
 		
-		// iterate the list
+		// Iterate the list of added methods.
 		for (Method method : methods) {
-			MethodItem item = calculateCompatibleMethod(superClassSet, method);
 			
+			// Calculate the compatible method with its distance tuple.
+			MethodItem item = calculateCompatibleMethod(superClassSet, method);
+	
+			// Test if the method is applicable.
 			if (item != null) {
-				
-				// test if the function is applicable
-				// the function is added if it is equals to itself
+				// The method is added if it is equals to itself.
 				if (methodComparator.compare(item, item) == 0) {
 					compatibleMethodItems.add(item);
 				}
 			}
 		}
 		
-		// search for the minimum method item
+		// Search for the minimum method item among all the compatible methods.
 		ArrayList<MethodItem> minMethodItems = new ArrayList<MethodItem>();
 		
+		// No compatible method.
 		if (compatibleMethodItems.isEmpty()) {
 			throw new NoMatchingMethodException(tuple);
 		}
 
-		// there is at least 1 item
+		// There is at least 1 item at this point.
 		Iterator<MethodItem> i = compatibleMethodItems.iterator();
 		minMethodItems.add(i.next());
 		
+		// Search for the minimum.
 		while (i.hasNext()) {
 			
 			MethodItem item = i.next();
 			
+			// Compare the method item with the existing minimum method item. 
 			int result = methodComparator.compare(item, minMethodItems.get(0));
 			
+			// The method item equals the existing minimum.
 			if (result == 0) {
 				minMethodItems.add(item);
-			} else if (result < 0) {
+			}
+			// The method is less than the existing minimum method.
+			else if (result < 0) {
+				// Reset the set and add the method item.
 				minMethodItems.clear();
 				minMethodItems.add(item);
 			}
 		}
 		
-		// test the result, the container cannot be empty
+		// Test the result, the container cannot be empty.
 		if (minMethodItems.size() == 1) {
 			
-			// check that min is really min
+			// Check that the minimum is really minimum.
 			MethodItem minItem = minMethodItems.get(0);
 			
 			i = compatibleMethodItems.iterator();
 			minMethodItems.add(i.next());
 			
+			// Iterate the minimum to verify.
 			while (i.hasNext()) {
 				MethodItem item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
@@ -359,9 +460,11 @@ public abstract class MultiMethod<ReturnType> {
 				}
 			}
 			
+			// Return the verified minimum item.
 			return minItem;
 		}
 		
+		// Create the string of ambiguous methods and throw the exception.
 		String possibleMethods = "";
 		for (MethodItem item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";

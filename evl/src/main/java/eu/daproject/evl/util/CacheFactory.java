@@ -32,7 +32,7 @@ public class CacheFactory {
 
 	/**
 	 * Creates an unbounded cache.
-	 * @return an instance of {@link java.util.concurrent.ConcurrentHashMap}
+	 * @return an instance of {@link java.util.concurrent.ConcurrentHashMap}.
 	 */
 	public static <Key, Value> Map<Key, Value> createUnboundedCache() {
 		return new ConcurrentHashMap<Key, Value>();
@@ -41,7 +41,7 @@ public class CacheFactory {
 	/**
 	 * Creates a bounded cache.
 	 * @param capacity the capacity of the cache
-	 * @return an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap}
+	 * @return an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap}.
 	 */
 	public static <Key, Value> Map<Key, Value> createBoundedCache(int capacity) {
 		return new ConcurrentLinkedHashMap.Builder<Key, Value>().maximumWeightedCapacity(capacity).build();

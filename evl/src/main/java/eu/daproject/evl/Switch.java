@@ -15,8 +15,17 @@
  ******************************************************************************/
 package eu.daproject.evl;
 
+/**
+ * Class defining a switch multimethod. This is a syntactic sugar for the {@link Method1} with <code>void</code> as return type. 
+ *
+ */
 public class Switch extends Method1<Void> {
 
+	/**
+	 * Constructs a switch instance with an anonymous {@link Cases} object defining the <code>match</code> methods.
+	 * @param cases
+	 * @return
+	 */
 	public static Switch with(Cases cases) {
 		return (Switch)new Switch().add(cases);
 	}

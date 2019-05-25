@@ -33,9 +33,9 @@ class Method {
 	
 	/**
 	 * Constructs a method.
-	 * @param tuple the class tuple
-	 * @param method the method handle
-	 * @param object the caller object
+	 * @param tuple the class tuple.
+	 * @param method the method handle.
+	 * @param object the caller object.
 	 */
 	Method(ClassTuple tuple, MethodHandle method, Object object) {
 		this.methodHandle = method;
@@ -53,7 +53,7 @@ class Method {
 	
 	/**
 	 * Returns true if is last added.
-	 * @return
+	 * @return true if is last added.
 	 */
 	boolean isLastAdded() {
 		return lastAdded;
@@ -61,7 +61,7 @@ class Method {
 	
 	/**
 	 * Gets the method handle.
-	 * @return the method handle
+	 * @return the method handle.
 	 */
 	public MethodHandle getMethod() {
 		return methodHandle;
@@ -69,7 +69,7 @@ class Method {
 	
 	/**
 	 * Gets the caller object.
-	 * @return the caller object
+	 * @return the caller object.
 	 */
 	public Object getObject() {
 		return object;
@@ -77,7 +77,7 @@ class Method {
 	
 	/**
 	 * Gets the class tuple.
-	 * @return the class tuple
+	 * @return the class tuple.
 	 */
 	public ClassTuple getClassTuple() {
 		return tuple;
@@ -85,7 +85,7 @@ class Method {
 
 	/**
 	 * Sets the associated data e.g. a {@link Priority} object.
-	 * @param data the associated data
+	 * @param data the associated data.
 	 */
 	public void setData(Comparable<?> data) {
 		this.data = data;

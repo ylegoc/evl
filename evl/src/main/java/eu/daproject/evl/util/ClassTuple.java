@@ -28,7 +28,7 @@ public class ClassTuple {
 	
 	/**
 	 * Constructs a class tuple with a variable number of classes.
-	 * @param tuple the class objects
+	 * @param tuple the class objects.
 	 */
 	public ClassTuple(Class<?>... tuple) {
 		this.tuple = tuple;
@@ -85,7 +85,7 @@ public class ClassTuple {
 			result += tuple[i].getName() + ", ";
 		}
 		
-		// tuple has size > 0 
+		// Tuple has size > 0.
 		result += tuple[tuple.length - 1].getName() + ">";
 		
 		return result;

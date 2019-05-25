@@ -20,12 +20,23 @@ import java.lang.reflect.Method;
 
 import eu.daproject.evl.exception.MethodInsertionException;
 
+/**
+ * Class defining a predicate for the predicate multimethods.
+ *
+ */
 public class Predicate implements Comparable<Predicate> {
 
+	/**
+	 * Class defining an invocation exception for the {@link Predicate} class.
+	 *
+	 */
 	static public class InvocationException extends RuntimeException {
 
 		private static final long serialVersionUID = 6876280226858995852L;
 
+		/**
+		 * Constructs an exception.
+		 */
 		public InvocationException() {
 			super("Predicate invocation exception");
 		}
@@ -35,10 +46,17 @@ public class Predicate implements Comparable<Predicate> {
 	private Object object;
 	private ThreadLocal<Object[]> threadLocalArgs = new ThreadLocal<Object[]>();
 	
-	public Predicate(Object object, String name, Class<?>... parameterTypes) {
+	/**
+	 * Creates a predicate with the associated method. The method is selected using the reflection.
+	 * @param object the caller.
+	 * @param methodName the method name.
+	 * @param parameterTypes the parameter types.
+	 * @throws MethodInsertionException
+	 */
+	public Predicate(Object object, String methodName, Class<?>... parameterTypes) {
 		
 		try {
-			this.method = object.getClass().getMethod(name, parameterTypes);
+			this.method = object.getClass().getMethod(methodName, parameterTypes);
 			this.method.setAccessible(true);
 			
 			this.object = object;	
@@ -48,7 +66,11 @@ public class Predicate implements Comparable<Predicate> {
 		}
 	}
 	
-	public void setArgs(Object[] args) {
+	/**
+	 * Sets the arguments.
+	 * @param args the arguments.
+	 */
+	void setArgs(Object[] args) {
 		threadLocalArgs.set(args);
 	}
 	
