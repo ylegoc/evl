@@ -27,7 +27,7 @@ import eu.daproject.evl.util.ClassTuple;
 /**
  * Class defining a multimethod of dimension 2 i.e. there is 2 "virtual" parameters.
  *
- * @param <ReturnType>
+ * @param <ReturnType> the return type
  */
 public class Method2<ReturnType> extends MultiMethod<ReturnType> {
 	

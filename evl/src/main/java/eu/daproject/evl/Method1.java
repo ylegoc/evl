@@ -26,7 +26,7 @@ import eu.daproject.evl.util.CacheFactory;
 /**
  * Class defining a multimethod of dimension 1 i.e. there is 1 "virtual" parameter.
  *
- * @param <ReturnType>
+ * @param <ReturnType> the return type
  */
 public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	

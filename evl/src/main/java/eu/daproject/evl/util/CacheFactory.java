@@ -15,10 +15,9 @@
  ******************************************************************************/
 package eu.daproject.evl.util;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
 /**
  * Helper class to create a bounded or unbounded cache. The factory returns:
@@ -41,9 +40,9 @@ public class CacheFactory {
 	/**
 	 * Creates a bounded cache.
 	 * @param capacity the capacity of the cache
-	 * @return an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap}.
+	 * @return an instance of a synchronized {@link BoundedLinkedHashMap}.
 	 */
 	public static <Key, Value> Map<Key, Value> createBoundedCache(int capacity) {
-		return new ConcurrentLinkedHashMap.Builder<Key, Value>().maximumWeightedCapacity(capacity).build();
+		return Collections.synchronizedMap(new BoundedLinkedHashMap<Key, Value>(capacity));
 	}
 }

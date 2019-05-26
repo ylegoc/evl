@@ -23,8 +23,8 @@ import java.util.Set;
  * Empty map class used by the {@link eu.daproject.evl.predicate.PredicateMethod1} and other predicate multimethods that cannot use a cache.
  * The methods do nothing.
  *
- * @param <V> the value type.
- * @param <K> the key type.
+ * @param <V> the value type
+ * @param <K> the key type
  */
 public class EmptyMap<V, K> implements Map<V, K> {
 

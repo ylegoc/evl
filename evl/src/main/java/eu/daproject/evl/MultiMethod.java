@@ -36,7 +36,7 @@ import eu.daproject.evl.util.SuperClass;
 /**
  * Main class of the EVL library providing an abstract multimethod with a dimension which represents the number of "virtual" parameters.
  *
- * @param <ReturnType> the return type.
+ * @param <ReturnType> the return type
  */
 public abstract class MultiMethod<ReturnType> {
 	

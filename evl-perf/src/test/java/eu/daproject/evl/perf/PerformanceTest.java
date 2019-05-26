@@ -16,8 +16,10 @@
 package eu.daproject.evl.perf;
 
 import java.lang.invoke.MethodHandle;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -25,10 +27,11 @@ import eu.daproject.evl.AsymmetricComparator;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Method3;
+import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 
 public class PerformanceTest {
 
-	static int N = 1 << 20;
+	static int N = 1 << 23;
 	static int[] indexes;
 	static Base[] objects = new Base[8];
 	static long randomAccessTime;
@@ -219,7 +222,7 @@ public class PerformanceTest {
 		System.out.println("method handle array in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
-	static void testMultiMethod(Method1<Integer> m) throws Throwable {
+	static void testMultiMethod1(String text, Method1<Integer> m) throws Throwable {
 	
 		Foo foo = new Foo();
 		
@@ -245,10 +248,10 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method 1 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+		System.out.println(text + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
-	static void testMultiMethod2(Method2<Integer> m) throws Throwable {
+	static void testMultiMethod2(String text, Method2<Integer> m) throws Throwable {
 		
 		Foo foo = new Foo();
 		
@@ -275,10 +278,10 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method 2 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+		System.out.println(text + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 	
-	static void testMultiMethod3(Method3<Integer> m) throws Throwable {
+	static void testMultiMethod3(String text, Method3<Integer> m) throws Throwable {
 
 		Foo foo = new Foo();
 		
@@ -305,7 +308,7 @@ public class PerformanceTest {
 		
 		Date end = new Date();
 		
-		System.out.println("method 3 in " + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
+		System.out.println(text + (end.getTime() - begin.getTime() - randomAccessTime) + "ms result " + res);
 	}
 
 	@Test
@@ -323,26 +326,43 @@ public class PerformanceTest {
 		testMethodBoundHandleOnObject();
 		testMethodHandleArray();
 		
-		testMultiMethod(new Method1<Integer>()
+		testMultiMethod1("method 1 in ", new Method1<Integer>()
 								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod2(new Method2<Integer>()
+		testMultiMethod2("method 2 in ", new Method2<Integer>()
 								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod3(new Method3<Integer>()
+		testMultiMethod3("method 3 in ", new Method3<Integer>()
 								.comparator(new AsymmetricComparator()));
 		
-		testMultiMethod(new Method1<Integer>()
+		testMultiMethod1("method 1 with HashMap cache in ", new Method1<Integer>()
 								.comparator(new AsymmetricComparator())
 								.cache(new HashMap<Class<?>, MethodHandle>()));
 		
-		testMultiMethod(new Method1<Integer>()
+		testMultiMethod1("method 1 with bounded cache 32 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
 				.boundedCache(32));
 		
-		testMultiMethod(new Method1<Integer>()
+		testMultiMethod1("method 1 with bounded cache 8 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
 				.boundedCache(8));
+		
+		testMultiMethod1("method 1 with bounded cache 4 in ", new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.boundedCache(4));
+		
+		testMultiMethod1("method 1 with Apache Cayenne bounded cache 32 in ", new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(32).build()));
+		
+		testMultiMethod1("method 1 with Apache Cayenne bounded cache 8 in ", new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(8).build()));
+		
+		testMultiMethod1("method 1 with Apache Cayenne bounded cache 4 in ", new Method1<Integer>()
+				.comparator(new AsymmetricComparator())
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(4).build()));
+		
 	}
 
 }

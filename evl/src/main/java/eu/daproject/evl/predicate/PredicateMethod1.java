@@ -24,7 +24,7 @@ import eu.daproject.evl.util.EmptyMap;
  * Class defining a predicate multimethod of dimension 1.
  * The method comparator is set to {@link PredicateComparator} and the cache a {@link EmptyMap} instance that is always empty.
  *
- * @param <ReturnType> the return type.
+ * @param <ReturnType> the return type
  */
 public class PredicateMethod1<ReturnType> extends Method1<ReturnType> {
 	
