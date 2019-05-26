@@ -1,14 +1,17 @@
-Code
+Todo
+1. Hugo website
+2. Generate javadoc on website
 
-- Unit tests for all possible errors.
-- Test Caffeine Cache class.	
-- reimplement the comparators by a list of comparators
-	possibility to add a comparator dynamically
-- javadoc (exclude some classes)
-- Deploy on maven central
+Code
+- Host
+  Github pour le code
+- Doc
+  website hugo
+  website is more beautiful
+- Deployment
+  maven central
 - put the tutorials on website
 - put javadoc on website
-- Java 9 modules?
 
 Notes
 - Too constraining to implement a cache based on array (define EvlObject class that registers a unique id by using a special factory)
@@ -18,6 +21,13 @@ Notes
 - Lambdas cannot be used because it is not possible to get abstract objects and runtime type information.
 - The MethodHandle lookup is not easy to manage. If necessary, we can add an optional parameter lookup for all add methods.
 	https://docs.oracle.com/javase/10/docs/api/java/lang/invoke/MethodHandles.Lookup.html
+
+Later
+- Unit tests for all possible errors
+- Test Caffeine Cache class
+- Java 9 modules
+- Idea: reimplement the comparators by a list of comparators
+	possibility to add a comparator dynamically
 
 Article
 Explain not a new idea so we need to convince the user

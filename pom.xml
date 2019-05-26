@@ -11,5 +11,6 @@
 		<module>evl-lookup</module>
 		<module>evl</module>
 		<module>evl-tutorials</module>
+		<module>evl-perf</module>
 	</modules>
 </project>
