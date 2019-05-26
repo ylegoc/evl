@@ -22,7 +22,7 @@ import eu.daproject.evl.classes.B;
 import eu.daproject.evl.classes.C;
 
 /**
- * Simple example showing the minimum amount of code to be written for defining a multi-method.
+ * Simple example showing the minimum amount of code to be written for defining a multimethod returning a value.
  * 
  */
 public class Tutorial1 {

@@ -16,7 +16,8 @@
 package eu.daproject.evl;
 
 import eu.daproject.evl.asteroid.Collider;
-import eu.daproject.evl.example.Example;
+import eu.daproject.evl.example.Example1;
+import eu.daproject.evl.example.Example2;
 import eu.daproject.evl.tutorial1.Tutorial1;
 import eu.daproject.evl.tutorial2.Tutorial2;
 import eu.daproject.evl.tutorial3.Tutorial3;
@@ -34,8 +35,10 @@ public class Tutorials {
 		System.out.println("EVL Tutorials");
 		
 		System.out.println("");
-		System.out.println("*** Example ***");
-		Example.run();
+		System.out.println("*** Examples ***");
+		Example1.run();
+		System.out.println("");
+		Example2.run();
 		System.out.println("");
 		
 		System.out.println("");

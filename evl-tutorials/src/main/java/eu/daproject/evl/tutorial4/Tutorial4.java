@@ -20,7 +20,7 @@ import eu.daproject.evl.classes.B;
 import eu.daproject.evl.classes.C;
 
 /**
- * "Open-method" example. A singleton multi-method can be configured anywhere.
+ * "Open-method" example. A singleton multimethod can be configured anywhere.
  *
  */
 public class Tutorial4 {

@@ -13,44 +13,54 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.tutorial6;
+package eu.daproject.evl.example;
 
+import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
-import eu.daproject.evl.SymmetricComparator;
-import eu.daproject.evl.classes.A;
-import eu.daproject.evl.classes.B;
-import eu.daproject.evl.exception.InvocationException;
 
 /**
- * Example on how to extend an "agent" class.
+ * A simple example of multimethod of dimension 2.
  *
  */
-public class Tutorial6 {
+public class Example2 {
+
+	static class A {
+		public int a = 2;
+	}
+	
+	static class B extends A {
+		
+		public B(int a) {
+			this.a = a;
+		}
+	}
 	
 	public static void run() throws Throwable {
 		
-		A b1 = new B(1, 2);
-		A b2 = new B(2, -5);
+		Method2<Void> test = new Method2<Void>().add(new Cases() {
+				
+			void match(Integer i, Integer j) {
+				System.out.println("We are the integers " + i + ", " + j);
+			}
+			
+			void match(String s, String t) {
+				System.out.println("We are the strings " + s + ", " + t);
+			}
+			
+			void match(A a, A b) {
+				System.out.println("We are A " + a.a + ", " + b.a);
+			}
+		});
 		
-		Agent agent = new Agent();
+		test.invoke(new Integer(12), new Integer(-25));
+		test.invoke(new String("beautiful"), new String("day"));
+		test.invoke(new B(5), new B(6));
 		
-		Method2<Integer> method = new Method2<Integer>()
-						.comparator(new SymmetricComparator())
-						.add(agent, "process");
-
 		try {
-			System.out.println(method.invoke(b1, b2));
+			test.invoke(new String("string"), new Integer(2));
 		}
-		catch (InvocationException e) {
+		catch (Throwable e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-		
-		ExtendedAgent agent2 = new ExtendedAgent();
-		
-		method = new Method2<Integer>()
-				.comparator(new SymmetricComparator())
-				.add(agent2, "process");
-
-		System.out.println(method.invoke(b1, b2));
 	}
 }

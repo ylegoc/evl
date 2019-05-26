@@ -19,35 +19,48 @@ import eu.daproject.evl.Cases;
 import eu.daproject.evl.Switch;
 
 /**
- * A simple example with the Switch class.
+ * The simplest example with the Switch class.
  *
  */
-public class Example {
+public class Example1 {
 
-	public static class A {
+	static class A {
+		public int a = 2;
 	}
 	
-	public static class B {
-	}
-	
-	public static class C extends B {
+	static class B extends A {
+		
+		public B(int a) {
+			this.a = a;
+		}
 	}
 	
 	public static void run() throws Throwable {
-	
-		Switch s = Switch.with(new Cases() {
-			
-			void match(A a) {
-				System.out.println("class A");
+		
+		Switch test = Switch.with(new Cases() {
+				
+			void match(Integer i) {
+				System.out.println("I am the integer " + i);
 			}
 			
-			void match(B b) {
-				System.out.println("class B");
+			void match(String s) {
+				System.out.println("I am the string " + s);
+			}
+			
+			void match(A a) {
+				System.out.println("I am an A with a = " + a.a);
 			}
 		});
 		
-		s.invoke(new A());
-		s.invoke(new B());
-		s.invoke(new C());
+		test.invoke(new Integer(12));
+		test.invoke(new String("beautiful"));
+		test.invoke(new B(5));
+		
+		try {
+			test.invoke(new Float(13.1f));
+		}
+		catch (Throwable e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 	}
 }

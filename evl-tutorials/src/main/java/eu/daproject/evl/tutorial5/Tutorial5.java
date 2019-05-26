@@ -52,8 +52,8 @@ public class Tutorial5 {
 		// The invocation generates an ambiguity. 
 		try {
 			copy2.invoke(b, k);
-		
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 		

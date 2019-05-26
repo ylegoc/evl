@@ -72,12 +72,12 @@ public class Tutorial9 {
 			System.out.println(predicateMethod.invoke(b, 1));
 		}
 		catch (InvocationException e) {
-			System.out.println("no function for x = 1");
+			System.out.println("No function for x = 1");
 		}
 		
 		System.out.println(predicateMethod.invoke(b, 11));
 		System.out.println(predicateMethod.invoke(b, 21));
 		
-		System.out.println("PredicateMethod = " + predicateMethod);
+		System.out.println("Predicate method = " + predicateMethod);
 	}
 }
