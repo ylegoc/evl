@@ -49,7 +49,7 @@ To build complex software, *Design Patterns* emerged based on the use of the sim
 By introducing a new Object-Oriented concept, *Design Patterns* are reviewed in the light of multimethods.
 
 Multimethods separate data from process and the *Visitor* pattern becomes immediately obsolete.
-The *State* pattern can also be put away because by simply adding a state object to the parameter of the dispatched methods.
+The *State* pattern can also be put away by simply adding a state object to the parameter of the dispatched methods.
 
 Defining multimethods can lead to different problems:
 * How do we resolve the call if there is not a perfect match for the tuple of objects?
