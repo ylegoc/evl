@@ -4,7 +4,7 @@ Todo
 
 Code
 - Host
-  Github pour le code
+  Github for the code
 - Doc
   website hugo
   website is more beautiful
@@ -14,6 +14,7 @@ Code
 - put javadoc on website
 
 Notes
+- How to convince: if it is simple to define a visitor or a state: we can do it anywhere.
 - Too constraining to implement a cache based on array (define EvlObject class that registers a unique id by using a special factory)
 	Future: mask map should be more suitable
 - MethodHandle.invoke is @PolymorphicSignature so that it is not possible to pass Object... args without args 0, args 1
