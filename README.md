@@ -46,7 +46,7 @@ The **multimethods** generalize the concept of polymorphism:
 * Dispatched methods can be defined outside the class hierarchy sharing the same interface.  
 
 To build complex software, *Design Patterns* emerged based on the use of the simple polymorphism.
-By introducing a new Object-Oriented concept, *Design Patterns* must be reviewed in the light of multimethods.
+By introducing a new Object-Oriented concept, *Design Patterns* are reviewed in the light of multimethods.
 
 Multimethods separate data from process and the *Visitor* pattern becomes immediately obsolete.
 The *State* pattern can also be put away because by simply adding a state object to the parameter of the dispatched methods.
