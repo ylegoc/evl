@@ -1,15 +1,15 @@
 Todo
+0. Maven central
 1. Hugo website
 2. Generate javadoc on website
 
 Code
-- Host
-  Github for the code
+- Deployment
+  maven central
+
 - Doc
   website hugo
   website is more beautiful
-- Deployment
-  maven central
 - put the tutorials on website
 - put javadoc on website
 
