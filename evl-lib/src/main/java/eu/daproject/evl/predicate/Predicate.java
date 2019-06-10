@@ -47,11 +47,11 @@ public class Predicate implements Comparable<Predicate> {
 	private ThreadLocal<Object[]> threadLocalArgs = new ThreadLocal<Object[]>();
 	
 	/**
-	 * Creates a predicate with the associated method. The method is selected using the reflection.
-	 * @param object the caller.
-	 * @param methodName the method name.
-	 * @param parameterTypes the parameter types.
-	 * @throws MethodInsertionException
+	 * Creates a predicate with the associated method.
+	 * @param object the caller
+	 * @param methodName the method name
+	 * @param parameterTypes the parameter types
+	 * @throws MethodInsertionException if the method cannot be found
 	 */
 	public Predicate(Object object, String methodName, Class<?>... parameterTypes) {
 		
@@ -68,12 +68,15 @@ public class Predicate implements Comparable<Predicate> {
 	
 	/**
 	 * Sets the arguments.
-	 * @param args the arguments.
+	 * @param args the arguments
 	 */
 	void setArgs(Object[] args) {
 		threadLocalArgs.set(args);
 	}
 	
+	/**
+	 * throws InvocationException if the method cannot be invoked
+	 */
 	@Override
 	public int compareTo(Predicate other) {
 		

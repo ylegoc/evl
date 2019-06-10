@@ -24,7 +24,7 @@ import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.util.CacheFactory;
 
 /**
- * Class defining a multimethod of dimension 1 i.e. there is 1 "virtual" parameter.
+ * Class defining a multimethod of dimension 1 where there is 1 "virtual" parameter.
  *
  * @param <ReturnType> the return type
  */
@@ -56,8 +56,8 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Processes the arguments.
-	 * @param args the arguments.
-	 * @return the method handle to apply.
+	 * @param args the arguments
+	 * @return the method handle to apply
 	 * @throws Throwable
 	 */
 	protected MethodHandle processAndCache(Object... args) throws Throwable {
@@ -109,8 +109,8 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Sets a cache. This method has to be called if the standard bounded or unbounded cache are not suitable.
-	 * @param cacheMap the new cache map.
-	 * @return this instance.
+	 * @param cacheMap the new cache map
+	 * @return this instance
 	 */
 	public Method1<ReturnType> cache(Map<Class<?>, MethodHandle> cacheMap) {
 		this.cache = cacheMap;
@@ -119,7 +119,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Sets an unbounded cache.
-	 * @return this instance.
+	 * @return this instance
 	 */
 	public Method1<ReturnType> unboundedCache() {
 		this.cache = CacheFactory.<Class<?>, MethodHandle>createUnboundedCache();
@@ -128,8 +128,8 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Sets a bounded cache with a capacity.
-	 * @param capacity the capacity.
-	 * @return this instance.
+	 * @param capacity the capacity
+	 * @return this instance
 	 */
 	public Method1<ReturnType> boundedCache(int capacity) {
 		this.cache = CacheFactory.<Class<?>, MethodHandle>createBoundedCache(capacity);
@@ -138,10 +138,11 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 1 argument.
-	 * @param arg1 argument 1.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1) throws Throwable {
 
@@ -156,11 +157,12 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 2 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2) throws Throwable {
 
@@ -175,12 +177,13 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 3 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @param arg3 argument 3.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @param arg3 argument 3
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3) throws Throwable {
 
@@ -195,13 +198,14 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 
 	/**
 	 * Invokes the multimethod with 4 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @param arg3 argument 3.
-	 * @param arg4 argument 4.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @param arg3 argument 3
+	 * @param arg4 argument 4
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4) throws Throwable {
 
@@ -216,14 +220,15 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 5 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @param arg3 argument 3.
-	 * @param arg4 argument 4.
-	 * @param arg5 argument 5.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @param arg3 argument 3
+	 * @param arg4 argument 4
+	 * @param arg5 argument 5
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5) throws Throwable {
 
@@ -238,15 +243,16 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 6 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @param arg3 argument 3.
-	 * @param arg4 argument 4.
-	 * @param arg5 argument 5.
-	 * @param arg6 argument 6.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @param arg3 argument 3
+	 * @param arg4 argument 4
+	 * @param arg5 argument 5
+	 * @param arg6 argument 6
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6) throws Throwable {
 
@@ -261,16 +267,17 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	
 	/**
 	 * Invokes the multimethod with 7 arguments.
-	 * @param arg1 argument 1.
-	 * @param arg2 argument 2.
-	 * @param arg3 argument 3.
-	 * @param arg4 argument 4.
-	 * @param arg5 argument 5.
-	 * @param arg6 argument 6.
-	 * @param arg7 argument 7.
-	 * @return the result of the application of the matching method for the argument 1. If there is no matching method, an exception {@link NoMatchingMethodException} is thrown.
-	 * If there are more than one minimum matching method, an exception {@link AmbiguousMethodException} is thrown.
-	 * @throws Throwable
+	 * @param arg1 argument 1
+	 * @param arg2 argument 2
+	 * @param arg3 argument 3
+	 * @param arg4 argument 4
+	 * @param arg5 argument 5
+	 * @param arg6 argument 6
+	 * @param arg7 argument 7
+	 * @return the result of the application of the matching method for the argument 1
+	 * @throws NoMatchingMethodException if there is no matching method
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
+	 * @throws Throwable if the call of the dispatched method throws an exception
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7) throws Throwable {
 

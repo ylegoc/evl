@@ -25,8 +25,8 @@ public class SuperClass {
 
 	/**
 	 * Calculates the super classes of a tuple of class with their distance.
-	 * @param tuple the class tuple.
-	 * @return the array of super classes with their distance - number of classes separating - to each element of the tuple.
+	 * @param tuple the class tuple
+	 * @return the array of super classes with their distance - number of classes separating - to each element of the tuple
 	 */
 	public static HashMap<Class<?>, Integer>[] calculate(ClassTuple tuple) {
 		
@@ -42,8 +42,8 @@ public class SuperClass {
 
 	/**
 	 * Calculates the super classes of a class with their distance.
-	 * @param classInstance the class object.
-	 * @return the map of super classes with their distance to the class.
+	 * @param classInstance the class object
+	 * @return the map of super classes with their distance to the class
 	 */
 	public static HashMap<Class<?>, Integer> calculate(Class<?> classInstance) {
 		
@@ -58,9 +58,9 @@ public class SuperClass {
 	
 	/**
 	 * Gets the super classes and interfaces.
-	 * @param classInstance the class object.
-	 * @param classDistanceMap the map of class object with the distance.
-	 * @param distance the distance.
+	 * @param classInstance the class object
+	 * @param classDistanceMap the map of class object with the distance
+	 * @param distance the distance
 	 */
 	private static void getSuperClassesAndInterfaces(Class<?> classInstance, HashMap<Class<?>, Integer> classDistanceMap, int distance) {
 	

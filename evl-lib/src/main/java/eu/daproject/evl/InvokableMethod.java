@@ -20,10 +20,10 @@ import java.lang.invoke.MethodHandle;
 import eu.daproject.evl.util.ClassTuple;
 
 /**
- * Class defining a method for the EVL library as the extension of a {@link MethodHandle} with the caller object, the class tuple of "virtual" arguments and some additional data.
+ * Class defining an invokable method for the EVL library as the extension of a {@link MethodHandle} with the caller object, the class tuple of "virtual" arguments and some additional data.
  *
  */
-class Method {
+public class InvokableMethod {
 
 	private MethodHandle methodHandle;
 	private Object object;
@@ -33,11 +33,11 @@ class Method {
 	
 	/**
 	 * Constructs a method.
-	 * @param tuple the class tuple.
-	 * @param method the method handle.
-	 * @param object the caller object.
+	 * @param tuple the class tuple
+	 * @param method the method handle
+	 * @param object the caller object
 	 */
-	Method(ClassTuple tuple, MethodHandle method, Object object) {
+	InvokableMethod(ClassTuple tuple, MethodHandle method, Object object) {
 		this.methodHandle = method;
 		this.object = object;
 		this.tuple = tuple;
@@ -53,7 +53,7 @@ class Method {
 	
 	/**
 	 * Returns true if is last added.
-	 * @return true if is last added.
+	 * @return true if is last added
 	 */
 	boolean isLastAdded() {
 		return lastAdded;
@@ -61,7 +61,7 @@ class Method {
 	
 	/**
 	 * Gets the method handle.
-	 * @return the method handle.
+	 * @return the method handle
 	 */
 	public MethodHandle getMethod() {
 		return methodHandle;
@@ -69,7 +69,7 @@ class Method {
 	
 	/**
 	 * Gets the caller object.
-	 * @return the caller object.
+	 * @return the caller object
 	 */
 	public Object getObject() {
 		return object;
@@ -77,7 +77,7 @@ class Method {
 	
 	/**
 	 * Gets the class tuple.
-	 * @return the class tuple.
+	 * @return the class tuple
 	 */
 	public ClassTuple getClassTuple() {
 		return tuple;
@@ -85,7 +85,7 @@ class Method {
 
 	/**
 	 * Sets the associated data e.g. a {@link Priority} object.
-	 * @param data the associated data.
+	 * @param data the associated data
 	 */
 	public void setData(Comparable<?> data) {
 		this.data = data;
@@ -93,7 +93,7 @@ class Method {
 	
 	/**
 	 * Gets the associated data.
-	 * @return the associated data.
+	 * @return the associated data
 	 */
 	public Comparable<?> getData() {
 		return data;

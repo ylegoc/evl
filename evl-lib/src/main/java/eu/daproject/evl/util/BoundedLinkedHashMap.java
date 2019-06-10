@@ -15,6 +15,10 @@ public class BoundedLinkedHashMap<K, V> extends LinkedHashMap<K, V> {
 	
   	private final int maxEntries;
  
+  	/**
+  	 * Constructs a new instance
+  	 * @param maxEntries the maximum of entries
+  	 */
     public BoundedLinkedHashMap(int maxEntries) {
         super();
         this.maxEntries = maxEntries;

@@ -25,7 +25,7 @@ public class MethodInsertionException extends RuntimeException {
 
 	/**
 	 * Constructs an exception with the message.
-	 * @param message the message.
+	 * @param message the message
 	 */
 	public MethodInsertionException(String message) {
 		super(message);

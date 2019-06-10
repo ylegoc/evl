@@ -36,6 +36,7 @@ public class ClassTuple {
 	
 	/**
 	 * Returns the array of class objects.
+	 * @return the tuple
 	 */
 	public Class<?>[] get() {
 		return tuple;

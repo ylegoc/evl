@@ -17,19 +17,19 @@ package eu.daproject.evl;
 
 /**
  * Class defining a method item used by the search algorithm of the matching method.
- * It extends the {@link Method} class by adding a distance tuple.
+ * It extends the {@link InvokableMethod} class by adding a distance tuple.
  *
  */
-public class MethodItem extends Method {
+public class MethodItem extends InvokableMethod {
 
 	private int[] distance;
 	
 	/**
 	 * Constructs a method item.
-	 * @param method the method.
-	 * @param distance the distance.
+	 * @param method the method
+	 * @param distance the distance
 	 */
-	MethodItem(Method method, int[] distance) {
+	MethodItem(InvokableMethod method, int[] distance) {
 		super(method.getClassTuple(), method.getMethod(), method.getObject());
 		setData(method.getData());
 		
@@ -38,7 +38,7 @@ public class MethodItem extends Method {
 	
 	/**
 	 * Gets the distance tuple.
-	 * @return the distance tuple.
+	 * @return the distance tuple
 	 */
 	public int[] getDistanceTuple() {
 		return distance;

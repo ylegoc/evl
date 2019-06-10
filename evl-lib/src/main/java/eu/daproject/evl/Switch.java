@@ -23,8 +23,8 @@ public class Switch extends Method1<Void> {
 
 	/**
 	 * Constructs a switch instance with an anonymous {@link Cases} object defining the <code>match</code> methods.
-	 * @param cases
-	 * @return
+	 * @param cases the anonymous {@link Cases} object 
+	 * @return a new instance with the <code>match</code> methods inserted
 	 */
 	public static Switch with(Cases cases) {
 		return (Switch)new Switch().add(cases);

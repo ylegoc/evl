@@ -17,10 +17,10 @@ package eu.daproject.evl;
 
 /**
  * Class definition for declaring the existence of the class Cases.
- * It is used to define anonymous classes where the match method is redefined for different tuple of classes.
+ * It is used to define anonymous classes where the <code>match</code> method is redefined for different tuple of classes.
  * Example:
  * <pre>
- * Method1<Integer> method = new Method1<Integer>().add(new Cases() {
+ * Method1&lt;Integer&gt; method = new Method1&lt;Integer&gt;().add(new Cases() {
  *
  *			int match(B obj) {
  *				return 1 + obj.getB();

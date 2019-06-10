@@ -25,7 +25,7 @@ public abstract class MethodComparator {
 	
 	/**
 	 * Gets the arguments.
-	 * @return the arguments.
+	 * @return the arguments
 	 */
 	public Object[] args() {
 		return threadLocalArgs.get();
@@ -33,7 +33,7 @@ public abstract class MethodComparator {
 
 	/**
 	 * Sets the arguments.
-	 * @param args the arguments.
+	 * @param args the arguments
 	 */
 	void setArgs(Object[] args) {
 		threadLocalArgs.set(args);
@@ -42,9 +42,9 @@ public abstract class MethodComparator {
 	/**
 	 * Compares two {@link MethodItem} objects.
 	 * The method must be implemented in the concrete method comparator.
-	 * @param m1 the first method item.
-	 * @param m2 the second method item.
-	 * @return -1, zero, or 1 as <code>m1</code> is less than, equal to, or greater than <code>m2</code>.
+	 * @param m1 the first method item
+	 * @param m2 the second method item
+	 * @return -1, zero, or 1 as <code>m1</code> is less than, equal to, or greater than <code>m2</code>
 	 */
 	public abstract int compare(MethodItem m1, MethodItem m2);
 	

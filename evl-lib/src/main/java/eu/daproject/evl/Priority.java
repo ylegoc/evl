@@ -21,7 +21,7 @@ package eu.daproject.evl;
  * It is used by setting the data associated to a method.
  * Example:
  * <pre>
- *    Method1<Void> foo = new Method1<Void>().add(obj, "foo", A.class).data(Priority.valueOf(2));
+ *    Method1&lt;Void&gt; foo = new Method1&lt;Void&gt;().add(obj, "foo", A.class).data(Priority.valueOf(2));
  * </pre>
  *
  */
@@ -31,7 +31,7 @@ public class Priority implements Comparable<Priority> {
 	
 	/**
 	 * Constructs a priority object with the value.
-	 * @param value the priority value.
+	 * @param value the priority value
 	 */
 	protected Priority(int value) {
 		this.value = value;
@@ -39,8 +39,8 @@ public class Priority implements Comparable<Priority> {
 	
 	/**
 	 * Returns a priority object with the value.
-	 * @param value the priority value.
-	 * @return the priority object.
+	 * @param value the priority value
+	 * @return the priority object
 	 */
 	public static Priority valueOf(int value) {
 		return new Priority(value);

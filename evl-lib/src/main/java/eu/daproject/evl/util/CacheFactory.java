@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Helper class to create a bounded or unbounded cache. The factory returns:
  * <ul>
  *   <li>Unbounded cache : an instance of {@link java.util.concurrent.ConcurrentHashMap}.
- *   <li>Bounded cache : an instance of {@link org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap} with maximum weighted capacity.
+ *   <li>Bounded cache : an instance of {@link BoundedLinkedHashMap} with maximum weighted capacity.
  * </ul>
  *
  */
@@ -31,18 +31,22 @@ public class CacheFactory {
 
 	/**
 	 * Creates an unbounded cache.
-	 * @return an instance of {@link java.util.concurrent.ConcurrentHashMap}.
+	 * @param <K> the key type
+	 * @param <V> the value type
+	 * @return an instance of {@link java.util.concurrent.ConcurrentHashMap}
 	 */
-	public static <Key, Value> Map<Key, Value> createUnboundedCache() {
-		return new ConcurrentHashMap<Key, Value>();
+	public static <K, V> Map<K, V> createUnboundedCache() {
+		return new ConcurrentHashMap<K, V>();
 	}
 	
 	/**
 	 * Creates a bounded cache.
 	 * @param capacity the capacity of the cache
-	 * @return an instance of a synchronized {@link BoundedLinkedHashMap}.
+	 * @param <K> the key type
+	 * @param <V> the value type
+	 * @return an instance of a synchronized {@link BoundedLinkedHashMap}
 	 */
-	public static <Key, Value> Map<Key, Value> createBoundedCache(int capacity) {
-		return Collections.synchronizedMap(new BoundedLinkedHashMap<Key, Value>(capacity));
+	public static <K, V> Map<K, V> createBoundedCache(int capacity) {
+		return Collections.synchronizedMap(new BoundedLinkedHashMap<K, V>(capacity));
 	}
 }
