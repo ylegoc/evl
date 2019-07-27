@@ -6,6 +6,21 @@
 	<version>1.0.0</version>
 	<artifactId>evl-lookup-null</artifactId>
 
+	<name>EVL Lookup Null</name>
+	<description>Implementation of EVL lookup for JVM versions before 9.</description>
+	<url>https://github.com/ylegoc/evl</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/ylegoc/evl</url>
+	</scm>
+
 	<distributionManagement>
 		<repository>
 			<id>ossrh</id>
