@@ -6,6 +6,28 @@
 	<artifactId>evl-lookup-default</artifactId>
 	<version>1.0.0</version>
 	
+	<name>EVL Lookup Default</name>
+	<description>Default implementation of EVL lookup.</description>
+	<url>https://github.com/ylegoc/evl</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Yannick Le Goc</name>
+			<email>ylegoc@gmail.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<url>https://github.com/ylegoc/evl</url>
+	</scm>
+	
 	<distributionManagement>
 		<repository>
 			<id>ossrh</id>
