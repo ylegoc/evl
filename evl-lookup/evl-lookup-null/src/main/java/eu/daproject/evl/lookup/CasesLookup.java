@@ -31,8 +31,8 @@ public class CasesLookup {
 	 * @param classInstance the class instance
 	 * @param lookup the lookup
 	 * @return the lookup
-	 * @throws IllegalAccessException
-	 * @throws SecurityException
+	 * @throws IllegalAccessException never thrown
+	 * @throws SecurityException never thrown
 	 */
 	public static MethodHandles.Lookup privateLookupIn(Class<?> classInstance, MethodHandles.Lookup lookup) throws IllegalAccessException, SecurityException {
 		return lookup;

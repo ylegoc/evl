@@ -29,8 +29,8 @@ public class CasesLookup {
 	 * @param classInstance the class instance
 	 * @param lookup the lookup
 	 * @return the new lookup
-	 * @throws IllegalAccessException
-	 * @throws SecurityException
+	 * @throws IllegalAccessException if the access check specified above fails
+	 * @throws SecurityException if denied by the security manager
 	 */
 	public static MethodHandles.Lookup privateLookupIn(Class<?> classInstance, MethodHandles.Lookup lookup) throws IllegalAccessException, SecurityException {
 		return MethodHandles.privateLookupIn(classInstance.getEnclosingClass(), lookup);
