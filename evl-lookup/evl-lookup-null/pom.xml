@@ -17,6 +17,13 @@
 		</license>
 	</licenses>
 
+	<developers>
+		<developer>
+			<name>Yannick Le Goc</name>
+			<email>ylegoc@gmail.com</email>
+		</developer>
+	</developers>
+
 	<scm>
 		<url>https://github.com/ylegoc/evl</url>
 	</scm>
