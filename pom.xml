@@ -10,7 +10,7 @@
 	<modules>
 		<module>evl-lookup</module>
 		<module>evl-lib</module>
-		<module>evl-tutorials</module>
+		<module>evl-examples</module>
 		<module>evl-perf</module>
 	</modules>
 </project>
