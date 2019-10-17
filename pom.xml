@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>evl-lookup</module>
 		<module>evl-lib</module>
 		<module>evl-examples</module>
 		<module>evl-perf</module>
