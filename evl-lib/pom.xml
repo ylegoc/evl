@@ -5,9 +5,10 @@
 	<groupId>eu.daproject.evl</groupId>
 	<artifactId>evl</artifactId>
 	<version>1.0.1</version>
+	<name>EVL</name>
 	<description>Java library that implements generalized multimethods.</description>
 	<url>https://github.com/ylegoc/evl</url>
-
+	
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
