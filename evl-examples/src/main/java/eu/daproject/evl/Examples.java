@@ -15,18 +15,18 @@
  ******************************************************************************/
 package eu.daproject.evl;
 
-import eu.daproject.evl.asteroid.Collider;
-import eu.daproject.evl.example1.Example1;
-import eu.daproject.evl.example10.Example10;
-import eu.daproject.evl.example11.Example11;
-import eu.daproject.evl.example2.Example2;
-import eu.daproject.evl.example3.Example3;
-import eu.daproject.evl.example4.Example4;
-import eu.daproject.evl.example5.Example5;
-import eu.daproject.evl.example6.Example6;
-import eu.daproject.evl.example7.Example7;
-import eu.daproject.evl.example8.Example8;
-import eu.daproject.evl.example9.Example9;
+import eu.daproject.evl.examples.example1.Example1;
+import eu.daproject.evl.examples.example10.Example10;
+import eu.daproject.evl.examples.example11.Example11;
+import eu.daproject.evl.examples.example2.Example2;
+import eu.daproject.evl.examples.example3.Example3;
+import eu.daproject.evl.examples.example4.Example4;
+import eu.daproject.evl.examples.example5.Example5;
+import eu.daproject.evl.examples.example6.Example6;
+import eu.daproject.evl.examples.example7.Example7;
+import eu.daproject.evl.examples.example8.Example8;
+import eu.daproject.evl.examples.example9.Example9;
+import eu.daproject.evl.whatisevl.Collider;
 
 public class Examples {
 
