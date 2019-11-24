@@ -45,7 +45,7 @@ To build complex software, *Design Patterns* emerged on the basis of the simple 
 With EVL, *Design Patterns* can be reviewed in the light of multimethods.
 
 Multimethods separate data from process and code using the *Visitor* pattern can be replaced with a multimethod.
-The *State* pattern can also be reviewed by simply adding a state object to the parameter of the dispatched methods.
+The *State* pattern can also be reviewed by simply adding a state object to the parameters of the dispatched methods.
 
 However defining multimethods can lead to different problems:
 

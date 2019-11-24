@@ -17,7 +17,7 @@ public class Main {
 		System.out.println(obj.getClass().getName() + " -> " + res);
 	}
 	
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) {
 		
 		I a = new A();
 		I b = new B();
@@ -41,8 +41,13 @@ public class Main {
 			}
 		});
 		
-		print(foo, a); // 3
-		print(foo, b); // 9
-		print(foo, c); // 9
+		try {
+			print(foo, a); // 3
+			print(foo, b); // 9
+			print(foo, c); // 9
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 }
