@@ -27,7 +27,7 @@ public class Main {
 				if (s.equals("multiply")) {
 					return x.id * y.fd;
 				}
-				return 0.0f;
+				return 0;
 			}
 		});
 		
@@ -40,5 +40,8 @@ public class Main {
 		catch (Throwable e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("foo2 cache:");
+		foo2.printCache();
 	}
 }
