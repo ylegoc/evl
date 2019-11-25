@@ -40,8 +40,5 @@ public class Main {
 		catch (Throwable e) {
 			e.printStackTrace();
 		}
-		
-		System.out.println("foo2 cache:");
-		foo2.printCache();
 	}
 }
