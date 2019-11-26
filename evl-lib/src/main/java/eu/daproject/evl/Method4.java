@@ -42,7 +42,7 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	}
 	
 	@Override
-	public void resetCache() {
+	public void clearsCache() {
 		cache.clear();
 	}
 	

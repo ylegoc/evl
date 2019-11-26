@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.daproject.evl</groupId>
 	<artifactId>evl</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>EVL</name>
 	<description>Java library that implements generalized multimethods.</description>
 	<url>https://github.com/ylegoc/evl</url>

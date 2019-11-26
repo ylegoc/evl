@@ -24,6 +24,7 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
+import eu.daproject.evl.InvokableMethod;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Priority;
@@ -135,6 +136,21 @@ public class BasicTest {
 
 		// Highest priority wins.
 		int res = m2.invoke(e, e);
+		assertEquals(res, 2);
+		
+		Method2<Integer> m3 = new Method2<Integer>()
+				.comparator(new SymmetricComparator())
+				.cache(new HashMap<ClassTuple, MethodHandle>())
+				.add(foo, "foo", IA.class, IA.class)
+				.add(foo, "foo", D.class, IA.class)
+				.add(foo, "foo", IA.class, D.class);
+
+		m3.setData(Priority.valueOf(3), IA.class, IA.class);
+		m3.setData(Priority.valueOf(2), D.class, IA.class);
+		m3.setData(Priority.valueOf(1), IA.class, D.class);
+		
+		// Highest priority wins.
+		res = m2.invoke(e, e);
 		assertEquals(res, 2);
 	}
 	

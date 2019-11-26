@@ -20,9 +20,9 @@ import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
@@ -45,7 +45,7 @@ public abstract class MultiMethod<ReturnType> {
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
 	protected MethodComparator methodComparator;
-	private ArrayList<InvokableMethod> methods = new ArrayList<InvokableMethod>();
+	private HashMap<ClassTuple, InvokableMethod> methods = new HashMap<ClassTuple, InvokableMethod>();
 	private Class<?>[] nonVirtualParameterTypes;
 	
 	/**
@@ -67,17 +67,28 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
-	 * Returns the list of added methods.
-	 * @return the list of methods
+	 * Returns the collection of added methods.
+	 * @return the collection of methods
 	 */
-	public List<InvokableMethod> getMethods() {
-		return methods;
+	public Collection<InvokableMethod> getMethods() {
+		return methods.values();
 	}
 	
 	/**
+	 * Sets the associated data e.g. a {@link Priority} object of the method.
 	 * Resets the cache.
+	 * @param data the associated data
+	 * @param tuple the tuple of types
 	 */
-	public abstract void resetCache();
+	public void setData(Comparable<?> data, Class<?>... tuple) {
+		clearsCache();
+		methods.get(new ClassTuple(tuple)).setData(data);
+	}
+	
+	/**
+	 * Clears the cache.
+	 */
+	protected abstract void clearsCache();
 	
 	/**
 	 * Sets the method comparator.
@@ -152,13 +163,13 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		// The cache must be cleared.
-		resetCache();
+		clearsCache();
 
 		// Create the class tuple and add the new method.
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
 		InvokableMethod newMethod = new InvokableMethod(tuple, methodHandle, object);
 		newMethod.setData(data);
-		methods.add(newMethod);
+		methods.put(tuple, newMethod);
 		
 		return newMethod;
 	}
@@ -176,7 +187,7 @@ public abstract class MultiMethod<ReturnType> {
 	protected void addMethodFamily(MethodHandles.Lookup lookup, Class<?> classInstance, String methodName, Object object) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods) {
+		for (InvokableMethod m : methods.values()) {
 			m.setLastAdded(false);
 		}
 		
@@ -203,7 +214,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods) {
+		for (InvokableMethod m : methods.values()) {
 			m.setLastAdded(false);
 		}
 		
@@ -232,7 +243,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Object object, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods) {
+		for (InvokableMethod m : methods.values()) {
 			m.setLastAdded(false);
 		}
 		
@@ -256,7 +267,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
-		for (InvokableMethod m : methods) {
+		for (InvokableMethod m : methods.values()) {
 			if (m.isLastAdded()) {
 				m.setData(data);
 			}
@@ -395,7 +406,7 @@ public abstract class MultiMethod<ReturnType> {
 		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();
 		
 		// Iterate the list of added methods.
-		for (InvokableMethod method : methods) {
+		for (InvokableMethod method : methods.values()) {
 			
 			// Calculate the compatible method with its distance tuple.
 			MethodItem item = calculateCompatibleMethod(superClassSet, method);

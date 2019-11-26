@@ -33,12 +33,18 @@ public class SymmetricComparator extends MethodComparator {
 		int comparison = ProductDistanceComparator.compare(m1.getDistanceTuple(), m2.getDistanceTuple());
 		if (comparison == 0) {
 			Priority priority1 = null;
-			if (m1.getData() instanceof Priority) {
+			if (m1.getData() == null) {
+				priority1 = Priority.valueOf(0);
+			}
+			else if (m1.getData() instanceof Priority) {
 				priority1 = (Priority)m1.getData();
 			}
 			
 			Priority priority2 = null;
-			if (m2.getData() instanceof Priority) {
+			if (m2.getData() == null) {
+				priority2 = Priority.valueOf(0);
+			}
+			else if (m2.getData() instanceof Priority) {
 				priority2 = (Priority)m2.getData();
 			}
 			
