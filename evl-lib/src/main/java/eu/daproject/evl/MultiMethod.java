@@ -81,14 +81,14 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param tuple the tuple of types
 	 */
 	public void setData(Comparable<?> data, Class<?>... tuple) {
-		clearsCache();
+		clearCache();
 		methods.get(new ClassTuple(tuple)).setData(data);
 	}
 	
 	/**
 	 * Clears the cache.
 	 */
-	protected abstract void clearsCache();
+	public abstract void clearCache();
 	
 	/**
 	 * Sets the method comparator.
@@ -163,7 +163,7 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		// The cache must be cleared.
-		clearsCache();
+		clearCache();
 
 		// Create the class tuple and add the new method.
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
