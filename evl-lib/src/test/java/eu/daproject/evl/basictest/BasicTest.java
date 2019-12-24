@@ -154,4 +154,35 @@ public class BasicTest {
 		assertEquals(res, 2);
 	}
 	
+	@Test
+	public void test5() throws Throwable {
+		
+		Method1<Integer> m = new Method1<Integer>();
+		
+		E e = new E();
+		
+		boolean error = false;
+		try {
+			m.invoke(e);
+		}
+		catch (InvocationException ex) {
+			System.out.println("invocation error: " + ex.getMessage());
+			error = true;
+		}
+		
+		System.out.println("cache:");
+		m.printCache();
+		
+		try {
+			m.invoke(e);
+		}
+		catch (InvocationException ex) {
+			System.out.println("invocation error: " + ex.getMessage());
+			error = true;
+		}
+		
+		
+		assertTrue(error);
+	}
+	
 }

@@ -25,10 +25,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import eu.daproject.evl.exception.AmbiguousMethodException;
+import eu.daproject.evl.exception.AmbiguousMethodExceptionThrower;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
-import eu.daproject.evl.exception.MethodInsertionException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
+import eu.daproject.evl.exception.NoMatchingMethodExceptionThrower;
+import eu.daproject.evl.exception.UnexpectedException;
 import eu.daproject.evl.lookup.CasesLookup;
 import eu.daproject.evl.util.ClassTuple;
 import eu.daproject.evl.util.SuperClass;
@@ -107,7 +109,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param object the caller
 	 * @param data the data
 	 * @return the inserted method
-	 * @throws MethodInsertionException
+	 * @throws UnexpectedException
 	 * @throws BadNumberOfVirtualParameterTypesException
 	 * @throws BadNonVirtualParameterTypesException
 	 */
@@ -129,7 +131,7 @@ public abstract class MultiMethod<ReturnType> {
 			}
 			catch (ReflectiveOperationException e) {
 				// The method is not found, so we throw the exception.
-				throw new MethodInsertionException(e.getMessage());
+				throw new UnexpectedException(e.getMessage());
 			}
 		}
 		
@@ -180,7 +182,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param classInstance the class instance
 	 * @param methodName the method name, all the overloaded methods with this name are added
 	 * @param object the caller
-	 * @throws MethodInsertionException
+	 * @throws UnexpectedException
 	 * @throws BadNumberOfVirtualParameterTypesException
 	 * @throws BadNonVirtualParameterTypesException
 	 */
@@ -207,7 +209,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param methodName the name of the method
 	 * @param parameterTypes the parameter types of the wanted method
 	 * @return this instance
-	 * @throws MethodInsertionException if the method cannot be found
+	 * @throws UnexpectedException if the method cannot be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -224,7 +226,7 @@ public abstract class MultiMethod<ReturnType> {
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodInsertionException(e.getMessage());
+			throw new UnexpectedException(e.getMessage());
 		}
 		
 		return this;
@@ -236,7 +238,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param methodName the name of the method
 	 * @param parameterTypes the parameter types of the wanted method
 	 * @return this instance
-	 * @throws MethodInsertionException if the method cannot be found
+	 * @throws UnexpectedException if the method cannot be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -253,7 +255,7 @@ public abstract class MultiMethod<ReturnType> {
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodInsertionException(e.getMessage());
+			throw new UnexpectedException(e.getMessage());
 		}
 		
 		return this;
@@ -281,7 +283,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param classInstance the class instance
 	 * @param methodName the method name
 	 * @return this instance
-	 * @throws MethodInsertionException if any method can be found
+	 * @throws UnexpectedException if any method can be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -297,7 +299,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param object the caller
 	 * @param methodName the method name
 	 * @return this instance
-	 * @throws MethodInsertionException if any method can be found
+	 * @throws UnexpectedException if any method can be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -322,7 +324,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * Adds the family of methods with the name <code>match</code> defined in the anonymous class deriving <code>Cases</code>.
 	 * @param cases the anonymous class defining the methods
 	 * @return this instance
-	 * @throws MethodInsertionException if a method cannot be inserted
+	 * @throws UnexpectedException if a method cannot be inserted
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -337,7 +339,7 @@ public abstract class MultiMethod<ReturnType> {
 			addMethodFamily(lookup, cases.getClass(), "match", cases);
 			
 		} catch (IllegalAccessException e) {
-			throw new MethodInsertionException(e.getMessage());
+			throw new UnexpectedException(e.getMessage());
 		}
 		
 		return this;
@@ -425,7 +427,11 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// No compatible method.
 		if (compatibleMethodItems.isEmpty()) {
-			throw new NoMatchingMethodException(tuple);
+			// Create the thrower and return the method handle to be cached.
+			NoMatchingMethodExceptionThrower thrower = new NoMatchingMethodExceptionThrower(lookup, tuple, "There is no compatible method");
+			
+			// Return the invokable method.
+			return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
 		}
 
 		// There is at least 1 item at this point.
@@ -465,8 +471,12 @@ public abstract class MultiMethod<ReturnType> {
 			while (i.hasNext()) {
 				MethodItem item = i.next();
 				if (item != minItem && methodComparator.compare(minItem, item) != -1) {
-					// minItem is not the real minimum
-					throw new NoMatchingMethodException(tuple);
+					// minItem is not the real minimum.
+					// Create the thrower and return the method handle to be cached.
+					NoMatchingMethodExceptionThrower thrower = new NoMatchingMethodExceptionThrower(lookup, tuple, "There is no minimum method, the comparator is not consistant");
+					
+					// Return the invokable method.
+					return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
 				}
 			}
 			
@@ -479,8 +489,12 @@ public abstract class MultiMethod<ReturnType> {
 		for (MethodItem item : minMethodItems) {
 			possibleMethods += "\t" + item.getMethod() + "\n";
 		}
+
+		// Create the thrower and return the method handle to be cached.
+		AmbiguousMethodExceptionThrower thrower = new AmbiguousMethodExceptionThrower(lookup, tuple, possibleMethods);
 		
-		throw new AmbiguousMethodException(tuple, possibleMethods);
+		// Return the invokable method.
+		return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
 	}
 
 	@Override

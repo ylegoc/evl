@@ -42,7 +42,7 @@ public class Example8 {
 			System.out.println(method.invoke(b1, b2));
 		}
 		catch (InvocationException e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		
 		ExtendedAgent agent2 = new ExtendedAgent();

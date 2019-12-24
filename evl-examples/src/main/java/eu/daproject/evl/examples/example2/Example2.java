@@ -60,7 +60,7 @@ public class Example2 {
 			test.invoke(new String("string"), new Integer(2));
 		}
 		catch (Throwable e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 }

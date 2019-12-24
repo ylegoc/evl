@@ -27,10 +27,10 @@ public class AmbiguousMethodException extends InvocationException {
 	
 	/**
 	 * Constructs an exception by defining the message from the tuple and the possible methods.
-	 * @param tuple the tuple
+	 * @param classTuple the tuple
 	 * @param possibleMethods the string of possible methods
 	 */
-	public AmbiguousMethodException(ClassTuple tuple, String possibleMethods) {
-		super("Ambiguity for class tuple " + tuple + ", possible match methods are\n" + possibleMethods);
+	public AmbiguousMethodException(ClassTuple classTuple, String possibleMethods) {
+		super("Ambiguity for class tuple " + classTuple + ", possible matching methods are\n" + possibleMethods);
 	}
 }

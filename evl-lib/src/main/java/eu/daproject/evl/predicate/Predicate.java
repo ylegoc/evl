@@ -18,7 +18,7 @@ package eu.daproject.evl.predicate;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import eu.daproject.evl.exception.MethodInsertionException;
+import eu.daproject.evl.exception.UnexpectedException;
 
 /**
  * Class defining a predicate for the predicate multimethods.
@@ -51,7 +51,7 @@ public class Predicate implements Comparable<Predicate> {
 	 * @param object the caller
 	 * @param methodName the method name
 	 * @param parameterTypes the parameter types
-	 * @throws MethodInsertionException if the method cannot be found
+	 * @throws UnexpectedException if the method cannot be found
 	 */
 	public Predicate(Object object, String methodName, Class<?>... parameterTypes) {
 		
@@ -62,7 +62,7 @@ public class Predicate implements Comparable<Predicate> {
 			this.object = object;	
 		}
 		catch (NoSuchMethodException | SecurityException e) {
-			throw new MethodInsertionException(e.getMessage());
+			throw new UnexpectedException(e.getMessage());
 		}
 	}
 	

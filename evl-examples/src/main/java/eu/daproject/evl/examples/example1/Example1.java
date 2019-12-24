@@ -60,7 +60,7 @@ public class Example1 {
 			test.invoke(new Float(13.1f));
 		}
 		catch (Throwable e) {
-			System.out.println("Error: " + e.getMessage());
+			System.out.println(e.getMessage());
 		}
 	}
 }

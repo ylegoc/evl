@@ -27,9 +27,9 @@ public class NoMatchingMethodException extends InvocationException {
 	
 	/**
 	 * Constructs an exception with the class tuple.
-	 * @param tuple the class tuple
+	 * @param classTuple the class tuple
 	 */
-	public NoMatchingMethodException(ClassTuple tuple) {
-		super("No matching method for " + tuple);
+	public NoMatchingMethodException(ClassTuple classTuple, String message) {
+		super("No matching method for " + classTuple + ": " + message);
 	}
 }
