@@ -52,12 +52,12 @@ public class Example1 {
 			}
 		});
 		
-		test.invoke(new Integer(12));
+		test.invoke(Integer.valueOf(12));
 		test.invoke(new String("beautiful"));
 		test.invoke(new B(5));
 		
 		try {
-			test.invoke(new Float(13.1f));
+			test.invoke(Float.valueOf(13.1f));
 		}
 		catch (Throwable e) {
 			System.out.println(e.getMessage());
