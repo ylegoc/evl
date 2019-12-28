@@ -106,6 +106,14 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Gets the method comparator.
+	 * @return the method comparator
+	 */
+	public MethodComparator getComparator() {
+		return methodComparator;
+	}
+	
+	/**
 	 * Sets the non virtual parameter types. If not called, the non-virtual parameter types of the first added method are set.
 	 * If the non-virtual parameter types are already set, the call has no effect.
 	 * @param types the non-virtual parameter types
@@ -119,6 +127,14 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Gets the non-virtual parameter types.
+	 * @return the array of non-virtual parameter types
+	 */
+	public Class<?>[] getNonVirtualParameterTypes() {
+		return nonVirtualParameterTypes;
+	}
+	
+	/**
 	 * Sets the return type. If not called, the return type of the first added method is set.
 	 * If the return type is already set, the call has no effect.
 	 * @param type the return type
@@ -129,6 +145,14 @@ public abstract class MultiMethod<ReturnType> {
 			this.returnType = type;
 		}
 		return this;
+	}
+
+	/**
+	 * Gets the return type.
+	 * @return the return type
+	 */
+	public Class<?> getReturnType() {
+		return returnType;
 	}
 	
 	/**

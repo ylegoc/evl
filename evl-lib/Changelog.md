@@ -5,6 +5,7 @@
 * Method resetCache() renamed into clearCache().
 * Method nonVirtualParameterTypes() added.
 * Method returnType() added.
+* Methods getComparator(), getReturnType(), getNonVirtualParameterTypes() added.
 
 1.0.1
 -----
