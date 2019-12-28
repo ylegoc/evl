@@ -2,7 +2,9 @@
 -----
 
 * NoMatchingMethodException and AmbiguousMethodException are now thrown by a cached method.
-* resetCache() renamed into clearCache().
+* Method resetCache() renamed into clearCache().
+* Method nonVirtualParameterTypes() added.
+* Method returnType() added.
 
 1.0.1
 -----

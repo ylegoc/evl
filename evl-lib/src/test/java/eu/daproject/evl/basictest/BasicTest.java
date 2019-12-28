@@ -24,11 +24,12 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
-import eu.daproject.evl.InvokableMethod;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Priority;
 import eu.daproject.evl.SymmetricComparator;
+import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
+import eu.daproject.evl.exception.BadReturnTypeException;
 import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.util.ClassTuple;
 
@@ -181,8 +182,62 @@ public class BasicTest {
 			error = true;
 		}
 		
-		
 		assertTrue(error);
 	}
 	
+	@Test
+	public void test6() throws Throwable {
+		
+		Goo goo = new Goo();
+		
+		boolean error = false;
+		
+		Method1<Integer> m = new Method1<Integer>()
+				.nonVirtualParameterTypes(int.class)
+				.returnType(int.class)
+				.add(goo, "goo", IA.class, int.class)
+				.add(goo, "goo", D.class, int.class);
+		
+		try {
+			m.add(goo, "goo", IC.class, float.class);
+		}
+		catch (BadNonVirtualParameterTypesException e) {
+			error = true;
+		}
+				
+		assertTrue(error);
+		
+		try {
+			m.add(goo, "goo", IB.class, int.class);
+		}
+		catch (BadReturnTypeException e) {
+			error = true;
+		}
+
+		assertTrue(error);
+	}
+	
+	@Test
+	public void test7() throws Throwable {
+		
+		Hoo hoo = new Hoo();
+		
+		boolean error = false;
+		
+		Method1<IA> m = new Method1<IA>()
+				.nonVirtualParameterTypes(int.class)
+				.returnType(IA.class);
+		
+		m.add(hoo, "hoo", IC.class, int.class);
+		m.add(hoo, "hoo", E.class, int.class);
+		
+		try {
+			m.add(hoo, "hoo", D.class, int.class);	
+		}
+		catch (BadReturnTypeException e) {
+			error = true;
+		}
+
+		assertTrue(error);
+	}
 }

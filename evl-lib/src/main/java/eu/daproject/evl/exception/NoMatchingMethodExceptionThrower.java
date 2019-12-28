@@ -21,6 +21,7 @@ public class NoMatchingMethodExceptionThrower {
 	 * Constructs the exception thrower.
 	 * @param lookup the method handle lookup
 	 * @param classTuple the class tuple
+	 * @param message the message
 	 */
 	public NoMatchingMethodExceptionThrower(MethodHandles.Lookup lookup, ClassTuple classTuple, String message) {
 		this.lookup = lookup;
@@ -31,7 +32,7 @@ public class NoMatchingMethodExceptionThrower {
 	/**
 	 * Methods inserted in the cache that throws the {@link NoMatchingMethodException} exception.
 	 * @param objects any objects
-	 * @throws Throwable
+	 * @throws NoMatchingMethodException if there is no matching method
 	 */
 	public void invoke(Object...objects) throws NoMatchingMethodException {
 		throw new NoMatchingMethodException(classTuple, message);

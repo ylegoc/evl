@@ -18,6 +18,7 @@ package eu.daproject.evl.predicate;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import eu.daproject.evl.exception.MethodAddException;
 import eu.daproject.evl.exception.UnexpectedException;
 
 /**
@@ -62,7 +63,7 @@ public class Predicate implements Comparable<Predicate> {
 			this.object = object;	
 		}
 		catch (NoSuchMethodException | SecurityException e) {
-			throw new UnexpectedException(e.getMessage());
+			throw new MethodAddException(e.getMessage());
 		}
 	}
 	

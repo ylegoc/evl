@@ -16,7 +16,7 @@
 package eu.daproject.evl.exception;
 
 /**
- * Exception for bad number of non virtual parameters when inserting a new method.
+ * Exception for bad number of virtual parameters when adding a new method.
  *
  */
 public class BadNumberOfVirtualParameterTypesException extends RuntimeException {

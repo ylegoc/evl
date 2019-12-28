@@ -16,17 +16,18 @@
 package eu.daproject.evl.exception;
 
 /**
- * Exception for bad non-virtual parameters when inserting a new method.
+ * Exception for methods for which it is not possible to obtain the method handle.
  *
  */
-public class BadNonVirtualParameterTypesException extends RuntimeException {
+public class MethodAddException extends RuntimeException {
 
-	private static final long serialVersionUID = 3L;
+	private static final long serialVersionUID = 8L;
 
 	/**
-	 * Constructs an exception with predefined message.
+	 * Constructs an exception with the message.
+	 * @param message the message
 	 */
-	public BadNonVirtualParameterTypesException() {
-		super("Bad non-virtual parameter types");
+	public MethodAddException(String message) {
+		super(message);
 	}
 }

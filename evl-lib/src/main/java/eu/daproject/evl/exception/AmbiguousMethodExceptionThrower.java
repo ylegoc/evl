@@ -21,6 +21,7 @@ public class AmbiguousMethodExceptionThrower {
 	 * Constructs the exception thrower.
 	 * @param lookup the method handle lookup
 	 * @param classTuple the class tuple
+	 * @param possibleMethods the possible methods string
 	 */
 	public AmbiguousMethodExceptionThrower(MethodHandles.Lookup lookup, ClassTuple classTuple, String possibleMethods) {
 		this.lookup = lookup;
@@ -31,7 +32,7 @@ public class AmbiguousMethodExceptionThrower {
 	/**
 	 * Methods inserted in the cache that throws the {@link AmbiguousMethodException} exception.
 	 * @param objects any objects
-	 * @throws AmbiguousMethodException
+	 * @throws AmbiguousMethodException if there are more than one minimum matching method
 	 */
 	public void invoke(Object...objects) throws AmbiguousMethodException {
 		throw new AmbiguousMethodException(classTuple, possibleMethods);

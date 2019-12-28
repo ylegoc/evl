@@ -107,6 +107,16 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method1<ReturnType>)super.comparator(methodComparator);
 	}
 	
+	@Override
+	public Method1<ReturnType> nonVirtualParameterTypes(Class<?>...types) {
+		return (Method1<ReturnType>)super.nonVirtualParameterTypes(types);
+	}
+	
+	@Override
+	public Method1<ReturnType> returnType(Class<?> type) {
+		return (Method1<ReturnType>)super.returnType(type);
+	}
+	
 	/**
 	 * Sets a cache. This method has to be called if the standard bounded or unbounded cache are not suitable.
 	 * @param cacheMap the new cache map

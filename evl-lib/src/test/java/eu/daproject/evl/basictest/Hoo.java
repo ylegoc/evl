@@ -13,20 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.exception;
+package eu.daproject.evl.basictest;
 
-/**
- * Exception for bad non-virtual parameters when inserting a new method.
- *
- */
-public class BadNonVirtualParameterTypesException extends RuntimeException {
+public class Hoo {
 
-	private static final long serialVersionUID = 3L;
-
-	/**
-	 * Constructs an exception with predefined message.
-	 */
-	public BadNonVirtualParameterTypesException() {
-		super("Bad non-virtual parameter types");
+	public IC hoo(IC b, int i) {
+		return null;
+	}
+	
+	public D hoo(D d, int i) {
+		return null;
+	}
+	
+	public E hoo(E e, int i) {
+		return null;
 	}
 }

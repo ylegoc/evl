@@ -16,7 +16,7 @@
 package eu.daproject.evl.exception;
 
 /**
- * Exception for methods for which it is not possible to obtain the method handle.
+ * Unexpected exception class. Read the message.
  *
  */
 public class UnexpectedException extends RuntimeException {
