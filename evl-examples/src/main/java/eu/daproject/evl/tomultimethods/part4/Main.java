@@ -22,7 +22,7 @@ public class Main {
 		// first part
 		{
 			Method2<Float> foo2 = new Method2<Float>()
-					.comparator(new SymmetricComparator())
+					.symmetricComparator()
 					.add(new Cases() {
 				
 				float match(A x, A y, String s) {

@@ -108,6 +108,11 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	}
 	
 	@Override
+	public Method1<ReturnType> symmetricComparator() {
+		return (Method1<ReturnType>)super.symmetricComparator();
+	}
+	
+	@Override
 	public Method1<ReturnType> nonVirtualParameterTypes(Class<?>...types) {
 		return (Method1<ReturnType>)super.nonVirtualParameterTypes(types);
 	}

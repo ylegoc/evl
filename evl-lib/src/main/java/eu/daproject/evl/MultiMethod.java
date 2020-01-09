@@ -106,6 +106,15 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Sets the symmetric method comparator.
+	 * @return this instance
+	 */
+	public MultiMethod<ReturnType> symmetricComparator() {
+		this.methodComparator = new SymmetricComparator();
+		return this;
+	}
+	
+	/**
 	 * Gets the method comparator.
 	 * @return the method comparator
 	 */
