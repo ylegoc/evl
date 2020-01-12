@@ -1,4 +1,4 @@
-package eu.daproject.evl.tomultimethods.part6;
+package eu.daproject.evl.features.part1;
 
 public class A implements I {
 
