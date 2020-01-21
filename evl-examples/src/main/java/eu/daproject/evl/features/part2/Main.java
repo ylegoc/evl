@@ -32,7 +32,7 @@ public class Main {
 			System.err.println(e);
 		}
 		
-		method = new Method1<Integer>().add(new Cases() {
+		method.add(new Cases() {
 			
 			int match(C c) {
 				return c.getA() + (int)c.getB();
