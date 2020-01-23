@@ -6,8 +6,10 @@ public class BadReturnTypeException extends RuntimeException {
 
 	/**
 	 * Constructs an exception with predefined message.
+	 * @param type the passed type
+	 * @param expectedType the expected type
 	 */
-	public BadReturnTypeException() {
-		super("Bad return type");
+	public BadReturnTypeException(Class<?> expectedType, Class<?> type) {
+		super("Bad return type: " + expectedType + " is not assignable from " + type);
 	}
 }

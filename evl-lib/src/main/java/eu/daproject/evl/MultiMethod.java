@@ -232,7 +232,7 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		else {
 			if (!returnType.isAssignableFrom(method.getReturnType())) {
-				throw new BadReturnTypeException();
+				throw new BadReturnTypeException(returnType, method.getReturnType());
 			}
 		}
 		
