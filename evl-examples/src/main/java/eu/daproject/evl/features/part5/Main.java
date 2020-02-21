@@ -13,22 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.exception;
+package eu.daproject.evl.features.part5;
 
 /**
- * Exception for bad non-virtual parameters when inserting a new method.
+ * An example of different visibilities and extensibility.
  *
  */
-public class BadNonVirtualParameterTypesException extends RuntimeException {
-
-	private static final long serialVersionUID = 3L;
-
-	/**
-	 * Constructs an exception with predefined message.
-	 * @param newParameters the parameters of the method added
-	 * @param parameters the parameters defined
-	 */
-	public BadNonVirtualParameterTypesException(String parameters, String newParameters) {
-		super("Bad non-virtual parameter types: expecting " + parameters + ", got " + newParameters);
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		try {
+			Foo.method().invoke(1);
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 }

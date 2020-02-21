@@ -13,22 +13,43 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.exception;
+package eu.daproject.evl.features.part4;
+
+import eu.daproject.evl.Cases;
+import eu.daproject.evl.Switch;
 
 /**
- * Exception for bad non-virtual parameters when inserting a new method.
+ * The simplest example with the Switch class.
  *
  */
-public class BadNonVirtualParameterTypesException extends RuntimeException {
-
-	private static final long serialVersionUID = 3L;
-
-	/**
-	 * Constructs an exception with predefined message.
-	 * @param newParameters the parameters of the method added
-	 * @param parameters the parameters defined
-	 */
-	public BadNonVirtualParameterTypesException(String parameters, String newParameters) {
-		super("Bad non-virtual parameter types: expecting " + parameters + ", got " + newParameters);
+public class Main {
+	
+	public static void main(String[] args) {
+		
+		Switch test = Switch.with(new Cases() {
+				
+			void match(Integer i, int v) {
+				System.out.println("Integer " + (i + v));
+			}
+			
+			void match(String s, int v) {
+				System.out.println("String " + s + v);
+			}
+			
+			void match(A a, int v) {
+				System.out.println("A " + (a.a + v));
+			}
+		});
+		
+		try {
+			test.invoke(Integer.valueOf(12), 3);
+			test.invoke(new String("beautiful"), 11);
+			test.invoke(new B(5), 4);
+		
+			test.invoke(Float.valueOf(13.1f), 5);
+		}
+		catch (Throwable e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

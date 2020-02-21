@@ -11,7 +11,7 @@ public class Main {
 		I b = new B();
 				
 		Method1<RI> method = new Method1<RI>()
-				//.returnType(RI.class)
+				.returnType(RI.class)
 				.add(new Cases() {
 			
 			RA match(A a) {
@@ -32,5 +32,42 @@ public class Main {
 			System.err.println(e);
 		}
 		
+		
+		Method1<Integer> print = new Method1<Integer>()
+				.add(new Cases() {
+			
+			int match(RA a) {
+				return 3;  
+			}
+			
+			int match(RB b) {
+				return b.value;  
+			}
+			
+		});
+		
+		try {
+			System.out.println("A: " + print.invoke(method.invoke(a)));
+			System.out.println("B: " + print.invoke(method.invoke(b)));
+		}
+		catch (Throwable e) {
+			System.err.println(e);
+		}
+		
+		Method1<RI> method2 = new Method1<RI>()
+				.returnType(RI.class)
+				.nonVirtualParameterTypes(int.class, String.class);
+		
+		method2.add(new Cases() {
+			
+			RA match(A a, int i, String name) {
+				return new RA();
+			}
+			
+			RB match(B b, int i, String name) {
+				return new RB(b.id + i + name.length());  
+			}
+			
+		});
 	}
 }

@@ -222,7 +222,7 @@ public abstract class MultiMethod<ReturnType> {
 		else {
 			// Check the equality with the non virtual parameter types of the first inserted method.
 			if (!Arrays.equals(nonVirtualParameterTypes, newNonVirtualParameterTypes)) {
-				throw new BadNonVirtualParameterTypesException();
+				throw new BadNonVirtualParameterTypesException(new ClassTuple(nonVirtualParameterTypes).toString(), new ClassTuple(newNonVirtualParameterTypes).toString());
 			}
 		}
 		

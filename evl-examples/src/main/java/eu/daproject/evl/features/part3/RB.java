@@ -2,7 +2,7 @@ package eu.daproject.evl.features.part3;
 
 public class RB implements RI {
 
-	private int value;
+	public int value;
 	
 	public RB(int value) {
 		this.value = value;
