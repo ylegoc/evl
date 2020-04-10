@@ -25,7 +25,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		Print.method.add(new Cases() {
+		Print.m().add(new Cases() {
 			
 			String match(A a) {
 				return "{ A a:" + a.a + " }";
@@ -40,24 +40,24 @@ public class Main {
 		B b = new B(3);
 		
 		try {
-			System.out.println(Print.method().invoke(a));
-			System.out.println(Print.method().invoke(b));
+			System.out.println(Print.m().invoke(a));
+			System.out.println(Print.m().invoke(b));
 		}
 		catch (Throwable e) {
 			e.printStackTrace();
 		}
 		
-		C c = new C(5, b);
-		
-		Print.method.add(new Cases() {
+		Print.m().add(new Cases() {
 			
 			String match(C c) throws Throwable { // Necessary
-				return "{ C c:" + c.c + " a:" + Print.method().invoke(c.a) + " }";
+				return "{ C c:" + c.c + " a:" + Print.m().invoke(c.a) + " }";
 			}
 		});
 		
+		C c = new C(5, b);
+		
 		try {
-			System.out.println(Print.method().invoke(c));
+			System.out.println(Print.m().invoke(c));
 		}
 		catch (Throwable e) {
 			e.printStackTrace();

@@ -4,9 +4,10 @@ import eu.daproject.evl.Method1;
 
 public class Print {
 
-	public static Method1<String> method = new Method1<String>();
+	private static Method1<String> method = new Method1<String>();
 	
-	public static Method1<String> method() {
+	public static Method1<String> m() {
 		return method;
 	}
+	
 }
