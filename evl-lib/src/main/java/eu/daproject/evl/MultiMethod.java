@@ -165,6 +165,18 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Gives access to the private and protected methods of the class.
+	 * @param classInstance the class instance
+	 */
+	public void access(Class<?> classInstance) {
+		try {
+			lookup = MethodHandles.privateLookupIn(classInstance, lookup);
+		}
+		catch (IllegalAccessException e) {
+		}
+	}
+	
+	/**
 	 * Adds a method with the caller and the associated lookup and some optional data.
 	 * @param lookup the lookup
 	 * @param method the method
@@ -193,7 +205,8 @@ public abstract class MultiMethod<ReturnType> {
 			}
 			catch (ReflectiveOperationException e) {
 				// The method is not found, so we throw the exception.
-				throw new MethodAddException(e.getMessage());
+				//throw new MethodAddException(e.getMessage());
+				return null;
 			}
 		}
 		
@@ -265,12 +278,25 @@ public abstract class MultiMethod<ReturnType> {
 			m.setLastAdded(false);
 		}
 		
+		// Get the list of classes.
+		ArrayList<Class<?>> classInstances = new ArrayList<>();
+		Class<?> superClass = classInstance;
+
+		while (superClass != null) {
+			classInstances.add(superClass);
+			superClass = superClass.getSuperclass();
+		}
+		
 		// Add all the methods.
-		java.lang.reflect.Method[] declaredMethods = classInstance.getDeclaredMethods();
-		for (java.lang.reflect.Method m : declaredMethods) {
-			if (m.getName().equals(methodName)) {
-				InvokableMethod newMethod = addMethod(lookup, m, object, null);
-				newMethod.setLastAdded(true);
+		for (Class<?> c : classInstances) {
+			java.lang.reflect.Method[] declaredMethods = c.getDeclaredMethods();
+			for (java.lang.reflect.Method m : declaredMethods) {
+				if (m.getName().equals(methodName)) {
+					InvokableMethod newMethod = addMethod(lookup, m, object, null);
+					if (newMethod != null) {
+						newMethod.setLastAdded(true);
+					}
+				}
 			}
 		}
 	}
