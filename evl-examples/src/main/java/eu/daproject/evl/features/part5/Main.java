@@ -64,7 +64,8 @@ public class Main {
 		}
 		
 		ExtendedClass e = new ExtendedClass();
-		
+
+		System.out.println("e.foo on a: " + e.foo(a));
 		System.out.println("e.foo on b: " + e.foo(b));
 		
 		ExtendedClass2 e2 = new ExtendedClass2();

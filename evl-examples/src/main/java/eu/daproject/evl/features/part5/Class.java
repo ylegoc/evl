@@ -1,6 +1,5 @@
 package eu.daproject.evl.features.part5;
 
-import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method1;
 
 public class Class {
@@ -9,12 +8,12 @@ public class Class {
 	
 	public Class() {
 		
-		foo.add(new Cases() {
-			
-			int match(A a) {
-				return a.a;
-			}
-		});
+		foo.access(Class.class);
+		foo.add(this, "foo_");
+	}
+	
+	protected int foo_(A a) {
+		return a.a;
 	}
 	
 	public int foo(A a) {
