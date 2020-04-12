@@ -15,6 +15,10 @@
  ******************************************************************************/
 package eu.daproject.evl.examples.example1;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Switch;
 
@@ -24,21 +28,10 @@ import eu.daproject.evl.Switch;
  */
 public class Example1 {
 
-	static class A {
-		public int a = 2;
-	}
-	
-	static class B extends A {
-		
-		public B(int a) {
-			this.a = a;
-		}
-	}
-	
 	public static void run() throws Throwable {
 		
 		Switch test = Switch.with(new Cases() {
-				
+			
 			void match(Integer i) {
 				System.out.println("I am the integer " + i);
 			}
@@ -47,20 +40,22 @@ public class Example1 {
 				System.out.println("I am the string " + s);
 			}
 			
-			void match(A a) {
-				System.out.println("I am an A with a = " + a.a);
+			void match(Collection<?> c) {
+				System.out.println("I am a collection of size " + c.size());
 			}
 		});
 		
-		test.invoke(Integer.valueOf(12));
+		test.invoke(12);
 		test.invoke(new String("beautiful"));
-		test.invoke(new B(5));
-		
+		test.invoke(Arrays.asList("what", "is", "a", "list", "?"));
+	
 		try {
-			test.invoke(Float.valueOf(13.1f));
+			test.invoke(13.1f);
 		}
 		catch (Throwable e) {
 			System.out.println(e.getMessage());
 		}
+		
+
 	}
 }
