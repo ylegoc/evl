@@ -169,6 +169,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param classInstance the class instance
 	 */
 	public void access(Class<?> classInstance) {
+		// This call could be done automatically in add but that would it change lookup too often?
 		try {
 			lookup = MethodHandles.privateLookupIn(classInstance, lookup);
 		}
