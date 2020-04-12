@@ -1,11 +1,10 @@
 package eu.daproject.evl.features.part5;
 
-import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
 
 public class Class2 {
 
-	protected static Method2<Integer> foo = new Method2<Integer>();
+	protected Method2<Integer> m = new Method2<Integer>();
 	
 	protected static class Operator {};
 	protected static class Add extends Operator {};
@@ -21,28 +20,21 @@ public class Class2 {
 		operator = new Multiply();
 	}
 	
-	public Class2() {
-		
-		foo.add(new Cases() {
-			
-			int match(Add op, A a) {
-				return a.a + 2;
-			}
-			
-			int match(Multiply op, A a) {
-				return a.a * 2;
-			}
-		});
+	protected int fooMatch(Add op, A a) {
+		return a.a + 2;
 	}
 	
-	public int foo(A a) {
+	protected int fooMatch(Multiply op, A a) {
+		return a.a * 2;
+	}
+	
+	public Class2() {
 		
-		try {
-			return foo.invoke(operator, a);
-		}
-		catch (Throwable e) {
-			// Cannot happen.
-			return 0;
-		}
+		m.access(Class2.class);
+		m.add(this, "fooMatch");
+	}
+	
+	public int foo(A a) throws Throwable {
+		return m.invoke(operator, a);
 	}
 }

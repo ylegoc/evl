@@ -24,7 +24,7 @@ import eu.daproject.evl.Cases;
 public class Main {
 	
 	public static void main(String[] args) {
-		
+				
 		Print.m().add(new Cases() {
 			
 			String match(A a) {
@@ -58,20 +58,26 @@ public class Main {
 		
 		try {
 			System.out.println(Print.m().invoke(c));
+		
+			Class c1 = new Class();
+			
+			System.out.println("c1.foo on a: " + c1.foo(a));
+			System.out.println("c1.foo on b: " + c1.foo(b));
+			
+			ExtendedClass e1 = new ExtendedClass();
+	
+			System.out.println("e1.foo on a: " + e1.foo(a));
+			System.out.println("e1.foo on b: " + e1.foo(b));
+			
+			ExtendedClass2 e2 = new ExtendedClass2();
+			
+			System.out.println("e2.foo on b: " + e2.foo(b));
+			e2.setMultiplyOperator(); // The result changes
+			System.out.println("e2.foo on b: " + e2.foo(b));
+			
 		}
 		catch (Throwable e) {
 			e.printStackTrace();
 		}
-		
-		ExtendedClass e = new ExtendedClass();
-
-		System.out.println("e.foo on a: " + e.foo(a));
-		System.out.println("e.foo on b: " + e.foo(b));
-		
-		ExtendedClass2 e2 = new ExtendedClass2();
-		
-		System.out.println("e2.foo on b: " + e2.foo(b));
-		e2.setMultiplyOperator(); // The result changes
-		System.out.println("e2.foo on b: " + e2.foo(b));
 	}
 }
