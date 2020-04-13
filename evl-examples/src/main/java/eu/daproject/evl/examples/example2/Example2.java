@@ -15,6 +15,9 @@
  ******************************************************************************/
 package eu.daproject.evl.examples.example2;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
 
@@ -24,40 +27,29 @@ import eu.daproject.evl.Method2;
  */
 public class Example2 {
 
-	static class A {
-		public int a = 2;
-	}
-	
-	static class B extends A {
-		
-		public B(int a) {
-			this.a = a;
-		}
-	}
-	
 	public static void run() throws Throwable {
 		
 		Method2<Void> test = new Method2<Void>().add(new Cases() {
 				
 			void match(Integer i, Integer j) {
-				System.out.println("We are the integers " + i + ", " + j);
+				System.out.println("We are the integers " + i + " and " + j);
 			}
 			
 			void match(String s, String t) {
-				System.out.println("We are the strings " + s + ", " + t);
+				System.out.println("We are the strings " + s + " and " + t);
 			}
 			
-			void match(A a, A b) {
-				System.out.println("We are A " + a.a + ", " + b.a);
+			void match(Collection<?> c, String s) {
+				System.out.println("We are a collection of size " + c.size() + " and a string " + s);
 			}
 		});
 		
-		test.invoke(Integer.valueOf(12), Integer.valueOf(-25));
-		test.invoke(new String("beautiful"), new String("day"));
-		test.invoke(new B(5), new B(6));
+		test.invoke(12, -25);
+		test.invoke("beautiful", "day");
+		test.invoke(Arrays.asList("awesome" , "weather"), "today");
 		
 		try {
-			test.invoke(new String("string"), Integer.valueOf(2));
+			test.invoke(new String("string"), 2);
 		}
 		catch (Throwable e) {
 			System.out.println(e.getMessage());
