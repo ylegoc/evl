@@ -4,6 +4,8 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 
+import javax.lang.model.element.ModuleElement.ExportsDirective;
+
 import eu.daproject.evl.util.ClassTuple;
 
 /**
@@ -11,7 +13,7 @@ import eu.daproject.evl.util.ClassTuple;
  * It is used to cache the exception.
  *
  */
-public class AmbiguousMethodExceptionThrower {
+public class AmbiguousMethodExceptionThrower implements ExceptionThrower {
 
 	private MethodHandles.Lookup lookup;
 	private ClassTuple classTuple;
@@ -29,6 +31,11 @@ public class AmbiguousMethodExceptionThrower {
 		this.possibleMethods = possibleMethods;
 	}
 	
+	@Override
+	public void invoke() throws InvocationException {
+		throw new AmbiguousMethodException(classTuple, possibleMethods);
+	}
+
 	/**
 	 * Methods inserted in the cache that throws the {@link AmbiguousMethodException} exception.
 	 * @param objects any objects

@@ -67,6 +67,15 @@ public class BasicTest {
 		}
 		assertTrue(error);
 		
+		error = false;
+		try {
+			m.check(E.class);
+			
+		} catch (InvocationException ex) {
+			error = true;
+		}
+		assertTrue(error);
+		
 		m.add(Foo.class, "foo", E.class);
 		res = m.invoke(e);
 		assertEquals(res, 4);
@@ -122,6 +131,15 @@ public class BasicTest {
 		boolean error = false;
 		try {
 			m.invoke(e, e);
+			
+		} catch (InvocationException ex) {
+			error = true;
+		}
+		assertTrue(error);
+		
+		error = false;
+		try {
+			m.check(E.class, E.class);
 			
 		} catch (InvocationException ex) {
 			error = true;

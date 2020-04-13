@@ -11,7 +11,7 @@ import eu.daproject.evl.util.ClassTuple;
  * It is used to cache the exception.
  *
  */
-public class NoMatchingMethodExceptionThrower {
+public class NoMatchingMethodExceptionThrower implements ExceptionThrower {
 
 	private MethodHandles.Lookup lookup;
 	private ClassTuple classTuple;
@@ -27,6 +27,11 @@ public class NoMatchingMethodExceptionThrower {
 		this.lookup = lookup;
 		this.classTuple = classTuple;
 		this.message = message;
+	}
+	
+	@Override
+	public void invoke() throws InvocationException {
+		throw new NoMatchingMethodException(classTuple, message);
 	}
 	
 	/**

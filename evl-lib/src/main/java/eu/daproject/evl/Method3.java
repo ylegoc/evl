@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import eu.daproject.evl.exception.AmbiguousMethodException;
+import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.util.CacheFactory;
 import eu.daproject.evl.util.ClassTuple;
@@ -61,7 +62,7 @@ public class Method3<ReturnType> extends MultiMethod<ReturnType> {
 	 * @return the method handle to apply
 	 * @throws Throwable
 	 */
-	protected MethodHandle processAndCache(Object... args) throws Throwable {
+	protected MethodHandle processAndCache(Object... args) {
 		
 		MethodHandle method = processClassTuple(args).getMethod();
 		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass(), args[2].getClass()), method);
@@ -150,6 +151,17 @@ public class Method3<ReturnType> extends MultiMethod<ReturnType> {
 	public Method3<ReturnType> boundedCache(int capacity) {
 		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(capacity);
 		return this;
+	}
+	
+	/**
+	 * Checks the classes if they are callable without invocation exception.
+	 * @param class1 class 1
+	 * @param class2 class 2
+	 * @param class3 class 3
+	 * @throws InvocationException the exception
+	 */
+	public void check(Class<?> class1, Class<?> class2, Class<?> class3) throws InvocationException {
+		super.checkClassTuple(class1, class2, class3);
 	}
 	
 	/**

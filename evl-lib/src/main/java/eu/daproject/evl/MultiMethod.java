@@ -29,6 +29,8 @@ import eu.daproject.evl.exception.AmbiguousMethodExceptionThrower;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
+import eu.daproject.evl.exception.ExceptionThrower;
+import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.exception.MethodAddException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.exception.NoMatchingMethodExceptionThrower;
@@ -451,7 +453,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws NoMatchingMethodException
 	 * @throws AmbiguousMethodException
 	 */
-	protected InvokableMethod processClassTuple(Object[] args) throws NoMatchingMethodException, AmbiguousMethodException {
+	protected InvokableMethod processClassTuple(Object[] args) {
 		
 		// Create a ClassTuple from the arguments.
 		Class<?>[] virtualParameterTypes = new Class<?>[getDimension()];
@@ -464,6 +466,18 @@ public abstract class MultiMethod<ReturnType> {
 		methodComparator.setArgs(args);
 		
 		return processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
+	}
+	
+	protected void checkClassTuple(Class<?>... classes) throws InvocationException {
+		
+		ClassTuple methodTuple = new ClassTuple(classes);
+		
+		InvokableMethod method = processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
+		
+		Object object = method.getObject();
+		if (object instanceof ExceptionThrower) {
+			((ExceptionThrower)object).invoke();
+		}
 	}
 
 	/**
@@ -501,7 +515,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws NoMatchingMethodException
 	 * @throws AmbiguousMethodException
 	 */
-	private InvokableMethod processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) throws NoMatchingMethodException, AmbiguousMethodException {
+	private InvokableMethod processClassTuple(ClassTuple tuple, HashMap<Class<?>, Integer>[] superClassSet) {
 		
 		// Search for compatible methods.
 		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();

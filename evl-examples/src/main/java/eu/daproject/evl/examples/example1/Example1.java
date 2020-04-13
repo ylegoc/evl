@@ -50,6 +50,13 @@ public class Example1 {
 		test.invoke(Arrays.asList("what", "is", "a", "list", "?"));
 	
 		try {
+			test.check(Float.class);
+		}
+		catch (Throwable e) {
+			System.out.println(e.getMessage());
+		}
+		
+		try {
 			test.invoke(13.1f);
 		}
 		catch (Throwable e) {

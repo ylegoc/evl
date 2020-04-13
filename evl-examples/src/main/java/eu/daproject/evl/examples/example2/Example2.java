@@ -49,6 +49,13 @@ public class Example2 {
 		test.invoke(Arrays.asList("awesome" , "weather"), "today");
 		
 		try {
+			test.check(String.class, Integer.class);
+		}
+		catch (Throwable e) {
+			System.out.println(e.getMessage());
+		}
+		
+		try {
 			test.invoke(new String("string"), 2);
 		}
 		catch (Throwable e) {
