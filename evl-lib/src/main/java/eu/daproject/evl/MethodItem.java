@@ -30,7 +30,7 @@ public class MethodItem extends InvokableMethod {
 	 * @param distance the distance
 	 */
 	MethodItem(InvokableMethod method, int[] distance) {
-		super(method.getClassTuple(), method.getMethod(), method.getObject());
+		super(method.getClassTuple(), method.getMethod(), method.getMethodHandle(), method.getObject());
 		setData(method.getData());
 		
 		this.distance = distance;

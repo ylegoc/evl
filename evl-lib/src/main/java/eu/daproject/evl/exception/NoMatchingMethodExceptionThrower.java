@@ -3,6 +3,7 @@ package eu.daproject.evl.exception;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.Method;
 
 import eu.daproject.evl.util.ClassTuple;
 
@@ -41,6 +42,18 @@ public class NoMatchingMethodExceptionThrower implements ExceptionThrower {
 	 */
 	public void invoke(Object...objects) throws NoMatchingMethodException {
 		throw new NoMatchingMethodException(classTuple, message);
+	}
+	
+	/**
+	 * Gets the reflective method of invoke.
+	 * @return the method
+	 */
+	public Method getMethod() {
+		try {
+			return this.getClass().getMethod("invoke");
+		} catch (NoSuchMethodException | SecurityException e) {
+			throw new UnexpectedException("Cannot get the method of the invoke method of an exception thrower");
+		}
 	}
 	
 	/**

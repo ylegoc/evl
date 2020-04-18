@@ -16,6 +16,7 @@
 package eu.daproject.evl;
 
 import java.lang.invoke.MethodHandle;
+import java.lang.reflect.Method;
 
 import eu.daproject.evl.util.ClassTuple;
 
@@ -25,6 +26,7 @@ import eu.daproject.evl.util.ClassTuple;
  */
 public class InvokableMethod {
 
+	private Method method;
 	private MethodHandle methodHandle;
 	private Object object;
 	private ClassTuple tuple;
@@ -34,11 +36,13 @@ public class InvokableMethod {
 	/**
 	 * Constructs a method.
 	 * @param tuple the class tuple
-	 * @param method the method handle
+	 * @param method the reflective method
+	 * @param methodHandle the method handle
 	 * @param object the caller object
 	 */
-	InvokableMethod(ClassTuple tuple, MethodHandle method, Object object) {
-		this.methodHandle = method;
+	InvokableMethod(ClassTuple tuple, Method method, MethodHandle methodHandle, Object object) {
+		this.method = method;
+		this.methodHandle = methodHandle;
 		this.object = object;
 		this.tuple = tuple;
 	}
@@ -60,10 +64,18 @@ public class InvokableMethod {
 	}
 	
 	/**
+	 * Gets the reflective method.
+	 * @return the method handle
+	 */
+	public Method getMethod() {
+		return method;
+	}
+	
+	/**
 	 * Gets the method handle.
 	 * @return the method handle
 	 */
-	public MethodHandle getMethod() {
+	public MethodHandle getMethodHandle() {
 		return methodHandle;
 	}
 	

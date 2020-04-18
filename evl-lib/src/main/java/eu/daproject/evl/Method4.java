@@ -23,6 +23,7 @@ import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.util.CacheFactory;
+import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;
 
 /**
@@ -32,14 +33,14 @@ import eu.daproject.evl.util.ClassTuple;
  */
 public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	
-	protected Map<ClassTuple, MethodHandle> cache;
+	protected Map<ClassTuple, CacheItem> cache;
 	
 	/**
 	 * Constructs an empty multimethod.
 	 */
 	public Method4() {
 		super(4, new AsymmetricComparator());
-		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(10000);
+		this.cache = CacheFactory.<ClassTuple, CacheItem>createBoundedCache(10000);
 	}
 	
 	@Override
@@ -51,8 +52,8 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 * Prints the cache. Can help for understanding the behavior of the multimethod.
 	 */
 	public void printCache() {
-		for (Entry<ClassTuple, MethodHandle> e : cache.entrySet()) {
-			System.out.println(e.getKey() + " -> " + e.getValue());
+		for (Entry<ClassTuple, CacheItem> e : cache.entrySet()) {
+			System.out.println(e.getKey() + " -> " + e.getValue().getMethod());
 		}
 	}
 	
@@ -64,9 +65,10 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	protected MethodHandle processAndCache(Object... args) {
 		
-		MethodHandle method = processClassTuple(args).getMethod();
-		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass(), args[2].getClass(), args[3].getClass()), method);
-		return method;
+		InvokableMethod method = processClassTuple(args);
+		MethodHandle methodHandle = method.getMethodHandle();
+		cache.put(new ClassTuple(args[0].getClass(), args[1].getClass(), args[2].getClass(), args[3].getClass()), new CacheItem(methodHandle, method.getMethod()));
+		return methodHandle;
 	}
 	
 	@Override
@@ -129,7 +131,7 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 * @param cacheMap the new cache map
 	 * @return this instance
 	 */
-	public Method4<ReturnType> cache(Map<ClassTuple, MethodHandle> cacheMap) {
+	public Method4<ReturnType> cache(Map<ClassTuple, CacheItem> cacheMap) {
 		this.cache = cacheMap;
 		return this;
 	}
@@ -139,7 +141,7 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public Method4<ReturnType> unboundedCache() {
-		this.cache = CacheFactory.<ClassTuple, MethodHandle>createUnboundedCache();
+		this.cache = CacheFactory.<ClassTuple, CacheItem>createUnboundedCache();
 		return this;
 	}
 	
@@ -149,7 +151,7 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public Method4<ReturnType> boundedCache(int capacity) {
-		this.cache = CacheFactory.<ClassTuple, MethodHandle>createBoundedCache(capacity);
+		this.cache = CacheFactory.<ClassTuple, CacheItem>createBoundedCache(capacity);
 		return this;
 	}
 	
@@ -178,12 +180,12 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4) throws Throwable {
 
-		MethodHandle method = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
+		CacheItem cacheItem = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
 		
-		if (method != null) {	
-			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4);
+		if (cacheItem != null) {
+			return (ReturnType)cacheItem.getMethodHandle().invoke(arg1, arg2, arg3, arg4);
 		}
-		
+				
 		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4).invoke(arg1, arg2, arg3, arg4);
 	}
 	
@@ -201,10 +203,10 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5) throws Throwable {
 
-		MethodHandle method = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
+		CacheItem cacheItem = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
 		
-		if (method != null) {	
-			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5);
+		if (cacheItem != null) {
+			return (ReturnType)cacheItem.getMethodHandle().invoke(arg1, arg2, arg3, arg4, arg5);
 		}
 		
 		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5).invoke(arg1, arg2, arg3, arg4, arg5);
@@ -225,10 +227,10 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6) throws Throwable {
 
-		MethodHandle method = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
+		CacheItem cacheItem = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
 		
-		if (method != null) {	
-			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5, arg6);
+		if (cacheItem != null) {
+			return (ReturnType)cacheItem.getMethodHandle().invoke(arg1, arg2, arg3, arg4, arg5, arg6);
 		}
 		
 		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5, arg6).invoke(arg1, arg2, arg3, arg4, arg5, arg6);
@@ -250,10 +252,10 @@ public class Method4<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7) throws Throwable {
 
-		MethodHandle method = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
+		CacheItem cacheItem = cache.get(new ClassTuple(arg1.getClass(), arg2.getClass(), arg3.getClass(), arg4.getClass()));
 		
-		if (method != null) {	
-			return (ReturnType)method.invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+		if (cacheItem != null) {
+			return (ReturnType)cacheItem.getMethodHandle().invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 		}
 		
 		return (ReturnType)processAndCache(arg1, arg2, arg3, arg4, arg5, arg6, arg7).invoke(arg1, arg2, arg3, arg4, arg5, arg6, arg7);

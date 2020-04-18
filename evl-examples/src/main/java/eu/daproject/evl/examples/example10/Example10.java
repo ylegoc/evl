@@ -15,7 +15,6 @@
  ******************************************************************************/
 package eu.daproject.evl.examples.example10;
 
-import java.lang.invoke.MethodHandle;
 import java.util.HashMap;
 
 import eu.daproject.evl.Method2;
@@ -24,6 +23,7 @@ import eu.daproject.evl.SymmetricComparator;
 import eu.daproject.evl.examples.classes.A;
 import eu.daproject.evl.examples.classes.B;
 import eu.daproject.evl.examples.classes.C;
+import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;
 
 /**
@@ -71,14 +71,14 @@ public class Example10 {
 		System.out.println(method.invoke(b, c));
 		
 		method = new Method2<Integer>()
-				.cache(new HashMap<ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, CacheItem>())
 				.add(foo);
 
 		System.out.println(method.invoke(b, c));
 		
 		method = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.cache(new HashMap<ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, CacheItem>())
 				.add(foo, "match", B.class, A.class).data(Priority.valueOf(1))
 				.add(foo, "match", A.class, C.class).data(Priority.valueOf(2));
 

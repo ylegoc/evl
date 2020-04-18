@@ -257,7 +257,7 @@ public abstract class MultiMethod<ReturnType> {
 
 		// Create the class tuple and add the new method.
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
-		InvokableMethod newMethod = new InvokableMethod(tuple, methodHandle, object);
+		InvokableMethod newMethod = new InvokableMethod(tuple, method, methodHandle, object);
 		newMethod.setData(data);
 		methods.put(tuple, newMethod);
 		
@@ -544,7 +544,7 @@ public abstract class MultiMethod<ReturnType> {
 			NoMatchingMethodExceptionThrower thrower = new NoMatchingMethodExceptionThrower(lookup, tuple, "There is no compatible method");
 			
 			// Return the invokable method.
-			return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
+			return new InvokableMethod(tuple, thrower.getMethod(), thrower.getMethodHandle(), thrower);
 		}
 
 		// There is at least 1 item at this point.
@@ -589,7 +589,7 @@ public abstract class MultiMethod<ReturnType> {
 					NoMatchingMethodExceptionThrower thrower = new NoMatchingMethodExceptionThrower(lookup, tuple, "There is no minimum method, the comparator is not consistant");
 					
 					// Return the invokable method.
-					return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
+					return new InvokableMethod(tuple, thrower.getMethod(), thrower.getMethodHandle(), thrower);
 				}
 			}
 			
@@ -607,14 +607,13 @@ public abstract class MultiMethod<ReturnType> {
 		AmbiguousMethodExceptionThrower thrower = new AmbiguousMethodExceptionThrower(lookup, tuple, possibleMethods);
 		
 		// Return the invokable method.
-		return new InvokableMethod(tuple, thrower.getMethodHandle(), thrower);
+		return new InvokableMethod(tuple, thrower.getMethod(), thrower.getMethodHandle(), thrower);
 	}
 
 	@Override
 	public String toString() {
 		return "MultiMethod [dimension=" + dimension + ", methodComparator="
-				+ methodComparator.getClass().getCanonicalName() + ", methods="
-				+ methods.size() + ", nonVirtualParameterTypes="
+				+ methodComparator.getClass().getCanonicalName() + ", nonVirtualParameterTypes="
 				+ Arrays.toString(nonVirtualParameterTypes) + "]";
 	}
 	

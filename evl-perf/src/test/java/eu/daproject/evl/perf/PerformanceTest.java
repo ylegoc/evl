@@ -16,18 +16,17 @@
 package eu.daproject.evl.perf;
 
 import java.lang.invoke.MethodHandle;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
+import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Method3;
-import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
+import eu.daproject.evl.util.CacheItem;
 
 public class PerformanceTest {
 
@@ -337,7 +336,7 @@ public class PerformanceTest {
 		
 		testMultiMethod1("method 1 with HashMap cache in ", new Method1<Integer>()
 								.comparator(new AsymmetricComparator())
-								.cache(new HashMap<Class<?>, MethodHandle>()));
+								.cache(new HashMap<Class<?>, CacheItem>()));
 		
 		testMultiMethod1("method 1 with bounded cache 32 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
@@ -353,15 +352,15 @@ public class PerformanceTest {
 		
 		testMultiMethod1("method 1 with Apache Cayenne bounded cache 32 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(32).build()));
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(32).build()));
 		
 		testMultiMethod1("method 1 with Apache Cayenne bounded cache 8 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(8).build()));
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(8).build()));
 		
 		testMultiMethod1("method 1 with Apache Cayenne bounded cache 4 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, MethodHandle>().maximumWeightedCapacity(4).build()));
+				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(4).build()));
 		
 	}
 

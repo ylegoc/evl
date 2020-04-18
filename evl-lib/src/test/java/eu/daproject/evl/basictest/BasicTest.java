@@ -31,6 +31,7 @@ import eu.daproject.evl.SymmetricComparator;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
 import eu.daproject.evl.exception.InvocationException;
+import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;
 
 public class BasicTest {
@@ -148,7 +149,7 @@ public class BasicTest {
 		
 		Method2<Integer> m2 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.cache(new HashMap<ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, CacheItem>())
 				.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(3))
 				.add(foo, "foo", D.class, IA.class).data(Priority.valueOf(2))
 				.add(foo, "foo", IA.class, D.class).data(Priority.valueOf(1));
@@ -159,7 +160,7 @@ public class BasicTest {
 		
 		Method2<Integer> m3 = new Method2<Integer>()
 				.comparator(new SymmetricComparator())
-				.cache(new HashMap<ClassTuple, MethodHandle>())
+				.cache(new HashMap<ClassTuple, CacheItem>())
 				.add(foo, "foo", IA.class, IA.class)
 				.add(foo, "foo", D.class, IA.class)
 				.add(foo, "foo", IA.class, D.class);
