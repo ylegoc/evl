@@ -1,3 +1,3 @@
 package eu.daproject.evl.examples.common;
 
-public interface Element {}
+public class Adult implements Person {}
