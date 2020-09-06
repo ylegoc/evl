@@ -28,7 +28,7 @@ import eu.daproject.evl.tests.example8.Example8;
 import eu.daproject.evl.tests.example9.Example9;
 import eu.daproject.evl.whatisevl.Collider;
 
-public class Examples {
+public class Tests {
 
 	public static void main(String[] args) throws Throwable {
 	
