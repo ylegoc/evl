@@ -4,4 +4,9 @@ public class Kid implements Person {
 	private int age;
 	public Kid(int age) { this.age = age; }
 	public int getAge() { return age; };
+	
+	@Override
+	public String toString() {
+		return "Kid " + age;
+	}
 }

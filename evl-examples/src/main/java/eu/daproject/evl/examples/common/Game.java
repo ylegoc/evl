@@ -5,4 +5,9 @@ public class Game implements Toy {
 	private int players;
 	public Game(int players) { this.players = players; }
 	public int getPlayers() { return players; }
+	
+	@Override
+	public String toString() {
+		return "Game " + players;
+	}
 }
