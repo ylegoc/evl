@@ -1,3 +1,3 @@
 Test example:
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.visitor.MultiMain
-$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.innerstate.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.statefulclass.Main
