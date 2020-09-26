@@ -4,3 +4,4 @@ $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part6.Ma
 Test example:
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.visitor.MultiMain
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.statefulclass.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.state.Main
