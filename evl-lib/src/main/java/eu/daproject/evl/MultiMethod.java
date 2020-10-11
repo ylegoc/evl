@@ -58,6 +58,8 @@ public abstract class MultiMethod<ReturnType> {
 	protected static class SynchronizedMembers {
 	
 		private MethodComparator methodComparator;
+		private boolean isFinal = false;
+		private boolean isOverridable = true;
 		private HashMap<ClassTuple, InvokableMethod> methods = new HashMap<ClassTuple, InvokableMethod>();
 		private Class<?>[] nonVirtualParameterTypes;
 		private Class<?> returnType;
@@ -68,6 +70,33 @@ public abstract class MultiMethod<ReturnType> {
 		
 		synchronized MethodComparator getComparator() {
 			return methodComparator;
+		}
+		
+		synchronized void setOverridable(boolean value) {
+			this.isOverridable = value;
+		}
+		
+		synchronized boolean isOverridable() {
+			return this.isOverridable;
+		}
+		
+		synchronized void setFinal() {
+			this.isFinal = true;
+		}
+		
+		synchronized boolean isFinal() {
+			return this.isFinal;
+		}
+		
+		synchronized void checkMethodTuple(ClassTuple tuple) {
+			
+			if (isFinal) {
+				throw new MethodNotAddedException("MultiMethod is final");
+			}
+			
+			if (methods.containsKey(tuple) && !isOverridable) {
+				throw new MethodNotAddedException("MultiMethod is not overridable");
+			}
 		}
 		
 		synchronized void addMethod(ClassTuple tuple, InvokableMethod method) {
@@ -268,6 +297,38 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Sets the overridable parameter. It is not possible to add method if a method already exists for the class tuple.
+	 * @return this instance
+	 */
+	public MultiMethod<ReturnType> notOverridable() {
+		syncThis.setOverridable(false);
+		return this;
+	}
+	
+	/**
+	 * Gets the overridable parameter.
+	 * @return true if the instance is overridable
+	 */
+	public boolean isOverridable() {
+		return syncThis.isOverridable();
+	}
+	
+	/**
+	 * Sets the final parameter.
+	 */
+	public void setFinal() {
+		syncThis.setFinal();
+	}
+	
+	/**
+	 * Gets the final parameter.
+	 * @return true if the instance is final
+	 */
+	public boolean isFinal() {
+		return syncThis.isFinal();
+	}
+	
+	/**
 	 * Adds a method with the caller and the associated lookup and some optional data.
 	 * @param lookup the lookup
 	 * @param method the method
@@ -321,6 +382,12 @@ public abstract class MultiMethod<ReturnType> {
 				newNonVirtualParameterTypes[i - dimension] = newParameterTypes[i];
 			}
 			
+			// Create the class tuple.
+			ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
+			
+			// Check if the method can be added.
+			syncThis.checkMethodTuple(tuple);
+			
 			// Update the non virtual parameter types if this is the first inserted method.
 			syncThis.updateNonVirtualParameterTypes(newNonVirtualParameterTypes);
 			
@@ -330,8 +397,7 @@ public abstract class MultiMethod<ReturnType> {
 			// The cache must be cleared.
 			clearCache();
 	
-			// Create the class tuple and add the new method.
-			ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
+			// Add the new method.
 			InvokableMethod newMethod = new InvokableMethod(tuple, method, methodHandle, object);
 			newMethod.setData(data);
 			syncThis.addMethod(tuple, newMethod);

@@ -126,6 +126,11 @@ public class Method5<ReturnType> extends MultiMethod<ReturnType> {
 		return (Method5<ReturnType>)super.returnType(type);
 	}
 	
+	@Override
+	public Method5<ReturnType> notOverridable() {
+		return (Method5<ReturnType>)super.notOverridable();
+	}
+	
 	/**
 	 * Sets a cache. This method has to be called if the standard bounded or unbounded cache are not suitable.
 	 * @param cacheMap the new cache map

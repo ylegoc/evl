@@ -16,14 +16,15 @@
 package eu.daproject.evl.basictest;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.lang.invoke.MethodHandle;
 import java.util.HashMap;
 
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
+import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Priority;
@@ -31,6 +32,7 @@ import eu.daproject.evl.SymmetricComparator;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
 import eu.daproject.evl.exception.InvocationException;
+import eu.daproject.evl.exception.MethodNotAddedException;
 import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;
 
@@ -257,6 +259,76 @@ public class BasicTest {
 			error = true;
 		}
 
+		assertTrue(error);
+	}
+	
+	@Test
+	public void test8() throws Throwable {
+
+		boolean error = false;
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Match D");
+			}
+		});
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Re-match D");
+			}
+		});
+		
+		m.notOverridable();
+		
+		m.add(new Cases() {
+			void match(E d) {
+				System.out.println("Match E");
+			}
+		});
+		
+		try {
+			m.add(new Cases() {
+				void match(D d) {
+					System.out.println("Re-re-match D");
+				}
+			});
+		}
+		catch (MethodNotAddedException e) {
+			error = true;
+		}
+		
+		assertTrue(error);
+	}
+	
+	@Test
+	public void test9() throws Throwable {
+
+		boolean error = false;
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Match D");
+			}
+		});
+				
+		m.setFinal();
+		
+		try {
+			m.add(new Cases() {
+				void match(E d) {
+					System.out.println("Match E");
+				}
+			});
+		}
+		catch (MethodNotAddedException e) {
+			error = true;
+		}
+		
 		assertTrue(error);
 	}
 }
