@@ -31,7 +31,7 @@ import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
 import eu.daproject.evl.exception.ExceptionThrower;
 import eu.daproject.evl.exception.InvocationException;
-import eu.daproject.evl.exception.MethodAddException;
+import eu.daproject.evl.exception.MethodNotAddedException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.exception.NoMatchingMethodExceptionThrower;
 import eu.daproject.evl.exception.UnexpectedException;
@@ -273,7 +273,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param object the caller
 	 * @param data the data
 	 * @return the inserted method
-	 * @throws MethodAddException
+	 * @throws MethodNotAddedException
 	 * @throws BadNumberOfVirtualParameterTypesException
 	 * @throws BadNonVirtualParameterTypesException
 	 */
@@ -380,7 +380,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param methodName the name of the method
 	 * @param parameterTypes the parameter types of the wanted method
 	 * @return this instance
-	 * @throws MethodAddException if the method cannot be found
+	 * @throws MethodNotAddedException if the method cannot be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -395,7 +395,7 @@ public abstract class MultiMethod<ReturnType> {
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodAddException(e.getMessage());
+			throw new MethodNotAddedException(e.getMessage());
 		}
 		
 		return this;
@@ -407,7 +407,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param methodName the name of the method
 	 * @param parameterTypes the parameter types of the wanted method
 	 * @return this instance
-	 * @throws MethodAddException if the method cannot be found
+	 * @throws MethodNotAddedException if the method cannot be found
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -422,7 +422,7 @@ public abstract class MultiMethod<ReturnType> {
 			newMethod.setLastAdded(true);
 		}
 		catch (ReflectiveOperationException e) {
-			throw new MethodAddException(e.getMessage());
+			throw new MethodNotAddedException(e.getMessage());
 		}
 		
 		return this;
@@ -487,7 +487,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * Adds the family of methods with the name <code>match</code> defined in the anonymous class deriving <code>Cases</code>.
 	 * @param cases the anonymous class defining the methods
 	 * @return this instance
-	 * @throws MethodAddException if a method cannot be inserted
+	 * @throws MethodNotAddedException if a method cannot be inserted
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
@@ -502,7 +502,7 @@ public abstract class MultiMethod<ReturnType> {
 			addMethodFamily(lookup, cases.getClass(), "match", cases);
 			
 		} catch (IllegalAccessException e) {
-			throw new MethodAddException(e.getMessage());
+			throw new MethodNotAddedException(e.getMessage());
 		}
 		
 		return this;

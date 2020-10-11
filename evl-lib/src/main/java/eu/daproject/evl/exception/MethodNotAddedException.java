@@ -19,7 +19,7 @@ package eu.daproject.evl.exception;
  * Exception for methods for which it is not possible to obtain the method handle.
  *
  */
-public class MethodAddException extends RuntimeException {
+public class MethodNotAddedException extends RuntimeException {
 
 	private static final long serialVersionUID = 8L;
 
@@ -27,7 +27,7 @@ public class MethodAddException extends RuntimeException {
 	 * Constructs an exception with the message.
 	 * @param message the message
 	 */
-	public MethodAddException(String message) {
+	public MethodNotAddedException(String message) {
 		super(message);
 	}
 }
