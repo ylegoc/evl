@@ -71,6 +71,7 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		synchronized void addMethod(ClassTuple tuple, InvokableMethod method) {
+			method.setLastAdded(true);
 			methods.put(tuple, method);
 		}
 		
@@ -279,61 +280,64 @@ public abstract class MultiMethod<ReturnType> {
 	 */
 	protected InvokableMethod addMethod(MethodHandles.Lookup lookup, java.lang.reflect.Method method, Object object, Comparable<?> data) {
 		
-		// Find the method handle.
-		MethodHandle methodHandle = null;
-		try {
-			methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes())).bindTo(object);
-		}
-		catch (ReflectiveOperationException e) {
-			// If static, the method is not found.
-		}
+		// The method is entirely synchronized to avoid strange behaviors if two threads add a method. 
+		synchronized(this) {
 		
-		// If the method handle has not been found, test if the method is static.
-		if (methodHandle == null) {
+			// Find the method handle.
+			MethodHandle methodHandle = null;
 			try {
-				methodHandle = lookup.findStatic(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()));
+				methodHandle = lookup.findVirtual(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes())).bindTo(object);
 			}
 			catch (ReflectiveOperationException e) {
-				// The method is not found, so we throw the exception.
-				//throw new MethodAddException(e.getMessage());
-				return null;
+				// If static, the method is not found.
 			}
-		}
+			
+			// If the method handle has not been found, test if the method is static.
+			if (methodHandle == null) {
+				try {
+					methodHandle = lookup.findStatic(method.getDeclaringClass(), method.getName(), MethodType.methodType(method.getReturnType(), method.getParameterTypes()));
+				}
+				catch (ReflectiveOperationException e) {
+					// The method is not found, so we throw the exception.
+					throw new MethodNotAddedException(e.getMessage());
+				}
+			}
+			
+			// Check the parameter types.
+			Class<?>[] newParameterTypes = method.getParameterTypes();
+			
+			if (newParameterTypes.length < dimension) {
+				throw new BadNumberOfVirtualParameterTypesException();
+			} 
 		
-		// Check the parameter types.
-		Class<?>[] newParameterTypes = method.getParameterTypes();
-		
-		if (newParameterTypes.length < dimension) {
-			throw new BadNumberOfVirtualParameterTypesException();
-		} 
+			Class<?>[] newVirtualParameterTypes = new Class<?>[dimension];
+			
+			for (int i = 0; i < dimension; ++i) {
+				newVirtualParameterTypes[i] = newParameterTypes[i];
+			}
+			
+			Class<?>[] newNonVirtualParameterTypes = new Class<?>[newParameterTypes.length - dimension];
+			for (int i = dimension; i < newParameterTypes.length; ++i) {
+				newNonVirtualParameterTypes[i - dimension] = newParameterTypes[i];
+			}
+			
+			// Update the non virtual parameter types if this is the first inserted method.
+			syncThis.updateNonVirtualParameterTypes(newNonVirtualParameterTypes);
+			
+			// Check the return type.
+			syncThis.updateReturnType(method.getReturnType());
+			
+			// The cache must be cleared.
+			clearCache();
 	
-		Class<?>[] newVirtualParameterTypes = new Class<?>[dimension];
-		
-		for (int i = 0; i < dimension; ++i) {
-			newVirtualParameterTypes[i] = newParameterTypes[i];
+			// Create the class tuple and add the new method.
+			ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
+			InvokableMethod newMethod = new InvokableMethod(tuple, method, methodHandle, object);
+			newMethod.setData(data);
+			syncThis.addMethod(tuple, newMethod);
+			
+			return newMethod;
 		}
-		
-		Class<?>[] newNonVirtualParameterTypes = new Class<?>[newParameterTypes.length - dimension];
-		for (int i = dimension; i < newParameterTypes.length; ++i) {
-			newNonVirtualParameterTypes[i - dimension] = newParameterTypes[i];
-		}
-		
-		// Update the non virtual parameter types if this is the first inserted method.
-		syncThis.updateNonVirtualParameterTypes(newNonVirtualParameterTypes);
-		
-		// Check the return type.
-		syncThis.updateReturnType(method.getReturnType());
-		
-		// The cache must be cleared.
-		clearCache();
-
-		// Create the class tuple and add the new method.
-		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
-		InvokableMethod newMethod = new InvokableMethod(tuple, method, methodHandle, object);
-		newMethod.setData(data);
-		syncThis.addMethod(tuple, newMethod);
-		
-		return newMethod;
 	}
 	
 	/**
@@ -365,10 +369,7 @@ public abstract class MultiMethod<ReturnType> {
 			java.lang.reflect.Method[] declaredMethods = c.getDeclaredMethods();
 			for (java.lang.reflect.Method m : declaredMethods) {
 				if (m.getName().equals(methodName)) {
-					InvokableMethod newMethod = addMethod(lookup, m, object, null);
-					if (newMethod != null) {
-						newMethod.setLastAdded(true);
-					}
+					addMethod(lookup, m, object, null);
 				}
 			}
 		}
@@ -391,8 +392,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			InvokableMethod newMethod = addMethod(lookup, classInstance.getMethod(methodName, parameterTypes), null, null);
-			newMethod.setLastAdded(true);
+			addMethod(lookup, classInstance.getMethod(methodName, parameterTypes), null, null);
 		}
 		catch (ReflectiveOperationException e) {
 			throw new MethodNotAddedException(e.getMessage());
@@ -418,8 +418,7 @@ public abstract class MultiMethod<ReturnType> {
 		
 		// Add the method.
 		try {
-			InvokableMethod newMethod = addMethod(lookup, object.getClass().getMethod(methodName, parameterTypes), object, null);
-			newMethod.setLastAdded(true);
+			addMethod(lookup, object.getClass().getMethod(methodName, parameterTypes), object, null);
 		}
 		catch (ReflectiveOperationException e) {
 			throw new MethodNotAddedException(e.getMessage());
