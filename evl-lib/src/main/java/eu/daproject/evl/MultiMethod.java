@@ -50,10 +50,101 @@ public abstract class MultiMethod<ReturnType> {
 
 	private MethodHandles.Lookup lookup = MethodHandles.lookup();
 	private int dimension;
-	protected MethodComparator methodComparator;
-	private HashMap<ClassTuple, InvokableMethod> methods = new HashMap<ClassTuple, InvokableMethod>();
-	private Class<?>[] nonVirtualParameterTypes;
-	private Class<?> returnType;
+	
+	/**
+	 * Class helper to group synchronized methods on members. 
+	 *
+	 */
+	protected static class SynchronizedMembers {
+	
+		private MethodComparator methodComparator;
+		private HashMap<ClassTuple, InvokableMethod> methods = new HashMap<ClassTuple, InvokableMethod>();
+		private Class<?>[] nonVirtualParameterTypes;
+		private Class<?> returnType;
+		
+		synchronized void setMethodComparator(MethodComparator methodComparator) {
+			this.methodComparator = methodComparator;	
+		}
+		
+		synchronized MethodComparator getComparator() {
+			return methodComparator;
+		}
+		
+		synchronized void addMethod(ClassTuple tuple, InvokableMethod method) {
+			methods.put(tuple, method);
+		}
+		
+		synchronized void setLastAddedToMethods() {
+			for (InvokableMethod m : methods.values()) {
+				m.setLastAdded(false);
+			}
+		}
+		
+		synchronized HashMap<ClassTuple, InvokableMethod> getMethods() {
+			return methods;
+		}
+		
+		synchronized Collection<InvokableMethod> getMethodsValues() {
+			return methods.values();
+		}
+		
+		synchronized void setData(Comparable<?> data, Class<?>... tuple) {
+			methods.get(new ClassTuple(tuple)).setData(data);
+		}
+		
+		synchronized void setDataToMethodsIfLastAdded(Comparable<?> data) {
+			for (InvokableMethod m : methods.values()) {
+				if (m.isLastAdded()) {
+					m.setData(data);
+				}
+			}
+		}
+		
+		synchronized void setNonVirtualParameterTypes(Class<?>...types) {
+			if (this.nonVirtualParameterTypes == null) {
+				nonVirtualParameterTypes = types;
+			}
+		}
+		
+		synchronized void updateNonVirtualParameterTypes(Class<?>...types) {
+			if (nonVirtualParameterTypes == null) {
+				nonVirtualParameterTypes = types;
+			}
+			else {
+				// Check the equality with the non virtual parameter types of the first inserted method.
+				if (!Arrays.equals(nonVirtualParameterTypes, types)) {
+					throw new BadNonVirtualParameterTypesException(new ClassTuple(nonVirtualParameterTypes).toString(), new ClassTuple(types).toString());
+				}
+			}
+		}
+		
+		synchronized Class<?>[] getNonVirtualParameterTypes() {
+			return nonVirtualParameterTypes;
+		}
+		
+		synchronized void setReturnType(Class<?> type) {
+			if (this.returnType == null) {
+				this.returnType = type;
+			}
+		}
+		
+		synchronized void updateReturnType(Class<?> type) {
+			if (returnType == null) {
+				returnType = type;
+			}
+			else {
+				if (!returnType.isAssignableFrom(type)) {
+					throw new BadReturnTypeException(returnType, type);
+				}
+			}
+		}
+		
+		synchronized Class<?> getReturnType() {
+			return returnType;
+		}
+	}
+	
+	private SynchronizedMembers syncThis = new SynchronizedMembers();
 	
 	/**
 	 * Constructs a multimethod with the dimension and a method comparator.
@@ -62,7 +153,7 @@ public abstract class MultiMethod<ReturnType> {
 	 */
 	MultiMethod(int dimension, MethodComparator methodComparator) {
 		this.dimension = dimension;
-		this.methodComparator = methodComparator;
+		syncThis.setMethodComparator(methodComparator);
 	}
 
 	/**
@@ -78,7 +169,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return the collection of methods
 	 */
 	public Collection<InvokableMethod> getMethods() {
-		return methods.values();
+		return syncThis.getMethodsValues();
 	}
 	
 	/**
@@ -89,7 +180,7 @@ public abstract class MultiMethod<ReturnType> {
 	 */
 	public void setData(Comparable<?> data, Class<?>... tuple) {
 		clearCache();
-		methods.get(new ClassTuple(tuple)).setData(data);
+		syncThis.setData(data, tuple);
 	}
 	
 	/**
@@ -103,7 +194,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public MultiMethod<ReturnType> comparator(MethodComparator methodComparator) {
-		this.methodComparator = methodComparator;
+		syncThis.setMethodComparator(methodComparator);
 		return this;
 	}
 	
@@ -112,7 +203,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public MultiMethod<ReturnType> symmetricComparator() {
-		this.methodComparator = new SymmetricComparator();
+		syncThis.setMethodComparator(new SymmetricComparator());
 		return this;
 	}
 	
@@ -121,7 +212,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return the method comparator
 	 */
 	public MethodComparator getComparator() {
-		return methodComparator;
+		return syncThis.getComparator();
 	}
 	
 	/**
@@ -131,9 +222,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public MultiMethod<ReturnType> nonVirtualParameterTypes(Class<?>...types) {
-		if (this.nonVirtualParameterTypes == null) {
-			nonVirtualParameterTypes = types;
-		}
+		syncThis.setNonVirtualParameterTypes(types);
 		return this;
 	}
 	
@@ -142,7 +231,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return the array of non-virtual parameter types
 	 */
 	public Class<?>[] getNonVirtualParameterTypes() {
-		return nonVirtualParameterTypes;
+		return syncThis.getNonVirtualParameterTypes();
 	}
 	
 	/**
@@ -152,9 +241,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return this instance
 	 */
 	public MultiMethod<ReturnType> returnType(Class<?> type) {
-		if (this.returnType == null) {
-			this.returnType = type;
-		}
+		syncThis.setReturnType(type);
 		return this;
 	}
 
@@ -163,7 +250,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @return the return type
 	 */
 	public Class<?> getReturnType() {
-		return returnType;
+		return syncThis.getReturnType();
 	}
 	
 	/**
@@ -232,25 +319,10 @@ public abstract class MultiMethod<ReturnType> {
 		}
 		
 		// Update the non virtual parameter types if this is the first inserted method.
-		if (nonVirtualParameterTypes == null) {
-			nonVirtualParameterTypes = newNonVirtualParameterTypes;
-		}
-		else {
-			// Check the equality with the non virtual parameter types of the first inserted method.
-			if (!Arrays.equals(nonVirtualParameterTypes, newNonVirtualParameterTypes)) {
-				throw new BadNonVirtualParameterTypesException(new ClassTuple(nonVirtualParameterTypes).toString(), new ClassTuple(newNonVirtualParameterTypes).toString());
-			}
-		}
+		syncThis.updateNonVirtualParameterTypes(newNonVirtualParameterTypes);
 		
 		// Check the return type.
-		if (returnType == null) {
-			returnType = method.getReturnType();
-		}
-		else {
-			if (!returnType.isAssignableFrom(method.getReturnType())) {
-				throw new BadReturnTypeException(returnType, method.getReturnType());
-			}
-		}
+		syncThis.updateReturnType(method.getReturnType());
 		
 		// The cache must be cleared.
 		clearCache();
@@ -259,7 +331,7 @@ public abstract class MultiMethod<ReturnType> {
 		ClassTuple tuple = new ClassTuple(newVirtualParameterTypes);
 		InvokableMethod newMethod = new InvokableMethod(tuple, method, methodHandle, object);
 		newMethod.setData(data);
-		methods.put(tuple, newMethod);
+		syncThis.addMethod(tuple, newMethod);
 		
 		return newMethod;
 	}
@@ -277,9 +349,7 @@ public abstract class MultiMethod<ReturnType> {
 	protected void addMethodFamily(MethodHandles.Lookup lookup, Class<?> classInstance, String methodName, Object object) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods.values()) {
-			m.setLastAdded(false);
-		}
+		syncThis.setLastAddedToMethods();
 		
 		// Get the list of classes.
 		ArrayList<Class<?>> classInstances = new ArrayList<>();
@@ -317,9 +387,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods.values()) {
-			m.setLastAdded(false);
-		}
+		syncThis.setLastAddedToMethods();
 		
 		// Add the method.
 		try {
@@ -346,9 +414,7 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> add(Object object, String methodName, Class<?>... parameterTypes) {
 		
 		// Set all the other methods lastAdded to false.
-		for (InvokableMethod m : methods.values()) {
-			m.setLastAdded(false);
-		}
+		syncThis.setLastAddedToMethods();
 		
 		// Add the method.
 		try {
@@ -370,12 +436,8 @@ public abstract class MultiMethod<ReturnType> {
 	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
-		for (InvokableMethod m : methods.values()) {
-			if (m.isLastAdded()) {
-				m.setData(data);
-			}
-		}
-		
+		syncThis.setDataToMethodsIfLastAdded(data);
+
 		return this;
 	}
 	
@@ -463,7 +525,7 @@ public abstract class MultiMethod<ReturnType> {
 		ClassTuple methodTuple = new ClassTuple(virtualParameterTypes);
 		
 		// Set the args to the comparator.
-		methodComparator.setArgs(args);
+		syncThis.getComparator().setArgs(args);
 		
 		return processClassTuple(methodTuple, SuperClass.calculate(methodTuple));
 	}
@@ -520,8 +582,14 @@ public abstract class MultiMethod<ReturnType> {
 		// Search for compatible methods.
 		ArrayList<MethodItem> compatibleMethodItems = new ArrayList<MethodItem>();
 		
+		// Get the methods.
+		Collection<InvokableMethod> methods = syncThis.getMethodsValues();
+		
+		// Get the comparator.
+		MethodComparator methodComparator = syncThis.getComparator();
+		
 		// Iterate the list of added methods.
-		for (InvokableMethod method : methods.values()) {
+		for (InvokableMethod method : methods) {
 			
 			// Calculate the compatible method with its distance tuple.
 			MethodItem item = calculateCompatibleMethod(superClassSet, method);
@@ -612,6 +680,10 @@ public abstract class MultiMethod<ReturnType> {
 
 	@Override
 	public String toString() {
+		
+		MethodComparator methodComparator = syncThis.getComparator();
+		Class<?>[] nonVirtualParameterTypes = syncThis.getNonVirtualParameterTypes();
+		
 		return "MultiMethod [dimension=" + dimension + ", methodComparator="
 				+ methodComparator.getClass().getCanonicalName() + ", nonVirtualParameterTypes="
 				+ Arrays.toString(nonVirtualParameterTypes) + "]";
