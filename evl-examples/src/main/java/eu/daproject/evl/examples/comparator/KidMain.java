@@ -68,10 +68,10 @@ public class KidMain {
 		
 		// Test Car, Tallboy, Box.
 		{
+			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12)};
+			
 			System.out.println();
 			System.out.println("Test Car, Tallboy, Box");
-			
-			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12)};
 			
 			for (Element element1 : elements) {
 				for (Element element2 : elements) {
@@ -115,11 +115,11 @@ public class KidMain {
 					return -1;
 				}
 			});
-			
+
+			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12), new GoldenBox(15)};
+						
 			System.out.println();
 			System.out.println("Test Car, Tallboy, Box, GoldenBox");
-						
-			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12), new GoldenBox(15)};
 				
 			for (Element element1 : elements) {
 				for (Element element2 : elements) {
