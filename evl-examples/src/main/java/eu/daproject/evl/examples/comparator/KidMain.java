@@ -8,7 +8,7 @@ import eu.daproject.evl.examples.common.Element;
 import eu.daproject.evl.examples.common.GoldenBox;
 import eu.daproject.evl.examples.common.Tallboy;
 
-public class BoyMain {
+public class KidMain {
 	
 	public static void test(Method2<Integer> comparator, Element element1, Element element2) throws Throwable {
 		
