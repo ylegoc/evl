@@ -40,6 +40,49 @@ public abstract class MethodComparator {
 	}
 	
 	/**
+	 * Compares two {@link MethodItem} objects with priority after the tuple comparison.
+	 * This is a helper method to define easily the real <code>compare</code> methods.
+	 * @param m1
+	 * @param m2
+	 * @param tupleComparison
+	 * @return -1, zero, or 1 as <code>m1</code> is less than, equal to, or greater than <code>m2</code>
+	 */
+	protected int compareWithPriority(MethodItem m1, MethodItem m2, int tupleComparison) {
+		
+		// Compare the distance tuple of each multimethod.
+		if (tupleComparison == 0) {
+			Priority priority1 = null;
+			if (m1.getData() == null) {
+				priority1 = Priority.valueOf(0);
+			}
+			else if (m1.getData() instanceof Priority) {
+				priority1 = (Priority)m1.getData();
+			}
+			
+			Priority priority2 = null;
+			if (m2.getData() == null) {
+				priority2 = Priority.valueOf(0);
+			}
+			else if (m2.getData() instanceof Priority) {
+				priority2 = (Priority)m2.getData();
+			}
+			
+			if (priority1 != null) {
+				// We search for the "closest" tuple, so if we want to choose m1 if it has greater priority i.e. m1 < m2, 
+				// then we need to invert the result. 
+				return -priority1.compareTo(priority2);
+			}
+			
+			if (priority2 != null) {
+				// We let the result because we compare priority2 < priority1.
+				return priority2.compareTo(priority1);
+			}
+		}
+		
+		return tupleComparison;
+	}
+	
+	/**
 	 * Compares two {@link MethodItem} objects.
 	 * The method must be implemented in the concrete method comparator.
 	 * @param m1 the first method item

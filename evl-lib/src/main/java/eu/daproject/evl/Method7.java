@@ -168,6 +168,7 @@ public class Method7<ReturnType> extends MultiMethod<ReturnType> {
 	 * @param class4 class 4
 	 * @param class5 class 5
 	 * @param class6 class 6
+	 * @param class7 class 7
 	 * @throws InvocationException the exception
 	 */
 	public void check(Class<?> class1, Class<?> class2, Class<?> class3, Class<?> class4, Class<?> class5, Class<?> class6, Class<?> class7) throws InvocationException {

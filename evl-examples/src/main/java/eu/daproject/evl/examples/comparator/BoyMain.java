@@ -5,6 +5,7 @@ import eu.daproject.evl.Method2;
 import eu.daproject.evl.examples.common.Box;
 import eu.daproject.evl.examples.common.Car;
 import eu.daproject.evl.examples.common.Element;
+import eu.daproject.evl.examples.common.GoldenBox;
 import eu.daproject.evl.examples.common.Tallboy;
 
 public class BoyMain {
@@ -50,6 +51,7 @@ public class BoyMain {
 			System.err.println("Error in comparison : " + e);
 		}
 		
+		// Add case.
 		interestComparator.add(new Cases() {
 			
 			int match(Car car1, Car car2) {
@@ -64,12 +66,67 @@ public class BoyMain {
 			System.err.println("Error in comparison : " + e);
 		}
 		
-		Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12)};
-		
-		for (Element element1 : elements) {
-			for (Element element2 : elements) {
-				test(interestComparator, element1, element2);				
+		// Test Car, Tallboy, Box.
+		{
+			System.out.println();
+			System.out.println("Test Car, Tallboy, Box");
+			
+			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12)};
+			
+			for (Element element1 : elements) {
+				for (Element element2 : elements) {
+					test(interestComparator, element1, element2);				
+				}
 			}
 		}
+		
+		// Add the GoldenBox.
+		{
+			interestComparator.add(new Cases() {
+				
+				int match(GoldenBox box, Element element) {
+					return 1;
+				}
+				
+				int match(Element element, GoldenBox box) {
+					return -1;
+				}
+				
+				int match(GoldenBox box1, GoldenBox box2) {
+					return 0;
+				}
+			});
+
+			try {
+				test(interestComparator, new Car("blue"), new GoldenBox(15));
+			}
+			catch (Throwable e) {
+				System.err.println("Error in comparison : " + e);
+			}
+			
+			// Add cases.
+			interestComparator.add(new Cases() {
+				
+				int match(GoldenBox box, Car car) {
+					return 1;
+				}
+				
+				int match(Car car, GoldenBox box) {
+					return -1;
+				}
+			});
+			
+			System.out.println();
+			System.out.println("Test Car, Tallboy, Box, GoldenBox");
+						
+			Element[] elements = new Element[] {new Car("blue"), new Car("red"), new Tallboy("wood"), new Box(12), new GoldenBox(15)};
+				
+			for (Element element1 : elements) {
+				for (Element element2 : elements) {
+					test(interestComparator, element1, element2);				
+				}
+			}
+		}
+		
 	}
 }
