@@ -5,4 +5,9 @@ public class Room extends Container {
 	private int color;
 	public Room(int color) { this.color = color; }
 	public int getColor() { return color; }
+	
+	@Override
+	public String toString() {
+		return "Room " + color;
+	}
 }
