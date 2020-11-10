@@ -2,12 +2,11 @@ package eu.daproject.evl.examples.comparator;
 
 import eu.daproject.evl.MethodComparator;
 import eu.daproject.evl.MethodItem;
-import eu.daproject.evl.comparators.LexicographicDistanceComparator;
 import eu.daproject.evl.comparators.ProductDistanceComparator;
 
 public class PersonAndElementsComparator extends MethodComparator {
 
-	protected int[] getLasts(int[] d) {
+	protected int[] getLastDimensions(int[] d) {
 		
 		int[] result = new int[d.length - 1];
 		
@@ -20,17 +19,14 @@ public class PersonAndElementsComparator extends MethodComparator {
 	
 	protected int compareTuples(int[] d1, int[] d2) {
 
-		// Lexicographic comparison on the first dimension.
-		int[] d1First = new int[] {d1[0]};
-		int[] d2First = new int[] {d2[0]};
-		
-		int firstComparison = LexicographicDistanceComparator.compare(d1First, d2First);
+		// Integer comparison on the first dimension.
+		int firstComparison = Integer.compare(d1[0], d2[0]);
 		if (firstComparison != 0) {
 			return firstComparison;	
 		}
 		
 		// If equality on the first dimension, then product comparison on the last dimensions.
-		return ProductDistanceComparator.compare(getLasts(d1), getLasts(d2));
+		return ProductDistanceComparator.compare(getLastDimensions(d1), getLastDimensions(d2));
 	}
 	
 	@Override

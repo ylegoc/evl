@@ -55,7 +55,7 @@ public class KidMain {
 		interestComparator.add(new Cases() {
 			
 			int match(Car car1, Car car2) {
-				return 0;
+				return Integer.compare(car1.getColor().length(), car2.getColor().length());
 			}
 		});
 		
@@ -93,7 +93,7 @@ public class KidMain {
 				}
 				
 				int match(GoldenBox box1, GoldenBox box2) {
-					return 0;
+					return Integer.compare(box1.getSize(), box2.getSize());
 				}
 			});
 

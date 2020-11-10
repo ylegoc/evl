@@ -49,7 +49,7 @@ public class PersonMain {
 			}
 			
 			int match(Kid kid, Car car1, Car car2) {
-				return 0;
+				return Integer.compare(car1.getColor().length(), car2.getColor().length());
 			}
 			
 			int match(Kid kid, GoldenBox box, Element element) {
@@ -61,7 +61,7 @@ public class PersonMain {
 			}
 			
 			int match(Kid kid, GoldenBox box1, GoldenBox box2) {
-				return 0;
+				return Integer.compare(box1.getSize(), box2.getSize());
 			}
 				
 			int match(Kid kid, GoldenBox box, Car car) {
