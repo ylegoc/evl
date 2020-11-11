@@ -38,7 +38,7 @@ public class Main {
 		
 		factory.addToyCases(new Cases() {
 			
-			Toy match(Adult adult, Outside inside) {
+			Toy match(Adult adult, Outside outside) {
 				return new Game(4);
 			}
 		});
