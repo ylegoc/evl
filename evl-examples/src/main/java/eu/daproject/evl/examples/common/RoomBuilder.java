@@ -21,7 +21,7 @@ public class RoomBuilder {
 		box3.add(new Car("blue"));
 		box3.add(new Car("orange"));
 		
-		Room room = new Room(4);
+		Room room = new Room("green");
 		room.add(tallboy);
 		room.add(box3);
 		
