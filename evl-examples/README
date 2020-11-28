@@ -1,8 +1,9 @@
 Features
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part6.Main
 
-Test example:
+Test examples:
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.visitor.MultiMain
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.statefulclass.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.state.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.comparator.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.observer.Main
