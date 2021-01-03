@@ -63,10 +63,6 @@ public class Main {
 				catch (InterruptedException e1) {
 				}
 				
-				if (element == null) {
-					return;
-				}
-				
 				try {
 					counterMethod.invoke(element);
 				}
