@@ -7,3 +7,4 @@ $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.stateful
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.state.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.comparator.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.observer.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.queue.Main
