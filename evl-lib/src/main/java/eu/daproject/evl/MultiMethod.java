@@ -574,6 +574,20 @@ public abstract class MultiMethod<ReturnType> {
 	}
 	
 	/**
+	 * Verifies that the virtual arguments are non-null.
+	 * @param args
+	 */
+	protected void checkVirtualArgs(Object... args) {
+		
+		// Iterate the arguments.
+		for (Object arg : args) {
+			if (arg == null) {
+				throw new IllegalArgumentException("A virtual argument cannot be null");
+			}
+		}
+	}
+	
+	/**
 	 * Processes the class tuple.
 	 * @param args the arguments
 	 * @return the matching method

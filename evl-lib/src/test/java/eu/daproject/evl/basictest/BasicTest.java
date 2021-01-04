@@ -39,6 +39,33 @@ import eu.daproject.evl.util.ClassTuple;
 public class BasicTest {
 	
 	@Test
+	public void test0() throws Throwable {
+		
+		Foo foo = new Foo();
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		boolean error = false;
+		try {
+			m.invoke(null);
+		}
+		catch (IllegalArgumentException e) {
+			error = true;
+		}
+		assertTrue(error);
+		
+		m.add(foo, "foo", IA.class);
+		
+		try {
+			m.invoke(null);
+		}
+		catch (IllegalArgumentException e) {
+			error = true;
+		}
+		assertTrue(error);
+	}
+	
+	@Test
 	public void test1() throws Throwable {
 		
 		Foo foo = new Foo();

@@ -178,6 +178,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -198,6 +199,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -219,6 +221,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -241,6 +244,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -264,6 +268,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -288,6 +293,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
@@ -313,6 +319,7 @@ public class Method1<ReturnType> extends MultiMethod<ReturnType> {
 	 */
 	public ReturnType invoke(Object arg1, Object arg2, Object arg3, Object arg4, Object arg5, Object arg6, Object arg7) throws Throwable {
 
+		checkVirtualArgs(arg1);
 		CacheItem cacheItem = cache.get(arg1.getClass());
 		
 		if (cacheItem != null) {
