@@ -1,6 +1,6 @@
 # EVL
 EVL is a Java library that implements **multimethods** with a nice, simple and powerful interface.  
-Let's start with the standard *Asteroid* example of dimension 2:
+Let's start with the standard *Asteroid* example of dimension two:
 
 ```java
 
