@@ -49,7 +49,7 @@ The *State* pattern can also be reviewed by simply adding a state object to the 
 
 However defining multimethods can lead to different problems:
 
-* How do we resolve the call if there is not a perfect match for the tuple of objects?
+* How do we resolve a call if there is not a perfect match for the tuple of objects?
 * How do we select the dispatched method if there are multiple matches?
 * How to limit the memory footprint in case of a huge class hierarchy leading to a huge number of different cases?
 
