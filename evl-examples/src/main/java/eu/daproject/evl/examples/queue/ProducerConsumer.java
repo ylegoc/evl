@@ -12,10 +12,9 @@ import eu.daproject.evl.examples.common.Game;
 import eu.daproject.evl.examples.common.Room;
 import eu.daproject.evl.examples.common.Tallboy;
 
-public class Main {
+public class ProducerConsumer {
 
 	private Random random = new Random();
-	private Method1<Void> counterMethod = new Method1<Void>();
 	private int lostElements;
 	
 	private Element createElement() {
@@ -60,7 +59,7 @@ public class Main {
 				try {
 					element = queue.take();
 				}
-				catch (InterruptedException e1) {
+				catch (InterruptedException e) {
 				}
 				
 				try {
@@ -92,7 +91,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Main runner = new Main();
+		ProducerConsumer runner = new ProducerConsumer();
 		
 		Method1<Void> counterMethod = new Method1<Void>();
 		
