@@ -80,14 +80,18 @@ public class ClassTuple {
 	 */
 	@Override
 	public String toString() {
+
 		String result = "<";
+		if (tuple.length > 0) {
 		
-		for (int i = 0; i < tuple.length - 1; i++) {
-			result += tuple[i].getName() + ", ";
+			for (int i = 0; i < tuple.length - 1; i++) {
+				result += tuple[i].getName() + ", ";
+			}
+			
+			// Tuple has size > 0.
+			result += tuple[tuple.length - 1].getName();
 		}
-		
-		// Tuple has size > 0.
-		result += tuple[tuple.length - 1].getName() + ">";
+		result += ">";
 		
 		return result;
 	}
