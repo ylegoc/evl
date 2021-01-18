@@ -6,7 +6,7 @@ public class Print {
 
 	private static Method1<String> method = new Method1<String>();
 	
-	public static Method1<String> m() {
+	public static Method1<String> method() {
 		return method;
 	}
 	
