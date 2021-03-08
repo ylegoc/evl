@@ -1,4 +1,4 @@
-package eu.daproject.evl.examples.printer;
+package eu.daproject.evl.examples.tostring;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.examples.common.Doll;
@@ -13,7 +13,7 @@ public class SmallDoll extends Doll {
 	}
 	
 	static {
-		Print.method().add(new Cases() {
+		ToString.method().add(new Cases() {
 			String match(XML xml, SmallDoll doll) {
 				return "<smallDoll height=\"" + doll.getHeight() + "\" hair=\"" + doll.hair + "\"/>";
 			}

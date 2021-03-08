@@ -1,9 +1,9 @@
-package eu.daproject.evl.examples.printer;
+package eu.daproject.evl.examples.tostring;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
 
-public class Print {
+public class ToString {
 
 	private static Method2<String> method = new Method2<String>()
 													.returnType(String.class)

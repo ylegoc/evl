@@ -1,4 +1,4 @@
-package eu.daproject.evl.examples.printer;
+package eu.daproject.evl.examples.tostring;
 
 public class XML {
 

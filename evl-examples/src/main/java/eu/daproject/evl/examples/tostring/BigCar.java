@@ -1,4 +1,4 @@
-package eu.daproject.evl.examples.printer;
+package eu.daproject.evl.examples.tostring;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.examples.common.Car;
@@ -10,7 +10,7 @@ public class BigCar extends Car {
 	}
 	
 	static {
-		Print.method().add(new Cases() {
+		ToString.method().add(new Cases() {
 			String match(XML xml, BigCar car) {
 				return "<bigCar color=\"" + car.getColor() + "\"/>";
 			}

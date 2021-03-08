@@ -1,4 +1,4 @@
-package eu.daproject.evl.examples.printer;
+package eu.daproject.evl.examples.tostring;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.examples.common.Element;
@@ -11,13 +11,13 @@ public class SmallTallboy extends Tallboy {
 	}
 	
 	static {
-		Print.method().add(new Cases() {
+		ToString.method().add(new Cases() {
 			String match(XML xml, SmallTallboy tallboy) {
 				String result = "<smallTallboy>\n";
 				
 				for (Element element : tallboy.getElements()) {
 					try {
-						result += "  " + Print.method().invoke(xml, element) + "\n";
+						result += "  " + ToString.method().invoke(xml, element) + "\n";
 					} catch (Throwable e) {
 						result += "  \n<notPrintable/>\n";
 					}
