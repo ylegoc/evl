@@ -163,8 +163,19 @@ public abstract class MultiMethod<ReturnType> {
 				returnType = type;
 			}
 			else {
-				if (!returnType.isAssignableFrom(type)) {
-					throw new BadReturnTypeException(returnType, type);
+				if (!returnType.equals(type)) {
+					// void can come from a match method.
+					if (returnType.equals(Void.class)) {
+						if (type.equals(void.class)) {
+							// Void and void are compatible.
+							return;
+						}
+					}
+					
+					// Types are different, check if they are compatible.
+					if (!returnType.isAssignableFrom(type)) {
+						throw new BadReturnTypeException(returnType, type);
+					}
 				}
 			}
 		}
