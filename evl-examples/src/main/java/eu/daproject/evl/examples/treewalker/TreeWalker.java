@@ -2,11 +2,11 @@ package eu.daproject.evl.examples.treewalker;
 
 import eu.daproject.evl.Method1;
 
-public class Walker {
+public class TreeWalker {
 	
 	private Method1<Void> traverse = new Method1<Void>()
 			.returnType(Void.class)
-			.nonVirtualParameterTypes(Walker.class);
+			.nonVirtualParameterTypes(TreeWalker.class);
 	
 	private Method1<Void> enter = new Method1<Void>()
 			.returnType(Void.class)

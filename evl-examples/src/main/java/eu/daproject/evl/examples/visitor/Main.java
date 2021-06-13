@@ -13,7 +13,7 @@ import eu.daproject.evl.examples.common.Person;
 import eu.daproject.evl.examples.common.Teen;
 import eu.daproject.evl.examples.common.Toy;
 
-public class MultiMain {
+public class Main {
 
 	public static class ToyCannotBePlayedException extends Throwable {}
 	

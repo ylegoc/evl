@@ -65,7 +65,15 @@ public class Main {
 		
 		Toy car = new Car("blue");
 		Toy game = new Game(3);
+		
 		Weather weather = new Rainy();
+		
+		test(playDuration, kid, car, weather);
+		test(playDuration, teen, game, weather);
+		test(playDuration, adult, game, weather);
+		test(playDuration, adult, car, weather);
+		
+		weather = new Sunny();
 		
 		test(playDuration, kid, car, weather);
 		test(playDuration, teen, game, weather);

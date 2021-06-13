@@ -16,5 +16,4 @@ public class TreePrinter {
 	public void leave(Element element) {
 		space.decrement();
 	}
-	
 }

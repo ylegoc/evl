@@ -10,7 +10,7 @@ public class MainWalker {
 		Room room = RoomBuilder.build();
 		
 		{
-			Walker walker = new Walker();
+			TreeWalker walker = new TreeWalker();
 			
 			TreeTraversal traversal = new TreeTraversal();
 			TreePrinter printer = new TreePrinter();
@@ -23,10 +23,10 @@ public class MainWalker {
 		}
 		
 		{
-			Walker walker = new Walker();
+			TreeWalker walker = new TreeWalker();
 			
 			TreeTraversal traversal = new TreeTraversal();
-			CarCounter counter = new CarCounter();
+			TreeCarInBoxCounter counter = new TreeCarInBoxCounter();
 	
 			walker.traverse().add(traversal, "traverse");
 			walker.enter().add(counter, "enter");

@@ -7,7 +7,7 @@ import eu.daproject.evl.examples.common.Box;
 import eu.daproject.evl.examples.common.Car;
 import eu.daproject.evl.examples.common.Element;
 
-public class CarCounter {
+public class TreeCarInBoxCounter {
 
 	private Deque<Integer> counters = new ArrayDeque<Integer>();
 	
@@ -32,5 +32,4 @@ public class CarCounter {
 		
 		System.out.println(box + " contains " + count + " cars");
 	}
-	
 }
