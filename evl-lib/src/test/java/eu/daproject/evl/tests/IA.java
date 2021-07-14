@@ -13,19 +13,8 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.basictest;
+package eu.daproject.evl.tests;
 
-public class Bar {
+public interface IA {
 
-	public int bar(IA a, int p) {
-		return p;
-	}
-	
-	public int bar(D e, int p) {
-		return p;
-	}
-	
-	public int foo(IC c, int p) {
-		return p;
-	}
 }

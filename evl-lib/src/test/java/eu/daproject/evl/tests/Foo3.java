@@ -13,8 +13,20 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.basictest;
+package eu.daproject.evl.tests;
 
-public interface IC extends IA, IB {
+public class Foo3 {
+
+	public int foo(IA a, IA b, IB c) {
+		return 1;
+	}
+	
+	public int foo(D a, IA b, IB c) {
+		return 2;
+	}
+	
+	public int foo(E a, IA b, E c) {
+		return 3;
+	}
 
 }

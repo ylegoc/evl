@@ -1,4 +1,4 @@
-package eu.daproject.evl.basictest;
+package eu.daproject.evl.tests;
 
 import eu.daproject.evl.Method1;
 

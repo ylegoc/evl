@@ -13,8 +13,19 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.basictest;
+package eu.daproject.evl.tests;
 
-public class D {
+public class Hoo {
 
+	public IC hoo(IC b, int i) {
+		return null;
+	}
+	
+	public D hoo(D d, int i) {
+		return null;
+	}
+	
+	public E hoo(E e, int i) {
+		return null;
+	}
 }

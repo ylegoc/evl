@@ -13,27 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.basictest;
+package eu.daproject.evl.tests;
 
-public class Foo {
+public class Goo {
 
-	public int foo(IA a) {
+	public int goo(IA a, int i) {
 		return 1;
 	}
 	
-	public int foo(D e) {
+	public int goo(D e, int i) {
 		return 2;
 	}
 	
-	public int foo(IC c) {
+	public int goo(IC c, float f) {
 		return 3;
 	}
 	
-	public int bar(double d) {
-		return (int)d;
-	}
-	
-	public static int foo(E e) {
-		return 4;
+	public float goo(IB b, int i) {
+		return 3;
 	}
 }
