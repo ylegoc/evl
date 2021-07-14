@@ -18,8 +18,6 @@ public class PersonFinder {
 	protected Weather weather = new Sunny();
 	
 	public PersonFinder() {
-		
-		m.access(PersonFinder.class);
 		m.add(this, "findMatch");
 	}
 	

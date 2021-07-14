@@ -7,8 +7,6 @@ public class Class {
 	protected Method1<Integer> m = new Method1<Integer>();
 	
 	public Class() {
-		
-		m.access(Class.class);
 		m.add(this, "fooMatch");
 	}
 	

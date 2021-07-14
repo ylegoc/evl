@@ -27,10 +27,7 @@ public class PersonPlaying {
 		
 		this.person = person;
 		
-		start.access(PersonPlaying.class);
 		start.add(this, "startMatch");
-		
-		stop.access(PersonPlaying.class);
 		stop.add(this, "stopMatch");
 	}
 	

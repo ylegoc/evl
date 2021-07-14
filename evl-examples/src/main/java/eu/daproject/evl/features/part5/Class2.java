@@ -29,8 +29,6 @@ public class Class2 {
 	}
 	
 	public Class2() {
-		
-		m.access(Class2.class);
 		m.add(this, "fooMatch");
 	}
 	
