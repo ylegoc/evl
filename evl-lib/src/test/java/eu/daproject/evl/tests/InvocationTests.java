@@ -23,15 +23,14 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
-import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
 import eu.daproject.evl.Method3;
 import eu.daproject.evl.Method4;
 import eu.daproject.evl.Priority;
 import eu.daproject.evl.SymmetricComparator;
+import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.InvocationException;
-import eu.daproject.evl.exception.MethodNotAddedException;
 import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;
 
@@ -160,30 +159,6 @@ public class InvocationTests {
 		{
 			Method2<Integer> m = new Method2<Integer>()
 					.comparator(new SymmetricComparator())
-					.add(foo, "foo");
-	
-			boolean error = false;
-			try {
-				m.invoke(e, e);
-			}
-			catch (InvocationException ex) {
-				error = true;
-			}
-			assertTrue(error);
-			
-			error = false;
-			try {
-				m.check(E.class, E.class);
-			}
-			catch (InvocationException ex) {
-				error = true;
-			}
-			assertTrue(error);
-		}
-		
-		{
-			Method2<Integer> m = new Method2<Integer>()
-					.comparator(new SymmetricComparator())
 					.cache(new HashMap<ClassTuple, CacheItem>())
 					.add(foo, "foo", IA.class, IA.class).data(Priority.valueOf(3))
 					.add(foo, "foo", D.class, IA.class).data(Priority.valueOf(2))
@@ -210,76 +185,6 @@ public class InvocationTests {
 			int res = m.invoke(e, e);
 			assertEquals(res, 2);
 		}
-	}
-	
-	@Test
-	public void testOverridable() throws Throwable {
-
-		boolean error = false;
-		
-		Method1<Void> m = new Method1<Void>();
-		
-		m.add(new Cases() {
-			void match(D d) {
-				System.out.println("Match D");
-			}
-		});
-		
-		m.add(new Cases() {
-			void match(D d) {
-				System.out.println("Re-match D");
-			}
-		});
-		
-		m.notOverridable();
-		
-		m.add(new Cases() {
-			void match(E d) {
-				System.out.println("Match E");
-			}
-		});
-		
-		try {
-			m.add(new Cases() {
-				void match(D d) {
-					System.out.println("Re-re-match D");
-				}
-			});
-		}
-		catch (MethodNotAddedException e) {
-			error = true;
-		}
-		
-		assertTrue(error);
-	}
-	
-	@Test
-	public void testFinal() throws Throwable {
-
-		boolean error = false;
-		
-		Method1<Void> m = new Method1<Void>();
-		
-		m.add(new Cases() {
-			void match(D d) {
-				System.out.println("Match D");
-			}
-		});
-				
-		m.setFinal();
-		
-		try {
-			m.add(new Cases() {
-				void match(E d) {
-					System.out.println("Match E");
-				}
-			});
-		}
-		catch (MethodNotAddedException e) {
-			error = true;
-		}
-		
-		assertTrue(error);
 	}
 	
 	@Test

@@ -24,12 +24,16 @@ public class Goo {
 	public int goo(D e, int i) {
 		return 2;
 	}
-	
-	public int goo(IC c, float f) {
+		
+	public int goo(IC c, int i, double d) {
 		return 3;
+	}
+
+	public int goo(IC c, float f) {
+		return 4;
 	}
 	
 	public float goo(IB b, int i) {
-		return 3;
+		return 5;
 	}
 }

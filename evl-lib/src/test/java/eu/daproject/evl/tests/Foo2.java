@@ -17,6 +17,10 @@ package eu.daproject.evl.tests;
 
 public class Foo2 {
 
+	public int foo1(IA a) {
+		return 0;
+	}
+	
 	public int foo(IA a, IA b) {
 		return 1;
 	}

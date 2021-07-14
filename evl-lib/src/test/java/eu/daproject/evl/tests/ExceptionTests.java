@@ -4,62 +4,37 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method1;
+import eu.daproject.evl.Method2;
+import eu.daproject.evl.SymmetricComparator;
+import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
+import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
-import eu.daproject.evl.exception.InvocationException;
+import eu.daproject.evl.exception.MethodNotAddedException;
+import eu.daproject.evl.exception.NoMatchingMethodException;
 
 public class ExceptionTests {
 	
 	@Test
-	public void testNullArgument() throws Throwable {
+	public void testBadNumberOfVirtualParameterTypesException() throws Throwable {
 		
-		Foo foo = new Foo();
-		
-		Method1<Void> m = new Method1<Void>();
+		Foo2 foo = new Foo2();
 		
 		boolean error = false;
-		try {
-			m.invoke(null);
-		}
-		catch (IllegalArgumentException e) {
-			error = true;
-		}
-		assertTrue(error);
 		
-		m.add(foo, "foo", IA.class);
+		Method2<Integer> m = new Method2<Integer>()
+				.returnType(int.class)
+				.add(foo, "foo");
 		
 		try {
-			m.invoke(null);
+			m.add(foo, "foo1");
 		}
-		catch (IllegalArgumentException e) {
+		catch (BadNumberOfVirtualParameterTypesException e) {
 			error = true;
 		}
-		assertTrue(error);
-	}
-	
-	@Test
-	public void testCacheNoMatchingMethod() throws Throwable {
-		
-		Method1<Integer> m = new Method1<Integer>();
-		
-		E e = new E();
-		
-		boolean error = false;
-		try {
-			m.invoke(e);
-		}
-		catch (InvocationException ex) {
-			error = true;
-		}
-		
-		try {
-			m.invoke(e);
-		}
-		catch (InvocationException ex) {
-			error = true;
-		}
-		
+				
 		assertTrue(error);
 	}
 	
@@ -129,5 +104,176 @@ public class ExceptionTests {
 	
 			assertTrue(error);
 		}
+	}
+		
+	@Test
+	public void testNullArgument() throws Throwable {
+		
+		Foo foo = new Foo();
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		boolean error = false;
+		try {
+			m.invoke(null);
+		}
+		catch (IllegalArgumentException e) {
+			error = true;
+		}
+		assertTrue(error);
+		
+		m.add(foo, "foo", IA.class);
+		
+		try {
+			m.invoke(null);
+		}
+		catch (IllegalArgumentException e) {
+			error = true;
+		}
+		assertTrue(error);
+	}
+	
+	@Test
+	public void testNoMatchingMethodException() throws Throwable {
+		
+		Foo2 foo = new Foo2();
+		D d = new D();
+		
+		Method2<Integer> m = new Method2<Integer>()
+				.comparator(new SymmetricComparator())
+				.add(foo, "foo");
+		
+		boolean error = false;
+		try {
+			m.invoke(d, d);
+		}
+		catch (NoMatchingMethodException e) {
+			error = true;
+		}
+		assertTrue(error);
+	}
+	
+	@Test
+	public void testCacheNoMatchingMethod() throws Throwable {
+		
+		Method1<Integer> m = new Method1<Integer>();
+		
+		E e = new E();
+		
+		boolean error = false;
+		try {
+			m.invoke(e);
+		}
+		catch (NoMatchingMethodException ex) {
+			error = true;
+		}
+		
+		try {
+			m.invoke(e);
+		}
+		catch (NoMatchingMethodException ex) {
+			error = true;
+		}
+		
+		assertTrue(error);
+	}
+	
+	@Test
+	public void testOverridable() throws Throwable {
+
+		boolean error = false;
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Match D");
+			}
+		});
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Re-match D");
+			}
+		});
+		
+		m.notOverridable();
+		
+		m.add(new Cases() {
+			void match(E d) {
+				System.out.println("Match E");
+			}
+		});
+		
+		try {
+			m.add(new Cases() {
+				void match(D d) {
+					System.out.println("Re-re-match D");
+				}
+			});
+		}
+		catch (MethodNotAddedException e) {
+			error = true;
+		}
+		
+		assertTrue(error);
+	}
+	
+	@Test
+	public void testFinal() throws Throwable {
+
+		boolean error = false;
+		
+		Method1<Void> m = new Method1<Void>();
+		
+		m.add(new Cases() {
+			void match(D d) {
+				System.out.println("Match D");
+			}
+		});
+				
+		m.setFinal();
+		
+		try {
+			m.add(new Cases() {
+				void match(E d) {
+					System.out.println("Match E");
+				}
+			});
+		}
+		catch (MethodNotAddedException e) {
+			error = true;
+		}
+		
+		assertTrue(error);
+	}
+	
+	@Test
+	public void testAmbiguityResolution() throws Throwable {
+		
+		Foo2 foo = new Foo2();
+		E e = new E();
+		
+		Method2<Integer> m = new Method2<Integer>()
+				.comparator(new SymmetricComparator())
+				.add(foo, "foo");
+
+		boolean error = false;
+		try {
+			m.invoke(e, e);
+		}
+		catch (AmbiguousMethodException ex) {
+			error = true;
+		}
+		assertTrue(error);
+		
+		error = false;
+		try {
+			m.check(E.class, E.class);
+		}
+		catch (AmbiguousMethodException ex) {
+			error = true;
+		}
+		assertTrue(error);
 	}
 }
