@@ -358,4 +358,13 @@ public class BasicTest {
 		
 		assertTrue(error);
 	}
+	
+	@Test
+	public void testAccess() throws Throwable {
+		
+		Inner inner = new Inner();
+		
+		int res = inner.foo(new E());
+		assertEquals(res, 1);
+	}
 }
