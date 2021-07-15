@@ -35,9 +35,9 @@ import eu.daproject.evl.exception.MethodNotAddedException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
 import eu.daproject.evl.exception.NoMatchingMethodExceptionThrower;
 import eu.daproject.evl.exception.UnexpectedException;
-import eu.daproject.evl.lookup.CasesLookup;
+import eu.daproject.evl.helper.CasesLookup;
+import eu.daproject.evl.helper.SuperClass;
 import eu.daproject.evl.util.ClassTuple;
-import eu.daproject.evl.util.SuperClass;
 
 /**
  * Main class of the EVL library providing an abstract multimethod with a dimension which represents the number of "virtual" parameters.

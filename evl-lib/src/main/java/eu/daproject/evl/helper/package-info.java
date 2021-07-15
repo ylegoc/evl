@@ -17,4 +17,4 @@
 /**
  * This package provides classes for private lookup used with <code>Cases</code> class.
  */
-package eu.daproject.evl.lookup;
+package eu.daproject.evl.helper;

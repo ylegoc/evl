@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.lookup;
+package eu.daproject.evl.helper;
 
 import java.lang.invoke.MethodHandles;
 

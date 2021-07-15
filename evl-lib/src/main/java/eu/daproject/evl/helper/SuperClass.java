@@ -13,9 +13,11 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package eu.daproject.evl.util;
+package eu.daproject.evl.helper;
 
 import java.util.HashMap;
+
+import eu.daproject.evl.util.ClassTuple;
 
 /**
  * Helper class to calculate the tuple of super classes of a class tuple.
