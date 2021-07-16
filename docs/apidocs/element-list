@@ -1,0 +1,6 @@
+module:eu.daproject.evl
+eu.daproject.evl
+eu.daproject.evl.comparators
+eu.daproject.evl.exception
+eu.daproject.evl.predicate
+eu.daproject.evl.util
