@@ -3,10 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.85.0" />
-
-<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
+<meta name="generator" content="Hugo 0.85.0" /><META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
 
 <link rel="shortcut icon" href="../../../favicons/favicon.ico" >
@@ -20,7 +17,8 @@
 <link rel="icon" type="image/png" href="../../../favicons/android-144x144.png" sizes="144x144">
 <link rel="icon" type="image/png" href="../../../favicons/android-192x192.png" sizes="192x192">
 
-<title>Composition | </title><meta property="og:title" content="Composition" />
+<title>Composition | </title>
+<meta name="description" content="EVL library site"><meta property="og:title" content="Composition" />
 <meta property="og:description" content="When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod. By this way, a chain of multiple dispatch can be designed, that cannot be done with standard Java methods.
 Here is an example of such a composition. The classes used in the example are defined in the preliminaries.
 We define a multimethod of dimension two that returns a toy depending on the person and the location:" />
@@ -44,14 +42,16 @@ We define a multimethod of dimension two that returns a toy depending on the per
 
 
 
+<link rel="preload" href="../../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" as="style">
+<link href="../../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" rel="stylesheet" integrity="">
 
-<link rel="preload" href="../../../scss/main.min.c2bc299561c13b716c290596e31271cf5bf0df216ba54fc62f4082b28487f946.css" as="style">
-<link href="../../../scss/main.min.c2bc299561c13b716c290596e31271cf5bf0df216ba54fc62f4082b28487f946.css" rel="stylesheet" integrity="">
 
 <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
+
+
 <style>
 
 	a {
@@ -71,7 +71,7 @@ We define a multimethod of dimension two that returns a toy depending on the per
 </style>
 
 
-    <title>Composition | </title>
+
   </head>
   <body class="td-page">
     <header>
@@ -89,10 +89,14 @@ We define a multimethod of dimension two that returns a toy depending on the per
 				
 				
 				
+				
+				
 				<a class="nav-link" href="../../../docs/about/" ><span>What is EVL?</span></a>
 			</li>
 			
 			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
 				
 				
 				
@@ -105,6 +109,8 @@ We define a multimethod of dimension two that returns a toy depending on the per
 				
 				
 				
+				
+				
 				<a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank" ><span>GitHub</span></a>
 			</li>
 			
@@ -112,424 +118,1193 @@ We define a multimethod of dimension two that returns a toy depending on the per
 			
 		</ul>
 	</div>
-	<div class="navbar-nav d-none d-lg-block"></div>
+	<div class="navbar-nav d-none d-lg-block">
+</div>
 </nav>
 
     </header>
     <div class="container-fluid td-outer">
       <div class="td-main">
         <div class="row flex-xl-nowrap">
-          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
             
 
 
+
+
+  
 
 
 <div id="td-sidebar-menu" class="td-sidebar__inner">
   
   <form class="td-sidebar__search d-flex align-items-center">
     
+
     <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
   
-  <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
     
     
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+    
+    
+    
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docs-li">
+    
+      <a href="../../../docs/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-docs"><span class="">Documentation</span></a>
+    
+    
+      
+      <ul class="ul-1">
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsabout-li">
+    
+      <a href="../../../docs/about/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsabout"><span class="">What is EVL?</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse show" id="docs">
-      
-      
-      
-      
-      
 
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/about/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">What is EVL?</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuse-li">
+    
+      <a href="../../../docs/use/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsuse"><span class="">How to use EVL</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docsabout">
-      
-      
-      
-    </li>
-  </ul>
-</ul>
 
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsthe-multimethods-li">
+    
+      <a href="../../../docs/the-multimethods/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsthe-multimethods"><span class="">The multimethods</span></a>
+    
+    
       
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/use/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">How to use EVL</a>
+      <ul class="ul-2 foldable">
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsbase-transform-li">
+    
+      <a href="../../../docs/the-multimethods/base-transform/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsbase-transform"><span class="">The base transform</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docsuse">
-      
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/the-multimethods/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">The multimethods</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsdimension-two-li">
+    
+      <a href="../../../docs/the-multimethods/dimension-two/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsdimension-two"><span class="">In two dimensions</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docsthe-multimethods">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodsbase-transform" href="../../../docs/the-multimethods/base-transform/">The base transform</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodsdimension-two" href="../../../docs/the-multimethods/dimension-two/">In two dimensions</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodsbest-match" href="../../../docs/the-multimethods/best-match/">Best match</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodschange-comparator" href="../../../docs/the-multimethods/change-comparator/">Change comparator</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodsambiguity-resolution" href="../../../docs/the-multimethods/ambiguity-resolution/">Ambiguity resolution</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsthe-multimethodsmore-dimensions" href="../../../docs/the-multimethods/more-dimensions/">More dimensions</a>
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/theory/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Theory</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsbest-match-li">
+    
+      <a href="../../../docs/the-multimethods/best-match/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsbest-match"><span class="">Best match</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docstheory">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheorytuple-distance" href="../../../docs/theory/tuple-distance/">Tuple of types distance</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheorydistance-comparators" href="../../../docs/theory/distance-comparators/">Distance comparators</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheorymultimethod-definition" href="../../../docs/theory/multimethod-definition/">Multimethod definition</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheorysearch-best-match" href="../../../docs/theory/search-best-match/">Search for the best match</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheoryinvoke" href="../../../docs/theory/invoke/">Invoke with cache</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docstheoryasymmetric-vs-symmetric" href="../../../docs/theory/asymmetric-vs-symmetric/">Asymmetric vs symmetric</a>
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/more-features/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">More features</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodschange-comparator-li">
+    
+      <a href="../../../docs/the-multimethods/change-comparator/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodschange-comparator"><span class="">Change comparator</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docsmore-features">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuressuper-commands" href="../../../docs/more-features/super-commands/">Super commands</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuresinterfaces" href="../../../docs/more-features/interfaces/">Interfaces</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuresreturn-type-parameters" href="../../../docs/more-features/return-type-parameters/">Return type and parameters</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuresswitch" href="../../../docs/more-features/switch/">Switch</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuresopen-access" href="../../../docs/more-features/open-access/">Open access</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featuresprotected-access" href="../../../docs/more-features/protected-access/">Protected access</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featurescontrolled-extension" href="../../../docs/more-features/controlled-extension/">Controlled extension</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsmore-featureserrors" href="../../../docs/more-features/errors/">Errors</a>
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/examples/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Examples</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsambiguity-resolution-li">
+    
+      <a href="../../../docs/the-multimethods/ambiguity-resolution/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsambiguity-resolution"><span class="">Ambiguity resolution</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse show" id="docsexamples">
-      
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplespreliminaries" href="../../../docs/examples/preliminaries/">Preliminaries</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesvisitor" href="../../../docs/examples/visitor/">Visitor</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesstateful-class" href="../../../docs/examples/stateful-class/">Stateful class</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docsexamplescomposition" href="../../../docs/examples/composition/">Composition</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesstate" href="../../../docs/examples/state/">State</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplescomparator" href="../../../docs/examples/comparator/">Comparator</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesstrategy" href="../../../docs/examples/strategy/">Strategy</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesfactory" href="../../../docs/examples/factory/">Factory</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesobserver" href="../../../docs/examples/observer/">Observer</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplesqueue" href="../../../docs/examples/queue/">Queue</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplestostring" href="../../../docs/examples/tostring/">ToString</a>
-      
-      
-      
-      
-      
-      <a class="td-sidebar-link td-sidebar-link__page " id="m-docsexamplestreewalker" href="../../../docs/examples/treewalker/">Tree walker</a>
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-      
-      
-
-
-
-
-
-
-<ul class="td-sidebar-nav__section pr-md-3">
-  <li class="td-sidebar-nav__section-title">
-    <a  href="../../../docs/why/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Why use EVL?</a>
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsmore-dimensions-li">
+    
+      <a href="../../../docs/the-multimethods/more-dimensions/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsmore-dimensions"><span class="">More dimensions</span></a>
+    
+    
   </li>
-  <ul>
-    <li class="collapse " id="docswhy">
-      
-      
-      
-    </li>
-  </ul>
-</ul>
 
-      
-      
-    </li>
-  </ul>
-</ul>
+          
+        
+      </ul>
+    
+  </li>
 
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docstheory-li">
+    
+      <a href="../../../docs/theory/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docstheory"><span class="">Theory</span></a>
+    
+    
+      
+      <ul class="ul-2 foldable">
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorytuple-distance-li">
+    
+      <a href="../../../docs/theory/tuple-distance/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorytuple-distance"><span class="">Tuple of types distance</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorydistance-comparators-li">
+    
+      <a href="../../../docs/theory/distance-comparators/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorydistance-comparators"><span class="">Distance comparators</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorymultimethod-definition-li">
+    
+      <a href="../../../docs/theory/multimethod-definition/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorymultimethod-definition"><span class="">Multimethod definition</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorysearch-best-match-li">
+    
+      <a href="../../../docs/theory/search-best-match/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorysearch-best-match"><span class="">Search for the best match</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheoryinvoke-li">
+    
+      <a href="../../../docs/theory/invoke/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheoryinvoke"><span class="">Invoke with cache</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheoryasymmetric-vs-symmetric-li">
+    
+      <a href="../../../docs/theory/asymmetric-vs-symmetric/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheoryasymmetric-vs-symmetric"><span class="">Asymmetric vs symmetric</span></a>
+    
+    
+  </li>
+
+          
+        
+      </ul>
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsmore-features-li">
+    
+      <a href="../../../docs/more-features/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsmore-features"><span class="">More features</span></a>
+    
+    
+      
+      <ul class="ul-2 foldable">
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuressuper-commands-li">
+    
+      <a href="../../../docs/more-features/super-commands/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuressuper-commands"><span class="">Super commands</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresinterfaces-li">
+    
+      <a href="../../../docs/more-features/interfaces/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresinterfaces"><span class="">Interfaces</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresreturn-type-parameters-li">
+    
+      <a href="../../../docs/more-features/return-type-parameters/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresreturn-type-parameters"><span class="">Return type and parameters</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresswitch-li">
+    
+      <a href="../../../docs/more-features/switch/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresswitch"><span class="">Switch</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresopen-access-li">
+    
+      <a href="../../../docs/more-features/open-access/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresopen-access"><span class="">Open access</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresprotected-access-li">
+    
+      <a href="../../../docs/more-features/protected-access/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresprotected-access"><span class="">Protected access</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featurescontrolled-extension-li">
+    
+      <a href="../../../docs/more-features/controlled-extension/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featurescontrolled-extension"><span class="">Controlled extension</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featureserrors-li">
+    
+      <a href="../../../docs/more-features/errors/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featureserrors"><span class="">Errors</span></a>
+    
+    
+  </li>
+
+          
+        
+      </ul>
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docsexamples-li">
+    
+      <a href="../../../docs/examples/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsexamples"><span class="">Examples</span></a>
+    
+    
+      
+      <ul class="ul-2 foldable">
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplespreliminaries-li">
+    
+      <a href="../../../docs/examples/preliminaries/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplespreliminaries"><span class="">Preliminaries</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesvisitor-li">
+    
+      <a href="../../../docs/examples/visitor/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesvisitor"><span class="">Visitor</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesstateful-class-li">
+    
+      <a href="../../../docs/examples/stateful-class/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstateful-class"><span class="">Stateful class</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-docsexamplescomposition-li">
+    
+      <a href="../../../docs/examples/composition/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-docsexamplescomposition"><span class="td-sidebar-nav-active-item">Composition</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesstate-li">
+    
+      <a href="../../../docs/examples/state/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstate"><span class="">State</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplescomparator-li">
+    
+      <a href="../../../docs/examples/comparator/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplescomparator"><span class="">Comparator</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesstrategy-li">
+    
+      <a href="../../../docs/examples/strategy/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstrategy"><span class="">Strategy</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesfactory-li">
+    
+      <a href="../../../docs/examples/factory/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesfactory"><span class="">Factory</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesobserver-li">
+    
+      <a href="../../../docs/examples/observer/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesobserver"><span class="">Observer</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesqueue-li">
+    
+      <a href="../../../docs/examples/queue/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesqueue"><span class="">Queue</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplestostring-li">
+    
+      <a href="../../../docs/examples/tostring/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplestostring"><span class="">ToString</span></a>
+    
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplestreewalker-li">
+    
+      <a href="../../../docs/examples/treewalker/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplestreewalker"><span class="">Tree walker</span></a>
+    
+    
+  </li>
+
+          
+        
+      </ul>
+    
+  </li>
+
+          
+        
+          
+            
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docswhy-li">
+    
+      <a href="../../../docs/why/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docswhy"><span class="">Why use EVL?</span></a>
+    
+    
+  </li>
+
+          
+        
+      </ul>
+    
+  </li>
+
+    </ul>
   </nav>
 </div>
 
 
 
 
-          </div>
-          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+  
+  
+  
+  
+  
+  
+  <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+  
+  
+  </div>
+
+
             
 
 
 
 
+            
+
+	
+		
 
 
 
+  
+  
+
+	
+		
 
 
 
+  
+  
 
-          </div>
+	
+
+          </aside>
           <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
             <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
 	<ol class="breadcrumb spb-1">
 		
@@ -568,6 +1343,21 @@ We define a multimethod of dimension two that returns a toy depending on the per
 <div class="td-content">
 	<h1>Composition</h1>
 	
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
 	<p>When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod.
 By this way, a <strong>chain of multiple dispatch</strong> can be designed, that cannot be done with standard Java methods.</p>
 <p>Here is an example of such a composition.
@@ -621,8 +1411,10 @@ Multimethods offer new perspectives for the code design.</p>
 
 	
 	
-	<div class="text-muted mt-5 pt-3 border-top">Last modified June 13, 2021: <a  href="../../../commit/9b926084d6f96dbe1e4ade3c6767b481761a620b">Examples (9b92608)</a>
+	<div class="text-muted mt-5 pt-3 border-top">
+
 </div>
+
 </div>
 
 
@@ -645,7 +1437,7 @@ Multimethods offer new perspectives for the code design.</p>
 <ul class="list-inline mb-0">
   
   <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
-    <a class="text-white" target="_blank" href="https://github.com/ylegoc/evl">
+    <a class="text-white" target="_blank" rel="noopener" href="https://github.com/ylegoc/evl" aria-label="GitHub">
       <i class="fab fa-github"></i>
     </a>
   </li>
@@ -666,9 +1458,20 @@ Multimethods offer new perspectives for the code design.</p>
 
 
     </div>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
+
+
+
+
+ 
+
+
+
+
+
 
 
 
@@ -676,6 +1479,7 @@ Multimethods offer new perspectives for the code design.</p>
 
 
 <script src="../../../js/main.min.5c74b870c6953931a705f390a49c7e4c0a842ec5c83b24354758dd674343ed0d.js" integrity="sha256-XHS4cMaVOTGnBfOQpJx&#43;TAqELsXIOyQ1R1jdZ0ND7Q0=" crossorigin="anonymous"></script>
+
 
 
 
