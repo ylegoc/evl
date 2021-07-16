@@ -1,14 +1,17 @@
-package eu.daproject.evl.exception;
+package eu.daproject.evl.helper;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.reflect.Method;
 
+import eu.daproject.evl.exception.AmbiguousMethodException;
+import eu.daproject.evl.exception.InvocationException;
+import eu.daproject.evl.exception.UnexpectedException;
 import eu.daproject.evl.util.ClassTuple;
 
 /**
- * Exception thrower when there when there are at least two matching methods in the list of the minimum methods.
+ * Exception thrower when there are at least two matching methods in the list of the minimum methods.
  * It is used to cache the exception.
  *
  */

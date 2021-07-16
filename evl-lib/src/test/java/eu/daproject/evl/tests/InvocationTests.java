@@ -29,7 +29,6 @@ import eu.daproject.evl.Method3;
 import eu.daproject.evl.Method4;
 import eu.daproject.evl.Priority;
 import eu.daproject.evl.SymmetricComparator;
-import eu.daproject.evl.exception.AmbiguousMethodException;
 import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.util.CacheItem;
 import eu.daproject.evl.util.ClassTuple;

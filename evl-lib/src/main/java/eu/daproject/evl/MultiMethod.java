@@ -25,17 +25,17 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import eu.daproject.evl.exception.AmbiguousMethodException;
-import eu.daproject.evl.exception.AmbiguousMethodExceptionThrower;
 import eu.daproject.evl.exception.BadNonVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadNumberOfVirtualParameterTypesException;
 import eu.daproject.evl.exception.BadReturnTypeException;
-import eu.daproject.evl.exception.ExceptionThrower;
 import eu.daproject.evl.exception.InvocationException;
 import eu.daproject.evl.exception.MethodNotAddedException;
 import eu.daproject.evl.exception.NoMatchingMethodException;
-import eu.daproject.evl.exception.NoMatchingMethodExceptionThrower;
 import eu.daproject.evl.exception.UnexpectedException;
+import eu.daproject.evl.helper.AmbiguousMethodExceptionThrower;
 import eu.daproject.evl.helper.CasesLookup;
+import eu.daproject.evl.helper.ExceptionThrower;
+import eu.daproject.evl.helper.NoMatchingMethodExceptionThrower;
 import eu.daproject.evl.helper.SuperClass;
 import eu.daproject.evl.util.ClassTuple;
 
@@ -234,7 +234,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param methodComparator the method comparator
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> comparator(MethodComparator methodComparator) {
+	public MultiMethod<ReturnType> comparator(MethodComparator methodComparator) {
 		syncThis.setMethodComparator(methodComparator);
 		return this;
 	}
@@ -243,7 +243,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * Sets the symmetric method comparator.
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> symmetricComparator() {
+	public MultiMethod<ReturnType> symmetricComparator() {
 		syncThis.setMethodComparator(new SymmetricComparator());
 		return this;
 	}
@@ -262,7 +262,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param types the non-virtual parameter types
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> nonVirtualParameterTypes(Class<?>...types) {
+	public MultiMethod<ReturnType> nonVirtualParameterTypes(Class<?>...types) {
 		syncThis.setNonVirtualParameterTypes(types);
 		return this;
 	}
@@ -281,7 +281,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param type the return type
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> returnType(Class<?> type) {
+	public MultiMethod<ReturnType> returnType(Class<?> type) {
 		syncThis.setReturnType(type);
 		return this;
 	}
@@ -310,7 +310,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * Sets the overridable parameter. It is not possible to add method if a method already exists for the class tuple.
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> notOverridable() {
+	public MultiMethod<ReturnType> notOverridable() {
 		syncThis.setOverridable(false);
 		return this;
 	}
@@ -461,7 +461,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
-	protected MultiMethod<ReturnType> add(Class<?> classInstance, String methodName, Class<?>... parameterTypes) {
+	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName, Class<?>... parameterTypes) {
 		
 		// Give access to the class instance.
 		this.access(classInstance);
@@ -490,7 +490,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
-	protected MultiMethod<ReturnType> add(Object object, String methodName, Class<?>... parameterTypes) {
+	public MultiMethod<ReturnType> add(Object object, String methodName, Class<?>... parameterTypes) {
 		
 		// Give access to the class instance of object.
 		this.access(object.getClass());
@@ -514,7 +514,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param data the data
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> data(Comparable<?> data) {
+	public MultiMethod<ReturnType> data(Comparable<?> data) {
 		
 		// Find the last added methods and set data.
 		syncThis.setDataToMethodsIfLastAdded(data);
@@ -531,7 +531,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
-	protected MultiMethod<ReturnType> add(Class<?> classInstance, String methodName) {
+	public MultiMethod<ReturnType> add(Class<?> classInstance, String methodName) {
 		
 		// Give access to the class instance.
 		this.access(classInstance);
@@ -550,7 +550,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
-	protected MultiMethod<ReturnType> add(Object object, String methodName) {
+	public MultiMethod<ReturnType> add(Object object, String methodName) {
 
 		// Give access to the class instance of the object.
 		this.access(object.getClass());
@@ -565,7 +565,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @param object the caller
 	 * @return this instance
 	 */
-	protected MultiMethod<ReturnType> add(Object object) {
+	public MultiMethod<ReturnType> add(Object object) {
 		
 		return this.add(object, DEFAULT_METHOD_NAME);
 	}
@@ -578,7 +578,7 @@ public abstract class MultiMethod<ReturnType> {
 	 * @throws BadNumberOfVirtualParameterTypesException if the number of virtual parameter types is not equal to the one of the first inserted method
 	 * @throws BadNonVirtualParameterTypesException if the non virtual parameter types are not the same than the ones of the first inserted method
 	 */
-	protected MultiMethod<ReturnType> add(Cases cases) {
+	public MultiMethod<ReturnType> add(Cases cases) {
 		
 		// Get the current lookup.
 		MethodHandles.Lookup lookup = MethodHandles.lookup();

@@ -1,4 +1,6 @@
-package eu.daproject.evl.exception;
+package eu.daproject.evl.helper;
+
+import eu.daproject.evl.exception.InvocationException;
 
 /**
  * Base interface for an exception thrower. 
