@@ -1,0 +1,1817 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Examples</title>
+    <link>/docs/examples/</link>
+    <description>Recent content in Examples on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/examples/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Preliminaries</title>
+      <link>/docs/examples/preliminaries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/preliminaries/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Before presenting a set of examples, some common classes have to be defined.
+The next examples will use these classes.&lt;/p&gt;
+&lt;p&gt;We model a child room where some toys (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Doll&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;) are in containers (&lt;em&gt;Box&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, &lt;em&gt;Room&lt;/em&gt;).
+We voluntarily never define interface methods because multimethods are a replacement to common &lt;em&gt;virtual&lt;/em&gt; methods.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s define the classes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Element&lt;/span&gt; {}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Toy&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Element {}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Car&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Toy {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; String color;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Car&lt;/span&gt;(String color) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;color&lt;/span&gt; = color; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;getColor&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; color; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Car &amp;#34;&lt;/span&gt; + color;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Doll&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Toy {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; height;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Doll&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; height) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;height&lt;/span&gt; = height; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getHeight&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; height; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Doll &amp;#34;&lt;/span&gt; + height;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Game&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Toy {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; players;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Game&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; players) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;players&lt;/span&gt; = players; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getPlayers&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; players; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game &amp;#34;&lt;/span&gt; + players;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Container&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Element {
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; List&amp;lt;Element&amp;gt; elements = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;Element&amp;gt;();
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;add&lt;/span&gt;(Element element) { elements.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(element); }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; List&amp;lt;Element&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;getElements&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; elements; }
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Box&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Container {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; size;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Box&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; size) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;size&lt;/span&gt; = size; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getSize&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; size; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Box &amp;#34;&lt;/span&gt; + size;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;GoldenBox&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Box {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;GoldenBox&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; size) { &lt;span style=&#34;color:#00a&#34;&gt;super&lt;/span&gt;(size); }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;GoldenBox &amp;#34;&lt;/span&gt; + getSize();
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Tallboy&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Container {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; String material;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Tallboy&lt;/span&gt;(String material) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;material&lt;/span&gt; = material; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;getMaterial&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; material; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Tallboy &amp;#34;&lt;/span&gt; + material;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Room&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Container {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; color;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Room&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; color) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;color&lt;/span&gt; = color; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getColor&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; color; }
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Room &amp;#34;&lt;/span&gt; + color;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We provide a class to build an example of tree:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RoomBuilder&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Room &lt;span style=&#34;color:#0a0&#34;&gt;build&lt;/span&gt;() {
+		
+		Box box1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(100);
+		box1.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
+		box1.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;));
+		
+		Box box2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(200);
+		box2.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(10));
+		box2.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(20));
+		
+		Tallboy tallboy = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;mat&amp;#34;&lt;/span&gt;);
+		tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(box1);
+		tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(box2);
+		tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(3));
+
+		Box box3 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(100);
+		box3.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;));
+		box3.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;orange&amp;#34;&lt;/span&gt;));
+		
+		Room room = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Room(4);
+		room.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(tallboy);
+		room.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(box3);
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; room;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also define some classes related to the age of a person:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Person&lt;/span&gt; {}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Kid&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Person {
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; age;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Kid&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; age) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;age&lt;/span&gt; = age; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getAge&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; age; };
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Kid &amp;#34;&lt;/span&gt; + age;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Teen&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Person {
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;enum&lt;/span&gt; Sex {BOY, GIRL};
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Sex sex;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Teen&lt;/span&gt;(Sex sex) { &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;sex&lt;/span&gt; = sex; }
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Sex &lt;span style=&#34;color:#0a0&#34;&gt;getSex&lt;/span&gt;() { &lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; sex; };
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Teen &amp;#34;&lt;/span&gt; + sex;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Adult&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Person {
+
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Adult&amp;#34;&lt;/span&gt;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We define some classes related to the weather:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Weather&lt;/span&gt; {}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Sunny&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Weather {
+
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Sunny&amp;#34;&lt;/span&gt;;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Rainy&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Weather {
+
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Rainy&amp;#34;&lt;/span&gt;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We define some classes related to a location:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Location&lt;/span&gt; {}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Inside&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Location {
+
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Inside&amp;#34;&lt;/span&gt;;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Outside&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Location {
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Outside&amp;#34;&lt;/span&gt;;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Somewhere&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; Location {
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;toString&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Somewhere&amp;#34;&lt;/span&gt;;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Visitor</title>
+      <link>/docs/examples/visitor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/visitor/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The EVL library provides multimethods that implement multiple dispatch. The implementation of the &lt;strong&gt;Visitor&lt;/strong&gt; pattern is immediate.
+If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Visitor_pattern&#34;&gt;visitor pattern&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Implement the pattern requires some intrusive code and when we need to dispatch on the real type, we simply use the &lt;em&gt;instanceof&lt;/em&gt; operator along with a downcast.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+First we define a list of &lt;em&gt;Toy&lt;/em&gt; objects that we will traverse:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ArrayList&amp;lt;Toy&amp;gt; toys = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;Toy&amp;gt;();
+toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
+toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(10));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;simple-dispatch&#34;&gt;Simple dispatch&lt;/h3&gt;
+&lt;p&gt;If you need to traverse the list and process the &lt;em&gt;Toy&lt;/em&gt; objects, you will often write:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Toy toy : toys) {
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (toy &lt;span style=&#34;color:#00a&#34;&gt;instanceof&lt;/span&gt; Car) {
+		Car car = (Car)toy;
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Car with color &amp;#34;&lt;/span&gt; + car.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;());
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (toy &lt;span style=&#34;color:#00a&#34;&gt;instanceof&lt;/span&gt; Doll) {
+		Doll doll = (Doll)toy;
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Doll with height &amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;getHeight&lt;/span&gt;());
+	}
+	
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The downcast enables to access to the specific methods of &lt;em&gt;Car&lt;/em&gt; and &lt;em&gt;Doll&lt;/em&gt;. However this code is not extensible. How to do if we need to process a &lt;em&gt;Game&lt;/em&gt; object? Modify the loop?&lt;/p&gt;
+&lt;p&gt;Replace the &lt;em&gt;instanceof&lt;/em&gt; operator is easily done by using a multimethod so that the &lt;strong&gt;Visitor&lt;/strong&gt; becomes useless.
+Here is the code with a multimethod:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Void&amp;gt; play = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Car with color &amp;#34;&lt;/span&gt; + car.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;());
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Doll doll) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Doll with height &amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;getHeight&lt;/span&gt;());
+	}
+
+});
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Toy toy : toys) {
+	play.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(toy);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And if you need to add a new case for a &lt;em&gt;Game&lt;/em&gt; object, this is naturally done:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;play.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Game game) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;());
+	}
+	
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Adding a new case only depends on the visibility of the multimethod. If it is global, new cases can be added anywhere and the loop does not need to be extended.&lt;/p&gt;
+&lt;h3 id=&#34;multiple-dispatch&#34;&gt;Multiple dispatch&lt;/h3&gt;
+&lt;p&gt;Now we want to refine the dispatch by taking into account the status of the person playing with the toys. The status is represented by the &lt;em&gt;Person&lt;/em&gt; class hierarchy including &lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Teen&lt;/em&gt; and &lt;em&gt;Adult&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;We define a multimethod of dimension two, first dimension being the &lt;em&gt;Person&lt;/em&gt; and second the &lt;em&gt;Toy&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Void&amp;gt; play = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+				
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(kid.&lt;span style=&#34;color:#1e90ff&#34;&gt;getAge&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; years old kid plays with car with color &amp;#34;&lt;/span&gt; + car.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;());
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Doll doll) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(kid.&lt;span style=&#34;color:#1e90ff&#34;&gt;getAge&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; years old kid plays with doll with height &amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;getHeight&lt;/span&gt;());
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Game game) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(teen.&lt;span style=&#34;color:#1e90ff&#34;&gt;getSex&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; teen plays with game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;());
+	}
+	
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s play with two persons:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Person[] persons = {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Teen.&lt;span style=&#34;color:#1e90ff&#34;&gt;Sex&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;BOY&lt;/span&gt;)};
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Person person : persons) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Toy toy : toys) {
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			play.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, toy);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+			System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Toy cannot be played&amp;#34;&lt;/span&gt;);
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time we needed to catch the exception when there is no compatible method. This happened for the couples (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;), (&lt;em&gt;Teen&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) and (&lt;em&gt;Teen&lt;/em&gt;, &lt;em&gt;Doll&lt;/em&gt;).
+The exception that is thrown is an instance of &lt;em&gt;NoMatchingMethodException&lt;/em&gt;. If you want to define your own exception and manage the errors yourself, this is also feasible:&lt;/p&gt;
+&lt;p&gt;We suppose that you defined the &lt;em&gt;ToyCannotBePlayedException&lt;/em&gt; class.&lt;/p&gt;
+&lt;p&gt;We add a new match method that covers all the error cases:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;play.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+				
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Person person, Toy toy) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; ToyCannotBePlayedException {
+		&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ToyCannotBePlayedException();
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We catch it in the loop:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Person person : persons) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Toy toy : toys) {
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			play.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, toy);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (ToyCannotBePlayedException e) {
+			System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Toy cannot be played by any person&amp;#34;&lt;/span&gt;);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).
+The couple (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) is compatible with (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) but there exists a perfect match method that is thus applied. However there is no perfect match for (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;) but (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) is compatible and is thus applied.
+For more details, see &lt;a href=&#34;/docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;/docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Stateful class</title>
+      <link>/docs/examples/stateful-class/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/stateful-class/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The EVL library is very flexible and offers many ways to use the multimethods.
+Here we show how to define a stateful class with protected access to a multimethod.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;/docs/more-features/protected-access/&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The idea here is to define a person finder that will return a location based on different criteria: weather, person, hour.
+The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
+&lt;p&gt;Here is the implementation of the &lt;em&gt;PersonFinder&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonFinder&lt;/span&gt; {
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Location&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Location&amp;gt;();
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Weather weather = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Sunny();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;PersonFinder&lt;/span&gt;() {
+		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;findMatch&amp;#34;&lt;/span&gt;);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setSunnyWeather&lt;/span&gt;() {
+		weather = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Sunny();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setRainyWeather&lt;/span&gt;() {
+		weather = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Rainy();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;findMatch&lt;/span&gt;(Rainy weather, Kid kid, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;findMatch&lt;/span&gt;(Sunny weather, Kid kid, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (hour &amp;gt; 14 &amp;amp;&amp;amp; hour &amp;lt; 16) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;findMatch&lt;/span&gt;(Rainy weather, Teen teen, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (hour &amp;gt; 8 &amp;amp;&amp;amp; hour &amp;lt; 17) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;findMatch&lt;/span&gt;(Sunny weather, Teen teen, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (hour &amp;gt; 8 &amp;amp;&amp;amp; hour &amp;lt; 19) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;find&lt;/span&gt;(Person person, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; m.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(weather, person, hour);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Somewhere();
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class has two members:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The multimethod &lt;em&gt;m&lt;/em&gt; of dimension two.&lt;/li&gt;
+&lt;li&gt;The inner &lt;em&gt;weather&lt;/em&gt; state.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;em&gt;weather&lt;/em&gt; state can be changed publicly with the two methods &lt;em&gt;setSunnyWeather()&lt;/em&gt; and &lt;em&gt;setRainyWeather()&lt;/em&gt;.
+The multimethod &lt;em&gt;m&lt;/em&gt; is configured in the constructor by registering the match methods that are all the methods with the name &amp;ldquo;findMatch&amp;rdquo;.
+Then the &lt;em&gt;findMatch()&lt;/em&gt; methods are defined and based on two virtual parameters - &lt;em&gt;weather&lt;/em&gt; and &lt;em&gt;kid&lt;/em&gt; or &lt;em&gt;teen&lt;/em&gt;. They implement the find location rules.
+To finish the public &lt;em&gt;find()&lt;/em&gt; method is exposed which forwards the call to &lt;em&gt;m&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In action:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder finder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonFinder();
+			
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(6), 10));
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;), 10));
+
+finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;setRainyWeather&lt;/span&gt;();
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(6), 18));
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;), 18));
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Adult(), 18));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;How would you have implemented such rules without multimethods? Probably by defining the weather state with an integral type (boolean, enum, integer) and using some &lt;em&gt;if&lt;/em&gt; or &lt;em&gt;switch&lt;/em&gt; statements.
+Maybe you would have kept a class definition and use the &lt;em&gt;instanceof&lt;/em&gt; operator.&lt;/p&gt;
+&lt;p&gt;What is sure is that there is no way to properly define some rules based on two class dimensions with standard &amp;ldquo;virtual&amp;rdquo; methods.&lt;/p&gt;
+&lt;h3 id=&#34;extension&#34;&gt;Extension&lt;/h3&gt;
+&lt;p&gt;What is interesting with multimethods is that they are very easily extended.&lt;/p&gt;
+&lt;p&gt;We want to extend the &lt;em&gt;PersonFinder&lt;/em&gt; class by adding some rules concerning the &lt;em&gt;Adult&lt;/em&gt; person. For that we simply define a new class that extends &lt;em&gt;PersonFinder&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;AdultPersonFinder&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; PersonFinder {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;findMatch&lt;/span&gt;(Weather weather, Adult adult, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (hour &amp;gt; 8 &amp;amp;&amp;amp; hour &amp;lt; 20) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The only thing we have to do is define a new &lt;em&gt;findMatch()&lt;/em&gt; method with the desired virtual parameter couples, i.e. &lt;em&gt;Weather&lt;/em&gt; and &lt;em&gt;Adult&lt;/em&gt; in our case.
+The match method is automatically registered.&lt;/p&gt;
+&lt;p&gt;In action:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder finder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; AdultPersonFinder();
+			
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Person is &amp;#34;&lt;/span&gt; + finder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Adult(), 21));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;How would you have implemented the extension with an &lt;em&gt;if&lt;/em&gt; or &lt;em&gt;switch&lt;/em&gt; statements? Multimethods show that the extension is natural.&lt;/p&gt;
+&lt;p&gt;To conclude, this example is showing how to define rules based on three parameters:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;One &lt;strong&gt;virtual&lt;/strong&gt; state of the class&lt;/li&gt;
+&lt;li&gt;One &lt;strong&gt;virtual&lt;/strong&gt; parameter outside the class&lt;/li&gt;
+&lt;li&gt;One &lt;strong&gt;non-virtual&lt;/strong&gt; parameter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is easy to imagine that a general stateful class would use &lt;em&gt;M&lt;/em&gt; virtual states, &lt;em&gt;N&lt;/em&gt; virtual parameters outside, &lt;em&gt;P&lt;/em&gt; non-virtual parameters.
+Of course, increase the number of virtual parameters can lead to some rules difficult to understand but the multimethods support it.
+It is up to you to find good designs.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Composition</title>
+      <link>/docs/examples/composition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/composition/</guid>
+      <description>
+        
+        
+        &lt;p&gt;When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod.
+By this way, a &lt;strong&gt;chain of multiple dispatch&lt;/strong&gt; can be designed, that cannot be done with standard Java methods.&lt;/p&gt;
+&lt;p&gt;Here is an example of such a composition.
+The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We define a multimethod of dimension two that returns a toy depending on the person and the location:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Toy&amp;gt; toyFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Toy&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Inside inside) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(15);
+	}
+	
+	Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Outside outside) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;);
+	}
+	
+	Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Location location) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(4);
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We also &lt;em&gt;override&lt;/em&gt; the &lt;em&gt;toString()&lt;/em&gt; method of the &lt;em&gt;Toy&lt;/em&gt; classes to demonstrate that it is simple:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Toy&amp;gt; toyPrinter = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Toy&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Car with color &amp;#34;&lt;/span&gt; + car.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;();
+	}
+	
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Doll doll) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Doll with height &amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;getHeight&lt;/span&gt;();
+	}
+	
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Game game) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;();
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;/docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder personFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonFinder();
+		
+Person[] persons = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Person[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;)};
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Person person : persons) {
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(person + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; plays with &amp;#34;&lt;/span&gt; + 
+		toyPrinter.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(
+			toyFinder.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(
+					person, 
+					personFinder.&lt;span style=&#34;color:#1e90ff&#34;&gt;find&lt;/span&gt;(person, 10))));
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Composing multimethods can offer a very powerful way of designing your code.
+Moreover, at each stage, each multimethod can be extended easily.
+Multimethods offer new perspectives for the code design.&lt;/p&gt;
+&lt;p&gt;Multimethod composition provides a &lt;strong&gt;functional approach&lt;/strong&gt; to polymorphism.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: State</title>
+      <link>/docs/examples/state/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/state/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The &lt;strong&gt;State&lt;/strong&gt; pattern can be defined easily using multimethods. 
+If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/State_pattern&#34;&gt;state pattern&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;/docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The idea here is to define a class that will change its location state based on different criteria: person, previous location, toy, hour.
+The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
+&lt;p&gt;Here is the implementation of the &lt;em&gt;PersonPlaying&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonPlaying&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CannotPlayException&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Throwable {}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Person person;
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Location currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method3&amp;lt;Void&amp;gt; start = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Void&amp;gt;();
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Void&amp;gt; stop = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Void&amp;gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;PersonPlaying&lt;/span&gt;(Person person) {
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;person&lt;/span&gt; = person;
+		
+		start.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;startMatch&amp;#34;&lt;/span&gt;);
+		stop.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;stopMatch&amp;#34;&lt;/span&gt;);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Location &lt;span style=&#34;color:#0a0&#34;&gt;getLocation&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; currentLocation;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Person &lt;span style=&#34;color:#0a0&#34;&gt;getPerson&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; person;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Kid kid, Inside previousLocation, Car car, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (hour &amp;gt; 14 &amp;amp;&amp;amp; hour &amp;lt; 17) {
+			currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;else&lt;/span&gt; {
+			currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+		}
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Kid kid, Outside previousLocation, Car car, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Kid kid, Location previousLocation, Doll doll, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Kid kid, Location previousLocation, Game game, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour)
+								&lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotPlayException {
+		&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotPlayException();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Teen teen, Location previousLocation, Car car, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour)
+								&lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotPlayException {
+		&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotPlayException();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Teen teen, Location previousLocation, Doll doll, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour)
+								&lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotPlayException {
+		&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotPlayException();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;startMatch&lt;/span&gt;(Teen teen, Location previousLocation, Game game, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;stopMatch&lt;/span&gt;(Person person, Location previousLocation) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;stopMatch&lt;/span&gt;(Teen teen, Outside previousLocation) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;stopMatch&lt;/span&gt;(Teen teen, Inside previousLocation) {
+		currentLocation = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;start&lt;/span&gt;(Toy toy, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; hour) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		start.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, currentLocation, toy, hour);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;stop&lt;/span&gt;() &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		stop.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, currentLocation);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class owns a &lt;em&gt;Person&lt;/em&gt; object that is fixed and a &lt;em&gt;Location&lt;/em&gt; object that can change depending on the requests.
+There are two request methods: &lt;em&gt;start()&lt;/em&gt; and &lt;em&gt;stop()&lt;/em&gt; are the public methods which do not have the same signature.&lt;/p&gt;
+&lt;p&gt;They are implemented using two multimethods: a multimethod with dimension three for &lt;em&gt;start&lt;/em&gt; and a multimethod with dimension two for &lt;em&gt;stop&lt;/em&gt;.
+Indeed for the &lt;em&gt;start()&lt;/em&gt; method, three &lt;strong&gt;virtual&lt;/strong&gt; parameters are used: &lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Location&lt;/em&gt; and &lt;em&gt;Toy&lt;/em&gt;.
+For the &lt;em&gt;stop()&lt;/em&gt; method, two &lt;strong&gt;virtual&lt;/strong&gt; parameters are used: &lt;em&gt;Person&lt;/em&gt; and &lt;em&gt;Location&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The rules are defined using two sets of methods: the &lt;em&gt;startMatch()&lt;/em&gt; methods and the &lt;em&gt;stopMatch()&lt;/em&gt; methods. They are registered to the multimethods by passing their name to the &lt;em&gt;add()&lt;/em&gt; method.&lt;/p&gt;
+&lt;p&gt;In action:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonPlaying playing = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonPlaying(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(7));
+		
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPerson&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is &amp;#34;&lt;/span&gt; + playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLocation&lt;/span&gt;());
+
+&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+	playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;start&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), 10);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPerson&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is playing &amp;#34;&lt;/span&gt; + playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLocation&lt;/span&gt;());
+	
+	playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;start&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), 15);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPerson&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is playing &amp;#34;&lt;/span&gt; + playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLocation&lt;/span&gt;());
+	
+	playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;stop&lt;/span&gt;();
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPerson&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; has stopped playing and is now &amp;#34;&lt;/span&gt; + playing.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLocation&lt;/span&gt;());
+	
+} &lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example shows how it is easy and natural to define properly the equivalent of a state pattern.
+The rules are all in the same class making it easy to understand. We can even say that with the help of multimethods, states can be managed without having to conceptualize the state pattern. Moreover it clarifies the rules for changing the state and forces to think with the virtual parameters.&lt;/p&gt;
+&lt;h3 id=&#34;extensibilty&#34;&gt;Extensibilty&lt;/h3&gt;
+&lt;p&gt;Unlike the state pattern, the behaviour can easily be extended:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Either inherit the &lt;em&gt;PersonPlaying&lt;/em&gt; class and define new rules in the new class. Then the new class must be used instead.&lt;/li&gt;
+&lt;li&gt;Or allow to add cases to the &lt;em&gt;start()&lt;/em&gt; and &lt;em&gt;stop()&lt;/em&gt; methods outside the &lt;em&gt;PersonPlaying&lt;/em&gt; class. The same object can then be used.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Comparator</title>
+      <link>/docs/examples/comparator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/comparator/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In this example, we present a concrete &lt;strong&gt;comparator&lt;/strong&gt; between objects using a multimethod.
+We demonstrate that it is a good tool to design such functionality. We also show how it is easy to extend it to a further dimension to refine the behavior.&lt;/p&gt;
+&lt;p&gt;We define an &lt;em&gt;interest&lt;/em&gt; comparator, which is subjective by nature, on two elements of the room (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.) for a particular person (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Adult&lt;/em&gt;, etc.).&lt;br&gt;
+The comparator returns 1 if the first element is more interesting than the second one, -1 if the first element is less interesting than the second one 
+and 0 if they are as interesting.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;specific-implementation-for-a-kid&#34;&gt;Specific implementation for a Kid&lt;/h3&gt;
+&lt;p&gt;We do not show immediately the general case. So we first start by defining the interest comparator for a &lt;em&gt;Kid&lt;/em&gt;.&lt;br&gt;
+The rules are simple: the &lt;em&gt;Kid&lt;/em&gt; prefers the &lt;em&gt;Car&lt;/em&gt; in any case. Other elements have the same interest for him.
+Here is the implementation of the multimethod:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Integer&amp;gt; interestComparator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Integer&amp;gt;()
+						.&lt;span style=&#34;color:#1e90ff&#34;&gt;symmetricComparator&lt;/span&gt;()
+						.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car, Element element) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Element element, Car car) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Element element1, Element element2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To facilitate the test, we define a &lt;em&gt;test&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;test&lt;/span&gt;(Method2&amp;lt;Integer&amp;gt; comparator, Element element1, Element element2) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; result = comparator.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(element1, element2);
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (result == 1) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(element1 + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is more interesting than &amp;#34;&lt;/span&gt; + element2); 
+	}
+	&lt;span style=&#34;color:#00a&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (result == -1) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(element1 + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is less interesting than &amp;#34;&lt;/span&gt; + element2); 
+	}
+	&lt;span style=&#34;color:#00a&#34;&gt;else&lt;/span&gt; {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(element1 + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is as interesting as &amp;#34;&lt;/span&gt; + element2);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But what happens on the (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) couple?&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;test(interestComparator, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The invocation fails by an ambiguity exception. Indeed, the multimethod is not using the default asymmetric method comparator i.e. the lexicographic comparator 
+but the symmetric method comparator i.e. the product comparator. The product comparator is more &amp;ldquo;democratic&amp;rdquo; but it also leads to more ambiguities.&lt;/p&gt;
+&lt;p&gt;In our case, the match methods (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;), (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) and (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;) are all compatible but (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;) 
+and (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) are more specific and it is impossible to choose between the twos.&lt;/p&gt;
+&lt;p&gt;In fact, we made a mistake, we forgot to define the case (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) for which the &lt;em&gt;Kid&lt;/em&gt; will eventually prefer one &lt;em&gt;Car&lt;/em&gt; for an obscure reason:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;interestComparator.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car1, Car car2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(car1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;(), car2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;());
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So we are ready to check a bunch of elements:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Element[] elements = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Element[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(12)};
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element1 : elements) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element2 : elements) {
+		test(interestComparator, element1, element2);				
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now what about adding a special case. The &lt;em&gt;Kid&lt;/em&gt; secretly prefers a special &lt;em&gt;GoldenBox&lt;/em&gt; but now we know it and we can add the rule to our comparator:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;interestComparator.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+				
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(GoldenBox box, Element element) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Element element, GoldenBox box) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(GoldenBox box1, GoldenBox box2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(box1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getSize&lt;/span&gt;(), box2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getSize&lt;/span&gt;());
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Like the &lt;em&gt;Car&lt;/em&gt; we add three match methods for (&lt;em&gt;GoldenBox&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;), (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;GoldenBox&lt;/em&gt;) and (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;). 
+But once again the symmetric operator tricked us. 
+Another ambiguity appeared: for the couple (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;GoldenBox&lt;/em&gt;) it is not possible to choose between (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Element&lt;/em&gt;) and (&lt;em&gt;Element&lt;/em&gt;, &lt;em&gt;GoldenBox&lt;/em&gt;).
+Let&amp;rsquo;s add the match methods:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;interestComparator.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+				
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(GoldenBox box, Car car) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car, GoldenBox box) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we can check the elements with total peace of mind:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Element[] elements = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Element[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(12), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; GoldenBox(15)};
+				
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element1 : elements) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element2 : elements) {
+		test(interestComparator, element1, element2);				
+	}
+}   
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This specific example of &lt;strong&gt;binary&lt;/strong&gt; comparator showed us to take care of using the symmetric method comparator (do not make a confusion between the interest comparator 
+and the method comparator used internally to select a match method).&lt;/p&gt;
+&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;/docs/the-multimethods/change-comparator/&#34;&gt;Change comparator&lt;/a&gt; 
+and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric/&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We are now ready to define the comparator in a general case: the comparator can also apply to an &lt;em&gt;Adult&lt;/em&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;general-implementation&#34;&gt;General implementation&lt;/h3&gt;
+&lt;p&gt;Now we want that the comparator is also able to apply to an &lt;em&gt;Adult&lt;/em&gt; who will have his own preferences.&lt;/p&gt;
+&lt;p&gt;The solution is to extend the multimethod of dimension two to a third dimension that will represent the &lt;em&gt;Person&lt;/em&gt;. 
+We decide to add on the first dimension. But the dimension representing the &lt;em&gt;Person&lt;/em&gt; has a different meaning than the two others.
+It is not part of the comparator but rather define a &lt;em&gt;family&lt;/em&gt; of comparators.
+For that reason we decide not to use the symmetric operator for the three dimensions i.e. only for the two dimensions used for comparison.
+The EVL library does not provide a hybrid method comparator that would mix a lexicographic and a product comparator.
+No problem, we will write it.&lt;/p&gt;
+&lt;p&gt;We define the &lt;em&gt;PersonAndElementsComparator&lt;/em&gt; by extending the &lt;em&gt;MethodComparator&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonAndElementsComparator&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; MethodComparator {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[] &lt;span style=&#34;color:#0a0&#34;&gt;getLastDimensions&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[] d) {
+		
+		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[] result = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[d.&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt; - 1];
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 0; i &amp;lt; d.&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt; - 1; ++i) {
+			result[i] = d[i + 1];
+		}
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; result;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;compareTuples&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[] d1, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;[] d2) {
+
+		&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// Integer comparison on the first dimension.
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; firstComparison = Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(d1[0], d2[0]);
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (firstComparison != 0) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; firstComparison;	
+		}
+		
+		&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// If equality on the first dimension, then product comparison on the last dimensions.
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; ProductDistanceComparator.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(getLastDimensions(d1), getLastDimensions(d2));
+	}
+	
+	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;compare&lt;/span&gt;(MethodItem m1, MethodItem m2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;super&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;compareWithPriority&lt;/span&gt;(m1, m2, compareTuples(m1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getDistanceTuple&lt;/span&gt;(), m2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getDistanceTuple&lt;/span&gt;()));
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The method that we need to redefine is &lt;em&gt;compare(MethodItem m1, MethodItem m2)&lt;/em&gt;. We do it with the help of &lt;em&gt;compareWithPriority&lt;/em&gt; which is defined into &lt;em&gt;MethodComparator&lt;/em&gt;
+and avoids us to manage priorities. See &lt;a href=&#34;/docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
+However we need to define the distance tuple comparator. For that we separate the tuples from the first dimension which we simply compare and apply the lexicographic comparator
+for the last dimensions.&lt;/p&gt;
+&lt;p&gt;We can define our multimethod of dimension three by getting the rules defined for the &lt;em&gt;Kid&lt;/em&gt; specific comparator and adding the ones we emitted for the &lt;em&gt;Adult&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method3&amp;lt;Integer&amp;gt; interestComparator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Integer&amp;gt;()
+							.&lt;span style=&#34;color:#1e90ff&#34;&gt;comparator&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonAndElementsComparator())
+							.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car, Element element) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Element element, Car car) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Element element1, Element element2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car1, Car car2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(car1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;(), car2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;());
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, GoldenBox box, Element element) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Element element, GoldenBox box) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, GoldenBox box1, GoldenBox box2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;compare&lt;/span&gt;(box1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getSize&lt;/span&gt;(), box2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getSize&lt;/span&gt;());
+	}
+		
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, GoldenBox box, Car car) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car, GoldenBox box) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Container container, Toy toy) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Toy toy, Container container) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; -1;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Toy toy1, Toy toy2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Container container1, Container container2) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, there is no ambiguity to resolve, we can check all the elements:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Kid kid = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5);
+Adult adult = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Adult();
+
+Element[] elements = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Element[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(12), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; GoldenBox(15)};
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element1 : elements) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element2 : elements) {
+		test(interestComparator, kid, element1, element2);				
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element1 : elements) {
+	&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element2 : elements) {
+		test(interestComparator, adult, element1, element2);				
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example demonstrates the power of multimethods and their ability to adapt to &lt;em&gt;problem&lt;/em&gt;. Once again extension is easy with EVL multimethods.
+So you can now define the rules that would apply for a &lt;em&gt;Teen&lt;/em&gt;.
+You can also extend the comparator to another dimension that could be the &lt;em&gt;Weather&lt;/em&gt;. Indeed, maybe our &lt;em&gt;Kid&lt;/em&gt; and &lt;em&gt;Adult&lt;/em&gt; have different preferences for a rainy weather than for a sunny weather?&lt;/p&gt;
+&lt;p&gt;To conclude, multimethods are ideal to process class sets. They help to categorize classes and offer a more set-centered way of thinking. They also force to think about explicit dispatch rules.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Strategy</title>
+      <link>/docs/examples/strategy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/strategy/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is simply demonstrating how to use an EVL multimethod in a strategy pattern.
+This example does not present novelties but allows to compare with the standard implementation at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Strategy_pattern&#34;&gt;strategy pattern&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We implement the following feature: provide the duration played by a &lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Teen&lt;/em&gt; or &lt;em&gt;Adult&lt;/em&gt; with a &lt;em&gt;Toy&lt;/em&gt; in the context of the weather.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;The multimethod has naturally three dimensions for the &lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Weather&lt;/em&gt;. We propose some simple rules:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method3&amp;lt;Integer&amp;gt; playDuration = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Integer&amp;gt;()
+		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Person person, Toy toy, Weather weather) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotPlayException {
+		&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotPlayException();
+	}
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car, Sunny sunny) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (kid.&lt;span style=&#34;color:#1e90ff&#34;&gt;getAge&lt;/span&gt;() &amp;gt; 6) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 40;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 20;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Car car, Rainy rainy) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (kid.&lt;span style=&#34;color:#1e90ff&#34;&gt;getAge&lt;/span&gt;() &amp;gt; 6) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 50;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 25;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Game game, Weather weather) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 100;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Game game, Rainy rainy) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 60;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We covered all the cases by defining a default match method for (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;, &lt;em&gt;Weather&lt;/em&gt;) that throws an exception.
+Notice that an exception would be thrown by the multimethod but it is a better design to manage explicitly the case.&lt;br&gt;
+For the &lt;em&gt;Kid&lt;/em&gt; we return a duration that depends on his age.&lt;/p&gt;
+&lt;p&gt;To facilitate the test, we define a &lt;em&gt;test&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;test&lt;/span&gt;(Method3&amp;lt;Integer&amp;gt; playDuration, Person person, Toy toy, Weather weather) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+	&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(person + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is playing &amp;#34;&lt;/span&gt; + toy 
+			+ &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; with &amp;#34;&lt;/span&gt; + weather + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; weather during &amp;#34;&lt;/span&gt; + playDuration.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, toy, weather) + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; minutes&amp;#34;&lt;/span&gt;);
+	}
+	&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (CannotPlayException e) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(person + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; cannot play &amp;#34;&lt;/span&gt; + toy + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; with &amp;#34;&lt;/span&gt; + weather + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; weather&amp;#34;&lt;/span&gt;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can test it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Person kid = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5);
+Person teen = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;);
+Person adult = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Adult();
+
+Toy car = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;);
+Toy game = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(3);
+
+Weather weather = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Rainy();
+
+test(playDuration, kid, car, weather);
+test(playDuration, teen, game, weather);
+test(playDuration, adult, game, weather);
+test(playDuration, adult, car, weather);
+
+weather = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Sunny();
+		
+test(playDuration, kid, car, weather);
+test(playDuration, teen, game, weather);
+test(playDuration, adult, game, weather);
+test(playDuration, adult, car, weather);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The weather is changing from rainy to sunny and so the play duration.&lt;/p&gt;
+&lt;h3 id=&#34;extension&#34;&gt;Extension&lt;/h3&gt;
+&lt;p&gt;We realize that the behavior for the &lt;em&gt;Teen&lt;/em&gt; must be refined to take into account the weather. 
+The EVL multimethod allows to do it easily by simply adding some new match methods that will override the previous one:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;playDuration.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Game game, Sunny sunny) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 90;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Game game, Rainy rainy) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 110;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can relaunch the test and we will obtain 110 for the &lt;em&gt;Teen&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Notice that the match method (&lt;em&gt;Teen&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Weather&lt;/em&gt;) is completely overriden by the new methods however it is still registered.
+If a new &lt;em&gt;Cloudy&lt;/em&gt; weather class would be added without any (&lt;em&gt;Teen&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Cloudy&lt;/em&gt;) registered then it would apply.&lt;/p&gt;
+&lt;p&gt;This example shows that the multiple dimensions of the multimethod allow to implement a strategy pattern.
+This example also demonstrates that the &lt;strong&gt;natural separation&lt;/strong&gt; between the class definitions and their behavior - &lt;em&gt;Person&lt;/em&gt; classes and the match methods of the &lt;em&gt;playDuration&lt;/em&gt; multimethod.&lt;br&gt;
+Some more dimensions can be added if necessary for managing a more precise context e.g. having a season state.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Factory</title>
+      <link>/docs/examples/factory/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/factory/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is simply demonstrating how to use an EVL multimethod in a factory pattern.
+This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
+&lt;p&gt;We implement the following feature: provide a factory for &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Container&lt;/em&gt; in the context of a &lt;em&gt;Person&lt;/em&gt; and a &lt;em&gt;Location&lt;/em&gt;.
+For example, what is the &lt;em&gt;Toy&lt;/em&gt; created for a &lt;em&gt;Kid&lt;/em&gt; when location is &lt;em&gt;Inside&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;We define the &lt;em&gt;Factory&lt;/em&gt; class, that has two multimethods of two dimensions for the &lt;em&gt;Person&lt;/em&gt; and &lt;em&gt;Location&lt;/em&gt; and two main methods &lt;em&gt;createToy&lt;/em&gt; and &lt;em&gt;createContainer&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Factory&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CannotCreateException&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Throwable {}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Toy&amp;gt; toyFactory = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Toy&amp;gt;();
+	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Container&amp;gt; containerFactory = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Container&amp;gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Factory&lt;/span&gt;() {
+		
+		toyFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+			Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(20);
+			}
+			
+			Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Outside outside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;);
+			}
+			
+			Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(3);
+			}
+			
+			Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Outside outside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(6);
+			}
+			
+			Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(2);
+			}
+		});
+		
+		containerFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+			Container &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;);
+			}
+			
+			Container &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Kid kid, Outside outside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(20);
+			}
+			
+			Container &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;plastic&amp;#34;&lt;/span&gt;);
+			}
+			
+			Container &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Teen teen, Outside outside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; GoldenBox(30);
+			}
+			
+			Container &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Inside inside) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Room(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt;);
+			}
+		});
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;addToyCases&lt;/span&gt;(Cases cases) {
+		toyFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(cases);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;addContainerCases&lt;/span&gt;(Cases cases) {
+		containerFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(cases);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Toy &lt;span style=&#34;color:#0a0&#34;&gt;createToy&lt;/span&gt;(Person person, Location location) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotCreateException {
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; toyFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, location);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+			&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotCreateException();
+		}
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Container &lt;span style=&#34;color:#0a0&#34;&gt;createContainer&lt;/span&gt;(Person person, Location location) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; CannotCreateException {
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; containerFactory.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(person, location);
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+			&lt;span style=&#34;color:#00a&#34;&gt;throw&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CannotCreateException();
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We add the match methods in the constructor and the methods &lt;em&gt;createToy&lt;/em&gt; and &lt;em&gt;createContainer&lt;/em&gt; simply forward the call to the concerned multimethod.&lt;/p&gt;
+&lt;p&gt;To facilitate the test, we define the &lt;em&gt;testToy&lt;/em&gt; and &lt;em&gt;testContainer&lt;/em&gt; methods:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;testToy&lt;/span&gt;(Factory factory, Person person, Location location) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Toy created for &amp;#34;&lt;/span&gt; + person + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is &amp;#34;&lt;/span&gt; + factory.&lt;span style=&#34;color:#1e90ff&#34;&gt;createToy&lt;/span&gt;(person, location));
+}
+
+&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;testContainer&lt;/span&gt;(Factory factory, Person person, Location location) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Container created for &amp;#34;&lt;/span&gt; + person + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; is &amp;#34;&lt;/span&gt; + factory.&lt;span style=&#34;color:#1e90ff&#34;&gt;createContainer&lt;/span&gt;(person, location));
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can test it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Factory factory = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Factory();
+		
+Person kid = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5);
+Person teen = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;);
+Person adult = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Adult();
+
+testToy(factory, kid, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside());
+testToy(factory, teen, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside());
+
+testContainer(factory, teen, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Outside());
+testContainer(factory, adult, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Inside());
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No problem, the good objects are created without any exception.&lt;/p&gt;
+&lt;h3 id=&#34;extension&#34;&gt;Extension&lt;/h3&gt;
+&lt;p&gt;The EVL multimethods are easily extensible and we realize that we need to add a new case in the creation of a &lt;em&gt;Toy&lt;/em&gt; for an &lt;em&gt;Adult&lt;/em&gt; in the location &lt;em&gt;Outside&lt;/em&gt;.
+The &lt;em&gt;Factory&lt;/em&gt; class is already ready for that thanks to the &lt;em&gt;addToyCases&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;factory.&lt;span style=&#34;color:#1e90ff&#34;&gt;addToyCases&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	Toy &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Adult adult, Outside outside) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(4);
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No need to define a subclass to &lt;em&gt;Factory&lt;/em&gt;, adding new cases is just enough.&lt;/p&gt;
+&lt;p&gt;This example is once again the demonstration that a multimethod with more than one dimension can be very useful to define an object factory.
+The common implementations are only limited to one dimension because &lt;em&gt;virtual&lt;/em&gt; methods in Java are one-dimensional.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Observer</title>
+      <link>/docs/examples/observer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/observer/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is simply demonstrating how to implement the observer pattern by using an EVL multimethod.
+This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
+&lt;p&gt;We adapt the example shown in Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+We replace the &lt;em&gt;Observer&lt;/em&gt; class by a &lt;em&gt;Container&lt;/em&gt; class and the &lt;em&gt;Event&lt;/em&gt; class by a &lt;em&gt;Toy&lt;/em&gt; class.
+The idea is to update the &lt;em&gt;Container&lt;/em&gt; objects when they receive a &lt;em&gt;Toy&lt;/em&gt;. Every combination is not possible mainly due to the place.&lt;/p&gt;
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;We define the &lt;em&gt;ToySource&lt;/em&gt; class equivalent to the &lt;em&gt;EventSource&lt;/em&gt; class, that has one multimethod of dimension two:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToySource&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; List&amp;lt;Container&amp;gt; containers = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;&amp;gt;();
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Method2&amp;lt;Boolean&amp;gt; update = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Boolean&amp;gt;();
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;addContainer&lt;/span&gt;(Container container) {
+		containers.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(container);
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;addContainerCases&lt;/span&gt;(Cases cases) {
+		update.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(cases);
+	}
+	  
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;update&lt;/span&gt;(Toy toy) {
+		
+		containers.&lt;span style=&#34;color:#1e90ff&#34;&gt;forEach&lt;/span&gt;(container -&amp;gt; {
+			&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+				&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (update.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(container, toy)) {
+					System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(container + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; added &amp;#34;&lt;/span&gt; + toy);
+				}
+			}
+			&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+				System.&lt;span style=&#34;color:#1e90ff&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Cannot update &amp;#34;&lt;/span&gt; + container +  &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; with &amp;#34;&lt;/span&gt; + toy);
+			}	
+		});
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class has a list of observers - the containers - and the multimethod is invoked for each observer in the &lt;em&gt;update&lt;/em&gt; method.
+The main difference with the standard &lt;em&gt;EventSource&lt;/em&gt; implementation is that the &lt;em&gt;update&lt;/em&gt; method of the observers is &lt;strong&gt;not attached&lt;/strong&gt; with the observer by implementing the abstract method &lt;em&gt;update&lt;/em&gt; but separated and &lt;strong&gt;added as a&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;match&lt;/strong&gt;&lt;/em&gt; method.&lt;/p&gt;
+&lt;p&gt;Then we can instantiate and use it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ToySource source = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ToySource();
+		
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;addContainerCases&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Tallboy tallboy, Toy toy) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;The tallboys accept every toy, even the adult ones!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;true&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Room room, Toy toy) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A room is not supposed to be a mess!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;false&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Room room, Game game) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Games are the only exception, especially the ones that do not enter inside a tallboy!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;true&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Box box, Toy toy) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A box is usually too small to contain toys!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;false&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Box box, Car car) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;1:43 scale cars enter inside a box!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;true&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(GoldenBox box, Toy toy) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;What contains the golden box is unfortunately a secret!&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;false&lt;/span&gt;;
+	}
+	
+});
+
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;addContainer&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;));
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;addContainer&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Room(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;));
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;addContainer&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(12));
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;addContainer&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; GoldenBox(10));
+
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;update&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;update&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(30));
+source.&lt;span style=&#34;color:#1e90ff&#34;&gt;update&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(4));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Thus the &lt;em&gt;match&lt;/em&gt; methods are defined independently of the observer objects added to the &lt;em&gt;ToySource&lt;/em&gt;.
+This helps to clarify the rules based on the couples (&lt;em&gt;Container&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;This example shows well the main difference with the standard implementation: multimethods are centered on sets of classes.
+Each rule is a partition of the entire set of the possible tuples i.e. the couples in dimension two.&lt;/p&gt;
+&lt;h3 id=&#34;add-a-new-state&#34;&gt;Add a new state&lt;/h3&gt;
+&lt;p&gt;As we already saw in other examples, it is possible to add an internal state like the &lt;em&gt;Weather&lt;/em&gt;. 
+In that case we would define a multimethod of dimension three and define rules on the triplets (&lt;em&gt;Weather&lt;/em&gt;, &lt;em&gt;Container&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;To conclude, this example illustrates the main conceptual differences with the standard polymorphism.
+Multimethods may not be seen as an extension of polymorphism but more as the implementation of &lt;strong&gt;multiple dispatch&lt;/strong&gt;.
+Indeed, where polymorphism is class-centered and does not help us to have a global view of the implementations or requires to draw diagrams, the multimethods
+propose naturally the overview as the dispatch rules are explicitly defined.&lt;br&gt;
+Moreover, the dispatch rules defined in dimension three are of course not possible with standard polymorphism.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Queue</title>
+      <link>/docs/examples/queue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/queue/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is showing how to use a multimethod in the context of a queue of objects.&lt;/p&gt;
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+We present some simple producer and consumer that share a queue of &lt;em&gt;Element&lt;/em&gt; objects.&lt;br&gt;
+The idea is to count the different types of objects. The producer creates randomly some &lt;em&gt;Element&lt;/em&gt; objects i.e. &lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.
+The consumer counts the different types of objects.&lt;/p&gt;
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;We first implement a toy counter to memorize the different counters. We only process &lt;em&gt;Toy&lt;/em&gt; objects here.
+We do not define the multimethod but the methods that will be dispatched:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToyCounter&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; carCount;
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; dollCount;
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; gameCount;
+
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;reset&lt;/span&gt;() {
+		carCount = 0;
+		dollCount = 0;
+		gameCount = 0;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Car car) {
+		carCount++;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Doll doll) {
+		dollCount++;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Game game) {
+		gameCount++;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getCarCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; carCount;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getDollCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; dollCount;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getGameCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; gameCount;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class &lt;em&gt;ToyCounter&lt;/em&gt; has three counters that are incremented each time a certain type of object is received.&lt;/p&gt;
+&lt;p&gt;Now we can define the producer and the consumer. We need a random generator and the multimethod that will dispatch to the &lt;em&gt;ToyCounter&lt;/em&gt; object.
+We also want to count the lost elements i.e. the ones that were not processed. We define the class &lt;em&gt;ProducerConsumer&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ProducerConsumer&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Random random = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Random();
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; lostElements;
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Element &lt;span style=&#34;color:#0a0&#34;&gt;createElement&lt;/span&gt;() {
+		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; type = random.&lt;span style=&#34;color:#1e90ff&#34;&gt;nextInt&lt;/span&gt;(6);
+		&lt;span style=&#34;color:#00a&#34;&gt;switch&lt;/span&gt; (type) {
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 0:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 1:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Doll(18);
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 2:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Game(5);
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 3:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Box(10);
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 4:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Room(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#00a&#34;&gt;case&lt;/span&gt; 5:
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Tallboy(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;);
+		}
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;null&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;run&lt;/span&gt;(Method1&amp;lt;Void&amp;gt; counterMethod) {
+		
+		LinkedBlockingQueue&amp;lt;Element&amp;gt; queue = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; LinkedBlockingQueue&amp;lt;Element&amp;gt;();
+		
+		Thread producer = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Thread(() -&amp;gt; {
+			
+			&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 0; i &amp;lt; 50; ++i) {
+				&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+					queue.&lt;span style=&#34;color:#1e90ff&#34;&gt;put&lt;/span&gt;(createElement());
+				}
+				&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (InterruptedException e) {
+				}
+			}
+		});
+		
+		Thread consumer = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Thread(() -&amp;gt; {
+		    
+			&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 0; i &amp;lt; 50; ++i) {
+				Element element = &lt;span style=&#34;color:#00a&#34;&gt;null&lt;/span&gt;;
+				&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+					element = queue.&lt;span style=&#34;color:#1e90ff&#34;&gt;take&lt;/span&gt;();
+				}
+				&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (InterruptedException e) {
+				}
+				
+				&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+					counterMethod.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(element);
+				}
+				&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+					lostElements++;
+					System.&lt;span style=&#34;color:#1e90ff&#34;&gt;err&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Error, &amp;#34;&lt;/span&gt; + element + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; cannot be counted.&amp;#34;&lt;/span&gt;);
+				}
+			}
+		});
+		
+		lostElements = 0;
+		
+		producer.&lt;span style=&#34;color:#1e90ff&#34;&gt;start&lt;/span&gt;();
+		consumer.&lt;span style=&#34;color:#1e90ff&#34;&gt;start&lt;/span&gt;();
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+			producer.&lt;span style=&#34;color:#1e90ff&#34;&gt;join&lt;/span&gt;();
+			consumer.&lt;span style=&#34;color:#1e90ff&#34;&gt;join&lt;/span&gt;();
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (InterruptedException e) {
+		}
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getLostElements&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; lostElements;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;createElement()&lt;/em&gt; methods creates randomly a &lt;em&gt;Element&lt;/em&gt; object and the &lt;em&gt;run()&lt;/em&gt; method runs the producer and the consumer in two threads.
+It takes a multimethod as argument so that it remains reusable. The class can then be used in a program:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ProducerConsumer runner = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ProducerConsumer();
+
+Method1&amp;lt;Void&amp;gt; counterMethod = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;();
+
+ToyCounter toyCounter = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ToyCounter();
+counterMethod.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(toyCounter, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;count&amp;#34;&lt;/span&gt;);
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Run the counter...&amp;#34;&lt;/span&gt;);
+runner.&lt;span style=&#34;color:#1e90ff&#34;&gt;run&lt;/span&gt;(counterMethod);
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getCarCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; cars received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getDollCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; dolls received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getGameCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; games received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(runner.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLostElements&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; elements lost.\n&amp;#34;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We create a new multimethod &lt;em&gt;counterMethod&lt;/em&gt; for which we add the &lt;em&gt;count()&lt;/em&gt; methods of the &lt;em&gt;ToyCounter&lt;/em&gt; object.
+It is passed to the &lt;em&gt;run()&lt;/em&gt; method. We get some cars, dolls and games but we also lose some elements. 
+Indeed only &lt;em&gt;Toy&lt;/em&gt; objects are counted, the &lt;em&gt;Container&lt;/em&gt; objects have been forgotten.&lt;/p&gt;
+&lt;h3 id=&#34;extend-the-process&#34;&gt;Extend the process&lt;/h3&gt;
+&lt;p&gt;We simply define a &lt;em&gt;ContainerCounter&lt;/em&gt; class like the &lt;em&gt;ToyCounter&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ContainerCounter&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; boxCount;
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; roomCount;
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; tallboyCount;
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;reset&lt;/span&gt;() {
+		boxCount = 0;
+		roomCount = 0;
+		tallboyCount = 0;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Box box) {
+		boxCount++;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Room room) {
+		roomCount++;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;count&lt;/span&gt;(Tallboy tallboy) {
+		tallboyCount++;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getBoxCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; boxCount;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getRoomCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; roomCount;
+	}
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getTallboyCount&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; tallboyCount;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can process every type of &lt;em&gt;Elements&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ContainerCounter containerCounter = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ContainerCounter();
+counterMethod.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(containerCounter, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;count&amp;#34;&lt;/span&gt;);
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Run the counter...&amp;#34;&lt;/span&gt;);
+runner.&lt;span style=&#34;color:#1e90ff&#34;&gt;run&lt;/span&gt;(counterMethod);
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getCarCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; cars received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getDollCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; dolls received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(toyCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getGameCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; games received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(containerCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getBoxCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; boxes received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(containerCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getRoomCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; rooms received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(containerCounter.&lt;span style=&#34;color:#1e90ff&#34;&gt;getTallboyCount&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; tallboys received.&amp;#34;&lt;/span&gt;);
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(runner.&lt;span style=&#34;color:#1e90ff&#34;&gt;getLostElements&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; elements lost.&amp;#34;&lt;/span&gt;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now no element is lost.&lt;/p&gt;
+&lt;p&gt;To finish, this example shows how to pass &lt;strong&gt;stateful objects&lt;/strong&gt; to a multimethod, that is necessary when we need to memorize some values.
+Moreover the example shows that when the dispatch is external to a class hierarchy, it is &lt;strong&gt;more natural&lt;/strong&gt; to use a multimethod than using the &lt;em&gt;instanceof&lt;/em&gt; operator.
+We also showed how to extend the process by adding a new counter.&lt;/p&gt;
+&lt;p&gt;This example shows a multimethod of dimension one but we could add another dimension e.g. the weather and count the couples element and weather.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: ToString</title>
+      <link>/docs/examples/tostring/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/tostring/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is showing how to use a multimethod to write a more general &lt;em&gt;toString()&lt;/em&gt; method.&lt;/p&gt;
+&lt;p&gt;It is based on the &lt;a href=&#34;/docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+We extend the &lt;em&gt;toString()&lt;/em&gt; method by adding a first parameter representing the format.
+As example of use, we extend some classes defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
+&lt;p&gt;We define a multimethod of dimension two with restrictions on the non-virtual parameters and the return type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToString&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method2&amp;lt;String&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;String&amp;gt;()
+														.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(String.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+														.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method2&amp;lt;String&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;method&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; method;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; {
+		method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Object format, Object object) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; object.&lt;span style=&#34;color:#1e90ff&#34;&gt;toString&lt;/span&gt;();
+			}
+		});
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;ToString&lt;/em&gt; class is a singleton accessible from anywhere and the less specialized couple (&lt;em&gt;Object&lt;/em&gt;, &lt;em&gt;Object&lt;/em&gt;) is defined so that there will always be a matching method for any couple of types. Notice that by not providing arguments to &lt;em&gt;nonVirtualParameterTypes()&lt;/em&gt;, it means that there is no virtual parameter accepted.&lt;/p&gt;
+&lt;p&gt;We decide to define the &lt;em&gt;XML&lt;/em&gt; format. We define it simply as an empty singleton:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;XML&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; XML instance = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; XML();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; XML &lt;span style=&#34;color:#0a0&#34;&gt;getInstance&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; instance;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;XML&lt;/span&gt;() {
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can define our first class that use the &lt;em&gt;ToString&lt;/em&gt; method. We extend the &lt;em&gt;Car&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;BigCar&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Car {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;BigCar&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;super&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; {
+		ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(XML xml, BigCar car) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;&amp;lt;bigCar color=\&amp;#34;&amp;#34;&lt;/span&gt; + car.&lt;span style=&#34;color:#1e90ff&#34;&gt;getColor&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;\&amp;#34;/&amp;gt;&amp;#34;&lt;/span&gt;;
+			}
+		});
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We immediately defined the case (&lt;em&gt;XML&lt;/em&gt;, &lt;em&gt;BigCar&lt;/em&gt;) for the &lt;em&gt;ToString&lt;/em&gt; multimethod in the &lt;strong&gt;static block&lt;/strong&gt; of the class. 
+Do it here ensures that it is called only once, that would have not been the case if we did it in the constructor.
+Now it very looks like we defined the &lt;em&gt;toString()&lt;/em&gt; method for &lt;em&gt;BigCar&lt;/em&gt;.
+On the same principle we extend &lt;em&gt;Doll&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;SmallDoll&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Doll {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; String hair;
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;SmallDoll&lt;/span&gt;(String hair) {
+		&lt;span style=&#34;color:#00a&#34;&gt;super&lt;/span&gt;(13);
+		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;hair&lt;/span&gt; = hair;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; {
+		ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(XML xml, SmallDoll doll) {
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;&amp;lt;smallDoll height=\&amp;#34;&amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;getHeight&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;\&amp;#34; hair=\&amp;#34;&amp;#34;&lt;/span&gt; + doll.&lt;span style=&#34;color:#1e90ff&#34;&gt;hair&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;\&amp;#34;/&amp;gt;&amp;#34;&lt;/span&gt;;
+			}
+		});
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The particularity here is we can access the private member &lt;em&gt;hair&lt;/em&gt; without any getter.
+We define a container class by extending &lt;em&gt;Tallboy&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;SmallTallboy&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Tallboy {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;SmallTallboy&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;super&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;wood&amp;#34;&lt;/span&gt;);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; {
+		ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(XML xml, SmallTallboy tallboy) {
+				String result = &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;&amp;lt;smallTallboy&amp;gt;\n&amp;#34;&lt;/span&gt;;
+				
+				&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element : tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;getElements&lt;/span&gt;()) {
+					&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+						result += &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;  &amp;#34;&lt;/span&gt; + ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(xml, element) + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;\n&amp;#34;&lt;/span&gt;;
+					} &lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+						result += &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;  \n&amp;lt;notToStringable/&amp;gt;\n&amp;#34;&lt;/span&gt;;
+					}
+				}
+				result += &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;&amp;lt;/smallTallboy&amp;gt;&amp;#34;&lt;/span&gt;;
+				
+				&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; result;
+			}
+		});
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time we apply the &lt;em&gt;ToString&lt;/em&gt; multimethod to all the children by simply calling it: A match method can call recursively the multimethod.
+To finish, we observe the results:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(XML.&lt;span style=&#34;color:#1e90ff&#34;&gt;getInstance&lt;/span&gt;(), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; BigCar()));
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(XML.&lt;span style=&#34;color:#1e90ff&#34;&gt;getInstance&lt;/span&gt;(), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; SmallDoll(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;blond&amp;#34;&lt;/span&gt;)));
+
+SmallTallboy tallboy = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; SmallTallboy();
+
+tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; BigCar());
+tallboy.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; SmallDoll(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;brown&amp;#34;&lt;/span&gt;));
+
+System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(ToString.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(XML.&lt;span style=&#34;color:#1e90ff&#34;&gt;getInstance&lt;/span&gt;(), tallboy));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We presented a way to define the &lt;em&gt;toString()&lt;/em&gt; method using a multimethod. This approach offers interesting features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;We can completely redefine our own &lt;em&gt;toString()&lt;/em&gt; method: for classes inherited from a library, it is not possible to override their &lt;em&gt;toString()&lt;/em&gt; method 
+but we can add a match method for &lt;em&gt;ToString&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;We can add as many formats as we want e.g. add the JSON format.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The approach based on an &lt;strong&gt;open access&lt;/strong&gt; can be done for any other method. The singleton makes it very accessible and does not require to copy a reference.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Tree walker</title>
+      <link>/docs/examples/treewalker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/examples/treewalker/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This example is showing how to use a multimethod to traverse tree structures.&lt;/p&gt;
+&lt;p&gt;We start with a &lt;em&gt;Print&lt;/em&gt; class that prints a hierarchical string view of a tree. Then we generalize by separating the traversal from the process.
+As example, we show two process classes: &lt;em&gt;TreePrinter&lt;/em&gt; that prints the same content than &lt;em&gt;Print&lt;/em&gt; and &lt;em&gt;TreeCarInBoxCounter&lt;/em&gt; that simply counts the &lt;em&gt;Car&lt;/em&gt; objects in &lt;em&gt;Box&lt;/em&gt; objects.&lt;/p&gt;
+&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;print-implementation&#34;&gt;Print implementation&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;/docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+As a common &lt;em&gt;XML&lt;/em&gt; file, the depth of a node is represented by the number of space indents.
+The idea is to pass a &lt;em&gt;Space&lt;/em&gt; object that holds the current space and increment or decrement it.&lt;/p&gt;
+&lt;p&gt;First we define the &lt;em&gt;Space&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Space&lt;/span&gt; {
+	
+	String space = &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;;
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;increment&lt;/span&gt;() {
+		space += &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;  &amp;#34;&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;decrement&lt;/span&gt;() {
+		space = space.&lt;span style=&#34;color:#1e90ff&#34;&gt;substring&lt;/span&gt;(2);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; String &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; space;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then the &lt;em&gt;Print&lt;/em&gt; class can be defined. Inside it, we define a multimethod of dimension one with restrictions on the non-virtual parameters and the return type:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Print&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;Void&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(Void.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;(Space.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;Void&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;method&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; method;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(Object object) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(object, &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Space());
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The call to &lt;em&gt;invoke()&lt;/em&gt; is encapsulated into the &lt;em&gt;print()&lt;/em&gt; call so that we can initialize the recursion with a fresh new &lt;em&gt;Space&lt;/em&gt; object passed as the second parameter that is the non-virtual parameter. Notice that the &lt;em&gt;Print&lt;/em&gt; class does not know any class and cannot be invoked. We must define match methods.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s use it with match methods on our example classes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Container container, Space space) {
+		
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(space.&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;() + container);
+		
+		space.&lt;span style=&#34;color:#1e90ff&#34;&gt;increment&lt;/span&gt;();
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element : container.&lt;span style=&#34;color:#1e90ff&#34;&gt;getElements&lt;/span&gt;()) {
+			&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+				Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(element, space);
+			}
+			&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+				System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(space.&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;?&amp;#34;&lt;/span&gt;);
+			}
+		}
+		
+		space.&lt;span style=&#34;color:#1e90ff&#34;&gt;decrement&lt;/span&gt;();
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Element element, Space space) {
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(space.&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;() + element);
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We benefit from the default &lt;em&gt;toString()&lt;/em&gt; method already defined onto all the example classes.
+Thus we simply define two match methods: on the &lt;em&gt;Container&lt;/em&gt; class and the &lt;em&gt;Element&lt;/em&gt; class.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;Container&lt;/em&gt; class is the abstract class that owns the &lt;em&gt;Element&lt;/em&gt; children. We print the object with the space and increments it before invoking recursively the &lt;em&gt;Print&lt;/em&gt; on the children.
+When the process of the children is terminated we can decrement the space.&lt;/p&gt;
+&lt;p&gt;For the &lt;em&gt;Element&lt;/em&gt; class, it is simply the print of the object with space.&lt;/p&gt;
+&lt;p&gt;We can test it on a filled &lt;em&gt;Room&lt;/em&gt; object:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Room room = RoomBuilder.&lt;span style=&#34;color:#1e90ff&#34;&gt;build&lt;/span&gt;();
+		
+Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;print&lt;/span&gt;(room);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;generalization-of-the-traversal&#34;&gt;Generalization of the traversal&lt;/h3&gt;
+&lt;p&gt;The implementation of &lt;em&gt;Print&lt;/em&gt; is specialized and mixes the traversal of the tree structure of our &lt;em&gt;Element&lt;/em&gt; objects and their process. In this section we propose a generalization that separates process from traversal using a tree walker. Our tree walker abstraction is based on the following methods:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;enter&lt;/em&gt;: Method called when entering a node i.e. an &lt;em&gt;Element&lt;/em&gt; in our case.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;traverse&lt;/em&gt;: Method called after entering the node, implementing the traversal algorithm.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;leave&lt;/em&gt;: Method called after traversing the node.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If now you begin to master the EVL library, I&amp;rsquo;m sure that you know that the &lt;em&gt;enter&lt;/em&gt;, &lt;em&gt;traverse&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; methods are multimethods in our implementation and you&amp;rsquo;re right.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s define the &lt;em&gt;TreeWalker&lt;/em&gt; class with the three multimethods:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;TreeWalker&lt;/span&gt; {
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Method1&amp;lt;Void&amp;gt; traverse = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(Void.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;(TreeWalker.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Method1&amp;lt;Void&amp;gt; enter = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(Void.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Method1&amp;lt;Void&amp;gt; leave = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(Void.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+			.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Method1&amp;lt;Void&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;traverse&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; traverse;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Method1&amp;lt;Void&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;enter&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; enter;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; Method1&amp;lt;Void&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;leave&lt;/span&gt;() {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; leave;
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;walk&lt;/span&gt;(Object object) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		enter.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(object);
+		traverse.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(object, &lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;);
+		leave.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(object);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can notice that the &lt;em&gt;traverse&lt;/em&gt; multimethod differs from &lt;em&gt;enter&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; by the fact that it has a &lt;em&gt;TreeWalker&lt;/em&gt; non-virtual parameter. It is necessary to organize the recursion because our tree traversal is recursive. The &lt;em&gt;TreeWalker&lt;/em&gt; implementation uses the strategy pattern as the &lt;em&gt;walk()&lt;/em&gt; method is calling the &lt;em&gt;enter&lt;/em&gt;, &lt;em&gt;traverse&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; multimethods.
+Notice that this implementation is general and could be reused any other context.&lt;/p&gt;
+&lt;p&gt;Now we can specialize the traversal. Let&amp;rsquo;s define the Depth-First Search traversal methods for our &lt;em&gt;Element&lt;/em&gt; objects:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;TreeTraversal&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;traverse&lt;/span&gt;(Container container, TreeWalker walker) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		
+		&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (Element element : container.&lt;span style=&#34;color:#1e90ff&#34;&gt;getElements&lt;/span&gt;()) {
+			walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(element);
+		}
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;traverse&lt;/span&gt;(Element element, TreeWalker walker) {
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This class is defining the different &lt;em&gt;traverse&lt;/em&gt; implementations. We find the &lt;em&gt;TreeWalker&lt;/em&gt; parameter in the two implementations, called to continue the recursion in case of a &lt;em&gt;Container&lt;/em&gt; object.&lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;enter&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; implementations are defined into the process class &lt;em&gt;TreePrinter&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;TreePrinter&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Space space = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Space();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;enter&lt;/span&gt;(Element element) {
+		
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(space.&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;() + element);
+		
+		space.&lt;span style=&#34;color:#1e90ff&#34;&gt;increment&lt;/span&gt;();
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;leave&lt;/span&gt;(Element element) {
+		space.&lt;span style=&#34;color:#1e90ff&#34;&gt;decrement&lt;/span&gt;();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We find a &lt;em&gt;Space&lt;/em&gt; object to manage the space indents. Then we can define our concrete &lt;em&gt;TreeWalker&lt;/em&gt; configured with &lt;em&gt;TreeTraversal&lt;/em&gt; and &lt;em&gt;TreePrinter&lt;/em&gt; objects and apply it to the previously defined &lt;em&gt;Room&lt;/em&gt; object:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;TreeWalker walker = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreeWalker();
+			
+TreeTraversal traversal = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreeTraversal();
+TreePrinter printer = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreePrinter();
+
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;traverse&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(traversal, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;traverse&amp;#34;&lt;/span&gt;);
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;enter&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(printer, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;enter&amp;#34;&lt;/span&gt;);
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;leave&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(printer, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;leave&amp;#34;&lt;/span&gt;);
+
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(room);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In this implementation, we preferred to give the names &lt;em&gt;traverse&lt;/em&gt;, &lt;em&gt;enter&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; to the process methods rather than the default &lt;em&gt;match&lt;/em&gt; name because it clarifies what they do and allows to have &lt;em&gt;enter&lt;/em&gt; and &lt;em&gt;leave&lt;/em&gt; in the same class.&lt;/p&gt;
+&lt;h3 id=&#34;count-the-cars-in-boxes&#34;&gt;Count the cars in boxes&lt;/h3&gt;
+&lt;p&gt;Let&amp;rsquo;s show that we can use our &lt;em&gt;TreeWalker&lt;/em&gt; and &lt;em&gt;TreeTraversal&lt;/em&gt; classes to define another algorithm on the &lt;em&gt;Element&lt;/em&gt; tree objects. Now we want to count the number of &lt;em&gt;Car&lt;/em&gt; objects in each &lt;em&gt;Box&lt;/em&gt; object. Thus we define the class &lt;em&gt;TreeCarInBoxCounter&lt;/em&gt; that prints the results:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;TreeCarInBoxCounter&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; Deque&amp;lt;Integer&amp;gt; counters = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayDeque&amp;lt;Integer&amp;gt;();
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;enter&lt;/span&gt;(Element element) {
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;enter&lt;/span&gt;(Box box) {
+		counters.&lt;span style=&#34;color:#1e90ff&#34;&gt;push&lt;/span&gt;(0);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;enter&lt;/span&gt;(Car car) {
+		Integer count = counters.&lt;span style=&#34;color:#1e90ff&#34;&gt;pop&lt;/span&gt;();
+		count++;
+		counters.&lt;span style=&#34;color:#1e90ff&#34;&gt;push&lt;/span&gt;(count);
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;leave&lt;/span&gt;(Element element) {
+	}
+	
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;leave&lt;/span&gt;(Box box) {
+		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; count = counters.&lt;span style=&#34;color:#1e90ff&#34;&gt;pop&lt;/span&gt;();
+		
+		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(box + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; contains &amp;#34;&lt;/span&gt; + count + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; cars&amp;#34;&lt;/span&gt;);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We use it like the previous &lt;em&gt;TreePrinter&lt;/em&gt; class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;TreeWalker walker = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreeWalker();
+			
+TreeTraversal traversal = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreeTraversal();
+TreeCarInBoxCounter counter = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; TreeCarInBoxCounter();
+
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;traverse&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(traversal, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;traverse&amp;#34;&lt;/span&gt;);
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;enter&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counter, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;enter&amp;#34;&lt;/span&gt;);
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;leave&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counter, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;leave&amp;#34;&lt;/span&gt;);
+
+walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(room);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Easy right? And very flexible.&lt;/p&gt;
+&lt;p&gt;In this example we restricted the three multimethods to the dimension one but of course we could have added more dimensions if we wanted to pass other objects that may change the process.
+For instance we could have added another state object as seen in the &lt;a href=&#34;/docs/examples/strategy/&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
+&lt;p&gt;This example shows once again that multimethods are &lt;strong&gt;adaptable&lt;/strong&gt; to any programming problem and allow to have a good separation between class definitions and their behaviors: here the &lt;em&gt;Element&lt;/em&gt; classes and the tree process methods.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

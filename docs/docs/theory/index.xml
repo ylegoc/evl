@@ -1,0 +1,339 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – Theory</title>
+    <link>/docs/theory/</link>
+    <description>Recent content in Theory on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/theory/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Tuple of types distance</title>
+      <link>/docs/theory/tuple-distance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/tuple-distance/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The first prerequisite to understand how multimethods work is to know what is the tuple of types distance.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/images/hierarchy.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;/docs/the-multimethods&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
+&lt;h3 id=&#34;type-distance&#34;&gt;Type distance&lt;/h3&gt;
+&lt;p&gt;Suppose that the type &lt;em&gt;X&lt;/em&gt; is a super class (including interface) of &lt;em&gt;Y&lt;/em&gt;.
+The distance between &lt;em&gt;X&lt;/em&gt; and &lt;em&gt;Y&lt;/em&gt; is defined as the &lt;strong&gt;minimum number of edges&lt;/strong&gt; between them in the type graph.
+The distance is not defined for types that do not have an inheritance relation.&lt;/p&gt;
+&lt;p&gt;With our hierarchy, we have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distance(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) = 0&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) = 1&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) = 1&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) = 1&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) = 2&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;) = 2&lt;/li&gt;
+&lt;li&gt;distance(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) = &lt;em&gt;undefined&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tuple-of-types-distance&#34;&gt;Tuple of types distance&lt;/h3&gt;
+&lt;p&gt;We extend naturally the type distance to a tuple of types distance so that we have with our hierarchy:&lt;/p&gt;
+&lt;p&gt;In dimension 2:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distance((&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;)) = (0, 0)&lt;/li&gt;
+&lt;li&gt;distance((&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)) = (0, 1)&lt;/li&gt;
+&lt;li&gt;distance((&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)) = (1, 1)&lt;/li&gt;
+&lt;li&gt;distance((&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)) = (2, 1)&lt;/li&gt;
+&lt;li&gt;distance((&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;C&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)) = &lt;em&gt;undefined&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In dimension 3:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;distance((&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;)) = (1, 1, 0)&lt;/li&gt;
+&lt;li&gt;distance((&lt;em&gt;I&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)) = (2, 1, 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now that we know how to define a distance on tuple of types of various dimensions, we can define comparators.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Distance comparators</title>
+      <link>/docs/theory/distance-comparators/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/distance-comparators/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The second prerequisite to understand how multimethods work is to know what are the comparators for the tuple of types distance.&lt;/p&gt;
+&lt;p&gt;There are many possible ways to define comparators on tuple of integers. We follow the Java convention on return values of compare methods so that for &lt;em&gt;x&lt;/em&gt; and &lt;em&gt;y&lt;/em&gt; tuple of integers:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If &lt;em&gt;x&lt;/em&gt; &amp;lt; &lt;em&gt;y&lt;/em&gt;, return -1&lt;/li&gt;
+&lt;li&gt;If &lt;em&gt;x&lt;/em&gt; &amp;gt; &lt;em&gt;y&lt;/em&gt;, return 1&lt;/li&gt;
+&lt;li&gt;If &lt;em&gt;x&lt;/em&gt; == &lt;em&gt;y&lt;/em&gt;, return 0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the EVL library, we provide two useful comparators on integer tuples.
+The tuples have size &lt;em&gt;D&lt;/em&gt; and value at dimension &lt;em&gt;i&lt;/em&gt; is accessed by &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] and &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;].&lt;/p&gt;
+&lt;h3 id=&#34;asymmetric-comparator&#34;&gt;Asymmetric comparator&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;lexicographic&lt;/strong&gt; operator also called the &lt;strong&gt;asymmetric&lt;/strong&gt; operator:&lt;br&gt;
+For each &lt;em&gt;i&lt;/em&gt; with 0 &amp;lt;= &lt;em&gt;i&lt;/em&gt; &amp;lt; &lt;em&gt;D&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;if &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] &amp;lt; &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] then &lt;em&gt;x&lt;/em&gt; &amp;lt; &lt;em&gt;y&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;if &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] &amp;gt; &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] then &lt;em&gt;x&lt;/em&gt; &amp;gt; &lt;em&gt;y&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;if &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] == &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] then continue with &lt;em&gt;i+1&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At the end, &lt;em&gt;x&lt;/em&gt; == &lt;em&gt;y&lt;/em&gt; if for all &lt;em&gt;i&lt;/em&gt;, &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] == &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;]&lt;/p&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1, 2, 1) == (1, 2, 1)&lt;/li&gt;
+&lt;li&gt;(1, 0, 1) &amp;lt; (1, 2, 1)&lt;/li&gt;
+&lt;li&gt;(0, 1, 2) &amp;gt; (0, 1, 1)&lt;/li&gt;
+&lt;li&gt;(1, 0, 2) &amp;lt; (1, 2, 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notice that in the last example, &lt;em&gt;x&lt;/em&gt; &amp;lt; &lt;em&gt;y&lt;/em&gt; although &lt;em&gt;x&lt;/em&gt;[2] &amp;gt; &lt;em&gt;x&lt;/em&gt;[2]. This is because &lt;em&gt;x&lt;/em&gt;[0] == &lt;em&gt;y&lt;/em&gt;[0] but &lt;em&gt;x&lt;/em&gt;[1] &amp;lt; &lt;em&gt;y&lt;/em&gt;[1].&lt;/p&gt;
+&lt;h3 id=&#34;symmetric-comparator&#34;&gt;Symmetric comparator&lt;/h3&gt;
+&lt;p&gt;The &lt;strong&gt;product&lt;/strong&gt; operator also called the &lt;strong&gt;symmetric&lt;/strong&gt; operator:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;x&lt;/em&gt; &amp;lt; &lt;em&gt;y&lt;/em&gt; if for all &lt;em&gt;i&lt;/em&gt; with 0 &amp;lt;= &lt;em&gt;i&lt;/em&gt; &amp;lt; &lt;em&gt;D&lt;/em&gt;, &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] &amp;lt; &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;x&lt;/em&gt; &amp;gt; &lt;em&gt;y&lt;/em&gt; if for all &lt;em&gt;i&lt;/em&gt;, &lt;em&gt;x&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;] &amp;gt; &lt;em&gt;y&lt;/em&gt;[&lt;em&gt;i&lt;/em&gt;]&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;x&lt;/em&gt; == &lt;em&gt;y&lt;/em&gt; otherwise&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(1, 2, 1) == (1, 2, 1)&lt;/li&gt;
+&lt;li&gt;(1, 0, 1) &amp;lt; (1, 2, 1)&lt;/li&gt;
+&lt;li&gt;(0, 1, 2) &amp;gt; (0, 1, 1)&lt;/li&gt;
+&lt;li&gt;(1, 0, 2) == (1, 2, 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notice that in the last example, &lt;em&gt;x&lt;/em&gt; == &lt;em&gt;y&lt;/em&gt; because &lt;em&gt;x&lt;/em&gt;[1] &amp;lt; &lt;em&gt;y&lt;/em&gt;[1] but &lt;em&gt;x&lt;/em&gt;[2] &amp;gt; &lt;em&gt;y&lt;/em&gt;[2].&lt;/p&gt;
+&lt;h3 id=&#34;other-comparators&#34;&gt;Other comparators&lt;/h3&gt;
+&lt;p&gt;The &lt;em&gt;asymmetric&lt;/em&gt; and &lt;em&gt;symmetric&lt;/em&gt; comparators presented are the two opposite ways to define comparators on tuples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Either the dimensions are taken one by one: the &lt;em&gt;asymmetric&lt;/em&gt; comparator&lt;/li&gt;
+&lt;li&gt;Either the dimensions are taken as a whole: the &lt;em&gt;symmetric&lt;/em&gt; comparator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;However many other comparators can be defined e.g. by &lt;strong&gt;mixing&lt;/strong&gt; the &lt;em&gt;symmetric&lt;/em&gt; and &lt;em&gt;asymmetric&lt;/em&gt; on different dimensions.&lt;/p&gt;
+&lt;h3 id=&#34;refined-comparators&#34;&gt;Refined comparators&lt;/h3&gt;
+&lt;p&gt;In EVL, the &lt;em&gt;symmetric&lt;/em&gt; and &lt;em&gt;asymmetric&lt;/em&gt; operators are defined but they are refined to be able to manage ambiguities.
+Indeed it is possible to give a priority to each element that is compared in case of equality on the distance.
+An example on how to use priority is given in &lt;a href=&#34;/docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Multimethod definition</title>
+      <link>/docs/theory/multimethod-definition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/multimethod-definition/</guid>
+      <description>
+        
+        
+        &lt;h3 id=&#34;definition&#34;&gt;Definition&lt;/h3&gt;
+&lt;p&gt;An EVL multimethod is defined as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A multimethod of &lt;strong&gt;dimension&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;D&lt;/strong&gt;&lt;/em&gt; has a set &lt;em&gt;M&lt;/em&gt; of &lt;em&gt;N&lt;/em&gt; match methods &lt;em&gt;m&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; with 0 &amp;lt;= &lt;em&gt;j&lt;/em&gt; &amp;lt; &lt;em&gt;N&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;The multimethod has a tuple of types &lt;em&gt;u&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;k&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; of size &lt;em&gt;NV&lt;/em&gt; called &lt;em&gt;&lt;strong&gt;non-virtual&lt;/strong&gt;&lt;/em&gt; &lt;strong&gt;parameter types&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The multimethod has a &lt;strong&gt;return type&lt;/strong&gt; &lt;em&gt;&lt;strong&gt;R&lt;/strong&gt;&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;For each match method &lt;em&gt;m&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;:
+&lt;ul&gt;
+&lt;li&gt;The first &lt;em&gt;D&lt;/em&gt; parameter types is a tuple of types &lt;em&gt;t&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; of size &lt;em&gt;D&lt;/em&gt; called &lt;em&gt;&lt;strong&gt;virtual&lt;/strong&gt;&lt;/em&gt; &lt;strong&gt;parameter types&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The following parameter types &lt;strong&gt;must be exactly&lt;/strong&gt; the &lt;em&gt;non-virtual&lt;/em&gt; parameter types defined above.&lt;/li&gt;
+&lt;li&gt;An object of type &lt;em&gt;R&lt;/em&gt; is returned or an object of type &lt;em&gt;RA&lt;/em&gt; from which &lt;em&gt;R&lt;/em&gt; &lt;strong&gt;is assignable&lt;/strong&gt;. Otherwise an exception is thrown.&lt;/li&gt;
+&lt;li&gt;There is &lt;strong&gt;optional data&lt;/strong&gt; that can be used for solving ambiguities.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The multimethod has a &lt;strong&gt;method comparator&lt;/strong&gt;, that can be the &lt;em&gt;symmetric&lt;/em&gt;, &lt;em&gt;asymmetric&lt;/em&gt; or another distance comparator.&lt;/li&gt;
+&lt;li&gt;The multimethod has a &lt;strong&gt;cache strategy&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+&lt;p&gt;Suppose we have a multimethod of dimension 2 with 3 non-virtual parameter types (&lt;em&gt;String&lt;/em&gt;, &lt;em&gt;int&lt;/em&gt;, &lt;em&gt;boolean&lt;/em&gt;) and the return type &lt;em&gt;int&lt;/em&gt;.
+The following match methods can be part of the multimethod or not:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Match method&lt;/th&gt;
+&lt;th&gt;Accepted&lt;/th&gt;
+&lt;th&gt;Error&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;int&lt;/em&gt; m1(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;String&lt;/em&gt;, &lt;em&gt;int&lt;/em&gt;, &lt;em&gt;boolean&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;yes&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;int&lt;/em&gt; m1(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;String&lt;/em&gt;, &lt;em&gt;int&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;no&lt;/td&gt;
+&lt;td&gt;bad number of non-virtual parameter types&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;int&lt;/em&gt; m1(&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;String&lt;/em&gt;, &lt;em&gt;float&lt;/em&gt;, &lt;em&gt;boolean&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;no&lt;/td&gt;
+&lt;td&gt;bad non-virtual parameter types&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;void&lt;/em&gt; m1(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;String&lt;/em&gt;, &lt;em&gt;int&lt;/em&gt;, &lt;em&gt;boolean&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;no&lt;/td&gt;
+&lt;td&gt;bad return type&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Search for the best match</title>
+      <link>/docs/theory/search-best-match/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/search-best-match/</guid>
+      <description>
+        
+        
+        &lt;p&gt;Now that we can define an ordering on the tuple of types by using the distance comparators and tuple of types distance, let&amp;rsquo;s see how we search for the best matching method.
+The algorithm is based on the definition of the multimethod in &lt;a href=&#34;/docs/theory/multimethod-definition/&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
+&lt;p&gt;We invoke &lt;em&gt;M&lt;/em&gt; on a tuple of objects that has the tuple of types &lt;em&gt;t&lt;/em&gt;.
+The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
+&lt;h5 id=&#34;calculate-the-compatible-methods&#34;&gt;Calculate the compatible methods&lt;/h5&gt;
+&lt;p&gt;The subset &lt;em&gt;C&lt;/em&gt; of &lt;em&gt;M&lt;/em&gt; is defined as the set of compatible methods {&lt;em&gt;m&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;} for which &lt;em&gt;d&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; = distance(&lt;em&gt;t&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;, &lt;em&gt;t&lt;/em&gt;) is defined.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If &lt;em&gt;C&lt;/em&gt; is empty then the invoke call is a failure. There is &lt;strong&gt;no matching&lt;/strong&gt; method.&lt;/li&gt;
+&lt;li&gt;Otherwise we can continue for the search.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;calculate-the-minimum-methods&#34;&gt;Calculate the minimum methods&lt;/h5&gt;
+&lt;p&gt;In &lt;em&gt;C&lt;/em&gt; that is non-empty, we search for the minimum distances &lt;em&gt;d&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; using the distance comparator.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If there is a single method &lt;em&gt;m&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; with minimum &lt;em&gt;d&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; then the method is selected to be applied. If &lt;em&gt;t&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; = &lt;em&gt;t&lt;/em&gt;, it is the &lt;strong&gt;perfect match&lt;/strong&gt;. Otherwise it is the &lt;strong&gt;best match&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If there are many minimum &lt;em&gt;d&lt;/em&gt;&lt;!-- raw HTML omitted --&gt;&lt;em&gt;j&lt;/em&gt;&lt;!-- raw HTML omitted --&gt; that are equals, there is an &lt;strong&gt;ambiguity&lt;/strong&gt; because we cannot select one method.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Notice that the calculation of the distance is fixed in EVL but the minimum methods set may vary depending on the comparator used.&lt;/p&gt;
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;/docs/theory/tuple-distance/&#34;&gt;tuple of types distance&lt;/a&gt;.
+To simplify, we do not show the return type and the non-virtual parameter types.&lt;br&gt;
+We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimethods of dimension 2 defined in each line of the table:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Match methods&lt;/th&gt;
+&lt;th&gt;Compatible methods&lt;/th&gt;
+&lt;th&gt;Distances&lt;/th&gt;
+&lt;th&gt;Comparator&lt;/th&gt;
+&lt;th&gt;Selected method&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;M1&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;asymmetric&lt;/td&gt;
+&lt;td&gt;failure&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;M2&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(1, 1), &lt;strong&gt;(1, 0)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;asymmetric&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;M3&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(1, 1), (1, 0), &lt;strong&gt;(0, 1)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;asymmetric&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;M4&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(1, 1), &lt;strong&gt;(1, 0)&lt;/strong&gt;, &lt;strong&gt;(0, 1)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;symmetric&lt;/td&gt;
+&lt;td&gt;ambiguity&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;M5&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;td&gt;(1, 1), (1, 0), (0, 1), &lt;strong&gt;(0, 0)&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;symmetric&lt;/td&gt;
+&lt;td&gt;(&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;These are typical different cases:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;For &lt;em&gt;M1&lt;/em&gt;, there is no compatible method thus no method can be applied.&lt;/li&gt;
+&lt;li&gt;For &lt;em&gt;M2&lt;/em&gt;, (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) is the single minimum. It is the best match but not the perfect match.&lt;/li&gt;
+&lt;li&gt;For &lt;em&gt;M3&lt;/em&gt;, (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) is the single minimum because it is less than (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) for the &lt;em&gt;asymmetric&lt;/em&gt; comparator. It is the best match but not the perfect match.&lt;/li&gt;
+&lt;li&gt;For &lt;em&gt;M4&lt;/em&gt; which differs from &lt;em&gt;M3&lt;/em&gt; by the comparator which is &lt;em&gt;symmetric&lt;/em&gt;, there is an ambiguity because (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) and (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) are both minimum and equals for the comparator.&lt;/li&gt;
+&lt;li&gt;For &lt;em&gt;M5&lt;/em&gt;, the ambiguity is solved by adding (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) which is the perfect match.&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Invoke with cache</title>
+      <link>/docs/theory/invoke/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/invoke/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The invoke sequence is presented in this section. We introduce the cache strategy.&lt;/p&gt;
+&lt;h3 id=&#34;workflow&#34;&gt;Workflow&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;/images/invoke.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;/docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;If the best match method is found then it is applied to the passed arguments.&lt;/li&gt;
+&lt;li&gt;If the method is not found - no compatible method or ambiguity - an exception is thrown.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the multimethod is unchanged between two calls on different objects that have the same tuple of virtual types, then the same best match method will be called.
+We can store it in a &lt;strong&gt;cache&lt;/strong&gt;, so that the search for the best match is only done once for a tuple of types.
+However the cache must be cleared when the multimethod is changed e.g. when adding a new method or setting optional data.&lt;/p&gt;
+&lt;p&gt;To print the content of the cache that can be useful when debugging, use the method &lt;em&gt;printCache()&lt;/em&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;bounded-or-unbounded&#34;&gt;Bounded or unbounded?&lt;/h3&gt;
+&lt;p&gt;By default, the cache implementation is &lt;strong&gt;unbounded&lt;/strong&gt;: the cache can grow without limits. However the number of potential tuples in the cache is the number of classes power the number of dimensions, which can be big. In that case if we want to ensure that the cache will not exceed a size, we can use a &lt;strong&gt;bounded&lt;/strong&gt; cache.&lt;/p&gt;
+&lt;p&gt;As an example we define the multimethod with a bounded cache of size 128:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;boundedCache&lt;/span&gt;(128);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Moreover the cache must be &lt;strong&gt;thread-safe&lt;/strong&gt; to ensure that invoke is thread-safe. And if you&amp;rsquo;re not happy with the default implementations, you can still redefine your own cache strategy.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Asymmetric vs symmetric</title>
+      <link>/docs/theory/asymmetric-vs-symmetric/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/theory/asymmetric-vs-symmetric/</guid>
+      <description>
+        
+        
+        &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions. 
+For their definition, refer to &lt;a href=&#34;/docs/theory/distance-comparators/&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;On one side, the &lt;em&gt;asymmetric&lt;/em&gt; comparator is &lt;strong&gt;easy&lt;/strong&gt; to understand and predict. The dimensions are taken one by one to find the best match. The ambiguities can only come from a multiple inheritance of interfaces.&lt;br&gt;
+On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&gt;democratic&lt;/strong&gt;. All the dimensions have the same weight in the final selection. However more democracy means more ambiguities and more difficulties to select one best match.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;/docs/theory/search-best-match/&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
+&lt;p&gt;The choice of the type of comparator may not only guided by the ease to treat all the cases. The implementation of an operator that is fundamentally symmetric e.g. &lt;em&gt;equals&lt;/em&gt; may deliberately choose the &lt;em&gt;symmetric&lt;/em&gt; operator.&lt;/p&gt;
+&lt;p&gt;In EVL, the default distance comparator is the &lt;em&gt;asymmetric&lt;/em&gt; comparator. We think that it is better to provide the easier comparator and avoid the user to resolve ambiguities. However it is possible to switch to the &lt;em&gt;symmetric&lt;/em&gt; comparator as an implementation is provided.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,461 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title> – The multimethods</title>
+    <link>/docs/the-multimethods/</link>
+    <description>Recent content in The multimethods on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/the-multimethods/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: The base transform</title>
+      <link>/docs/the-multimethods/base-transform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/base-transform/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In this section, we show how to define a multimethod that does the same thing as a class hierarchy with overriden methods.
+Let&amp;rsquo;s start with the following class hierarchy (to be more concise, packages are not defined here):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
+
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i);
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; i;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;square&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; i * i;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; B {
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s define a &lt;em&gt;print()&lt;/em&gt; method that is using them:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(I obj) {
+		
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; res = obj.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;square&amp;#34;&lt;/span&gt;, 3);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(obj.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; -&amp;gt; &amp;#34;&lt;/span&gt; + res);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s instantiate the classes and use them:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+I b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
+I c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
+
+print(a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the &lt;em&gt;print()&lt;/em&gt; method, &lt;em&gt;obj&lt;/em&gt; has static type &lt;em&gt;I&lt;/em&gt; but has real type &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt; depending on the call. The call to &lt;em&gt;foo()&lt;/em&gt; on &lt;em&gt;obj&lt;/em&gt;
+is resolved at runtime and the method applied is chosen depending on the real type of &lt;em&gt;obj&lt;/em&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;A&lt;/em&gt;: &lt;em&gt;foo()&lt;/em&gt; is redefined for &lt;em&gt;A&lt;/em&gt; so it is applied.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;B&lt;/em&gt;: &lt;em&gt;foo()&lt;/em&gt; is redefined for &lt;em&gt;B&lt;/em&gt; so it is applied.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;C&lt;/em&gt;: &lt;em&gt;foo()&lt;/em&gt; is not redefined for &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;B.foo()&lt;/em&gt; is applied as the most specialized method for &lt;em&gt;C&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;At runtime, the most specialized redefinition of the &lt;em&gt;foo()&lt;/em&gt; method is chosen.
+The Java polymorphism is a &lt;em&gt;single dispatch&lt;/em&gt;: the caller type is used to choose the method to apply.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s see how to obtain the same polymorphism with an EVL multimethod.
+Consider the following instantiated class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Integer&amp;gt; foo = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a, String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; i;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b, String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;square&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; i * i;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We instantiate a &lt;em&gt;Method1&amp;lt;Integer&amp;gt;&lt;/em&gt; class with match cases corresponding to the two &lt;em&gt;foo()&lt;/em&gt; implementations for &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt;.
+That&amp;rsquo;s all and now let&amp;rsquo;s see that the dispatch is exactly the same as for the class polymorphism. Let&amp;rsquo;s define another &lt;em&gt;print()&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(Method1&amp;lt;Integer&amp;gt; foo, I obj) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		
+	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; res = foo.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(obj, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;square&amp;#34;&lt;/span&gt;, 3);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(obj.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; -&amp;gt; &amp;#34;&lt;/span&gt; + res);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s call &lt;em&gt;print()&lt;/em&gt; with the &lt;em&gt;foo&lt;/em&gt; multimethod object:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+		print(foo, a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;		print(foo, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;		print(foo, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We obtain the same results. That&amp;rsquo;s simple, isn&amp;rsquo;t it? We simply associated a &lt;em&gt;match()&lt;/em&gt; method for each type &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt;. The multimethod dispatches the call to the &lt;em&gt;match()&lt;/em&gt; method corresponding to the runtime type of &lt;em&gt;obj&lt;/em&gt;. The same rule is applied to select the best matching
+&lt;em&gt;match()&lt;/em&gt; method in the case of the &lt;em&gt;C&lt;/em&gt; object.&lt;/p&gt;
+&lt;p&gt;Notice that we defined a multimethod of type &lt;em&gt;Method1&amp;lt;Integer&amp;gt;&lt;/em&gt; because we dispatch using one parameter and return an &lt;em&gt;Integer&lt;/em&gt; value. The dispatch is always done using the first parameters that we call virtual parameters. In our case the first parameter of the &lt;em&gt;match()&lt;/em&gt; methods is the virtual parameter (&lt;em&gt;A&lt;/em&gt; or &lt;em&gt;B&lt;/em&gt;) and the two others are the non-virtual parameters (&lt;em&gt;String&lt;/em&gt; and &lt;em&gt;int&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;We needed to catch a &lt;em&gt;Throwable&lt;/em&gt; exception because the call to &lt;em&gt;invoke()&lt;/em&gt; can fail by an exception thrown by the multimethod or the &lt;em&gt;match()&lt;/em&gt; method called.&lt;/p&gt;
+&lt;p&gt;Now that the multimethod does exactly the same dispatch as the former class polymorphism, we can remove the &lt;em&gt;foo()&lt;/em&gt; methods from the class hierarchy. We call it the &lt;strong&gt;base transform&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With multimethods, polymorphism is replaced by a runtime dispatch. That means that method declaration is no longer necessary in interfaces that only are a way to classify classes. This flexibility allows to define as many multimethods as we want.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: In two dimensions</title>
+      <link>/docs/the-multimethods/dimension-two/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/dimension-two/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In the last section we defined a multimethod that was providing the same dispatch as a simple class hierarchy with overriden methods.
+What is new is that you can define it outside the class hierarchy and have as many multimethods as you want.&lt;/p&gt;
+&lt;p&gt;In this section, we show how to define a multimethod of dimension two i.e. having a dispatch based on two parameters.
+Let&amp;rsquo;s modify the classes &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt; by adding them a member:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
+
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; id = 5;
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+
+	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; fd = 7.&lt;span style=&#34;color:#1e90ff&#34;&gt;3f&lt;/span&gt;;
+}
+
+&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; B {
+
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There is no method is in the hierarchy but only data with the &lt;em&gt;int&lt;/em&gt; and &lt;em&gt;float&lt;/em&gt; members.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s define a multimethod of dimension two:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, we define a &lt;em&gt;Method2&amp;lt;Float&amp;gt;&lt;/em&gt; because we want to have two virtual parameters and return a &lt;em&gt;float&lt;/em&gt; value.
+We define two &lt;em&gt;match()&lt;/em&gt; methods for the couple of types (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;). We add a third non-virtual &lt;em&gt;String&lt;/em&gt; parameter.
+To test it, we define another &lt;em&gt;print()&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(Method2&amp;lt;Float&amp;gt; foo2, I obj1, I obj2) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; res = foo2.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(obj1, obj2, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(obj1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + obj2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; -&amp;gt; &amp;#34;&lt;/span&gt; + res);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s observe what happens for the following arguments:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+I b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
+I c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
+
+&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+	print(foo2, a, a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 5
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;	print(foo2, a, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 36.5
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;	print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 36.5
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;	print(foo2, b, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// error
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+} 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First call is made on the couple of objects of dynamic type (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and the called method is naturally &lt;em&gt;match(A, A, String)&lt;/em&gt;.&lt;br&gt;
+Second call is made on the couple of objects of dynamic type (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) and the called method is naturally &lt;em&gt;match(A, B, String)&lt;/em&gt;.&lt;br&gt;
+For these two calls, there is a &lt;em&gt;match()&lt;/em&gt; method that &lt;strong&gt;perfect matches&lt;/strong&gt; the dynamic types.&lt;br&gt;
+That is not the case for the third call where there is no &lt;em&gt;match()&lt;/em&gt; method defined for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;). However the &lt;em&gt;match(A, B, String)&lt;/em&gt; 
+method is compatible whereas &lt;em&gt;match(A, A, String)&lt;/em&gt; is not, that is why it is called.&lt;br&gt;
+Fourth call is made on the dynamic types (&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) for which there is &lt;strong&gt;no compatible&lt;/strong&gt; &lt;em&gt;match()&lt;/em&gt; method. The call fails and an exception is thrown.&lt;/p&gt;
+&lt;p&gt;It is easy to define a multimethod of dimension two however the &lt;em&gt;invoke()&lt;/em&gt; can fail if there is no compatible &lt;em&gt;match()&lt;/em&gt; method for the arguments.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Best match</title>
+      <link>/docs/the-multimethods/best-match/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/best-match/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In the last section we defined our first multimethod of dimension two. In this section we will see how the best matching method is selected.
+Let&amp;rsquo;s redefine our multimethod by adding a &lt;em&gt;match()&lt;/em&gt; method for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, C y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We apply it to the objects (we do not put the necessary &lt;em&gt;try/catch&lt;/em&gt; here):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, a, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 0
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For the couple (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), there is only one compatible method which is &lt;em&gt;match(A, B, String)&lt;/em&gt;, however for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) the method &lt;em&gt;match(A, C, String)&lt;/em&gt; is also compatible meaning that there are two compatible methods. The multimethod selects the &lt;strong&gt;best match&lt;/strong&gt;, that is &lt;em&gt;match(A, C, String)&lt;/em&gt; which is in fact the &lt;strong&gt;perfect match&lt;/strong&gt; for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;).&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s modify the class hierarchy by adding a &lt;em&gt;D&lt;/em&gt; class that inherits &lt;em&gt;A&lt;/em&gt; and instantiated by the &lt;em&gt;d&lt;/em&gt; variable:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;D&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
+
+}
+
+I d = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; D();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s modify the multimethod to take into account &lt;em&gt;D&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+			
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, C y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2 * x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + 3 * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s apply it to a new couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;):&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, we still have two compatible methods &lt;em&gt;match(A, C, String)&lt;/em&gt; and &lt;em&gt;match(D, B, String)&lt;/em&gt; but none of them is the perfect match.
+In this case, the multimethod selects &lt;em&gt;match(D, B, String)&lt;/em&gt; because by default it selects the best match dimension by dimension from left to right.
+Indeed by default the multimethod is configured with a &lt;strong&gt;method comparator&lt;/strong&gt; using the lexicographic order.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Change comparator</title>
+      <link>/docs/the-multimethods/change-comparator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/change-comparator/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In the last section we saw how the dispatch is made by default for a multimethod of dimension two.
+The default comparator is the &lt;strong&gt;asymmetric&lt;/strong&gt; using the lexicographic order to select the best match.
+In this section we show that the default method comparator can be changed. 
+The library provides another method comparator which is the &lt;strong&gt;symmetric&lt;/strong&gt; comparator.
+Let&amp;rsquo;s see how it behave on a simple example.&lt;/p&gt;
+&lt;p&gt;We define a multimethod with the symmetric comparator:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;()
+		.&lt;span style=&#34;color:#1e90ff&#34;&gt;symmetricComparator&lt;/span&gt;()
+		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, C y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2 * x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + 3 * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We configured the multimethod by simply calling the &lt;em&gt;symmetricComparator()&lt;/em&gt; method.
+Let&amp;rsquo;s try it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+	print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;	print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;	print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// error
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;}
+&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;There is still a perfect match for the (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) and (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) however for the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), the two compatible methods &lt;em&gt;match(A, C, String)&lt;/em&gt; and &lt;em&gt;match(D, B, String)&lt;/em&gt;
+lead to an exception in the &lt;em&gt;invoke()&lt;/em&gt; call.&lt;br&gt;
+Indeed to select a couple of types, the &lt;strong&gt;symmetric&lt;/strong&gt; comparator is using a product order and the couple must be &amp;ldquo;better&amp;rdquo; or &amp;ldquo;equals&amp;rdquo; for each dimension.
+For the couple of objects (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;), &lt;em&gt;match(D, B, String)&lt;/em&gt; is better than &lt;em&gt;match(A, C, String)&lt;/em&gt; for the first dimension but &lt;em&gt;match(A, C, String)&lt;/em&gt; is better than &lt;em&gt;match(D, B, String)&lt;/em&gt;
+for the second dimension.&lt;br&gt;
+Then the comparator considers &lt;em&gt;match(D, B, String)&lt;/em&gt; and &lt;em&gt;match(A, C, String)&lt;/em&gt; equals for (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) so that the multimethod throws an exception: the call is &lt;strong&gt;ambiguous&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In the next section, we see how to resolve ambiguous calls.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Ambiguity resolution</title>
+      <link>/docs/the-multimethods/ambiguity-resolution/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/ambiguity-resolution/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In the last section by changing the method comparator, we obtained an ambiguity in the resolution of the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;).
+The first solution is to &lt;strong&gt;add a new matching method&lt;/strong&gt; for the couple so that we obtain a perfect match. The new &lt;em&gt;foo2&lt;/em&gt; looks like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;()
+		.&lt;span style=&#34;color:#1e90ff&#34;&gt;comparator&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; SymmetricComparator())
+		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;multiply&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, C y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D x, B y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;if&lt;/span&gt; (s.&lt;span style=&#34;color:#1e90ff&#34;&gt;equals&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;add&amp;#34;&lt;/span&gt;)) {
+			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2 * x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + 3 * y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt;;
+		}
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
+	}
+	
+	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D x, C y, String s) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; match((A)x, y, s);
+	}
+}); 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, calling &lt;em&gt;invoke()&lt;/em&gt; does not fail for (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) and the two first calls still succeed.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The second solution is to set special data to a &lt;em&gt;match()&lt;/em&gt; method to give it &lt;strong&gt;more priority&lt;/strong&gt; than the other. If we prefer to select &lt;em&gt;match(D, B, String)&lt;/em&gt; then we can give it the priority 1:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;foo2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setData&lt;/span&gt;(Priority.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(1), D.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+						
+print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But if we prefer to select &lt;em&gt;match(A, C, String)&lt;/em&gt;, we can give &lt;strong&gt;less priority&lt;/strong&gt; to &lt;em&gt;match(D, B, String)&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;foo2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setData&lt;/span&gt;(Priority.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(-1), D.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+						
+print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Priority&lt;/em&gt; data class is a special class that comes with the method comparators and allows to force the choice when there is an ambiguity.&lt;/p&gt;
+&lt;p&gt;To finish, another possibility is to define your own method comparator class with your own data class, but this will be the subject of a next section.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: More dimensions</title>
+      <link>/docs/the-multimethods/more-dimensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/the-multimethods/more-dimensions/</guid>
+      <description>
+        
+        
+        &lt;p&gt;In this section, we see that it is possible to define a multimethod with more than two dimensions.
+We define a multimethod with four dimensions:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method4&amp;lt;String&amp;gt; foo4 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method4&amp;lt;String&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+				
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(I x, I y, I z, I t) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;;
+	}
+	
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, A y, A z, A t) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A, A, A, A = &amp;#34;&lt;/span&gt; + x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + z.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + t.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+	
+	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A x, B y, C z, D t) {
+		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A, B, C, D = &amp;#34;&lt;/span&gt; + x.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + y.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + z.&lt;span style=&#34;color:#1e90ff&#34;&gt;fd&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; + t.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;;
+	}
+});
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Note that this time we defined some kind of a default &lt;em&gt;match()&lt;/em&gt; method for the hierarchy of types containing the root interface &lt;em&gt;I&lt;/em&gt; and the classes &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt; and &lt;em&gt;D&lt;/em&gt;.
+With such a definition we ensure that for any combination of types in that hierarchy, there will be a matching &lt;em&gt;match()&lt;/em&gt; method.&lt;/p&gt;
+&lt;p&gt;To test it, we define in a &lt;em&gt;print()&lt;/em&gt; method:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(Method4&amp;lt;String&amp;gt; foo4, I obj1, I obj2, I obj3, I obj4) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+		
+	String res = foo4.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(obj1, obj2, obj3, obj4);
+	System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(obj1.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt;
+				+ obj2.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; 
+				+ obj3.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;, &amp;#34;&lt;/span&gt; 
+				+ obj4.&lt;span style=&#34;color:#1e90ff&#34;&gt;getClass&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;getName&lt;/span&gt;() + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; -&amp;gt; &amp;#34;&lt;/span&gt; + res);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we call it with some tuples:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo4, a, a, a, a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// A, A, A, A... 
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo4, d, a, c, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// default
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo4, a, b, c, d); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// A, B, C, D...
+&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The tuples with dynamic types (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;) have a perfect match however (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) has not and the default &lt;em&gt;match()&lt;/em&gt; method is called.&lt;/p&gt;
+&lt;p&gt;Note that EVL multimethods are currently &lt;strong&gt;limited to seven dimensions&lt;/strong&gt; but it is just because it was necessary to set a limit. However it is very easy to extend to any number of dimensions.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
