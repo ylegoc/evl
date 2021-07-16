@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Why use EVL?</title>
-    <link>/evl/docs/why/</link>
+    <link>/docs/why/</link>
     <description>Recent content in Why use EVL? on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/evl/docs/why/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/docs/why/index.xml" rel="self" type="application/rss+xml" />
     
     
       

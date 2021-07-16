@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Documentation</title>
-    <link>/evl/docs/</link>
+    <link>/docs/</link>
     <description>Recent content in Documentation on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/evl/docs/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: Preliminaries</title>
-      <link>/evl/docs/examples/preliminaries/</link>
+      <link>/docs/examples/preliminaries/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/preliminaries/</guid>
+      <guid>/docs/examples/preliminaries/</guid>
       <description>
         
         
@@ -233,18 +233,18 @@ We voluntarily never define interface methods because multimethods are a replace
     
     <item>
       <title>Docs: Super commands</title>
-      <link>/evl/docs/more-features/super-commands/</link>
+      <link>/docs/more-features/super-commands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/super-commands/</guid>
+      <guid>/docs/more-features/super-commands/</guid>
       <description>
         
         
-        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;/evl/docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
+        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
 The multimethods were thus &lt;em&gt;stateless&lt;/em&gt;. In this section we show how to make them &lt;strong&gt;stateful&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;dispatch-to-match-methods&#34;&gt;Dispatch to match methods&lt;/h3&gt;
 &lt;p&gt;The idea is to define a class with members that we can 
-access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;/evl/docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
+access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
 that processes only classes of the &lt;em&gt;A&lt;/em&gt; hierarchy i.e. &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;D&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterA&lt;/span&gt; {
 
@@ -314,10 +314,10 @@ To add all the &lt;em&gt;process&lt;/em&gt; methods of the object &lt;em&gt;agen
     
     <item>
       <title>Docs: The base transform</title>
-      <link>/evl/docs/the-multimethods/base-transform/</link>
+      <link>/docs/the-multimethods/base-transform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/base-transform/</guid>
+      <guid>/docs/the-multimethods/base-transform/</guid>
       <description>
         
         
@@ -416,16 +416,16 @@ That&amp;rsquo;s all and now let&amp;rsquo;s see that the dispatch is exactly th
     
     <item>
       <title>Docs: Tuple of types distance</title>
-      <link>/evl/docs/theory/tuple-distance/</link>
+      <link>/docs/theory/tuple-distance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/tuple-distance/</guid>
+      <guid>/docs/theory/tuple-distance/</guid>
       <description>
         
         
         &lt;p&gt;The first prerequisite to understand how multimethods work is to know what is the tuple of types distance.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/evl/images/hierarchy.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;/evl/docs/the-multimethods&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../images/hierarchy.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;../docs/the-multimethods&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
 &lt;h3 id=&#34;type-distance&#34;&gt;Type distance&lt;/h3&gt;
 &lt;p&gt;Suppose that the type &lt;em&gt;X&lt;/em&gt; is a super class (including interface) of &lt;em&gt;Y&lt;/em&gt;.
 The distance between &lt;em&gt;X&lt;/em&gt; and &lt;em&gt;Y&lt;/em&gt; is defined as the &lt;strong&gt;minimum number of edges&lt;/strong&gt; between them in the type graph.
@@ -462,10 +462,10 @@ The distance is not defined for types that do not have an inheritance relation.&
     
     <item>
       <title>Docs: Distance comparators</title>
-      <link>/evl/docs/theory/distance-comparators/</link>
+      <link>/docs/theory/distance-comparators/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/distance-comparators/</guid>
+      <guid>/docs/theory/distance-comparators/</guid>
       <description>
         
         
@@ -520,17 +520,17 @@ For each &lt;em&gt;i&lt;/em&gt; with 0 &amp;lt;= &lt;em&gt;i&lt;/em&gt; &amp;lt;
 &lt;h3 id=&#34;refined-comparators&#34;&gt;Refined comparators&lt;/h3&gt;
 &lt;p&gt;In EVL, the &lt;em&gt;symmetric&lt;/em&gt; and &lt;em&gt;asymmetric&lt;/em&gt; operators are defined but they are refined to be able to manage ambiguities.
 Indeed it is possible to give a priority to each element that is compared in case of equality on the distance.
-An example on how to use priority is given in &lt;a href=&#34;/evl/docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
+An example on how to use priority is given in &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: In two dimensions</title>
-      <link>/evl/docs/the-multimethods/dimension-two/</link>
+      <link>/docs/the-multimethods/dimension-two/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/dimension-two/</guid>
+      <guid>/docs/the-multimethods/dimension-two/</guid>
       <description>
         
         
@@ -606,10 +606,10 @@ Fourth call is made on the dynamic types (&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt
     
     <item>
       <title>Docs: Interfaces</title>
-      <link>/evl/docs/more-features/interfaces/</link>
+      <link>/docs/more-features/interfaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/interfaces/</guid>
+      <guid>/docs/more-features/interfaces/</guid>
       <description>
         
         
@@ -696,17 +696,17 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style
     
     <item>
       <title>Docs: Visitor</title>
-      <link>/evl/docs/examples/visitor/</link>
+      <link>/docs/examples/visitor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/visitor/</guid>
+      <guid>/docs/examples/visitor/</guid>
       <description>
         
         
         &lt;p&gt;The EVL library provides multimethods that implement multiple dispatch. The implementation of the &lt;strong&gt;Visitor&lt;/strong&gt; pattern is immediate.
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Visitor_pattern&#34;&gt;visitor pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Implement the pattern requires some intrusive code and when we need to dispatch on the real type, we simply use the &lt;em&gt;instanceof&lt;/em&gt; operator along with a downcast.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
 First we define a list of &lt;em&gt;Toy&lt;/em&gt; objects that we will traverse:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ArrayList&amp;lt;Toy&amp;gt; toys = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;Toy&amp;gt;();
 toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
@@ -808,17 +808,17 @@ The exception that is thrown is an instance of &lt;em&gt;NoMatchingMethodExcepti
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).
 The couple (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) is compatible with (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) but there exists a perfect match method that is thus applied. However there is no perfect match for (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;) but (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) is compatible and is thus applied.
-For more details, see &lt;a href=&#34;/evl/docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;/evl/docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
+For more details, see &lt;a href=&#34;../docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: Best match</title>
-      <link>/evl/docs/the-multimethods/best-match/</link>
+      <link>/docs/the-multimethods/best-match/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/best-match/</guid>
+      <guid>/docs/the-multimethods/best-match/</guid>
       <description>
         
         
@@ -897,10 +897,10 @@ Indeed by default the multimethod is configured with a &lt;strong&gt;method comp
     
     <item>
       <title>Docs: Multimethod definition</title>
-      <link>/evl/docs/theory/multimethod-definition/</link>
+      <link>/docs/theory/multimethod-definition/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/multimethod-definition/</guid>
+      <guid>/docs/theory/multimethod-definition/</guid>
       <description>
         
         
@@ -961,15 +961,15 @@ The following match methods can be part of the multimethod or not:&lt;/p&gt;
     
     <item>
       <title>Docs: Return type and parameters</title>
-      <link>/evl/docs/more-features/return-type-parameters/</link>
+      <link>/docs/more-features/return-type-parameters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/return-type-parameters/</guid>
+      <guid>/docs/more-features/return-type-parameters/</guid>
       <description>
         
         
         &lt;p&gt;There are some special rules on the return type and parameters in the EVL library that must be presented.&lt;/p&gt;
-&lt;p&gt;For their definition see &lt;a href=&#34;/evl/docs/theory/multimethod-definition&#34;&gt;multimethod definition&lt;/a&gt;.
+&lt;p&gt;For their definition see &lt;a href=&#34;../docs/theory/multimethod-definition&#34;&gt;multimethod definition&lt;/a&gt;.
 By default, an empty multimethod does not define the expected return type, and not the non-virtual parameter types.
 They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;return-type&#34;&gt;Return type&lt;/h3&gt;
@@ -1098,18 +1098,18 @@ For the return type it is possible to control at compilation but it is redundant
     
     <item>
       <title>Docs: Stateful class</title>
-      <link>/evl/docs/examples/stateful-class/</link>
+      <link>/docs/examples/stateful-class/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/stateful-class/</guid>
+      <guid>/docs/examples/stateful-class/</guid>
       <description>
         
         
         &lt;p&gt;The EVL library is very flexible and offers many ways to use the multimethods.
 Here we show how to define a stateful class with protected access to a multimethod.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;/evl/docs/more-features/protected-access/&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;../docs/more-features/protected-access/&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a person finder that will return a location based on different criteria: weather, person, hour.
-The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonFinder&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonFinder&lt;/span&gt; {
@@ -1221,10 +1221,10 @@ It is up to you to find good designs.&lt;/p&gt;
     
     <item>
       <title>Docs: Change comparator</title>
-      <link>/evl/docs/the-multimethods/change-comparator/</link>
+      <link>/docs/the-multimethods/change-comparator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/change-comparator/</guid>
+      <guid>/docs/the-multimethods/change-comparator/</guid>
       <description>
         
         
@@ -1286,17 +1286,17 @@ Then the comparator considers &lt;em&gt;match(D, B, String)&lt;/em&gt; and &lt;e
     
     <item>
       <title>Docs: Composition</title>
-      <link>/evl/docs/examples/composition/</link>
+      <link>/docs/examples/composition/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/composition/</guid>
+      <guid>/docs/examples/composition/</guid>
       <description>
         
         
         &lt;p&gt;When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod.
 By this way, a &lt;strong&gt;chain of multiple dispatch&lt;/strong&gt; can be designed, that cannot be done with standard Java methods.&lt;/p&gt;
 &lt;p&gt;Here is an example of such a composition.
-The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We define a multimethod of dimension two that returns a toy depending on the person and the location:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Toy&amp;gt; toyFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Toy&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
@@ -1327,7 +1327,7 @@ The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/exa
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;();
 	}
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;/evl/docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder personFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonFinder();
 		
 Person[] persons = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Person[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;)};
@@ -1349,15 +1349,15 @@ Multimethods offer new perspectives for the code design.&lt;/p&gt;
     
     <item>
       <title>Docs: Search for the best match</title>
-      <link>/evl/docs/theory/search-best-match/</link>
+      <link>/docs/theory/search-best-match/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/search-best-match/</guid>
+      <guid>/docs/theory/search-best-match/</guid>
       <description>
         
         
         &lt;p&gt;Now that we can define an ordering on the tuple of types by using the distance comparators and tuple of types distance, let&amp;rsquo;s see how we search for the best matching method.
-The algorithm is based on the definition of the multimethod in &lt;a href=&#34;/evl/docs/theory/multimethod-definition/&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
+The algorithm is based on the definition of the multimethod in &lt;a href=&#34;../docs/theory/multimethod-definition/&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
 &lt;p&gt;We invoke &lt;em&gt;M&lt;/em&gt; on a tuple of objects that has the tuple of types &lt;em&gt;t&lt;/em&gt;.
 The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
@@ -1375,7 +1375,7 @@ The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Notice that the calculation of the distance is fixed in EVL but the minimum methods set may vary depending on the comparator used.&lt;/p&gt;
 &lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
-&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;/evl/docs/theory/tuple-distance/&#34;&gt;tuple of types distance&lt;/a&gt;.
+&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;../docs/theory/tuple-distance/&#34;&gt;tuple of types distance&lt;/a&gt;.
 To simplify, we do not show the return type and the non-virtual parameter types.&lt;br&gt;
 We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimethods of dimension 2 defined in each line of the table:&lt;/p&gt;
 &lt;table&gt;
@@ -1446,10 +1446,10 @@ We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimet
     
     <item>
       <title>Docs: Switch</title>
-      <link>/evl/docs/more-features/switch/</link>
+      <link>/docs/more-features/switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/switch/</guid>
+      <guid>/docs/more-features/switch/</guid>
       <description>
         
         
@@ -1502,10 +1502,10 @@ This rule also applies to standard multimethods.&lt;/p&gt;
     
     <item>
       <title>Docs: Ambiguity resolution</title>
-      <link>/evl/docs/the-multimethods/ambiguity-resolution/</link>
+      <link>/docs/the-multimethods/ambiguity-resolution/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/ambiguity-resolution/</guid>
+      <guid>/docs/the-multimethods/ambiguity-resolution/</guid>
       <description>
         
         
@@ -1571,17 +1571,17 @@ print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 1
     
     <item>
       <title>Docs: Invoke with cache</title>
-      <link>/evl/docs/theory/invoke/</link>
+      <link>/docs/theory/invoke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/invoke/</guid>
+      <guid>/docs/theory/invoke/</guid>
       <description>
         
         
         &lt;p&gt;The invoke sequence is presented in this section. We introduce the cache strategy.&lt;/p&gt;
 &lt;h3 id=&#34;workflow&#34;&gt;Workflow&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&#34;/evl/images/invoke.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;/evl/docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../images/invoke.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
+&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If the best match method is found then it is applied to the passed arguments.&lt;/li&gt;
 &lt;li&gt;If the method is not found - no compatible method or ambiguity - an exception is thrown.&lt;/li&gt;
@@ -1601,10 +1601,10 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
     
     <item>
       <title>Docs: Open access</title>
-      <link>/evl/docs/more-features/open-access/</link>
+      <link>/docs/more-features/open-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/open-access/</guid>
+      <guid>/docs/more-features/open-access/</guid>
       <description>
         
         
@@ -1689,18 +1689,18 @@ However, it also means that another code can extend the multimethod.&lt;/p&gt;
     
     <item>
       <title>Docs: State</title>
-      <link>/evl/docs/examples/state/</link>
+      <link>/docs/examples/state/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/state/</guid>
+      <guid>/docs/examples/state/</guid>
       <description>
         
         
         &lt;p&gt;The &lt;strong&gt;State&lt;/strong&gt; pattern can be defined easily using multimethods. 
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/State_pattern&#34;&gt;state pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;/evl/docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a class that will change its location state based on different criteria: person, previous location, toy, hour.
-The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonPlaying&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonPlaying&lt;/span&gt; {
@@ -1823,18 +1823,18 @@ The rules are all in the same class making it easy to understand. We can even sa
     
     <item>
       <title>Docs: Asymmetric vs symmetric</title>
-      <link>/evl/docs/theory/asymmetric-vs-symmetric/</link>
+      <link>/docs/theory/asymmetric-vs-symmetric/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/theory/asymmetric-vs-symmetric/</guid>
+      <guid>/docs/theory/asymmetric-vs-symmetric/</guid>
       <description>
         
         
         &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions. 
-For their definition, refer to &lt;a href=&#34;/evl/docs/theory/distance-comparators/&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
+For their definition, refer to &lt;a href=&#34;../docs/theory/distance-comparators/&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On one side, the &lt;em&gt;asymmetric&lt;/em&gt; comparator is &lt;strong&gt;easy&lt;/strong&gt; to understand and predict. The dimensions are taken one by one to find the best match. The ambiguities can only come from a multiple inheritance of interfaces.&lt;br&gt;
 On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&gt;democratic&lt;/strong&gt;. All the dimensions have the same weight in the final selection. However more democracy means more ambiguities and more difficulties to select one best match.&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;/evl/docs/theory/search-best-match/&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
 &lt;p&gt;The choice of the type of comparator may not only guided by the ease to treat all the cases. The implementation of an operator that is fundamentally symmetric e.g. &lt;em&gt;equals&lt;/em&gt; may deliberately choose the &lt;em&gt;symmetric&lt;/em&gt; operator.&lt;/p&gt;
 &lt;p&gt;In EVL, the default distance comparator is the &lt;em&gt;asymmetric&lt;/em&gt; comparator. We think that it is better to provide the easier comparator and avoid the user to resolve ambiguities. However it is possible to switch to the &lt;em&gt;symmetric&lt;/em&gt; comparator as an implementation is provided.&lt;/p&gt;
 
@@ -1843,10 +1843,10 @@ On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&g
     
     <item>
       <title>Docs: Comparator</title>
-      <link>/evl/docs/examples/comparator/</link>
+      <link>/docs/examples/comparator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/comparator/</guid>
+      <guid>/docs/examples/comparator/</guid>
       <description>
         
         
@@ -1855,7 +1855,7 @@ We demonstrate that it is a good tool to design such functionality. We also show
 &lt;p&gt;We define an &lt;em&gt;interest&lt;/em&gt; comparator, which is subjective by nature, on two elements of the room (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.) for a particular person (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Adult&lt;/em&gt;, etc.).&lt;br&gt;
 The comparator returns 1 if the first element is more interesting than the second one, -1 if the first element is less interesting than the second one 
 and 0 if they are as interesting.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;specific-implementation-for-a-kid&#34;&gt;Specific implementation for a Kid&lt;/h3&gt;
 &lt;p&gt;We do not show immediately the general case. So we first start by defining the interest comparator for a &lt;em&gt;Kid&lt;/em&gt;.&lt;br&gt;
 The rules are simple: the &lt;em&gt;Kid&lt;/em&gt; prefers the &lt;em&gt;Car&lt;/em&gt; in any case. Other elements have the same interest for him.
@@ -1951,7 +1951,7 @@ Let&amp;rsquo;s add the match methods:&lt;/p&gt;
 }   
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This specific example of &lt;strong&gt;binary&lt;/strong&gt; comparator showed us to take care of using the symmetric method comparator (do not make a confusion between the interest comparator 
 and the method comparator used internally to select a match method).&lt;/p&gt;
-&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;/evl/docs/the-multimethods/change-comparator/&#34;&gt;Change comparator&lt;/a&gt; 
+&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;../docs/the-multimethods/change-comparator/&#34;&gt;Change comparator&lt;/a&gt; 
 and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric/&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We are now ready to define the comparator in a general case: the comparator can also apply to an &lt;em&gt;Adult&lt;/em&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;general-implementation&#34;&gt;General implementation&lt;/h3&gt;
@@ -1994,7 +1994,7 @@ No problem, we will write it.&lt;/p&gt;
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The method that we need to redefine is &lt;em&gt;compare(MethodItem m1, MethodItem m2)&lt;/em&gt;. We do it with the help of &lt;em&gt;compareWithPriority&lt;/em&gt; which is defined into &lt;em&gt;MethodComparator&lt;/em&gt;
-and avoids us to manage priorities. See &lt;a href=&#34;/evl/docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
+and avoids us to manage priorities. See &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
 However we need to define the distance tuple comparator. For that we separate the tuples from the first dimension which we simply compare and apply the lexicographic comparator
 for the last dimensions.&lt;/p&gt;
 &lt;p&gt;We can define our multimethod of dimension three by getting the rules defined for the &lt;em&gt;Kid&lt;/em&gt; specific comparator and adding the ones we emitted for the &lt;em&gt;Adult&lt;/em&gt;:&lt;/p&gt;
@@ -2081,10 +2081,10 @@ You can also extend the comparator to another dimension that could be the &lt;em
     
     <item>
       <title>Docs: More dimensions</title>
-      <link>/evl/docs/the-multimethods/more-dimensions/</link>
+      <link>/docs/the-multimethods/more-dimensions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/the-multimethods/more-dimensions/</guid>
+      <guid>/docs/the-multimethods/more-dimensions/</guid>
       <description>
         
         
@@ -2128,15 +2128,15 @@ With such a definition we ensure that for any combination of types in that hiera
     
     <item>
       <title>Docs: Protected access</title>
-      <link>/evl/docs/more-features/protected-access/</link>
+      <link>/docs/more-features/protected-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/protected-access/</guid>
+      <guid>/docs/more-features/protected-access/</guid>
       <description>
         
         
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the local access here where a multimethod is a &lt;strong&gt;protected&lt;/strong&gt; member of a class.&lt;/p&gt;
-&lt;p&gt;As in &lt;a href=&#34;/evl/docs/more-features/open-access&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
+&lt;p&gt;As in &lt;a href=&#34;../docs/more-features/open-access&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
 &lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
 	
@@ -2290,10 +2290,10 @@ This dispatch can be extended making it fully &lt;strong&gt;compatible&lt;/stron
     
     <item>
       <title>Docs: Controlled extension</title>
-      <link>/evl/docs/more-features/controlled-extension/</link>
+      <link>/docs/more-features/controlled-extension/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/controlled-extension/</guid>
+      <guid>/docs/more-features/controlled-extension/</guid>
       <description>
         
         
@@ -2348,17 +2348,17 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;setFinal&lt;/span&gt;();
     
     <item>
       <title>Docs: Strategy</title>
-      <link>/evl/docs/examples/strategy/</link>
+      <link>/docs/examples/strategy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/strategy/</guid>
+      <guid>/docs/examples/strategy/</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to use an EVL multimethod in a strategy pattern.
 This example does not present novelties but allows to compare with the standard implementation at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Strategy_pattern&#34;&gt;strategy pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide the duration played by a &lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Teen&lt;/em&gt; or &lt;em&gt;Adult&lt;/em&gt; with a &lt;em&gt;Toy&lt;/em&gt; in the context of the weather.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;The multimethod has naturally three dimensions for the &lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Weather&lt;/em&gt;. We propose some simple rules:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method3&amp;lt;Integer&amp;gt; playDuration = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Integer&amp;gt;()
@@ -2450,10 +2450,10 @@ Some more dimensions can be added if necessary for managing a more precise conte
     
     <item>
       <title>Docs: Errors</title>
-      <link>/evl/docs/more-features/errors/</link>
+      <link>/docs/more-features/errors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/errors/</guid>
+      <guid>/docs/more-features/errors/</guid>
       <description>
         
         
@@ -2526,10 +2526,10 @@ Some more dimensions can be added if necessary for managing a more precise conte
     
     <item>
       <title>Docs: Factory</title>
-      <link>/evl/docs/examples/factory/</link>
+      <link>/docs/examples/factory/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/factory/</guid>
+      <guid>/docs/examples/factory/</guid>
       <description>
         
         
@@ -2537,7 +2537,7 @@ Some more dimensions can be added if necessary for managing a more precise conte
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide a factory for &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Container&lt;/em&gt; in the context of a &lt;em&gt;Person&lt;/em&gt; and a &lt;em&gt;Location&lt;/em&gt;.
 For example, what is the &lt;em&gt;Toy&lt;/em&gt; created for a &lt;em&gt;Kid&lt;/em&gt; when location is &lt;em&gt;Inside&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define the &lt;em&gt;Factory&lt;/em&gt; class, that has two multimethods of two dimensions for the &lt;em&gt;Person&lt;/em&gt; and &lt;em&gt;Location&lt;/em&gt; and two main methods &lt;em&gt;createToy&lt;/em&gt; and &lt;em&gt;createContainer&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Factory&lt;/span&gt; {
@@ -2662,17 +2662,17 @@ The common implementations are only limited to one dimension because &lt;em&gt;v
     
     <item>
       <title>Docs: Observer</title>
-      <link>/evl/docs/examples/observer/</link>
+      <link>/docs/examples/observer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/observer/</guid>
+      <guid>/docs/examples/observer/</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to implement the observer pattern by using an EVL multimethod.
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We adapt the example shown in Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
 We replace the &lt;em&gt;Observer&lt;/em&gt; class by a &lt;em&gt;Container&lt;/em&gt; class and the &lt;em&gt;Event&lt;/em&gt; class by a &lt;em&gt;Toy&lt;/em&gt; class.
 The idea is to update the &lt;em&gt;Container&lt;/em&gt; objects when they receive a &lt;em&gt;Toy&lt;/em&gt;. Every combination is not possible mainly due to the place.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
@@ -2769,15 +2769,15 @@ Moreover, the dispatch rules defined in dimension three are of course not possib
     
     <item>
       <title>Docs: Queue</title>
-      <link>/evl/docs/examples/queue/</link>
+      <link>/docs/examples/queue/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/queue/</guid>
+      <guid>/docs/examples/queue/</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod in the context of a queue of objects.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
 We present some simple producer and consumer that share a queue of &lt;em&gt;Element&lt;/em&gt; objects.&lt;br&gt;
 The idea is to count the different types of objects. The producer creates randomly some &lt;em&gt;Element&lt;/em&gt; objects i.e. &lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.
 The consumer counts the different types of objects.&lt;/p&gt;
@@ -2982,17 +2982,17 @@ We also showed how to extend the process by adding a new counter.&lt;/p&gt;
     
     <item>
       <title>Docs: ToString</title>
-      <link>/evl/docs/examples/tostring/</link>
+      <link>/docs/examples/tostring/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/tostring/</guid>
+      <guid>/docs/examples/tostring/</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to write a more general &lt;em&gt;toString()&lt;/em&gt; method.&lt;/p&gt;
-&lt;p&gt;It is based on the &lt;a href=&#34;/evl/docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;It is based on the &lt;a href=&#34;../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
 We extend the &lt;em&gt;toString()&lt;/em&gt; method by adding a first parameter representing the format.
-As example of use, we extend some classes defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+As example of use, we extend some classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define a multimethod of dimension two with restrictions on the non-virtual parameters and the return type:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToString&lt;/span&gt; {
@@ -3113,19 +3113,19 @@ but we can add a match method for &lt;em&gt;ToString&lt;/em&gt;.&lt;/li&gt;
     
     <item>
       <title>Docs: Tree walker</title>
-      <link>/evl/docs/examples/treewalker/</link>
+      <link>/docs/examples/treewalker/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/examples/treewalker/</guid>
+      <guid>/docs/examples/treewalker/</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to traverse tree structures.&lt;/p&gt;
 &lt;p&gt;We start with a &lt;em&gt;Print&lt;/em&gt; class that prints a hierarchical string view of a tree. Then we generalize by separating the traversal from the process.
 As example, we show two process classes: &lt;em&gt;TreePrinter&lt;/em&gt; that prints the same content than &lt;em&gt;Print&lt;/em&gt; and &lt;em&gt;TreeCarInBoxCounter&lt;/em&gt; that simply counts the &lt;em&gt;Car&lt;/em&gt; objects in &lt;em&gt;Box&lt;/em&gt; objects.&lt;/p&gt;
-&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;/evl/docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;print-implementation&#34;&gt;Print implementation&lt;/h3&gt;
-&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;/evl/docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
 As a common &lt;em&gt;XML&lt;/em&gt; file, the depth of a node is represented by the number of space indents.
 The idea is to pass a &lt;em&gt;Space&lt;/em&gt; object that holds the current space and increment or decrement it.&lt;/p&gt;
 &lt;p&gt;First we define the &lt;em&gt;Space&lt;/em&gt; class:&lt;/p&gt;
@@ -3321,7 +3321,7 @@ walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;leave&lt;/span&gt;().&lt;span s
 walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(room);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Easy right? And very flexible.&lt;/p&gt;
 &lt;p&gt;In this example we restricted the three multimethods to the dimension one but of course we could have added more dimensions if we wanted to pass other objects that may change the process.
-For instance we could have added another state object as seen in the &lt;a href=&#34;/evl/docs/examples/strategy/&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
+For instance we could have added another state object as seen in the &lt;a href=&#34;../docs/examples/strategy/&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
 &lt;p&gt;This example shows once again that multimethods are &lt;strong&gt;adaptable&lt;/strong&gt; to any programming problem and allow to have a good separation between class definitions and their behaviors: here the &lt;em&gt;Element&lt;/em&gt; classes and the tree process methods.&lt;/p&gt;
 
       </description>

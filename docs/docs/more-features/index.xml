@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – More features</title>
-    <link>/evl/docs/more-features/</link>
+    <link>/docs/more-features/</link>
     <description>Recent content in More features on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/evl/docs/more-features/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/docs/more-features/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,18 +15,18 @@
     
     <item>
       <title>Docs: Super commands</title>
-      <link>/evl/docs/more-features/super-commands/</link>
+      <link>/docs/more-features/super-commands/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/super-commands/</guid>
+      <guid>/docs/more-features/super-commands/</guid>
       <description>
         
         
-        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;/evl/docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
+        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;../../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
 The multimethods were thus &lt;em&gt;stateless&lt;/em&gt;. In this section we show how to make them &lt;strong&gt;stateful&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;dispatch-to-match-methods&#34;&gt;Dispatch to match methods&lt;/h3&gt;
 &lt;p&gt;The idea is to define a class with members that we can 
-access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;/evl/docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
+access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;../../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
 that processes only classes of the &lt;em&gt;A&lt;/em&gt; hierarchy i.e. &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;D&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterA&lt;/span&gt; {
 
@@ -96,10 +96,10 @@ To add all the &lt;em&gt;process&lt;/em&gt; methods of the object &lt;em&gt;agen
     
     <item>
       <title>Docs: Interfaces</title>
-      <link>/evl/docs/more-features/interfaces/</link>
+      <link>/docs/more-features/interfaces/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/interfaces/</guid>
+      <guid>/docs/more-features/interfaces/</guid>
       <description>
         
         
@@ -186,15 +186,15 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style
     
     <item>
       <title>Docs: Return type and parameters</title>
-      <link>/evl/docs/more-features/return-type-parameters/</link>
+      <link>/docs/more-features/return-type-parameters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/return-type-parameters/</guid>
+      <guid>/docs/more-features/return-type-parameters/</guid>
       <description>
         
         
         &lt;p&gt;There are some special rules on the return type and parameters in the EVL library that must be presented.&lt;/p&gt;
-&lt;p&gt;For their definition see &lt;a href=&#34;/evl/docs/theory/multimethod-definition&#34;&gt;multimethod definition&lt;/a&gt;.
+&lt;p&gt;For their definition see &lt;a href=&#34;../../docs/theory/multimethod-definition&#34;&gt;multimethod definition&lt;/a&gt;.
 By default, an empty multimethod does not define the expected return type, and not the non-virtual parameter types.
 They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;return-type&#34;&gt;Return type&lt;/h3&gt;
@@ -323,10 +323,10 @@ For the return type it is possible to control at compilation but it is redundant
     
     <item>
       <title>Docs: Switch</title>
-      <link>/evl/docs/more-features/switch/</link>
+      <link>/docs/more-features/switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/switch/</guid>
+      <guid>/docs/more-features/switch/</guid>
       <description>
         
         
@@ -379,10 +379,10 @@ This rule also applies to standard multimethods.&lt;/p&gt;
     
     <item>
       <title>Docs: Open access</title>
-      <link>/evl/docs/more-features/open-access/</link>
+      <link>/docs/more-features/open-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/open-access/</guid>
+      <guid>/docs/more-features/open-access/</guid>
       <description>
         
         
@@ -467,15 +467,15 @@ However, it also means that another code can extend the multimethod.&lt;/p&gt;
     
     <item>
       <title>Docs: Protected access</title>
-      <link>/evl/docs/more-features/protected-access/</link>
+      <link>/docs/more-features/protected-access/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/protected-access/</guid>
+      <guid>/docs/more-features/protected-access/</guid>
       <description>
         
         
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the local access here where a multimethod is a &lt;strong&gt;protected&lt;/strong&gt; member of a class.&lt;/p&gt;
-&lt;p&gt;As in &lt;a href=&#34;/evl/docs/more-features/open-access&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
+&lt;p&gt;As in &lt;a href=&#34;../../docs/more-features/open-access&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
 &lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
 	
@@ -629,10 +629,10 @@ This dispatch can be extended making it fully &lt;strong&gt;compatible&lt;/stron
     
     <item>
       <title>Docs: Controlled extension</title>
-      <link>/evl/docs/more-features/controlled-extension/</link>
+      <link>/docs/more-features/controlled-extension/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/controlled-extension/</guid>
+      <guid>/docs/more-features/controlled-extension/</guid>
       <description>
         
         
@@ -687,10 +687,10 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;setFinal&lt;/span&gt;();
     
     <item>
       <title>Docs: Errors</title>
-      <link>/evl/docs/more-features/errors/</link>
+      <link>/docs/more-features/errors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/evl/docs/more-features/errors/</guid>
+      <guid>/docs/more-features/errors/</guid>
       <description>
         
         
