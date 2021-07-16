@@ -1,6 +1,7 @@
 1.0.2
 -----
 
+* Java 9 Module.
 * Automatic access in Multimethod class.
 * NoMatchingMethodException and AmbiguousMethodException are now thrown by a cached method.
 * Method resetCache() renamed into clearCache().
