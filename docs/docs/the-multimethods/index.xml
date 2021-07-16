@@ -1,11 +1,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – The multimethods</title>
-    <link>/docs/the-multimethods/</link>
+    <link>/evl/docs/the-multimethods/</link>
     <description>Recent content in The multimethods on </description>
     <generator>Hugo -- gohugo.io</generator>
     
-	  <atom:link href="/docs/the-multimethods/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="/evl/docs/the-multimethods/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: The base transform</title>
-      <link>/docs/the-multimethods/base-transform/</link>
+      <link>/evl/docs/the-multimethods/base-transform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/base-transform/</guid>
+      <guid>/evl/docs/the-multimethods/base-transform/</guid>
       <description>
         
         
@@ -117,10 +117,10 @@ That&amp;rsquo;s all and now let&amp;rsquo;s see that the dispatch is exactly th
     
     <item>
       <title>Docs: In two dimensions</title>
-      <link>/docs/the-multimethods/dimension-two/</link>
+      <link>/evl/docs/the-multimethods/dimension-two/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/dimension-two/</guid>
+      <guid>/evl/docs/the-multimethods/dimension-two/</guid>
       <description>
         
         
@@ -196,10 +196,10 @@ Fourth call is made on the dynamic types (&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt
     
     <item>
       <title>Docs: Best match</title>
-      <link>/docs/the-multimethods/best-match/</link>
+      <link>/evl/docs/the-multimethods/best-match/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/best-match/</guid>
+      <guid>/evl/docs/the-multimethods/best-match/</guid>
       <description>
         
         
@@ -278,10 +278,10 @@ Indeed by default the multimethod is configured with a &lt;strong&gt;method comp
     
     <item>
       <title>Docs: Change comparator</title>
-      <link>/docs/the-multimethods/change-comparator/</link>
+      <link>/evl/docs/the-multimethods/change-comparator/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/change-comparator/</guid>
+      <guid>/evl/docs/the-multimethods/change-comparator/</guid>
       <description>
         
         
@@ -343,10 +343,10 @@ Then the comparator considers &lt;em&gt;match(D, B, String)&lt;/em&gt; and &lt;e
     
     <item>
       <title>Docs: Ambiguity resolution</title>
-      <link>/docs/the-multimethods/ambiguity-resolution/</link>
+      <link>/evl/docs/the-multimethods/ambiguity-resolution/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/ambiguity-resolution/</guid>
+      <guid>/evl/docs/the-multimethods/ambiguity-resolution/</guid>
       <description>
         
         
@@ -412,10 +412,10 @@ print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 1
     
     <item>
       <title>Docs: More dimensions</title>
-      <link>/docs/the-multimethods/more-dimensions/</link>
+      <link>/evl/docs/the-multimethods/more-dimensions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/more-dimensions/</guid>
+      <guid>/evl/docs/the-multimethods/more-dimensions/</guid>
       <description>
         
         
