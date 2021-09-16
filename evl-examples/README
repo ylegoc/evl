@@ -1,7 +1,15 @@
-Features
+Tests:
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.Tests
+
+Features:
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part1.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part2.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part3.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part4.Main
+$ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part5.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.features.part6.Main
 
-Test examples:
+Examples:
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.visitor.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.statefulclass.Main
 $ java -cp target/evl-examples-1.0.0-full.jar eu.daproject.evl.examples.state.Main

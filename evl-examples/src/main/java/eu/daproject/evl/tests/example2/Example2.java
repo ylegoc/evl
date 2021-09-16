@@ -17,6 +17,8 @@ package eu.daproject.evl.tests.example2;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
@@ -42,11 +44,16 @@ public class Example2 {
 			void match(Collection<?> c, String s) {
 				System.out.println("We are a collection of size " + c.size() + " and a string " + s);
 			}
+			
+			void match(List<?> l, String s) {
+				System.out.println("We are a list of size " + l.size() + " and a string " + s);
+			}
 		});
 		
 		test.invoke(12, -25);
 		test.invoke("beautiful", "day");
 		test.invoke(Arrays.asList("awesome" , "weather"), "today");
+		test.invoke(Set.of("awful" , "weather"), "tomorrow");
 		
 		try {
 			test.check(String.class, Integer.class);
