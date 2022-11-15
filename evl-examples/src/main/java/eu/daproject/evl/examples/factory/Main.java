@@ -9,8 +9,8 @@ import eu.daproject.evl.examples.common.Location;
 import eu.daproject.evl.examples.common.Outside;
 import eu.daproject.evl.examples.common.Person;
 import eu.daproject.evl.examples.common.Teen;
-import eu.daproject.evl.examples.common.Toy;
 import eu.daproject.evl.examples.common.Teen.Sex;
+import eu.daproject.evl.examples.common.Toy;
 
 public class Main {
 	

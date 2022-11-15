@@ -1,8 +1,6 @@
 package eu.daproject.evl.examples.visitor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import eu.daproject.evl.examples.common.Car;
 import eu.daproject.evl.examples.common.Doll;

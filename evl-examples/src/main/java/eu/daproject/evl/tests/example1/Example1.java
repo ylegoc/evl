@@ -17,7 +17,6 @@ package eu.daproject.evl.tests.example1;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Switch;

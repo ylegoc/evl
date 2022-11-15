@@ -16,11 +16,6 @@
 			<version>4.13.1</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.cayenne</groupId>
-			<artifactId>cayenne-server</artifactId>
-			<version>4.1.M2</version>
-		</dependency>
 	</dependencies>
   
   <build>

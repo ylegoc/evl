@@ -15,11 +15,9 @@
  ******************************************************************************/
 package eu.daproject.evl.perf;
 
-import java.lang.invoke.MethodHandle;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.apache.cayenne.util.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import org.junit.Test;
 
 import eu.daproject.evl.AsymmetricComparator;
@@ -349,19 +347,6 @@ public class PerformanceTest {
 		testMultiMethod1("method 1 with bounded cache 4 in ", new Method1<Integer>()
 				.comparator(new AsymmetricComparator())
 				.boundedCache(4));
-		
-		testMultiMethod1("method 1 with Apache Cayenne bounded cache 32 in ", new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(32).build()));
-		
-		testMultiMethod1("method 1 with Apache Cayenne bounded cache 8 in ", new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(8).build()));
-		
-		testMultiMethod1("method 1 with Apache Cayenne bounded cache 4 in ", new Method1<Integer>()
-				.comparator(new AsymmetricComparator())
-				.cache(new ConcurrentLinkedHashMap.Builder<Class<?>, CacheItem>().maximumWeightedCapacity(4).build()));
-		
 	}
 
 }

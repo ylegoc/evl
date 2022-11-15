@@ -2,7 +2,6 @@ package eu.daproject.evl.tomultimethods.part4;
 
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method2;
-import eu.daproject.evl.SymmetricComparator;
 
 public class Main {
 

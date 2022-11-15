@@ -16,11 +16,11 @@
 package eu.daproject.evl.tests.example9;
 
 import eu.daproject.evl.Cases;
+import eu.daproject.evl.Method2;
 import eu.daproject.evl.MethodComparator;
 import eu.daproject.evl.MethodItem;
 import eu.daproject.evl.tests.classes.A;
 import eu.daproject.evl.tests.classes.B;
-import eu.daproject.evl.Method2;
 
 /**
  * Example of a custom method comparator.

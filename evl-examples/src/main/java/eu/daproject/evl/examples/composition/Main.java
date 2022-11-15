@@ -3,7 +3,6 @@ package eu.daproject.evl.examples.composition;
 import eu.daproject.evl.Cases;
 import eu.daproject.evl.Method1;
 import eu.daproject.evl.Method2;
-import eu.daproject.evl.examples.common.Adult;
 import eu.daproject.evl.examples.common.Car;
 import eu.daproject.evl.examples.common.Doll;
 import eu.daproject.evl.examples.common.Game;
@@ -15,7 +14,6 @@ import eu.daproject.evl.examples.common.Person;
 import eu.daproject.evl.examples.common.Teen;
 import eu.daproject.evl.examples.common.Teen.Sex;
 import eu.daproject.evl.examples.common.Toy;
-import eu.daproject.evl.examples.statefulclass.AdultPersonFinder;
 import eu.daproject.evl.examples.statefulclass.PersonFinder;
 
 public class Main {
