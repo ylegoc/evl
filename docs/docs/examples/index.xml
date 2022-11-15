@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Examples</title>
-    <link>/docs/examples/</link>
+    <link>/docs/examples.html</link>
     <description>Recent content in Examples on </description>
     <generator>Hugo -- gohugo.io</generator>
     
@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: Preliminaries</title>
-      <link>/docs/examples/preliminaries/</link>
+      <link>/docs/examples/preliminaries.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/preliminaries/</guid>
+      <guid>/docs/examples/preliminaries.html</guid>
       <description>
         
         
@@ -233,17 +233,17 @@ We voluntarily never define interface methods because multimethods are a replace
     
     <item>
       <title>Docs: Visitor</title>
-      <link>/docs/examples/visitor/</link>
+      <link>/docs/examples/visitor.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/visitor/</guid>
+      <guid>/docs/examples/visitor.html</guid>
       <description>
         
         
         &lt;p&gt;The EVL library provides multimethods that implement multiple dispatch. The implementation of the &lt;strong&gt;Visitor&lt;/strong&gt; pattern is immediate.
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Visitor_pattern&#34;&gt;visitor pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Implement the pattern requires some intrusive code and when we need to dispatch on the real type, we simply use the &lt;em&gt;instanceof&lt;/em&gt; operator along with a downcast.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 First we define a list of &lt;em&gt;Toy&lt;/em&gt; objects that we will traverse:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ArrayList&amp;lt;Toy&amp;gt; toys = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;Toy&amp;gt;();
 toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
@@ -263,9 +263,10 @@ toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&
 	}
 	
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The downcast enables to access to the specific methods of &lt;em&gt;Car&lt;/em&gt; and &lt;em&gt;Doll&lt;/em&gt;. However this code is not extensible. How to do if we need to process a &lt;em&gt;Game&lt;/em&gt; object? Modify the loop?&lt;/p&gt;
-&lt;p&gt;Replace the &lt;em&gt;instanceof&lt;/em&gt; operator is easily done by using a multimethod so that the &lt;strong&gt;Visitor&lt;/strong&gt; becomes useless.
-Here is the code with a multimethod:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;downcast&lt;/em&gt; enables to access to the specific methods of &lt;em&gt;Car&lt;/em&gt; and &lt;em&gt;Doll&lt;/em&gt;. However this code is not extensible. How to do if we need to process a &lt;em&gt;Game&lt;/em&gt; object? Modify the loop?
+If you want to do this with standard polymorphism, you must implement the &lt;strong&gt;Visitor&lt;/strong&gt; pattern to replace the &lt;em&gt;instanceof&lt;/em&gt; operator, which is not simple and quite verbose.
+Another easy way is to use a multimethod.
+Here is the code:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Void&amp;gt; play = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
 	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car) {
@@ -345,25 +346,25 @@ The exception that is thrown is an instance of &lt;em&gt;NoMatchingMethodExcepti
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).
 The couple (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) is compatible with (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) but there exists a perfect match method that is thus applied. However there is no perfect match for (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;) but (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) is compatible and is thus applied.
-For more details, see &lt;a href=&#34;../../docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;../../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
+For more details, see &lt;a href=&#34;../../docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;../../docs/theory/search-best-match.html&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: Stateful class</title>
-      <link>/docs/examples/stateful-class/</link>
+      <link>/docs/examples/stateful-class.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/stateful-class/</guid>
+      <guid>/docs/examples/stateful-class.html</guid>
       <description>
         
         
         &lt;p&gt;The EVL library is very flexible and offers many ways to use the multimethods.
 Here we show how to define a stateful class with protected access to a multimethod.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;../../docs/more-features/protected-access/&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;../../docs/more-features/protected-access.html&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a person finder that will return a location based on different criteria: weather, person, hour.
-The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonFinder&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonFinder&lt;/span&gt; {
@@ -475,17 +476,17 @@ It is up to you to find good designs.&lt;/p&gt;
     
     <item>
       <title>Docs: Composition</title>
-      <link>/docs/examples/composition/</link>
+      <link>/docs/examples/composition.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/composition/</guid>
+      <guid>/docs/examples/composition.html</guid>
       <description>
         
         
         &lt;p&gt;When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod.
 By this way, a &lt;strong&gt;chain of multiple dispatch&lt;/strong&gt; can be designed, that cannot be done with standard Java methods.&lt;/p&gt;
 &lt;p&gt;Here is an example of such a composition.
-The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We define a multimethod of dimension two that returns a toy depending on the person and the location:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Toy&amp;gt; toyFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Toy&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
@@ -516,7 +517,7 @@ The classes used in the example are defined in the &lt;a href=&#34;../../docs/ex
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;();
 	}
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;../../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;../../docs/examples/stateful-class.html&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder personFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonFinder();
 		
 Person[] persons = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Person[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;)};
@@ -538,18 +539,18 @@ Multimethods offer new perspectives for the code design.&lt;/p&gt;
     
     <item>
       <title>Docs: State</title>
-      <link>/docs/examples/state/</link>
+      <link>/docs/examples/state.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/state/</guid>
+      <guid>/docs/examples/state.html</guid>
       <description>
         
         
         &lt;p&gt;The &lt;strong&gt;State&lt;/strong&gt; pattern can be defined easily using multimethods. 
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/State_pattern&#34;&gt;state pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;../../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;../../docs/examples/stateful-class.html&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a class that will change its location state based on different criteria: person, previous location, toy, hour.
-The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonPlaying&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonPlaying&lt;/span&gt; {
@@ -672,10 +673,10 @@ The rules are all in the same class making it easy to understand. We can even sa
     
     <item>
       <title>Docs: Comparator</title>
-      <link>/docs/examples/comparator/</link>
+      <link>/docs/examples/comparator.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/comparator/</guid>
+      <guid>/docs/examples/comparator.html</guid>
       <description>
         
         
@@ -684,7 +685,7 @@ We demonstrate that it is a good tool to design such functionality. We also show
 &lt;p&gt;We define an &lt;em&gt;interest&lt;/em&gt; comparator, which is subjective by nature, on two elements of the room (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.) for a particular person (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Adult&lt;/em&gt;, etc.).&lt;br&gt;
 The comparator returns 1 if the first element is more interesting than the second one, -1 if the first element is less interesting than the second one 
 and 0 if they are as interesting.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;specific-implementation-for-a-kid&#34;&gt;Specific implementation for a Kid&lt;/h3&gt;
 &lt;p&gt;We do not show immediately the general case. So we first start by defining the interest comparator for a &lt;em&gt;Kid&lt;/em&gt;.&lt;br&gt;
 The rules are simple: the &lt;em&gt;Kid&lt;/em&gt; prefers the &lt;em&gt;Car&lt;/em&gt; in any case. Other elements have the same interest for him.
@@ -780,8 +781,8 @@ Let&amp;rsquo;s add the match methods:&lt;/p&gt;
 }   
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This specific example of &lt;strong&gt;binary&lt;/strong&gt; comparator showed us to take care of using the symmetric method comparator (do not make a confusion between the interest comparator 
 and the method comparator used internally to select a match method).&lt;/p&gt;
-&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;../../docs/the-multimethods/change-comparator/&#34;&gt;Change comparator&lt;/a&gt; 
-and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric/&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;../../docs/the-multimethods/change-comparator.html&#34;&gt;Change comparator&lt;/a&gt; 
+and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric.html&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We are now ready to define the comparator in a general case: the comparator can also apply to an &lt;em&gt;Adult&lt;/em&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;general-implementation&#34;&gt;General implementation&lt;/h3&gt;
 &lt;p&gt;Now we want that the comparator is also able to apply to an &lt;em&gt;Adult&lt;/em&gt; who will have his own preferences.&lt;/p&gt;
@@ -823,7 +824,7 @@ No problem, we will write it.&lt;/p&gt;
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The method that we need to redefine is &lt;em&gt;compare(MethodItem m1, MethodItem m2)&lt;/em&gt;. We do it with the help of &lt;em&gt;compareWithPriority&lt;/em&gt; which is defined into &lt;em&gt;MethodComparator&lt;/em&gt;
-and avoids us to manage priorities. See &lt;a href=&#34;../../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
+and avoids us to manage priorities. See &lt;a href=&#34;../../docs/the-multimethods/ambiguity-resolution.html&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
 However we need to define the distance tuple comparator. For that we separate the tuples from the first dimension which we simply compare and apply the lexicographic comparator
 for the last dimensions.&lt;/p&gt;
 &lt;p&gt;We can define our multimethod of dimension three by getting the rules defined for the &lt;em&gt;Kid&lt;/em&gt; specific comparator and adding the ones we emitted for the &lt;em&gt;Adult&lt;/em&gt;:&lt;/p&gt;
@@ -910,17 +911,17 @@ You can also extend the comparator to another dimension that could be the &lt;em
     
     <item>
       <title>Docs: Strategy</title>
-      <link>/docs/examples/strategy/</link>
+      <link>/docs/examples/strategy.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/strategy/</guid>
+      <guid>/docs/examples/strategy.html</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to use an EVL multimethod in a strategy pattern.
 This example does not present novelties but allows to compare with the standard implementation at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Strategy_pattern&#34;&gt;strategy pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide the duration played by a &lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Teen&lt;/em&gt; or &lt;em&gt;Adult&lt;/em&gt; with a &lt;em&gt;Toy&lt;/em&gt; in the context of the weather.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;The multimethod has naturally three dimensions for the &lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Weather&lt;/em&gt;. We propose some simple rules:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method3&amp;lt;Integer&amp;gt; playDuration = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Integer&amp;gt;()
@@ -1012,10 +1013,10 @@ Some more dimensions can be added if necessary for managing a more precise conte
     
     <item>
       <title>Docs: Factory</title>
-      <link>/docs/examples/factory/</link>
+      <link>/docs/examples/factory.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/factory/</guid>
+      <guid>/docs/examples/factory.html</guid>
       <description>
         
         
@@ -1023,7 +1024,7 @@ Some more dimensions can be added if necessary for managing a more precise conte
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide a factory for &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Container&lt;/em&gt; in the context of a &lt;em&gt;Person&lt;/em&gt; and a &lt;em&gt;Location&lt;/em&gt;.
 For example, what is the &lt;em&gt;Toy&lt;/em&gt; created for a &lt;em&gt;Kid&lt;/em&gt; when location is &lt;em&gt;Inside&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define the &lt;em&gt;Factory&lt;/em&gt; class, that has two multimethods of two dimensions for the &lt;em&gt;Person&lt;/em&gt; and &lt;em&gt;Location&lt;/em&gt; and two main methods &lt;em&gt;createToy&lt;/em&gt; and &lt;em&gt;createContainer&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Factory&lt;/span&gt; {
@@ -1148,17 +1149,17 @@ The common implementations are only limited to one dimension because &lt;em&gt;v
     
     <item>
       <title>Docs: Observer</title>
-      <link>/docs/examples/observer/</link>
+      <link>/docs/examples/observer.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/observer/</guid>
+      <guid>/docs/examples/observer.html</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to implement the observer pattern by using an EVL multimethod.
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We adapt the example shown in Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 We replace the &lt;em&gt;Observer&lt;/em&gt; class by a &lt;em&gt;Container&lt;/em&gt; class and the &lt;em&gt;Event&lt;/em&gt; class by a &lt;em&gt;Toy&lt;/em&gt; class.
 The idea is to update the &lt;em&gt;Container&lt;/em&gt; objects when they receive a &lt;em&gt;Toy&lt;/em&gt;. Every combination is not possible mainly due to the place.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
@@ -1255,15 +1256,15 @@ Moreover, the dispatch rules defined in dimension three are of course not possib
     
     <item>
       <title>Docs: Queue</title>
-      <link>/docs/examples/queue/</link>
+      <link>/docs/examples/queue.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/queue/</guid>
+      <guid>/docs/examples/queue.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod in the context of a queue of objects.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 We present some simple producer and consumer that share a queue of &lt;em&gt;Element&lt;/em&gt; objects.&lt;br&gt;
 The idea is to count the different types of objects. The producer creates randomly some &lt;em&gt;Element&lt;/em&gt; objects i.e. &lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.
 The consumer counts the different types of objects.&lt;/p&gt;
@@ -1468,17 +1469,17 @@ We also showed how to extend the process by adding a new counter.&lt;/p&gt;
     
     <item>
       <title>Docs: ToString</title>
-      <link>/docs/examples/tostring/</link>
+      <link>/docs/examples/tostring.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/tostring/</guid>
+      <guid>/docs/examples/tostring.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to write a more general &lt;em&gt;toString()&lt;/em&gt; method.&lt;/p&gt;
-&lt;p&gt;It is based on the &lt;a href=&#34;../../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;It is based on the &lt;a href=&#34;../../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt; feature.
 We extend the &lt;em&gt;toString()&lt;/em&gt; method by adding a first parameter representing the format.
-As example of use, we extend some classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+As example of use, we extend some classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define a multimethod of dimension two with restrictions on the non-virtual parameters and the return type:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToString&lt;/span&gt; {
@@ -1599,19 +1600,19 @@ but we can add a match method for &lt;em&gt;ToString&lt;/em&gt;.&lt;/li&gt;
     
     <item>
       <title>Docs: Tree walker</title>
-      <link>/docs/examples/treewalker/</link>
+      <link>/docs/examples/treewalker.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/treewalker/</guid>
+      <guid>/docs/examples/treewalker.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to traverse tree structures.&lt;/p&gt;
 &lt;p&gt;We start with a &lt;em&gt;Print&lt;/em&gt; class that prints a hierarchical string view of a tree. Then we generalize by separating the traversal from the process.
 As example, we show two process classes: &lt;em&gt;TreePrinter&lt;/em&gt; that prints the same content than &lt;em&gt;Print&lt;/em&gt; and &lt;em&gt;TreeCarInBoxCounter&lt;/em&gt; that simply counts the &lt;em&gt;Car&lt;/em&gt; objects in &lt;em&gt;Box&lt;/em&gt; objects.&lt;/p&gt;
-&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;../../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;print-implementation&#34;&gt;Print implementation&lt;/h3&gt;
-&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;../../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;../../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt; feature.
 As a common &lt;em&gt;XML&lt;/em&gt; file, the depth of a node is represented by the number of space indents.
 The idea is to pass a &lt;em&gt;Space&lt;/em&gt; object that holds the current space and increment or decrement it.&lt;/p&gt;
 &lt;p&gt;First we define the &lt;em&gt;Space&lt;/em&gt; class:&lt;/p&gt;
@@ -1807,7 +1808,7 @@ walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;leave&lt;/span&gt;().&lt;span s
 walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(room);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Easy right? And very flexible.&lt;/p&gt;
 &lt;p&gt;In this example we restricted the three multimethods to the dimension one but of course we could have added more dimensions if we wanted to pass other objects that may change the process.
-For instance we could have added another state object as seen in the &lt;a href=&#34;../../docs/examples/strategy/&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
+For instance we could have added another state object as seen in the &lt;a href=&#34;../../docs/examples/strategy.html&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
 &lt;p&gt;This example shows once again that multimethods are &lt;strong&gt;adaptable&lt;/strong&gt; to any programming problem and allow to have a good separation between class definitions and their behaviors: here the &lt;em&gt;Element&lt;/em&gt; classes and the tree process methods.&lt;/p&gt;
 
       </description>

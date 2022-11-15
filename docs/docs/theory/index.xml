@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Theory</title>
-    <link>/docs/theory/</link>
+    <link>/docs/theory.html</link>
     <description>Recent content in Theory on </description>
     <generator>Hugo -- gohugo.io</generator>
     
@@ -15,16 +15,16 @@
     
     <item>
       <title>Docs: Tuple of types distance</title>
-      <link>/docs/theory/tuple-distance/</link>
+      <link>/docs/theory/tuple-distance.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/tuple-distance/</guid>
+      <guid>/docs/theory/tuple-distance.html</guid>
       <description>
         
         
         &lt;p&gt;The first prerequisite to understand how multimethods work is to know what is the tuple of types distance.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../../images/hierarchy.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;../../docs/the-multimethods&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
+&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;../../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
 &lt;h3 id=&#34;type-distance&#34;&gt;Type distance&lt;/h3&gt;
 &lt;p&gt;Suppose that the type &lt;em&gt;X&lt;/em&gt; is a super class (including interface) of &lt;em&gt;Y&lt;/em&gt;.
 The distance between &lt;em&gt;X&lt;/em&gt; and &lt;em&gt;Y&lt;/em&gt; is defined as the &lt;strong&gt;minimum number of edges&lt;/strong&gt; between them in the type graph.
@@ -61,10 +61,10 @@ The distance is not defined for types that do not have an inheritance relation.&
     
     <item>
       <title>Docs: Distance comparators</title>
-      <link>/docs/theory/distance-comparators/</link>
+      <link>/docs/theory/distance-comparators.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/distance-comparators/</guid>
+      <guid>/docs/theory/distance-comparators.html</guid>
       <description>
         
         
@@ -119,17 +119,17 @@ For each &lt;em&gt;i&lt;/em&gt; with 0 &amp;lt;= &lt;em&gt;i&lt;/em&gt; &amp;lt;
 &lt;h3 id=&#34;refined-comparators&#34;&gt;Refined comparators&lt;/h3&gt;
 &lt;p&gt;In EVL, the &lt;em&gt;symmetric&lt;/em&gt; and &lt;em&gt;asymmetric&lt;/em&gt; operators are defined but they are refined to be able to manage ambiguities.
 Indeed it is possible to give a priority to each element that is compared in case of equality on the distance.
-An example on how to use priority is given in &lt;a href=&#34;../../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
+An example on how to use priority is given in &lt;a href=&#34;../../docs/the-multimethods/ambiguity-resolution.html&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: Multimethod definition</title>
-      <link>/docs/theory/multimethod-definition/</link>
+      <link>/docs/theory/multimethod-definition.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/multimethod-definition/</guid>
+      <guid>/docs/theory/multimethod-definition.html</guid>
       <description>
         
         
@@ -190,15 +190,15 @@ The following match methods can be part of the multimethod or not:&lt;/p&gt;
     
     <item>
       <title>Docs: Search for the best match</title>
-      <link>/docs/theory/search-best-match/</link>
+      <link>/docs/theory/search-best-match.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/search-best-match/</guid>
+      <guid>/docs/theory/search-best-match.html</guid>
       <description>
         
         
         &lt;p&gt;Now that we can define an ordering on the tuple of types by using the distance comparators and tuple of types distance, let&amp;rsquo;s see how we search for the best matching method.
-The algorithm is based on the definition of the multimethod in &lt;a href=&#34;../../docs/theory/multimethod-definition/&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
+The algorithm is based on the definition of the multimethod in &lt;a href=&#34;../../docs/theory/multimethod-definition.html&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
 &lt;p&gt;We invoke &lt;em&gt;M&lt;/em&gt; on a tuple of objects that has the tuple of types &lt;em&gt;t&lt;/em&gt;.
 The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
@@ -216,7 +216,7 @@ The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Notice that the calculation of the distance is fixed in EVL but the minimum methods set may vary depending on the comparator used.&lt;/p&gt;
 &lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
-&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;../../docs/theory/tuple-distance/&#34;&gt;tuple of types distance&lt;/a&gt;.
+&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;../../docs/theory/tuple-distance.html&#34;&gt;tuple of types distance&lt;/a&gt;.
 To simplify, we do not show the return type and the non-virtual parameter types.&lt;br&gt;
 We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimethods of dimension 2 defined in each line of the table:&lt;/p&gt;
 &lt;table&gt;
@@ -287,17 +287,17 @@ We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimet
     
     <item>
       <title>Docs: Invoke with cache</title>
-      <link>/docs/theory/invoke/</link>
+      <link>/docs/theory/invoke.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/invoke/</guid>
+      <guid>/docs/theory/invoke.html</guid>
       <description>
         
         
         &lt;p&gt;The invoke sequence is presented in this section. We introduce the cache strategy.&lt;/p&gt;
 &lt;h3 id=&#34;workflow&#34;&gt;Workflow&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;../../images/invoke.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;../../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;../../docs/theory/search-best-match.html&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If the best match method is found then it is applied to the passed arguments.&lt;/li&gt;
 &lt;li&gt;If the method is not found - no compatible method or ambiguity - an exception is thrown.&lt;/li&gt;
@@ -317,18 +317,18 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
     
     <item>
       <title>Docs: Asymmetric vs symmetric</title>
-      <link>/docs/theory/asymmetric-vs-symmetric/</link>
+      <link>/docs/theory/asymmetric-vs-symmetric.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/asymmetric-vs-symmetric/</guid>
+      <guid>/docs/theory/asymmetric-vs-symmetric.html</guid>
       <description>
         
         
         &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions. 
-For their definition, refer to &lt;a href=&#34;../../docs/theory/distance-comparators/&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
+For their definition, refer to &lt;a href=&#34;../../docs/theory/distance-comparators.html&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On one side, the &lt;em&gt;asymmetric&lt;/em&gt; comparator is &lt;strong&gt;easy&lt;/strong&gt; to understand and predict. The dimensions are taken one by one to find the best match. The ambiguities can only come from a multiple inheritance of interfaces.&lt;br&gt;
 On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&gt;democratic&lt;/strong&gt;. All the dimensions have the same weight in the final selection. However more democracy means more ambiguities and more difficulties to select one best match.&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;../../docs/theory/search-best-match/&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;../../docs/theory/search-best-match.html&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
 &lt;p&gt;The choice of the type of comparator may not only guided by the ease to treat all the cases. The implementation of an operator that is fundamentally symmetric e.g. &lt;em&gt;equals&lt;/em&gt; may deliberately choose the &lt;em&gt;symmetric&lt;/em&gt; operator.&lt;/p&gt;
 &lt;p&gt;In EVL, the default distance comparator is the &lt;em&gt;asymmetric&lt;/em&gt; comparator. We think that it is better to provide the easier comparator and avoid the user to resolve ambiguities. However it is possible to switch to the &lt;em&gt;symmetric&lt;/em&gt; comparator as an implementation is provided.&lt;/p&gt;
 

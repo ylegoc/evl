@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title> – Documentation</title>
-    <link>/docs/</link>
+    <link>/docs.html</link>
     <description>Recent content in Documentation on </description>
     <generator>Hugo -- gohugo.io</generator>
     
@@ -15,10 +15,10 @@
     
     <item>
       <title>Docs: Preliminaries</title>
-      <link>/docs/examples/preliminaries/</link>
+      <link>/docs/examples/preliminaries.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/preliminaries/</guid>
+      <guid>/docs/examples/preliminaries.html</guid>
       <description>
         
         
@@ -233,18 +233,18 @@ We voluntarily never define interface methods because multimethods are a replace
     
     <item>
       <title>Docs: Super commands</title>
-      <link>/docs/more-features/super-commands/</link>
+      <link>/docs/more-features/super-commands.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/super-commands/</guid>
+      <guid>/docs/more-features/super-commands.html</guid>
       <description>
         
         
-        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
+        &lt;p&gt;In the first part of the documentation &lt;a href=&#34;../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
 The multimethods were thus &lt;em&gt;stateless&lt;/em&gt;. In this section we show how to make them &lt;strong&gt;stateful&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;dispatch-to-match-methods&#34;&gt;Dispatch to match methods&lt;/h3&gt;
 &lt;p&gt;The idea is to define a class with members that we can 
-access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;../docs/the-multimethods/&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
+access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
 that processes only classes of the &lt;em&gt;A&lt;/em&gt; hierarchy i.e. &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;D&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterA&lt;/span&gt; {
 
@@ -314,10 +314,10 @@ To add all the &lt;em&gt;process&lt;/em&gt; methods of the object &lt;em&gt;agen
     
     <item>
       <title>Docs: The base transform</title>
-      <link>/docs/the-multimethods/base-transform/</link>
+      <link>/docs/the-multimethods/base-transform.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/base-transform/</guid>
+      <guid>/docs/the-multimethods/base-transform.html</guid>
       <description>
         
         
@@ -348,7 +348,6 @@ Let&amp;rsquo;s start with the following class hierarchy (to be more concise, pa
 &lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; B {
 
 }
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s define a &lt;em&gt;print()&lt;/em&gt; method that is using them:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;print&lt;/span&gt;(I obj) {
 		
@@ -363,8 +362,7 @@ I c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
 print(a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 3
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 9
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the &lt;em&gt;print()&lt;/em&gt; method, &lt;em&gt;obj&lt;/em&gt; has static type &lt;em&gt;I&lt;/em&gt; but has real type &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt; depending on the call. The call to &lt;em&gt;foo()&lt;/em&gt; on &lt;em&gt;obj&lt;/em&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;In the &lt;em&gt;print()&lt;/em&gt; method, &lt;em&gt;obj&lt;/em&gt; has static type &lt;em&gt;I&lt;/em&gt; but has real type &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt; depending on the call. The call to &lt;em&gt;foo()&lt;/em&gt; on &lt;em&gt;obj&lt;/em&gt;
 is resolved at runtime and the method applied is chosen depending on the real type of &lt;em&gt;obj&lt;/em&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;em&gt;A&lt;/em&gt;: &lt;em&gt;foo()&lt;/em&gt; is redefined for &lt;em&gt;A&lt;/em&gt; so it is applied.&lt;/li&gt;
@@ -416,16 +414,16 @@ That&amp;rsquo;s all and now let&amp;rsquo;s see that the dispatch is exactly th
     
     <item>
       <title>Docs: Tuple of types distance</title>
-      <link>/docs/theory/tuple-distance/</link>
+      <link>/docs/theory/tuple-distance.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/tuple-distance/</guid>
+      <guid>/docs/theory/tuple-distance.html</guid>
       <description>
         
         
         &lt;p&gt;The first prerequisite to understand how multimethods work is to know what is the tuple of types distance.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;../images/hierarchy.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;../docs/the-multimethods&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
+&lt;p&gt;Here is a simple hierarchy, the one that we used in the examples of &lt;a href=&#34;../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt; section.&lt;/p&gt;
 &lt;h3 id=&#34;type-distance&#34;&gt;Type distance&lt;/h3&gt;
 &lt;p&gt;Suppose that the type &lt;em&gt;X&lt;/em&gt; is a super class (including interface) of &lt;em&gt;Y&lt;/em&gt;.
 The distance between &lt;em&gt;X&lt;/em&gt; and &lt;em&gt;Y&lt;/em&gt; is defined as the &lt;strong&gt;minimum number of edges&lt;/strong&gt; between them in the type graph.
@@ -462,10 +460,10 @@ The distance is not defined for types that do not have an inheritance relation.&
     
     <item>
       <title>Docs: Distance comparators</title>
-      <link>/docs/theory/distance-comparators/</link>
+      <link>/docs/theory/distance-comparators.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/distance-comparators/</guid>
+      <guid>/docs/theory/distance-comparators.html</guid>
       <description>
         
         
@@ -520,17 +518,17 @@ For each &lt;em&gt;i&lt;/em&gt; with 0 &amp;lt;= &lt;em&gt;i&lt;/em&gt; &amp;lt;
 &lt;h3 id=&#34;refined-comparators&#34;&gt;Refined comparators&lt;/h3&gt;
 &lt;p&gt;In EVL, the &lt;em&gt;symmetric&lt;/em&gt; and &lt;em&gt;asymmetric&lt;/em&gt; operators are defined but they are refined to be able to manage ambiguities.
 Indeed it is possible to give a priority to each element that is compared in case of equality on the distance.
-An example on how to use priority is given in &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
+An example on how to use priority is given in &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution.html&#34;&gt;ambiguity resolution&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: In two dimensions</title>
-      <link>/docs/the-multimethods/dimension-two/</link>
+      <link>/docs/the-multimethods/dimension-two.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/dimension-two/</guid>
+      <guid>/docs/the-multimethods/dimension-two.html</guid>
       <description>
         
         
@@ -570,7 +568,6 @@ Let&amp;rsquo;s modify the classes &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
 	}
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, we define a &lt;em&gt;Method2&amp;lt;Float&amp;gt;&lt;/em&gt; because we want to have two virtual parameters and return a &lt;em&gt;float&lt;/em&gt; value.
 We define two &lt;em&gt;match()&lt;/em&gt; methods for the couple of types (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;). We add a third non-virtual &lt;em&gt;String&lt;/em&gt; parameter.
 To test it, we define another &lt;em&gt;print()&lt;/em&gt; method:&lt;/p&gt;
@@ -606,17 +603,16 @@ Fourth call is made on the dynamic types (&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt
     
     <item>
       <title>Docs: Interfaces</title>
-      <link>/docs/more-features/interfaces/</link>
+      <link>/docs/more-features/interfaces.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/interfaces/</guid>
+      <guid>/docs/more-features/interfaces.html</guid>
       <description>
         
         
         &lt;p&gt;In standard Java, it is not possible to define a method in an interface. With the EVL multimethods, it is now possible to do it.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take the following hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IA&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IA&lt;/span&gt; {
 	
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;();
 }
@@ -650,11 +646,8 @@ Fourth call is made on the dynamic types (&lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 35.&lt;span style=&#34;color:#1e90ff&#34;&gt;9f&lt;/span&gt;;
 	}
 }
-
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s define the following multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 	
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(IA a) {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;();
@@ -665,11 +658,9 @@ Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;n
 	}
 	
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The multimethod defines methods for the interfaces &lt;em&gt;IA&lt;/em&gt; and &lt;em&gt;IB&lt;/em&gt; in which we can access to the methods &lt;em&gt;getA()&lt;/em&gt; and &lt;em&gt;getB()&lt;/em&gt;.
 Let&amp;rsquo;s apply the multimethod to the three objects &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt; and &lt;em&gt;c&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Object a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Object a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
 Object b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
 Object c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
 
@@ -680,14 +671,12 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 Both interfaces are at distance 1 from &lt;em&gt;C&lt;/em&gt; and the lexicographic comparator provides equality. Indeed we saw in the previous sections that the asymmetric comparator was providing less
 ambiguities than the symmetric comparator. Here is the proof that the asymmetric comparator is not ambiguity free.&lt;/p&gt;
 &lt;p&gt;We resolve the ambiguity by adding a method for &lt;em&gt;C&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;() + (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;)c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getB&lt;/span&gt;();
 	}
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The ambiguity is resolved and we obtain 39 (4 + 35) for &lt;em&gt;C&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The EVL multimethod library is &lt;strong&gt;flexible&lt;/strong&gt; and allows to define methods for &lt;strong&gt;interfaces&lt;/strong&gt;. However in case of multiple inheritance of interfaces, &lt;strong&gt;ambiguities&lt;/strong&gt; can happen and even in the case of the default asymmetric comparator.&lt;/p&gt;
 
@@ -696,17 +685,17 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style
     
     <item>
       <title>Docs: Visitor</title>
-      <link>/docs/examples/visitor/</link>
+      <link>/docs/examples/visitor.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/visitor/</guid>
+      <guid>/docs/examples/visitor.html</guid>
       <description>
         
         
         &lt;p&gt;The EVL library provides multimethods that implement multiple dispatch. The implementation of the &lt;strong&gt;Visitor&lt;/strong&gt; pattern is immediate.
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Visitor_pattern&#34;&gt;visitor pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Implement the pattern requires some intrusive code and when we need to dispatch on the real type, we simply use the &lt;em&gt;instanceof&lt;/em&gt; operator along with a downcast.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 First we define a list of &lt;em&gt;Toy&lt;/em&gt; objects that we will traverse:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ArrayList&amp;lt;Toy&amp;gt; toys = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ArrayList&amp;lt;Toy&amp;gt;();
 toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Car(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;red&amp;#34;&lt;/span&gt;));
@@ -726,9 +715,10 @@ toys.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&
 	}
 	
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The downcast enables to access to the specific methods of &lt;em&gt;Car&lt;/em&gt; and &lt;em&gt;Doll&lt;/em&gt;. However this code is not extensible. How to do if we need to process a &lt;em&gt;Game&lt;/em&gt; object? Modify the loop?&lt;/p&gt;
-&lt;p&gt;Replace the &lt;em&gt;instanceof&lt;/em&gt; operator is easily done by using a multimethod so that the &lt;strong&gt;Visitor&lt;/strong&gt; becomes useless.
-Here is the code with a multimethod:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;downcast&lt;/em&gt; enables to access to the specific methods of &lt;em&gt;Car&lt;/em&gt; and &lt;em&gt;Doll&lt;/em&gt;. However this code is not extensible. How to do if we need to process a &lt;em&gt;Game&lt;/em&gt; object? Modify the loop?
+If you want to do this with standard polymorphism, you must implement the &lt;strong&gt;Visitor&lt;/strong&gt; pattern to replace the &lt;em&gt;instanceof&lt;/em&gt; operator, which is not simple and quite verbose.
+Another easy way is to use a multimethod.
+Here is the code:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Void&amp;gt; play = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
 	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Car car) {
@@ -808,17 +798,17 @@ The exception that is thrown is an instance of &lt;em&gt;NoMatchingMethodExcepti
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;).
 The couple (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Car&lt;/em&gt;) is compatible with (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) but there exists a perfect match method that is thus applied. However there is no perfect match for (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;) but (&lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt;) is compatible and is thus applied.
-For more details, see &lt;a href=&#34;../docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
+For more details, see &lt;a href=&#34;../docs/the-multimethods/best-match/&#34;&gt;best match&lt;/a&gt; and &lt;a href=&#34;../docs/theory/search-best-match.html&#34;&gt;search for the best match&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
     
     <item>
       <title>Docs: Best match</title>
-      <link>/docs/the-multimethods/best-match/</link>
+      <link>/docs/the-multimethods/best-match.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/best-match/</guid>
+      <guid>/docs/the-multimethods/best-match.html</guid>
       <description>
         
         
@@ -844,12 +834,10 @@ Let&amp;rsquo;s redefine our multimethod by adding a &lt;em&gt;match()&lt;/em&gt
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
 	}
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We apply it to the objects (we do not put the necessary &lt;em&gt;try/catch&lt;/em&gt; here):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, a, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 0
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For the couple (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), there is only one compatible method which is &lt;em&gt;match(A, B, String)&lt;/em&gt;, however for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) the method &lt;em&gt;match(A, C, String)&lt;/em&gt; is also compatible meaning that there are two compatible methods. The multimethod selects the &lt;strong&gt;best match&lt;/strong&gt;, that is &lt;em&gt;match(A, C, String)&lt;/em&gt; which is in fact the &lt;strong&gt;perfect match&lt;/strong&gt; for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;).&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;For the couple (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;), there is only one compatible method which is &lt;em&gt;match(A, B, String)&lt;/em&gt;, however for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) the method &lt;em&gt;match(A, C, String)&lt;/em&gt; is also compatible meaning that there are two compatible methods. The multimethod selects the &lt;strong&gt;best match&lt;/strong&gt;, that is &lt;em&gt;match(A, C, String)&lt;/em&gt; which is in fact the &lt;strong&gt;perfect match&lt;/strong&gt; for (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;).&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s modify the class hierarchy by adding a &lt;em&gt;D&lt;/em&gt; class that inherits &lt;em&gt;A&lt;/em&gt; and instantiated by the &lt;em&gt;d&lt;/em&gt; variable:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;D&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
 
@@ -884,11 +872,9 @@ I d = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; D();
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 0;
 	}
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s apply it to a new couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;):&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, we still have two compatible methods &lt;em&gt;match(A, C, String)&lt;/em&gt; and &lt;em&gt;match(D, B, String)&lt;/em&gt; but none of them is the perfect match.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time, we still have two compatible methods &lt;em&gt;match(A, C, String)&lt;/em&gt; and &lt;em&gt;match(D, B, String)&lt;/em&gt; but none of them is the perfect match.
 In this case, the multimethod selects &lt;em&gt;match(D, B, String)&lt;/em&gt; because by default it selects the best match dimension by dimension from left to right.
 Indeed by default the multimethod is configured with a &lt;strong&gt;method comparator&lt;/strong&gt; using the lexicographic order.&lt;/p&gt;
 
@@ -897,10 +883,10 @@ Indeed by default the multimethod is configured with a &lt;strong&gt;method comp
     
     <item>
       <title>Docs: Multimethod definition</title>
-      <link>/docs/theory/multimethod-definition/</link>
+      <link>/docs/theory/multimethod-definition.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/multimethod-definition/</guid>
+      <guid>/docs/theory/multimethod-definition.html</guid>
       <description>
         
         
@@ -961,21 +947,20 @@ The following match methods can be part of the multimethod or not:&lt;/p&gt;
     
     <item>
       <title>Docs: Return type and parameters</title>
-      <link>/docs/more-features/return-type-parameters/</link>
+      <link>/docs/more-features/return-type-parameters.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/return-type-parameters/</guid>
+      <guid>/docs/more-features/return-type-parameters.html</guid>
       <description>
         
         
         &lt;p&gt;There are some special rules on the return type and parameters in the EVL library that must be presented.&lt;/p&gt;
-&lt;p&gt;For their definition see &lt;a href=&#34;../docs/theory/multimethod-definition&#34;&gt;multimethod definition&lt;/a&gt;.
+&lt;p&gt;For their definition see &lt;a href=&#34;../docs/theory/multimethod-definition.html&#34;&gt;multimethod definition&lt;/a&gt;.
 By default, an empty multimethod does not define the expected return type, and not the non-virtual parameter types.
 They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;return-type&#34;&gt;Return type&lt;/h3&gt;
 &lt;p&gt;Let&amp;rsquo;s take the following hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
 
 }
 
@@ -987,11 +972,8 @@ They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&g
 
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; id = 7;
 }
-
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And a similar hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RI&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RI&lt;/span&gt; {
 
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;();
 }
@@ -1017,11 +999,9 @@ They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&g
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; value;
 	}
 }
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We want to define a factory that builds a &lt;em&gt;RA&lt;/em&gt; object from an &lt;em&gt;A&lt;/em&gt; object and a &lt;em&gt;RB&lt;/em&gt; object from an &lt;em&gt;B&lt;/em&gt; object.
 Here is the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
 		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
 		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 	
@@ -1034,17 +1014,13 @@ Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt
 	}
 	
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We defined the &lt;em&gt;match()&lt;/em&gt; methods for &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt; with different return types and we added a call to &lt;em&gt;returnType()&lt;/em&gt; by passing the class &lt;em&gt;RI&lt;/em&gt;. If we omit this call, we will get an exception in the &lt;em&gt;add()&lt;/em&gt; call. Otherwise the return type is defined at the first insertion (&lt;em&gt;RA&lt;/em&gt;) and the return type &lt;em&gt;RB&lt;/em&gt; of the second &lt;em&gt;match()&lt;/em&gt; is different from &lt;em&gt;RA&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;We can use the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
 I b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
 
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
-
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we will get 3 for &lt;em&gt;A&lt;/em&gt; and 7 for &lt;em&gt;B&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;You surely noticed that the &lt;em&gt;RI&lt;/em&gt; class is specified twice for the return type in our multimethod:&lt;/p&gt;
 &lt;ul&gt;
@@ -1053,8 +1029,7 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 &lt;/ul&gt;
 &lt;p&gt;The generic type is for the compilation phase and the other place is for the execution. Java does not provide a way to define both at once.&lt;/p&gt;
 &lt;p&gt;Notice that we defined a &lt;em&gt;virtual&lt;/em&gt; method by implementing &lt;em&gt;get()&lt;/em&gt; from &lt;em&gt;RI&lt;/em&gt;. We can avoid this by defining a multimethod instead:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Method1&amp;lt;Integer&amp;gt; print = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Integer&amp;gt; print = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 	
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(RA a) {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;  
@@ -1068,12 +1043,10 @@ Method1&amp;lt;Integer&amp;gt; print = &lt;span style=&#34;color:#00a&#34;&gt;ne
 
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a)));
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b)));
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example shows a chain of calls to multimethods.&lt;/p&gt;
 &lt;h3 id=&#34;non-virtual-parameter-types&#34;&gt;Non-virtual parameter types&lt;/h3&gt;
 &lt;p&gt;To specify the non-virtual parameter types before the first insertion, the method &lt;em&gt;nonVirtualParameterTypes()&lt;/em&gt; can be called:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
 		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
 		.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, String.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
 		
@@ -1088,7 +1061,6 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style
 	}
 	
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Compared to the first factory multimethod, we added the parameters &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;name&lt;/em&gt; so that our match methods have 3 parameters, the first one is the &lt;em&gt;virtual&lt;/em&gt; parameter and the last ones are the &lt;em&gt;non-virtual&lt;/em&gt; parameters. Notice that the type &lt;em&gt;Integer&lt;/em&gt; is not compatible with &lt;em&gt;int&lt;/em&gt; here.&lt;/p&gt;
 &lt;p&gt;The EVL library offers a way to &lt;strong&gt;control the signature&lt;/strong&gt; of the &lt;em&gt;match()&lt;/em&gt; methods, however these controls can only be done at &lt;strong&gt;runtime&lt;/strong&gt;. 
 For the return type it is possible to control at compilation but it is redundant with the control at runtime. These limitations are due to the Java language specifications.&lt;/p&gt;
@@ -1098,18 +1070,18 @@ For the return type it is possible to control at compilation but it is redundant
     
     <item>
       <title>Docs: Stateful class</title>
-      <link>/docs/examples/stateful-class/</link>
+      <link>/docs/examples/stateful-class.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/stateful-class/</guid>
+      <guid>/docs/examples/stateful-class.html</guid>
       <description>
         
         
         &lt;p&gt;The EVL library is very flexible and offers many ways to use the multimethods.
 Here we show how to define a stateful class with protected access to a multimethod.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;../docs/more-features/protected-access/&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is based on &lt;a href=&#34;../docs/more-features/protected-access.html&#34;&gt;protected access&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a person finder that will return a location based on different criteria: weather, person, hour.
-The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonFinder&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonFinder&lt;/span&gt; {
@@ -1221,10 +1193,10 @@ It is up to you to find good designs.&lt;/p&gt;
     
     <item>
       <title>Docs: Change comparator</title>
-      <link>/docs/the-multimethods/change-comparator/</link>
+      <link>/docs/the-multimethods/change-comparator.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/change-comparator/</guid>
+      <guid>/docs/the-multimethods/change-comparator.html</guid>
       <description>
         
         
@@ -1286,17 +1258,17 @@ Then the comparator considers &lt;em&gt;match(D, B, String)&lt;/em&gt; and &lt;e
     
     <item>
       <title>Docs: Composition</title>
-      <link>/docs/examples/composition/</link>
+      <link>/docs/examples/composition.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/composition/</guid>
+      <guid>/docs/examples/composition.html</guid>
       <description>
         
         
         &lt;p&gt;When a multimethod returns a polymorphic object, i.e. the return type is not the real type, the result can be injected in another multimethod.
 By this way, a &lt;strong&gt;chain of multiple dispatch&lt;/strong&gt; can be designed, that cannot be done with standard Java methods.&lt;/p&gt;
 &lt;p&gt;Here is an example of such a composition.
-The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We define a multimethod of dimension two that returns a toy depending on the person and the location:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Toy&amp;gt; toyFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Toy&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
@@ -1327,7 +1299,7 @@ The classes used in the example are defined in the &lt;a href=&#34;../docs/examp
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Game with players &amp;#34;&lt;/span&gt; + game.&lt;span style=&#34;color:#1e90ff&#34;&gt;getPlayers&lt;/span&gt;();
 	}
 });
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can now compose these multimethods with the &lt;em&gt;PersonFinder&lt;/em&gt; class defined in &lt;a href=&#34;../docs/examples/stateful-class.html&#34;&gt;stateful class&lt;/a&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;PersonFinder personFinder = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; PersonFinder();
 		
 Person[] persons = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Person[] {&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Kid(5), &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Teen(Sex.&lt;span style=&#34;color:#1e90ff&#34;&gt;GIRL&lt;/span&gt;)};
@@ -1349,15 +1321,15 @@ Multimethods offer new perspectives for the code design.&lt;/p&gt;
     
     <item>
       <title>Docs: Search for the best match</title>
-      <link>/docs/theory/search-best-match/</link>
+      <link>/docs/theory/search-best-match.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/search-best-match/</guid>
+      <guid>/docs/theory/search-best-match.html</guid>
       <description>
         
         
         &lt;p&gt;Now that we can define an ordering on the tuple of types by using the distance comparators and tuple of types distance, let&amp;rsquo;s see how we search for the best matching method.
-The algorithm is based on the definition of the multimethod in &lt;a href=&#34;../docs/theory/multimethod-definition/&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
+The algorithm is based on the definition of the multimethod in &lt;a href=&#34;../docs/theory/multimethod-definition.html&#34;&gt;multimethod definition&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;algorithm&#34;&gt;Algorithm&lt;/h3&gt;
 &lt;p&gt;We invoke &lt;em&gt;M&lt;/em&gt; on a tuple of objects that has the tuple of types &lt;em&gt;t&lt;/em&gt;.
 The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
@@ -1375,7 +1347,7 @@ The algorithm to select the method to apply is made up of two parts.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;Notice that the calculation of the distance is fixed in EVL but the minimum methods set may vary depending on the comparator used.&lt;/p&gt;
 &lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
-&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;../docs/theory/tuple-distance/&#34;&gt;tuple of types distance&lt;/a&gt;.
+&lt;p&gt;As examples, we use the type hierarchy defined in &lt;a href=&#34;../docs/theory/tuple-distance.html&#34;&gt;tuple of types distance&lt;/a&gt;.
 To simplify, we do not show the return type and the non-virtual parameter types.&lt;br&gt;
 We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimethods of dimension 2 defined in each line of the table:&lt;/p&gt;
 &lt;table&gt;
@@ -1446,17 +1418,16 @@ We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimet
     
     <item>
       <title>Docs: Switch</title>
-      <link>/docs/more-features/switch/</link>
+      <link>/docs/more-features/switch.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/switch/</guid>
+      <guid>/docs/more-features/switch.html</guid>
       <description>
         
         
         &lt;p&gt;The EVL library provides the &lt;em&gt;Switch&lt;/em&gt; class which is a &lt;strong&gt;syntactic sugar&lt;/strong&gt; for a multimethod of dimension 1 with &lt;em&gt;void&lt;/em&gt; return type.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take a simple hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
 	
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
 }
@@ -1467,10 +1438,8 @@ We apply the couple (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;) to multimet
 		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
 	}
 }
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Switch&lt;/em&gt; class implements a general switch construct based on the dynamic type. We add a non-virtual parameter to show that it is accepted :&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Switch test = Switch.&lt;span style=&#34;color:#1e90ff&#34;&gt;with&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Switch test = Switch.&lt;span style=&#34;color:#1e90ff&#34;&gt;with&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 				
 	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Integer i, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
 		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Integer &amp;#34;&lt;/span&gt; + (i + v));
@@ -1484,15 +1453,11 @@ Switch test = Switch.&lt;span style=&#34;color:#1e90ff&#34;&gt;with&lt;/span&gt;
 		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A &amp;#34;&lt;/span&gt; + (a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + v));
 	}
 });
-		
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can use it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(12), 3);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(12), 3);
 test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; String(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;beautiful&amp;#34;&lt;/span&gt;), 11);
 test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(5), 4);
 test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Float.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(13.&lt;span style=&#34;color:#1e90ff&#34;&gt;1f&lt;/span&gt;), 5);
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything will be fine except for the last invocation: there is no compatible method because a &lt;em&gt;Float&lt;/em&gt; object cannot be cast into an &lt;em&gt;Integer&lt;/em&gt; object.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;Switch&lt;/em&gt; class can be used anywhere with any &lt;strong&gt;basic types&lt;/strong&gt;, however only in their &lt;em&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/em&gt; &lt;strong&gt;form&lt;/strong&gt; preventing from number casting.
 This rule also applies to standard multimethods.&lt;/p&gt;
@@ -1502,10 +1467,10 @@ This rule also applies to standard multimethods.&lt;/p&gt;
     
     <item>
       <title>Docs: Ambiguity resolution</title>
-      <link>/docs/the-multimethods/ambiguity-resolution/</link>
+      <link>/docs/the-multimethods/ambiguity-resolution.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/ambiguity-resolution/</guid>
+      <guid>/docs/the-multimethods/ambiguity-resolution.html</guid>
       <description>
         
         
@@ -1548,22 +1513,19 @@ The first solution is to &lt;strong&gt;add a new matching method&lt;/strong&gt; 
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The second solution is to set special data to a &lt;em&gt;match()&lt;/em&gt; method to give it &lt;strong&gt;more priority&lt;/strong&gt; than the other. If we prefer to select &lt;em&gt;match(D, B, String)&lt;/em&gt; then we can give it the priority 1:&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The second solution is to set special data to a &lt;em&gt;match()&lt;/em&gt; method to give it &lt;strong&gt;more priority&lt;/strong&gt; than the other. If we prefer to select &lt;em&gt;match(D, B, String)&lt;/em&gt; then we can give it the priority 1:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;foo2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setData&lt;/span&gt;(Priority.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(1), D.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
 						
 print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But if we prefer to select &lt;em&gt;match(A, C, String)&lt;/em&gt;, we can give &lt;strong&gt;less priority&lt;/strong&gt; to &lt;em&gt;match(D, B, String)&lt;/em&gt;:&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But if we prefer to select &lt;em&gt;match(A, C, String)&lt;/em&gt;, we can give &lt;strong&gt;less priority&lt;/strong&gt; to &lt;em&gt;match(D, B, String)&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;foo2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setData&lt;/span&gt;(Priority.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(-1), D.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
 						
 print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 31.9
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo2, d, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 12.3
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Priority&lt;/em&gt; data class is a special class that comes with the method comparators and allows to force the choice when there is an ambiguity.&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Priority&lt;/em&gt; data class is a special class that comes with the method comparators and allows to force the choice when there is an ambiguity.&lt;/p&gt;
 &lt;p&gt;To finish, another possibility is to define your own method comparator class with your own data class, but this will be the subject of a next section.&lt;/p&gt;
 
       </description>
@@ -1571,17 +1533,17 @@ print(foo2, a, c); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// 1
     
     <item>
       <title>Docs: Invoke with cache</title>
-      <link>/docs/theory/invoke/</link>
+      <link>/docs/theory/invoke.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/invoke/</guid>
+      <guid>/docs/theory/invoke.html</guid>
       <description>
         
         
         &lt;p&gt;The invoke sequence is presented in this section. We introduce the cache strategy.&lt;/p&gt;
 &lt;h3 id=&#34;workflow&#34;&gt;Workflow&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&#34;../images/invoke.png#center&#34; alt=&#34;Simple hierarchy&#34;&gt;&lt;/p&gt;
-&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;When the multimethod is invoked on objects &lt;em&gt;v&lt;/em&gt; with a tuple of virtual types &lt;em&gt;t&lt;/em&gt; and &lt;em&gt;nv&lt;/em&gt; with a tuple of types &lt;em&gt;u&lt;/em&gt;, we first search for the best match method for &lt;em&gt;t&lt;/em&gt; as presented in &lt;a href=&#34;../docs/theory/search-best-match.html&#34;&gt;search for the best match&lt;/a&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;If the best match method is found then it is applied to the passed arguments.&lt;/li&gt;
 &lt;li&gt;If the method is not found - no compatible method or ambiguity - an exception is thrown.&lt;/li&gt;
@@ -1601,18 +1563,17 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
     
     <item>
       <title>Docs: Open access</title>
-      <link>/docs/more-features/open-access/</link>
+      <link>/docs/more-features/open-access.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/open-access/</guid>
+      <guid>/docs/more-features/open-access.html</guid>
       <description>
         
         
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the &lt;strong&gt;open&lt;/strong&gt; access here where a multimethod can be invoked and extended anywhere.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s illustrate this by a simple: we want to define a general &lt;em&gt;print&lt;/em&gt; method that returns a String.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s start by the simple class hierarchy as in previous page:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
 	
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
 }
@@ -1623,10 +1584,8 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
 		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
 	}
 }
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We define a &lt;em&gt;Print&lt;/em&gt; class in which we define a static method &lt;em&gt;method()&lt;/em&gt; returning the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Print&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Print&lt;/span&gt; {
 
 	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;String&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;String&amp;gt;();
 	
@@ -1637,8 +1596,7 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have named the method accessing the singleton &lt;em&gt;getInstance()&lt;/em&gt; as it is often the case in Java, however we think that a multimethod is a special class that can have a special accessor name. The advantage with &lt;em&gt;m&lt;/em&gt; is that when reading, the eye is focused on &lt;em&gt;Print&lt;/em&gt;. Moreover it can clearly identify that this is a global multimethod.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s feed our multimethod. This can now be done anywhere:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 			
 	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ A a:&amp;#34;&lt;/span&gt; + a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
@@ -1649,15 +1607,13 @@ Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span s
 	}
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s apply it to some objects:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
 B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(3);
 
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a));
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b));
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything is fine and now we define another class somewhere else:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; {
 	
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; c;
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; A a;
@@ -1668,8 +1624,7 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The particularity of &lt;em&gt;C&lt;/em&gt; is that it has a member of type &lt;em&gt;A&lt;/em&gt;. So we can combine the print methods and extend the &lt;em&gt;Print&lt;/em&gt; multimethod to &lt;em&gt;C&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
 	
 	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ C c:&amp;#34;&lt;/span&gt; + c.&lt;span style=&#34;color:#1e90ff&#34;&gt;c&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; a:&amp;#34;&lt;/span&gt; + Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt;) + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
@@ -1677,8 +1632,7 @@ Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span s
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to call &lt;em&gt;Print.method().invoke()&lt;/em&gt; on the &lt;em&gt;a&lt;/em&gt; member and add &lt;em&gt;Throwable&lt;/em&gt; in the throwable exceptions. We also could have caught the exception if this is a possible case.
 Now we can apply it to a &lt;em&gt;C&lt;/em&gt; object:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-C c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C(5, b);
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;C c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C(5, b);
 
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c));
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We showed how to write &lt;strong&gt;global&lt;/strong&gt; multimethods. That can be useful when the multimethod is general and can interest developers of different packages.&lt;br&gt;
@@ -1689,18 +1643,18 @@ However, it also means that another code can extend the multimethod.&lt;/p&gt;
     
     <item>
       <title>Docs: State</title>
-      <link>/docs/examples/state/</link>
+      <link>/docs/examples/state.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/state/</guid>
+      <guid>/docs/examples/state.html</guid>
       <description>
         
         
         &lt;p&gt;The &lt;strong&gt;State&lt;/strong&gt; pattern can be defined easily using multimethods. 
 If you are not familiar with the pattern, you can have a look at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/State_pattern&#34;&gt;state pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;../docs/examples/stateful-class/&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is a concrete example on how to use a multimethod for managing an inner state. It is close to &lt;a href=&#34;../docs/examples/stateful-class.html&#34;&gt;stateful class&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The idea here is to define a class that will change its location state based on different criteria: person, previous location, toy, hour.
-The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;base-implementation&#34;&gt;Base implementation&lt;/h3&gt;
 &lt;p&gt;Here is the implementation of the &lt;em&gt;PersonPlaying&lt;/em&gt; class:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;PersonPlaying&lt;/span&gt; {
@@ -1823,18 +1777,18 @@ The rules are all in the same class making it easy to understand. We can even sa
     
     <item>
       <title>Docs: Asymmetric vs symmetric</title>
-      <link>/docs/theory/asymmetric-vs-symmetric/</link>
+      <link>/docs/theory/asymmetric-vs-symmetric.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/theory/asymmetric-vs-symmetric/</guid>
+      <guid>/docs/theory/asymmetric-vs-symmetric.html</guid>
       <description>
         
         
         &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions. 
-For their definition, refer to &lt;a href=&#34;../docs/theory/distance-comparators/&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
+For their definition, refer to &lt;a href=&#34;../docs/theory/distance-comparators.html&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On one side, the &lt;em&gt;asymmetric&lt;/em&gt; comparator is &lt;strong&gt;easy&lt;/strong&gt; to understand and predict. The dimensions are taken one by one to find the best match. The ambiguities can only come from a multiple inheritance of interfaces.&lt;br&gt;
 On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&gt;democratic&lt;/strong&gt;. All the dimensions have the same weight in the final selection. However more democracy means more ambiguities and more difficulties to select one best match.&lt;/p&gt;
-&lt;p&gt;In &lt;a href=&#34;../docs/theory/search-best-match/&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&#34;../docs/theory/search-best-match.html&#34;&gt;search for best match&lt;/a&gt;, the multimethods given as example &lt;em&gt;M3&lt;/em&gt; and &lt;em&gt;M4&lt;/em&gt; have the same methods defined but have a different comparator. &lt;em&gt;M4&lt;/em&gt; will have an ambiguity while &lt;em&gt;M3&lt;/em&gt; won&amp;rsquo;t.&lt;/p&gt;
 &lt;p&gt;The choice of the type of comparator may not only guided by the ease to treat all the cases. The implementation of an operator that is fundamentally symmetric e.g. &lt;em&gt;equals&lt;/em&gt; may deliberately choose the &lt;em&gt;symmetric&lt;/em&gt; operator.&lt;/p&gt;
 &lt;p&gt;In EVL, the default distance comparator is the &lt;em&gt;asymmetric&lt;/em&gt; comparator. We think that it is better to provide the easier comparator and avoid the user to resolve ambiguities. However it is possible to switch to the &lt;em&gt;symmetric&lt;/em&gt; comparator as an implementation is provided.&lt;/p&gt;
 
@@ -1843,10 +1797,10 @@ On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&g
     
     <item>
       <title>Docs: Comparator</title>
-      <link>/docs/examples/comparator/</link>
+      <link>/docs/examples/comparator.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/comparator/</guid>
+      <guid>/docs/examples/comparator.html</guid>
       <description>
         
         
@@ -1855,7 +1809,7 @@ We demonstrate that it is a good tool to design such functionality. We also show
 &lt;p&gt;We define an &lt;em&gt;interest&lt;/em&gt; comparator, which is subjective by nature, on two elements of the room (&lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.) for a particular person (&lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Adult&lt;/em&gt;, etc.).&lt;br&gt;
 The comparator returns 1 if the first element is more interesting than the second one, -1 if the first element is less interesting than the second one 
 and 0 if they are as interesting.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;specific-implementation-for-a-kid&#34;&gt;Specific implementation for a Kid&lt;/h3&gt;
 &lt;p&gt;We do not show immediately the general case. So we first start by defining the interest comparator for a &lt;em&gt;Kid&lt;/em&gt;.&lt;br&gt;
 The rules are simple: the &lt;em&gt;Kid&lt;/em&gt; prefers the &lt;em&gt;Car&lt;/em&gt; in any case. Other elements have the same interest for him.
@@ -1951,8 +1905,8 @@ Let&amp;rsquo;s add the match methods:&lt;/p&gt;
 }   
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This specific example of &lt;strong&gt;binary&lt;/strong&gt; comparator showed us to take care of using the symmetric method comparator (do not make a confusion between the interest comparator 
 and the method comparator used internally to select a match method).&lt;/p&gt;
-&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;../docs/the-multimethods/change-comparator/&#34;&gt;Change comparator&lt;/a&gt; 
-and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric/&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For more details on the differences between the asymmetric and the symmetric method comparators, see the pages &lt;a href=&#34;../docs/the-multimethods/change-comparator.html&#34;&gt;Change comparator&lt;/a&gt; 
+and &lt;a href=&#34;docs/theory/asymmetric-vs-symmetric.html&#34;&gt;asymmetric vs symmetric&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We are now ready to define the comparator in a general case: the comparator can also apply to an &lt;em&gt;Adult&lt;/em&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;general-implementation&#34;&gt;General implementation&lt;/h3&gt;
 &lt;p&gt;Now we want that the comparator is also able to apply to an &lt;em&gt;Adult&lt;/em&gt; who will have his own preferences.&lt;/p&gt;
@@ -1994,7 +1948,7 @@ No problem, we will write it.&lt;/p&gt;
 	}
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The method that we need to redefine is &lt;em&gt;compare(MethodItem m1, MethodItem m2)&lt;/em&gt;. We do it with the help of &lt;em&gt;compareWithPriority&lt;/em&gt; which is defined into &lt;em&gt;MethodComparator&lt;/em&gt;
-and avoids us to manage priorities. See &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution/&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
+and avoids us to manage priorities. See &lt;a href=&#34;../docs/the-multimethods/ambiguity-resolution.html&#34;&gt;ambiguity resolution&lt;/a&gt; for an example of use of priorities.
 However we need to define the distance tuple comparator. For that we separate the tuples from the first dimension which we simply compare and apply the lexicographic comparator
 for the last dimensions.&lt;/p&gt;
 &lt;p&gt;We can define our multimethod of dimension three by getting the rules defined for the &lt;em&gt;Kid&lt;/em&gt; specific comparator and adding the ones we emitted for the &lt;em&gt;Adult&lt;/em&gt;:&lt;/p&gt;
@@ -2081,10 +2035,10 @@ You can also extend the comparator to another dimension that could be the &lt;em
     
     <item>
       <title>Docs: More dimensions</title>
-      <link>/docs/the-multimethods/more-dimensions/</link>
+      <link>/docs/the-multimethods/more-dimensions.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/the-multimethods/more-dimensions/</guid>
+      <guid>/docs/the-multimethods/more-dimensions.html</guid>
       <description>
         
         
@@ -2119,8 +2073,7 @@ With such a definition we ensure that for any combination of types in that hiera
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;print(foo4, a, a, a, a); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// A, A, A, A... 
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo4, d, a, c, b); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// default
 &lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt;print(foo4, a, b, c, d); &lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;// A, B, C, D...
-&lt;/span&gt;&lt;span style=&#34;color:#aaa;font-style:italic&#34;&gt;&lt;/span&gt; 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The tuples with dynamic types (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;) have a perfect match however (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) has not and the default &lt;em&gt;match()&lt;/em&gt; method is called.&lt;/p&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The tuples with dynamic types (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;) and (&lt;em&gt;A&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;D&lt;/em&gt;) have a perfect match however (&lt;em&gt;D&lt;/em&gt;, &lt;em&gt;A&lt;/em&gt;, &lt;em&gt;C&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) has not and the default &lt;em&gt;match()&lt;/em&gt; method is called.&lt;/p&gt;
 &lt;p&gt;Note that EVL multimethods are currently &lt;strong&gt;limited to seven dimensions&lt;/strong&gt; but it is just because it was necessary to set a limit. However it is very easy to extend to any number of dimensions.&lt;/p&gt;
 
       </description>
@@ -2128,17 +2081,16 @@ With such a definition we ensure that for any combination of types in that hiera
     
     <item>
       <title>Docs: Protected access</title>
-      <link>/docs/more-features/protected-access/</link>
+      <link>/docs/more-features/protected-access.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/protected-access/</guid>
+      <guid>/docs/more-features/protected-access.html</guid>
       <description>
         
         
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the local access here where a multimethod is a &lt;strong&gt;protected&lt;/strong&gt; member of a class.&lt;/p&gt;
-&lt;p&gt;As in &lt;a href=&#34;../docs/more-features/open-access&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;p&gt;As in &lt;a href=&#34;../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
 	
 	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
 }
@@ -2149,10 +2101,8 @@ With such a definition we ensure that for any combination of types in that hiera
 		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
 	}
 }
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But this time, the multimethod definition is done inside a class:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class&lt;/span&gt; {
 
 	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method1&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;();
 	
@@ -2177,8 +2127,7 @@ With such a definition we ensure that for any combination of types in that hiera
 &lt;li&gt;In the constructor, &lt;em&gt;m&lt;/em&gt; is feed with all the methods named &lt;em&gt;fooMatch()&lt;/em&gt; called with the object &lt;em&gt;this&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The class can be directly tested with objects of type &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
 B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
 
 Class c1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Class();
@@ -2186,8 +2135,7 @@ Class c1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Class();
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on a: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on b: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s extend &lt;em&gt;Class&lt;/em&gt; into the class &lt;em&gt;ExtendedClass&lt;/em&gt; which defines a new match method for &lt;em&gt;B&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class {
 	
 	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 4;
 	
@@ -2204,8 +2152,7 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 &lt;li&gt;There is nothing to do in the constructor. The &lt;em&gt;Class&lt;/em&gt; constructor is called before and all the &lt;em&gt;fooMatch()&lt;/em&gt; methods are added to &lt;em&gt;m&lt;/em&gt; including &lt;em&gt;fooMatch(B)&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We can test it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-ExtendedClass e1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ExtendedClass e1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass();
 	
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on a: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on b: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
@@ -2213,8 +2160,7 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 &lt;h3 id=&#34;extend-to-the-dimension-two&#34;&gt;Extend to the dimension two&lt;/h3&gt;
 &lt;p&gt;Now we want to extend the internal multimethod to dimension two. We define an &lt;em&gt;Operator&lt;/em&gt; hierarchy that will be used as second &lt;em&gt;virtual parameter&lt;/em&gt; to the multimethod.
 The definition of &lt;em&gt;Class2&lt;/em&gt; is a bit longer:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class2&lt;/span&gt; {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class2&lt;/span&gt; {
 
 	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Integer&amp;gt;();
 	
@@ -2260,8 +2206,7 @@ The definition of &lt;em&gt;Class2&lt;/em&gt; is a bit longer:&lt;/p&gt;
 &lt;li&gt;The &lt;em&gt;foo(A)&lt;/em&gt; method that is the front method forwarding to the multimethod. The &lt;em&gt;operator&lt;/em&gt; parameter is hidden to the user of the method.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This class is easily extended to process &lt;em&gt;B&lt;/em&gt; objects:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass2&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class2 {
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass2&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class2 {
 	
 	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Add op, B b) {
 		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + 3;
@@ -2273,8 +2218,7 @@ The definition of &lt;em&gt;Class2&lt;/em&gt; is a bit longer:&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Only &lt;em&gt;fooMatch()&lt;/em&gt; methods with new tuples (&lt;em&gt;Add&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) and (&lt;em&gt;Multiply&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) are added.
 We test it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-ExtendedClass2 e2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass2();
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ExtendedClass2 e2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass2();
 			
 System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e2.foo on b: &amp;#34;&lt;/span&gt; + e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
 
@@ -2290,10 +2234,10 @@ This dispatch can be extended making it fully &lt;strong&gt;compatible&lt;/stron
     
     <item>
       <title>Docs: Controlled extension</title>
-      <link>/docs/more-features/controlled-extension/</link>
+      <link>/docs/more-features/controlled-extension.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/controlled-extension/</guid>
+      <guid>/docs/more-features/controlled-extension.html</guid>
       <description>
         
         
@@ -2313,7 +2257,6 @@ Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;n
 	}
 	
 });
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This way, trying to add a new match method for &lt;em&gt;A&lt;/em&gt; or &lt;em&gt;B&lt;/em&gt; will lead to the throw of a &lt;em&gt;MethodNotAddedException&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
 &lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
@@ -2348,17 +2291,17 @@ method.&lt;span style=&#34;color:#1e90ff&#34;&gt;setFinal&lt;/span&gt;();
     
     <item>
       <title>Docs: Strategy</title>
-      <link>/docs/examples/strategy/</link>
+      <link>/docs/examples/strategy.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/strategy/</guid>
+      <guid>/docs/examples/strategy.html</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to use an EVL multimethod in a strategy pattern.
 This example does not present novelties but allows to compare with the standard implementation at the Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Strategy_pattern&#34;&gt;strategy pattern&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide the duration played by a &lt;em&gt;Kid&lt;/em&gt;, &lt;em&gt;Teen&lt;/em&gt; or &lt;em&gt;Adult&lt;/em&gt; with a &lt;em&gt;Toy&lt;/em&gt; in the context of the weather.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;The multimethod has naturally three dimensions for the &lt;em&gt;Person&lt;/em&gt;, &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Weather&lt;/em&gt;. We propose some simple rules:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method3&amp;lt;Integer&amp;gt; playDuration = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method3&amp;lt;Integer&amp;gt;()
@@ -2450,10 +2393,10 @@ Some more dimensions can be added if necessary for managing a more precise conte
     
     <item>
       <title>Docs: Errors</title>
-      <link>/docs/more-features/errors/</link>
+      <link>/docs/more-features/errors.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/more-features/errors/</guid>
+      <guid>/docs/more-features/errors.html</guid>
       <description>
         
         
@@ -2526,10 +2469,10 @@ Some more dimensions can be added if necessary for managing a more precise conte
     
     <item>
       <title>Docs: Factory</title>
-      <link>/docs/examples/factory/</link>
+      <link>/docs/examples/factory.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/factory/</guid>
+      <guid>/docs/examples/factory.html</guid>
       <description>
         
         
@@ -2537,7 +2480,7 @@ Some more dimensions can be added if necessary for managing a more precise conte
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We implement the following feature: provide a factory for &lt;em&gt;Toy&lt;/em&gt; and &lt;em&gt;Container&lt;/em&gt; in the context of a &lt;em&gt;Person&lt;/em&gt; and a &lt;em&gt;Location&lt;/em&gt;.
 For example, what is the &lt;em&gt;Toy&lt;/em&gt; created for a &lt;em&gt;Kid&lt;/em&gt; when location is &lt;em&gt;Inside&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The classes used in the example are defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define the &lt;em&gt;Factory&lt;/em&gt; class, that has two multimethods of two dimensions for the &lt;em&gt;Person&lt;/em&gt; and &lt;em&gt;Location&lt;/em&gt; and two main methods &lt;em&gt;createToy&lt;/em&gt; and &lt;em&gt;createContainer&lt;/em&gt;:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Factory&lt;/span&gt; {
@@ -2662,17 +2605,17 @@ The common implementations are only limited to one dimension because &lt;em&gt;v
     
     <item>
       <title>Docs: Observer</title>
-      <link>/docs/examples/observer/</link>
+      <link>/docs/examples/observer.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/observer/</guid>
+      <guid>/docs/examples/observer.html</guid>
       <description>
         
         
         &lt;p&gt;This example is simply demonstrating how to implement the observer pattern by using an EVL multimethod.
 This example does not present novelties but allows to compare with the standard implementations.&lt;/p&gt;
 &lt;p&gt;We adapt the example shown in Wikipedia &lt;a href=&#34;https://en.wikipedia.org/wiki/Observer_pattern&#34;&gt;observer pattern&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 We replace the &lt;em&gt;Observer&lt;/em&gt; class by a &lt;em&gt;Container&lt;/em&gt; class and the &lt;em&gt;Event&lt;/em&gt; class by a &lt;em&gt;Toy&lt;/em&gt; class.
 The idea is to update the &lt;em&gt;Container&lt;/em&gt; objects when they receive a &lt;em&gt;Toy&lt;/em&gt;. Every combination is not possible mainly due to the place.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
@@ -2769,15 +2712,15 @@ Moreover, the dispatch rules defined in dimension three are of course not possib
     
     <item>
       <title>Docs: Queue</title>
-      <link>/docs/examples/queue/</link>
+      <link>/docs/examples/queue.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/queue/</guid>
+      <guid>/docs/examples/queue.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod in the context of a queue of objects.&lt;/p&gt;
-&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.
+&lt;p&gt;We use instead the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.
 We present some simple producer and consumer that share a queue of &lt;em&gt;Element&lt;/em&gt; objects.&lt;br&gt;
 The idea is to count the different types of objects. The producer creates randomly some &lt;em&gt;Element&lt;/em&gt; objects i.e. &lt;em&gt;Car&lt;/em&gt;, &lt;em&gt;Game&lt;/em&gt;, &lt;em&gt;Tallboy&lt;/em&gt;, etc.
 The consumer counts the different types of objects.&lt;/p&gt;
@@ -2982,17 +2925,17 @@ We also showed how to extend the process by adding a new counter.&lt;/p&gt;
     
     <item>
       <title>Docs: ToString</title>
-      <link>/docs/examples/tostring/</link>
+      <link>/docs/examples/tostring.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/tostring/</guid>
+      <guid>/docs/examples/tostring.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to write a more general &lt;em&gt;toString()&lt;/em&gt; method.&lt;/p&gt;
-&lt;p&gt;It is based on the &lt;a href=&#34;../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;It is based on the &lt;a href=&#34;../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt; feature.
 We extend the &lt;em&gt;toString()&lt;/em&gt; method by adding a first parameter representing the format.
-As example of use, we extend some classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+As example of use, we extend some classes defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;implementation&#34;&gt;Implementation&lt;/h3&gt;
 &lt;p&gt;We define a multimethod of dimension two with restrictions on the non-virtual parameters and the return type:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ToString&lt;/span&gt; {
@@ -3113,19 +3056,19 @@ but we can add a match method for &lt;em&gt;ToString&lt;/em&gt;.&lt;/li&gt;
     
     <item>
       <title>Docs: Tree walker</title>
-      <link>/docs/examples/treewalker/</link>
+      <link>/docs/examples/treewalker.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/examples/treewalker/</guid>
+      <guid>/docs/examples/treewalker.html</guid>
       <description>
         
         
         &lt;p&gt;This example is showing how to use a multimethod to traverse tree structures.&lt;/p&gt;
 &lt;p&gt;We start with a &lt;em&gt;Print&lt;/em&gt; class that prints a hierarchical string view of a tree. Then we generalize by separating the traversal from the process.
 As example, we show two process classes: &lt;em&gt;TreePrinter&lt;/em&gt; that prints the same content than &lt;em&gt;Print&lt;/em&gt; and &lt;em&gt;TreeCarInBoxCounter&lt;/em&gt; that simply counts the &lt;em&gt;Car&lt;/em&gt; objects in &lt;em&gt;Box&lt;/em&gt; objects.&lt;/p&gt;
-&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries/&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The tree structure is based on the classes defined in the &lt;a href=&#34;../docs/examples/preliminaries.html&#34;&gt;preliminaries&lt;/a&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;print-implementation&#34;&gt;Print implementation&lt;/h3&gt;
-&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;../docs/more-features/open-access/&#34;&gt;open access&lt;/a&gt; feature.
+&lt;p&gt;The &lt;em&gt;Print&lt;/em&gt; class is based on the &lt;a href=&#34;../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt; feature.
 As a common &lt;em&gt;XML&lt;/em&gt; file, the depth of a node is represented by the number of space indents.
 The idea is to pass a &lt;em&gt;Space&lt;/em&gt; object that holds the current space and increment or decrement it.&lt;/p&gt;
 &lt;p&gt;First we define the &lt;em&gt;Space&lt;/em&gt; class:&lt;/p&gt;
@@ -3321,7 +3264,7 @@ walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;leave&lt;/span&gt;().&lt;span s
 walker.&lt;span style=&#34;color:#1e90ff&#34;&gt;walk&lt;/span&gt;(room);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Easy right? And very flexible.&lt;/p&gt;
 &lt;p&gt;In this example we restricted the three multimethods to the dimension one but of course we could have added more dimensions if we wanted to pass other objects that may change the process.
-For instance we could have added another state object as seen in the &lt;a href=&#34;../docs/examples/strategy/&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
+For instance we could have added another state object as seen in the &lt;a href=&#34;../docs/examples/strategy.html&#34;&gt;strategy&lt;/a&gt; example.&lt;/p&gt;
 &lt;p&gt;This example shows once again that multimethods are &lt;strong&gt;adaptable&lt;/strong&gt; to any programming problem and allow to have a good separation between class definitions and their behaviors: here the &lt;em&gt;Element&lt;/em&gt; classes and the tree process methods.&lt;/p&gt;
 
       </description>

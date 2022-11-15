@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"eu.daproject.evl"}]
+moduleSearchIndex = [{"l":"eu.daproject.evl"}];updateSearchResults();

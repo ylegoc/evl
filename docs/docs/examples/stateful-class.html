@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.85.0" /><META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+
+<link rel="shortcut icon" href="../../favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="../../favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="../../favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="../../favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="../../favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="../../favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="../../favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="../../favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="../../favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="../../favicons/android-192x192.png" sizes="192x192">
+
+<title>Stateful class | </title>
+
+
+  <meta name="description" content="Add a state to your class">
+<meta property="og:title" content="Stateful class" />
+<meta property="og:description" content="Add a state to your class" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/examples/stateful-class.html" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2021-10-10T13:33:19+02:00" />
+
+<meta itemprop="name" content="Stateful class">
+<meta itemprop="description" content="Add a state to your class">
+<meta itemprop="dateModified" content="2021-10-10T13:33:19+02:00" />
+<meta itemprop="wordCount" content="664">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Stateful class"/>
+<meta name="twitter:description" content="Add a state to your class"/>
+
+
+
+
+<link rel="preload" href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" as="style">
+<link href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" rel="stylesheet" integrity="">
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+
+
+<style>
+
+	a {
+		color: #b91515;
+	}
+	
+	.btn-get-started {
+		background: #5c5e5a;
+		color: white;
+	}
+	
+	.btn-use-it {
+		background: #800000;
+		color: white;
+	}
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+  <body class="td-page">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="../../">
+		<span class="navbar-logo"><svg version="1.2" baseProfile="tiny" width="43mm" height="43mm" viewBox="7450 5250 4300 4300" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink"><defs class="ClipPathGroup"><clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse"><rect x="7450" y="5250" width="4300" height="4300"/></clipPath></defs><defs><font id="EmbeddedFont_1" horiz-adv-x="2048"><font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/><missing-glyph horiz-adv-x="2048" d="M0 0H2047V2047H0V0z"/><glyph unicode="v" horiz-adv-x="1271" d="M31 1120H389L668 346l278 774h359L864 0H471L31 1120z"/><glyph unicode="l" horiz-adv-x="345" d="M172 1556H530V0H172V1556z"/><glyph unicode="E" horiz-adv-x="1033" d="M188 1493H1227V1202H573V924h615V633H573V291h676V0H188V1493z"/></font></defs><defs class="TextShapeIndex"><g ooo:slide="id1" ooo:id-list="id3 id4 id5"/></defs><defs class="EmbeddedBulletChars"><g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)"><path d="M580 1141l583-570L580 0-4 571l584 570z"/></g><g id="bullet-char-template(57354)" transform="scale(0.00048828125,-0.00048828125)"><path d="M8 1128H1137V0H8V1128z"/></g><g id="bullet-char-template(10146)" transform="scale(0.00048828125,-0.00048828125)"><path d="M174 0 602 739 174 1481 1456 739 174 0zM1358 739 309 1346 659 739h699z"/></g><g id="bullet-char-template(10132)" transform="scale(0.00048828125,-0.00048828125)"><path d="M2015 739 1276 0H717l543 543H174V936H1260L717 1481h557l741-742z"/></g><g id="bullet-char-template(10007)" transform="scale(0.00048828125,-0.00048828125)"><path d="M0-2C-7 14-16 27-25 37L356 567C262 823 215 952 215 954c0 25 13 38 40 38 9 0 21-2 34-5 21 4 42 12 65 25l27-13L492 748l280 301 64-25 24 25c21-10 41-24 62-43-36-69-87-143-152-222-1-1-60-68-176-2e2L774 223c0-27-21-55-63-84l16-20c-10-29-28-43-55-43-31 0-102 102-215 305L164-76c-22-34-53-51-92-51-42 0-63 17-64 51C1-67-2-52-2-32-2-23-1-13 0-2z"/></g><g id="bullet-char-template(10004)" transform="scale(0.00048828125,-0.00048828125)"><path d="M285-33C182-33 111 30 74 156 52 228 41 333 41 471c0 78 14 145 41 201 34 71 87 106 158 106 53 0 88-31 106-94l23-176c8-64 28-97 59-98l735 706c11 11 33 17 66 17 42 0 63-15 63-46V965c0-36-10-64-30-84L442 47C390-6 338-33 285-33z"/></g><g id="bullet-char-template(9679)" transform="scale(0.00048828125,-0.00048828125)"><path d="M813 0C632 0 489 54 383 161 276 268 223 411 223 592s53 324 160 431c106 107 249 161 430 161 179 0 323-54 432-161 108-107 162-251 162-431s-54-324-162-431C1136 54 992 0 813 0z"/></g><g id="bullet-char-template(8226)" transform="scale(0.00048828125,-0.00048828125)"><path d="M346 457c-73 0-137 26-191 78-54 51-81 114-81 188 0 73 27 136 81 188s118 78 191 78 134-26 185-79c51-51 77-114 77-187 0-75-25-137-76-188-50-52-112-78-186-78z"/></g><g id="bullet-char-template(8211)" transform="scale(0.00048828125,-0.00048828125)"><path d="M-4 459H1135V606H-4V459z"/></g></defs><defs class="TextEmbeddedBitmaps"/><g class="SlideGroup"><g><g id="id1" class="Slide" clip-path="url(#presentation_clip_path)"><g class="Page"><g class="com.sun.star.drawing.CustomShape"><g id="id3"><g><defs><linearGradient id="gradient1" x1="8165" y1="4915" x2="11035" y2="9885" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ddd"/><stop offset="1" style="stop-color:gray"/></linearGradient></defs><path style="fill:url(#gradient1)" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g><path fill="none" stroke="rgb(185,21,21)" stroke-width="100" stroke-linejoin="miter" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g></g><g class="com.sun.star.drawing.TextShape"><g id="id4"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="2540" font-weight="700"><tspan class="TextPosition" x="7850" y="8283"/><tspan class="TextPosition" x="7850" y="8283"><tspan fill="rgb(128,0,0)" stroke="none">E</tspan></tspan></tspan></text></g></g><g class="com.sun.star.drawing.TextShape"><g id="id5"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="1764" font-weight="700"><tspan class="TextPosition" x="9550" y="8263"/><tspan class="TextPosition" x="9550" y="8263"><tspan fill="rgb(84,0,0)" stroke="none">vl</tspan></tspan></tspan></text></g></g></g></g></g></g></svg></span><span class="text-uppercase font-weight-bold"></span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="../../docs/about.html" ><span>What is EVL?</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="../../docs.html" ><span>Documentation</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="../../apidocs/index.html" ><span>Javadoc</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank" ><span>GitHub</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block"></div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="collapse td-sidebar-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docshtml-li">
+  <a href="../../docs.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-docshtml"><span class="">Documentation</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsabouthtml-li">
+  <a href="../../docs/about.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsabouthtml"><span class="">What is EVL?</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsusehtml-li">
+  <a href="../../docs/use.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsusehtml"><span class="">How to use EVL</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsthe-multimethodshtml-li">
+  <a href="../../docs/the-multimethods.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsthe-multimethodshtml"><span class="">The multimethods</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsbase-transformhtml-li">
+  <a href="../../docs/the-multimethods/base-transform.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsbase-transformhtml"><span class="">The base transform</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsdimension-twohtml-li">
+  <a href="../../docs/the-multimethods/dimension-two.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsdimension-twohtml"><span class="">In two dimensions</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsbest-matchhtml-li">
+  <a href="../../docs/the-multimethods/best-match.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsbest-matchhtml"><span class="">Best match</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodschange-comparatorhtml-li">
+  <a href="../../docs/the-multimethods/change-comparator.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodschange-comparatorhtml"><span class="">Change comparator</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsambiguity-resolutionhtml-li">
+  <a href="../../docs/the-multimethods/ambiguity-resolution.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsambiguity-resolutionhtml"><span class="">Ambiguity resolution</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsthe-multimethodsmore-dimensionshtml-li">
+  <a href="../../docs/the-multimethods/more-dimensions.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsthe-multimethodsmore-dimensionshtml"><span class="">More dimensions</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docstheoryhtml-li">
+  <a href="../../docs/theory.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docstheoryhtml"><span class="">Theory</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorytuple-distancehtml-li">
+  <a href="../../docs/theory/tuple-distance.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorytuple-distancehtml"><span class="">Tuple of types distance</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorydistance-comparatorshtml-li">
+  <a href="../../docs/theory/distance-comparators.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorydistance-comparatorshtml"><span class="">Distance comparators</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorymultimethod-definitionhtml-li">
+  <a href="../../docs/theory/multimethod-definition.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorymultimethod-definitionhtml"><span class="">Multimethod definition</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheorysearch-best-matchhtml-li">
+  <a href="../../docs/theory/search-best-match.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheorysearch-best-matchhtml"><span class="">Search for the best match</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheoryinvokehtml-li">
+  <a href="../../docs/theory/invoke.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheoryinvokehtml"><span class="">Invoke with cache</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docstheoryasymmetric-vs-symmetrichtml-li">
+  <a href="../../docs/theory/asymmetric-vs-symmetric.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docstheoryasymmetric-vs-symmetrichtml"><span class="">Asymmetric vs symmetric</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsmore-featureshtml-li">
+  <a href="../../docs/more-features.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsmore-featureshtml"><span class="">More features</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuressuper-commandshtml-li">
+  <a href="../../docs/more-features/super-commands.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuressuper-commandshtml"><span class="">Super commands</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresinterfaceshtml-li">
+  <a href="../../docs/more-features/interfaces.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresinterfaceshtml"><span class="">Interfaces</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresreturn-type-parametershtml-li">
+  <a href="../../docs/more-features/return-type-parameters.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresreturn-type-parametershtml"><span class="">Return type and parameters</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresswitchhtml-li">
+  <a href="../../docs/more-features/switch.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresswitchhtml"><span class="">Switch</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresopen-accesshtml-li">
+  <a href="../../docs/more-features/open-access.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresopen-accesshtml"><span class="">Open access</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featuresprotected-accesshtml-li">
+  <a href="../../docs/more-features/protected-access.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featuresprotected-accesshtml"><span class="">Protected access</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featurescontrolled-extensionhtml-li">
+  <a href="../../docs/more-features/controlled-extension.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featurescontrolled-extensionhtml"><span class="">Controlled extension</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-docsmore-featureserrorshtml-li">
+  <a href="../../docs/more-features/errors.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsmore-featureserrorshtml"><span class="">Errors</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-docsexampleshtml-li">
+  <a href="../../docs/examples.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docsexampleshtml"><span class="">Examples</span></a>
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplespreliminarieshtml-li">
+  <a href="../../docs/examples/preliminaries.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplespreliminarieshtml"><span class="">Preliminaries</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesvisitorhtml-li">
+  <a href="../../docs/examples/visitor.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesvisitorhtml"><span class="">Visitor</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-docsexamplesstateful-classhtml-li">
+  <a href="../../docs/examples/stateful-class.html" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstateful-classhtml"><span class="td-sidebar-nav-active-item">Stateful class</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplescompositionhtml-li">
+  <a href="../../docs/examples/composition.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplescompositionhtml"><span class="">Composition</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesstatehtml-li">
+  <a href="../../docs/examples/state.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstatehtml"><span class="">State</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplescomparatorhtml-li">
+  <a href="../../docs/examples/comparator.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplescomparatorhtml"><span class="">Comparator</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesstrategyhtml-li">
+  <a href="../../docs/examples/strategy.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesstrategyhtml"><span class="">Strategy</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesfactoryhtml-li">
+  <a href="../../docs/examples/factory.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesfactoryhtml"><span class="">Factory</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesobserverhtml-li">
+  <a href="../../docs/examples/observer.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesobserverhtml"><span class="">Observer</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplesqueuehtml-li">
+  <a href="../../docs/examples/queue.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplesqueuehtml"><span class="">Queue</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplestostringhtml-li">
+  <a href="../../docs/examples/tostring.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplestostringhtml"><span class="">ToString</span></a>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsexamplestreewalkerhtml-li">
+  <a href="../../docs/examples/treewalker.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-docsexamplestreewalkerhtml"><span class="">Tree walker</span></a>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docswhyhtml-li">
+  <a href="../../docs/why.html" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-docswhyhtml"><span class="">Why use EVL?</span></a>
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+  
+  
+  
+  
+  
+  
+  <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+  
+  
+  </div>
+
+
+            
+
+
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#base-implementation">Base implementation</a></li>
+        <li><a href="#extension">Extension</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+
+
+
+            
+
+	
+		
+
+
+
+  
+  
+
+	
+		
+
+
+
+  
+  
+
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../docs.html">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item" >
+	<a href="../../docs/examples.html">Examples</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="../../docs/examples/stateful-class.html">Stateful class</a>
+</li>
+
+	</ol>
+</nav	>
+
+            
+<div class="td-content">
+	<h1>Stateful class</h1>
+	<div class="lead">Add a state to your class</div>
+	<header class="article-meta">
+		
+		
+			
+				
+
+
+			
+				
+
+
+			
+		
+		
+	</header>    
+	<p>The EVL library is very flexible and offers many ways to use the multimethods.
+Here we show how to define a stateful class with protected access to a multimethod.</p>
+<p>This is a concrete example on how to use a multimethod for managing an inner state. It is based on <a href="../../docs/more-features/protected-access.html">protected access</a>.</p>
+<p>The idea here is to define a person finder that will return a location based on different criteria: weather, person, hour.
+The classes used in the example are defined in the <a href="../../docs/examples/preliminaries.html">preliminaries</a>.</p>
+<h3 id="base-implementation">Base implementation</h3>
+<p>Here is the implementation of the <em>PersonFinder</em> class:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">PersonFinder</span> {
+	
+	<span style="color:#00a">protected</span> Method2&lt;Location&gt; m = <span style="color:#00a">new</span> Method2&lt;Location&gt;();
+	<span style="color:#00a">protected</span> Weather weather = <span style="color:#00a">new</span> Sunny();
+	
+	<span style="color:#00a">public</span> <span style="color:#0a0">PersonFinder</span>() {
+		m.<span style="color:#1e90ff">add</span>(<span style="color:#00a">this</span>, <span style="color:#a50">&#34;findMatch&#34;</span>);
+	}
+	
+	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">setSunnyWeather</span>() {
+		weather = <span style="color:#00a">new</span> Sunny();
+	}
+	
+	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">setRainyWeather</span>() {
+		weather = <span style="color:#00a">new</span> Rainy();
+	}
+	
+	<span style="color:#00a">protected</span> Location <span style="color:#0a0">findMatch</span>(Rainy weather, Kid kid, <span style="color:#0aa">int</span> hour) {
+		<span style="color:#00a">return</span> <span style="color:#00a">new</span> Inside();
+	}
+	
+	<span style="color:#00a">protected</span> Location <span style="color:#0a0">findMatch</span>(Sunny weather, Kid kid, <span style="color:#0aa">int</span> hour) {
+		<span style="color:#00a">if</span> (hour &gt; 14 &amp;&amp; hour &lt; 16) {
+			<span style="color:#00a">return</span> <span style="color:#00a">new</span> Outside();
+		}
+		<span style="color:#00a">return</span> <span style="color:#00a">new</span> Inside();
+	}
+	
+	<span style="color:#00a">protected</span> Location <span style="color:#0a0">findMatch</span>(Rainy weather, Teen teen, <span style="color:#0aa">int</span> hour) {
+		<span style="color:#00a">if</span> (hour &gt; 8 &amp;&amp; hour &lt; 17) {
+			<span style="color:#00a">return</span> <span style="color:#00a">new</span> Outside();
+		}
+		<span style="color:#00a">return</span> <span style="color:#00a">new</span> Inside();
+	}
+	
+	<span style="color:#00a">protected</span> Location <span style="color:#0a0">findMatch</span>(Sunny weather, Teen teen, <span style="color:#0aa">int</span> hour) {
+		<span style="color:#00a">if</span> (hour &gt; 8 &amp;&amp; hour &lt; 19) {
+			<span style="color:#00a">return</span> <span style="color:#00a">new</span> Outside();
+		}
+		<span style="color:#00a">return</span> <span style="color:#00a">new</span> Inside();
+	}
+	
+	<span style="color:#00a">public</span> Location <span style="color:#0a0">find</span>(Person person, <span style="color:#0aa">int</span> hour) {
+		
+		<span style="color:#00a">try</span> {
+			<span style="color:#00a">return</span> m.<span style="color:#1e90ff">invoke</span>(weather, person, hour);
+		}
+		<span style="color:#00a">catch</span> (Throwable e) {
+			<span style="color:#00a">return</span> <span style="color:#00a">new</span> Somewhere();
+		}
+	}
+}
+</code></pre></div><p>The class has two members:</p>
+<ul>
+<li>The multimethod <em>m</em> of dimension two.</li>
+<li>The inner <em>weather</em> state.</li>
+</ul>
+<p>The <em>weather</em> state can be changed publicly with the two methods <em>setSunnyWeather()</em> and <em>setRainyWeather()</em>.
+The multimethod <em>m</em> is configured in the constructor by registering the match methods that are all the methods with the name &ldquo;findMatch&rdquo;.
+Then the <em>findMatch()</em> methods are defined and based on two virtual parameters - <em>weather</em> and <em>kid</em> or <em>teen</em>. They implement the find location rules.
+To finish the public <em>find()</em> method is exposed which forwards the call to <em>m</em>.</p>
+<p>In action:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PersonFinder finder = <span style="color:#00a">new</span> PersonFinder();
+			
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Kid(6), 10));
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Teen(Sex.<span style="color:#1e90ff">GIRL</span>), 10));
+
+finder.<span style="color:#1e90ff">setRainyWeather</span>();
+
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Kid(6), 18));
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Teen(Sex.<span style="color:#1e90ff">GIRL</span>), 18));
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Adult(), 18));
+</code></pre></div><p>How would you have implemented such rules without multimethods? Probably by defining the weather state with an integral type (boolean, enum, integer) and using some <em>if</em> or <em>switch</em> statements.
+Maybe you would have kept a class definition and use the <em>instanceof</em> operator.</p>
+<p>What is sure is that there is no way to properly define some rules based on two class dimensions with standard &ldquo;virtual&rdquo; methods.</p>
+<h3 id="extension">Extension</h3>
+<p>What is interesting with multimethods is that they are very easily extended.</p>
+<p>We want to extend the <em>PersonFinder</em> class by adding some rules concerning the <em>Adult</em> person. For that we simply define a new class that extends <em>PersonFinder</em>:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">AdultPersonFinder</span> <span style="color:#00a">extends</span> PersonFinder {
+
+	<span style="color:#00a">protected</span> Location <span style="color:#0a0">findMatch</span>(Weather weather, Adult adult, <span style="color:#0aa">int</span> hour) {
+		<span style="color:#00a">if</span> (hour &gt; 8 &amp;&amp; hour &lt; 20) {
+			<span style="color:#00a">return</span> <span style="color:#00a">new</span> Outside();
+		}
+		<span style="color:#00a">return</span> <span style="color:#00a">new</span> Inside();
+	}
+}
+</code></pre></div><p>The only thing we have to do is define a new <em>findMatch()</em> method with the desired virtual parameter couples, i.e. <em>Weather</em> and <em>Adult</em> in our case.
+The match method is automatically registered.</p>
+<p>In action:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">PersonFinder finder = <span style="color:#00a">new</span> AdultPersonFinder();
+			
+System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Person is &#34;</span> + finder.<span style="color:#1e90ff">find</span>(<span style="color:#00a">new</span> Adult(), 21));
+</code></pre></div><p>How would you have implemented the extension with an <em>if</em> or <em>switch</em> statements? Multimethods show that the extension is natural.</p>
+<p>To conclude, this example is showing how to define rules based on three parameters:</p>
+<ul>
+<li>One <strong>virtual</strong> state of the class</li>
+<li>One <strong>virtual</strong> parameter outside the class</li>
+<li>One <strong>non-virtual</strong> parameter</li>
+</ul>
+<p>It is easy to imagine that a general stateful class would use <em>M</em> virtual states, <em>N</em> virtual parameters outside, <em>P</em> non-virtual parameters.
+Of course, increase the number of virtual parameters can lead to some rules difficult to understand but the multimethods support it.
+It is up to you to find good designs.</p>
+
+	
+	
+	
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="GitHub" aria-label="GitHub">
+    <a class="text-white" target="_blank" rel="noopener" href="https://github.com/ylegoc/evl" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2022 The EVL Authors All Rights Reserved</small>
+        
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src='../../js/tabpane-persist.js'></script>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../../js/main.min.5c74b870c6953931a705f390a49c7e4c0a842ec5c83b24354758dd674343ed0d.js" integrity="sha256-XHS4cMaVOTGnBfOQpJx&#43;TAqELsXIOyQ1R1jdZ0ND7Q0=" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>
