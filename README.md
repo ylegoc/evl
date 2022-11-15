@@ -54,4 +54,3 @@ However defining multimethods can lead to different problems:
 * How to limit the memory footprint in case of a huge class hierarchy leading to a huge number of different cases?
 
 These questions can be answered by the EVL implementation which provides an original concept of **method comparator** and a **cache strategy**.
-
