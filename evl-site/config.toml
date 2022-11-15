@@ -1,0 +1,119 @@
+baseURL = "/"
+# Ensures that urls are correct once deployed in github pages with a project. 
+# Check https://maximorlov.com/deploying-to-github-pages-dont-forget-to-fix-your-links/
+relativeURLs = true
+# Generate urls with the full html link: allows to open local pages from a browser without any web server.
+uglyurls = true
+
+title = ""
+
+enableRobotsTXT = true
+
+# Hugo allows theme composition (and inheritance). The precedence is from left to right.
+theme = ["docsy"]
+
+# Will give values to .Lastmod etc.
+enableGitInfo = true
+
+# Language settings
+contentDir = "content"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# Useful when translating.
+enableMissingTranslationPlaceholders = true
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# Highlighting config
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# Use the new Chroma Go highlighter in Hugo.
+pygmentsUseClassic = false
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "autumn"
+
+# Configure how URLs look like per section.
+[permalinks]
+blog = "/:section/:year/:month/:day/:slug/"
+
+# Configuration for BlackFriday markdown parser: https://github.com/russross/blackfriday
+[blackfriday]
+plainIDAnchors = true
+hrefTargetBlank = true
+angledQuotes = false
+latexDashes = true
+
+# Image processing configuration.
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
+# Language configuration
+[languages]
+[languages.en]
+title = ""
+description = "EVL library site"
+languageName ="English"
+# Weight used for sorting.
+weight = 1
+
+# Everything below this are Site Params
+[params]
+copyright = "The EVL Authors"
+
+# Menu title if your navbar has a versions selector to access old versions of your site.
+# This menu appears only if you have at least one [params.versions] set.
+version_menu = "Releases"
+
+# Repository configuration (URLs for in-page links to opening issues and suggesting changes)
+#github_repo = "https://github.com/google/docsy-example"
+# An optional link to a related project repo. For example, the sibling repository where your product code lives.
+#github_project_repo = "https://github.com/google/docsy"
+
+# Specify a value here if your content directory is not in your repo's root directory
+# github_subdir = ""
+
+# Enable Algolia DocSearch
+algolia_docsearch = false
+
+# User interface configuration
+[params.ui]
+# Enable to show the side bar menu in its compact state.
+sidebar_menu_compact = true
+#  Set to true to disable breadcrumb navigation.
+breadcrumb_disable = false
+#  Set to true to hide the sidebar search box (the top nav search box will still be displayed if search is enabled)
+#sidebar_search_disable = false
+#  Set to false if you don't want to display a logo (/assets/icons/logo.svg) in the top nav bar
+navbar_logo = true
+# Set to true to disable the About link in the site footer
+footer_about_disable = true
+
+# Top-level navigation (horizontal)
+
+[[menu.main]]
+    name = "What is EVL?"
+    weight = 10
+    url = "/docs/about.html"
+[[menu.main]]
+    name = "Documentation"
+    weight = 20
+    url = "/docs.html"
+[[menu.main]]
+    name = "Javadoc"
+    weight = 20
+    url = "/apidocs/index.html"
+[[menu.main]]
+    name = "GitHub"
+    weight = 30
+    url = "https://github.com/ylegoc/evl"
+
+[params.links]
+# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+[[params.links.developer]]
+	name = "GitHub"
+	url = "https://github.com/ylegoc/evl"
+	icon = "fab fa-github"
+    desc = "Development site"
+
