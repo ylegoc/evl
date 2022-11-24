@@ -1,0 +1,3 @@
+[submodule "evl-site/themes/docsy"]
+	path = evl-site/themes/docsy
+	url = https://github.com/google/docsy.git

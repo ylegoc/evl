@@ -15,12 +15,14 @@ Logos:
   Generate the favicons: Go to the site https://favicon.io/favicon-converter/ and convert the newly generated file logo-icon.png.
   Copy the generated files into static/favicons.
 
-Maintenance:
-As the website depends on hugo and docsy, they sometimes must be updated. Docsy also depends on npm packages that must be sometimes updated: autoprefixer, postcss, postcss-cli.
 
-Important note 16/07/21:
-Docsy is broken after update of all the pre-cited components.
-It can be solved: remove third argument true from the call to bg-gradient-variant (bootstrap function).
+Installation of docsy:
+https://www.docsy.dev/docs/get-started/other-options/
+
+$ git submodule add --depth 1 https://github.com/google/docsy.git themes/docsy
+
+Maintenance:
+As the website depends on hugo, docsy and npm, they sometimes must be updated. Docsy depends on npm packages that must be sometimes updated: autoprefixer, postcss, postcss-cli.
 
 Deploy the site:
 Simply call the script with the target evl source directory, e.g.:
