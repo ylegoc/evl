@@ -1,10 +1,30 @@
+Installation dependencies:
+- hugo: manual download
+- npm: installer
+- docsy: submodule
+
 Installation requirements:
 $ npm install -D --save autoprefixer
 $ npm install -D --save postcss
 $ npm install -D --save postcss-cli
 
+Installation of docsy:
+https://www.docsy.dev/docs/get-started/other-options/
+
+$ git submodule add --depth 1 https://github.com/google/docsy.git themes/docsy
+$ cd themes/docsy
+$ npm install
+
+Maintenance:
+As the website depends on hugo, docsy and npm, they sometimes must be updated. 
+Docsy depends on npm packages that must be sometimes updated: autoprefixer, postcss, postcss-cli.
+
 Debug the site by launching:
 $ hugo server
+
+Deploy the site:
+Simply call the script with the target evl source directory, e.g.:
+$ ./deploy.sh ../
 
 Logos:
 - Main: drawings/logo.odg
@@ -14,16 +34,3 @@ Logos:
   In LibreOffice, select all and export into PNG with size 163 x 163.
   Generate the favicons: Go to the site https://favicon.io/favicon-converter/ and convert the newly generated file logo-icon.png.
   Copy the generated files into static/favicons.
-
-
-Installation of docsy:
-https://www.docsy.dev/docs/get-started/other-options/
-
-$ git submodule add --depth 1 https://github.com/google/docsy.git themes/docsy
-
-Maintenance:
-As the website depends on hugo, docsy and npm, they sometimes must be updated. Docsy depends on npm packages that must be sometimes updated: autoprefixer, postcss, postcss-cli.
-
-Deploy the site:
-Simply call the script with the target evl source directory, e.g.:
-$ ./deploy.sh ../
