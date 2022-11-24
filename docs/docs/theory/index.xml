@@ -309,8 +309,8 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
 &lt;h3 id=&#34;bounded-or-unbounded&#34;&gt;Bounded or unbounded?&lt;/h3&gt;
 &lt;p&gt;By default, the cache implementation is &lt;strong&gt;unbounded&lt;/strong&gt;: the cache can grow without limits. However the number of potential tuples in the cache is the number of classes power the number of dimensions, which can be big. In that case if we want to ensure that the cache will not exceed a size, we can use a &lt;strong&gt;bounded&lt;/strong&gt; cache.&lt;/p&gt;
 &lt;p&gt;As an example we define the multimethod with a bounded cache of size 128:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;boundedCache&lt;/span&gt;(128);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Moreover the cache must be &lt;strong&gt;thread-safe&lt;/strong&gt; to ensure that invoke is thread-safe. And if you&amp;rsquo;re not happy with the default implementations, you can still redefine your own cache strategy.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method2&amp;lt;Float&amp;gt; foo2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Float&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;boundedCache&lt;/span&gt;(128);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Moreover the cache must be &lt;strong&gt;thread-safe&lt;/strong&gt; to ensure that invoke is thread-safe. And if you&amp;rsquo;re not happy with the default implementations, you can still redefine your own cache strategy.&lt;/p&gt;
 
       </description>
     </item>
@@ -324,7 +324,7 @@ However the cache must be cleared when the multimethod is changed e.g. when addi
       <description>
         
         
-        &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions. 
+        &lt;p&gt;To finish the theory part, we can rapidly discuss about the asymmetric and symmetric comparators in multiple dimensions.
 For their definition, refer to &lt;a href=&#34;../../docs/theory/distance-comparators.html&#34;&gt;distance comparators&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;On one side, the &lt;em&gt;asymmetric&lt;/em&gt; comparator is &lt;strong&gt;easy&lt;/strong&gt; to understand and predict. The dimensions are taken one by one to find the best match. The ambiguities can only come from a multiple inheritance of interfaces.&lt;br&gt;
 On the other side, the &lt;em&gt;symmetric&lt;/em&gt; comparator is &lt;strong&gt;democratic&lt;/strong&gt;. All the dimensions have the same weight in the final selection. However more democracy means more ambiguities and more difficulties to select one best match.&lt;/p&gt;

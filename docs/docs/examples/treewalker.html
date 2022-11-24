@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.85.0" /><META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+<meta name="generator" content="Hugo 0.106.0">
+<meta name="robots" content="index, follow">
 
 
 <link rel="shortcut icon" href="../../favicons/favicon.ico" >
@@ -18,19 +19,17 @@
 <link rel="icon" type="image/png" href="../../favicons/android-192x192.png" sizes="192x192">
 
 <title>Tree walker | </title>
-
-
-  <meta name="description" content="Walk without falling">
+<meta name="description" content="Walk without falling">
 <meta property="og:title" content="Tree walker" />
 <meta property="og:description" content="Walk without falling" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/examples/treewalker.html" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2021-10-10T13:33:19+02:00" />
+<meta property="article:modified_time" content="2022-11-15T11:44:04+01:00" />
 
 <meta itemprop="name" content="Tree walker">
 <meta itemprop="description" content="Walk without falling">
-<meta itemprop="dateModified" content="2021-10-10T13:33:19+02:00" />
+<meta itemprop="dateModified" content="2022-11-15T11:44:04+01:00" />
 <meta itemprop="wordCount" content="1119">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Tree walker"/>
@@ -39,16 +38,13 @@
 
 
 
-<link rel="preload" href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" as="style">
-<link href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" rel="stylesheet" integrity="">
-
+<link rel="preload" href="../../scss/main.min.ce94b946b7605b8568883507e50ba772f97fabd6660cfa4a75e5f6a7d3632e37.css" as="style">
+<link href="../../scss/main.min.ce94b946b7605b8568883507e50ba772f97fabd6660cfa4a75e5f6a7d3632e37.css" rel="stylesheet" integrity="">
 
 <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
   crossorigin="anonymous"></script>
-
-
 <style>
 
 	a {
@@ -67,72 +63,31 @@
 
 </style>
 
-
-
-
-
-
-
-
   </head>
   <body class="td-page">
     <header>
-      
-<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
-        <a class="navbar-brand" href="../../">
-		<span class="navbar-logo"><svg version="1.2" baseProfile="tiny" width="43mm" height="43mm" viewBox="7450 5250 4300 4300" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink"><defs class="ClipPathGroup"><clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse"><rect x="7450" y="5250" width="4300" height="4300"/></clipPath></defs><defs><font id="EmbeddedFont_1" horiz-adv-x="2048"><font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/><missing-glyph horiz-adv-x="2048" d="M0 0H2047V2047H0V0z"/><glyph unicode="v" horiz-adv-x="1271" d="M31 1120H389L668 346l278 774h359L864 0H471L31 1120z"/><glyph unicode="l" horiz-adv-x="345" d="M172 1556H530V0H172V1556z"/><glyph unicode="E" horiz-adv-x="1033" d="M188 1493H1227V1202H573V924h615V633H573V291h676V0H188V1493z"/></font></defs><defs class="TextShapeIndex"><g ooo:slide="id1" ooo:id-list="id3 id4 id5"/></defs><defs class="EmbeddedBulletChars"><g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)"><path d="M580 1141l583-570L580 0-4 571l584 570z"/></g><g id="bullet-char-template(57354)" transform="scale(0.00048828125,-0.00048828125)"><path d="M8 1128H1137V0H8V1128z"/></g><g id="bullet-char-template(10146)" transform="scale(0.00048828125,-0.00048828125)"><path d="M174 0 602 739 174 1481 1456 739 174 0zM1358 739 309 1346 659 739h699z"/></g><g id="bullet-char-template(10132)" transform="scale(0.00048828125,-0.00048828125)"><path d="M2015 739 1276 0H717l543 543H174V936H1260L717 1481h557l741-742z"/></g><g id="bullet-char-template(10007)" transform="scale(0.00048828125,-0.00048828125)"><path d="M0-2C-7 14-16 27-25 37L356 567C262 823 215 952 215 954c0 25 13 38 40 38 9 0 21-2 34-5 21 4 42 12 65 25l27-13L492 748l280 301 64-25 24 25c21-10 41-24 62-43-36-69-87-143-152-222-1-1-60-68-176-2e2L774 223c0-27-21-55-63-84l16-20c-10-29-28-43-55-43-31 0-102 102-215 305L164-76c-22-34-53-51-92-51-42 0-63 17-64 51C1-67-2-52-2-32-2-23-1-13 0-2z"/></g><g id="bullet-char-template(10004)" transform="scale(0.00048828125,-0.00048828125)"><path d="M285-33C182-33 111 30 74 156 52 228 41 333 41 471c0 78 14 145 41 201 34 71 87 106 158 106 53 0 88-31 106-94l23-176c8-64 28-97 59-98l735 706c11 11 33 17 66 17 42 0 63-15 63-46V965c0-36-10-64-30-84L442 47C390-6 338-33 285-33z"/></g><g id="bullet-char-template(9679)" transform="scale(0.00048828125,-0.00048828125)"><path d="M813 0C632 0 489 54 383 161 276 268 223 411 223 592s53 324 160 431c106 107 249 161 430 161 179 0 323-54 432-161 108-107 162-251 162-431s-54-324-162-431C1136 54 992 0 813 0z"/></g><g id="bullet-char-template(8226)" transform="scale(0.00048828125,-0.00048828125)"><path d="M346 457c-73 0-137 26-191 78-54 51-81 114-81 188 0 73 27 136 81 188s118 78 191 78 134-26 185-79c51-51 77-114 77-187 0-75-25-137-76-188-50-52-112-78-186-78z"/></g><g id="bullet-char-template(8211)" transform="scale(0.00048828125,-0.00048828125)"><path d="M-4 459H1135V606H-4V459z"/></g></defs><defs class="TextEmbeddedBitmaps"/><g class="SlideGroup"><g><g id="id1" class="Slide" clip-path="url(#presentation_clip_path)"><g class="Page"><g class="com.sun.star.drawing.CustomShape"><g id="id3"><g><defs><linearGradient id="gradient1" x1="8165" y1="4915" x2="11035" y2="9885" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ddd"/><stop offset="1" style="stop-color:gray"/></linearGradient></defs><path style="fill:url(#gradient1)" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g><path fill="none" stroke="rgb(185,21,21)" stroke-width="100" stroke-linejoin="miter" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g></g><g class="com.sun.star.drawing.TextShape"><g id="id4"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="2540" font-weight="700"><tspan class="TextPosition" x="7850" y="8283"/><tspan class="TextPosition" x="7850" y="8283"><tspan fill="rgb(128,0,0)" stroke="none">E</tspan></tspan></tspan></text></g></g><g class="com.sun.star.drawing.TextShape"><g id="id5"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="1764" font-weight="700"><tspan class="TextPosition" x="9550" y="8263"/><tspan class="TextPosition" x="9550" y="8263"><tspan fill="rgb(84,0,0)" stroke="none">vl</tspan></tspan></tspan></text></g></g></g></g></g></g></svg></span><span class="text-uppercase font-weight-bold"></span>
-	</a>
-	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
-		<ul class="navbar-nav mt-2 mt-lg-0">
-			
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../docs/about.html" ><span>What is EVL?</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../docs.html" ><span>Documentation</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../apidocs/index.html" ><span>Javadoc</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank" ><span>GitHub</span></a>
-			</li>
-			
-			
-			
-		</ul>
-	</div>
-	<div class="navbar-nav d-none d-lg-block"></div>
+      <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+  <a class="navbar-brand" href="../../"><span class="navbar-brand__logo navbar-logo"><svg version="1.2" baseProfile="tiny" width="43mm" height="43mm" viewBox="7450 5250 4300 4300" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink"><defs class="ClipPathGroup"><clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse"><rect x="7450" y="5250" width="4300" height="4300"/></clipPath></defs><defs><font id="EmbeddedFont_1" horiz-adv-x="2048"><font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/><missing-glyph horiz-adv-x="2048" d="M0 0H2047V2047H0V0z"/><glyph unicode="v" horiz-adv-x="1271" d="M31 1120H389L668 346l278 774h359L864 0H471L31 1120z"/><glyph unicode="l" horiz-adv-x="345" d="M172 1556H530V0H172V1556z"/><glyph unicode="E" horiz-adv-x="1033" d="M188 1493H1227V1202H573V924h615V633H573V291h676V0H188V1493z"/></font></defs><defs class="TextShapeIndex"><g ooo:slide="id1" ooo:id-list="id3 id4 id5"/></defs><defs class="EmbeddedBulletChars"><g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)"><path d="M580 1141l583-570L580 0-4 571l584 570z"/></g><g id="bullet-char-template(57354)" transform="scale(0.00048828125,-0.00048828125)"><path d="M8 1128H1137V0H8V1128z"/></g><g id="bullet-char-template(10146)" transform="scale(0.00048828125,-0.00048828125)"><path d="M174 0 602 739 174 1481 1456 739 174 0zM1358 739 309 1346 659 739h699z"/></g><g id="bullet-char-template(10132)" transform="scale(0.00048828125,-0.00048828125)"><path d="M2015 739 1276 0H717l543 543H174V936H1260L717 1481h557l741-742z"/></g><g id="bullet-char-template(10007)" transform="scale(0.00048828125,-0.00048828125)"><path d="M0-2C-7 14-16 27-25 37L356 567C262 823 215 952 215 954c0 25 13 38 40 38 9 0 21-2 34-5 21 4 42 12 65 25l27-13L492 748l280 301 64-25 24 25c21-10 41-24 62-43-36-69-87-143-152-222-1-1-60-68-176-2e2L774 223c0-27-21-55-63-84l16-20c-10-29-28-43-55-43-31 0-102 102-215 305L164-76c-22-34-53-51-92-51-42 0-63 17-64 51C1-67-2-52-2-32-2-23-1-13 0-2z"/></g><g id="bullet-char-template(10004)" transform="scale(0.00048828125,-0.00048828125)"><path d="M285-33C182-33 111 30 74 156 52 228 41 333 41 471c0 78 14 145 41 201 34 71 87 106 158 106 53 0 88-31 106-94l23-176c8-64 28-97 59-98l735 706c11 11 33 17 66 17 42 0 63-15 63-46V965c0-36-10-64-30-84L442 47C390-6 338-33 285-33z"/></g><g id="bullet-char-template(9679)" transform="scale(0.00048828125,-0.00048828125)"><path d="M813 0C632 0 489 54 383 161 276 268 223 411 223 592s53 324 160 431c106 107 249 161 430 161 179 0 323-54 432-161 108-107 162-251 162-431s-54-324-162-431C1136 54 992 0 813 0z"/></g><g id="bullet-char-template(8226)" transform="scale(0.00048828125,-0.00048828125)"><path d="M346 457c-73 0-137 26-191 78-54 51-81 114-81 188 0 73 27 136 81 188s118 78 191 78 134-26 185-79c51-51 77-114 77-187 0-75-25-137-76-188-50-52-112-78-186-78z"/></g><g id="bullet-char-template(8211)" transform="scale(0.00048828125,-0.00048828125)"><path d="M-4 459H1135V606H-4V459z"/></g></defs><defs class="TextEmbeddedBitmaps"/><g class="SlideGroup"><g><g id="id1" class="Slide" clip-path="url(#presentation_clip_path)"><g class="Page"><g class="com.sun.star.drawing.CustomShape"><g id="id3"><g><defs><linearGradient id="gradient1" x1="8165" y1="4915" x2="11035" y2="9885" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ddd"/><stop offset="1" style="stop-color:gray"/></linearGradient></defs><path style="fill:url(#gradient1)" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g><path fill="none" stroke="rgb(185,21,21)" stroke-width="100" stroke-linejoin="miter" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g></g><g class="com.sun.star.drawing.TextShape"><g id="id4"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="2540" font-weight="700"><tspan class="TextPosition" x="7850" y="8283"/><tspan class="TextPosition" x="7850" y="8283"><tspan fill="rgb(128,0,0)" stroke="none">E</tspan></tspan></tspan></text></g></g><g class="com.sun.star.drawing.TextShape"><g id="id5"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="1764" font-weight="700"><tspan class="TextPosition" x="9550" y="8263"/><tspan class="TextPosition" x="9550" y="8263"><tspan fill="rgb(84,0,0)" stroke="none">vl</tspan></tspan></tspan></text></g></g></g></g></g></g></svg></span><span class="navbar-brand__name"></span></a>
+  <div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+    <ul class="navbar-nav mt-2 mt-lg-0">
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../docs/about.html"><span>What is EVL?</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../docs.html"><span>Documentation</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../apidocs/index.html"><span>Javadoc</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank"><span>GitHub</span></a>
+      </li>
+      </ul>
+  </div>
+  <div class="navbar-nav d-none d-lg-block">
+    
+  </div>
 </nav>
-
     </header>
     <div class="container-fluid td-outer">
       <div class="td-main">
@@ -142,7 +97,7 @@
 <div id="td-sidebar-menu" class="td-sidebar__inner">
   <form class="td-sidebar__search d-flex align-items-center">
     
-    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
@@ -250,22 +205,12 @@
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             
-  
-  
-  
-  
-  
-  
-  <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-  
-  
-  </div>
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 
+</div>
 
-            
-
-
-<div class="td-toc"><nav id="TableOfContents">
+            <div class="td-toc">
+        <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -275,10 +220,9 @@
       </ul>
     </li>
   </ul>
-</nav></div>
-
-
-
+</nav>
+      </div>
+    
             
 
 	
@@ -304,57 +248,36 @@
             
   
 
-            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
-	<ol class="breadcrumb spb-1">
-		
-
-
-
-
-
-
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="../../docs.html">Documentation</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="../../docs/examples.html">Examples</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item active" aria-current="page">
-	<a href="../../docs/examples/treewalker.html">Tree walker</a>
-</li>
-
-	</ol>
-</nav	>
-
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="../../docs.html">Documentation</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="../../docs/examples.html">Examples</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="../../docs/examples/treewalker.html" aria-disabled="true" class="btn-link disabled">Tree walker</a>
+  </li>
+  </ol>
+</nav>
             
 <div class="td-content">
 	<h1>Tree walker</h1>
 	<div class="lead">Walk without falling</div>
 	<header class="article-meta">
 		
-		
-			
-				
+
+  
+    
 
 
-			
-				
+  
+    
 
 
-			
-		
+  
+
 		
 	</header>    
 	<p>This example is showing how to use a multimethod to traverse tree structures.</p>
@@ -366,73 +289,73 @@ As example, we show two process classes: <em>TreePrinter</em> that prints the sa
 As a common <em>XML</em> file, the depth of a node is represented by the number of space indents.
 The idea is to pass a <em>Space</em> object that holds the current space and increment or decrement it.</p>
 <p>First we define the <em>Space</em> class:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">Space</span> {
-	
-	String space = <span style="color:#a50">&#34;&#34;</span>;
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">increment</span>() {
-		space += <span style="color:#a50">&#34;  &#34;</span>;
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">decrement</span>() {
-		space = space.<span style="color:#1e90ff">substring</span>(2);
-	}
-	
-	<span style="color:#00a">public</span> String <span style="color:#0a0">get</span>() {
-		<span style="color:#00a">return</span> space;
-	}
-}
-</code></pre></div><p>Then the <em>Print</em> class can be defined. Inside it, we define a multimethod of dimension one with restrictions on the non-virtual parameters and the return type:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">Print</span> {
-
-	<span style="color:#00a">private</span> <span style="color:#00a">static</span> Method1&lt;Void&gt; method = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
-			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
-			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>(Space.<span style="color:#1e90ff">class</span>);
-
-	<span style="color:#00a">public</span> <span style="color:#00a">static</span> Method1&lt;Void&gt; <span style="color:#0a0">method</span>() {
-		<span style="color:#00a">return</span> method;
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#00a">static</span> <span style="color:#0aa">void</span> <span style="color:#0a0">print</span>(Object object) <span style="color:#00a">throws</span> Throwable {
-		method.<span style="color:#1e90ff">invoke</span>(object, <span style="color:#00a">new</span> Space());
-	}
-}
-</code></pre></div><p>The call to <em>invoke()</em> is encapsulated into the <em>print()</em> call so that we can initialize the recursion with a fresh new <em>Space</em> object passed as the second parameter that is the non-virtual parameter. Notice that the <em>Print</em> class does not know any class and cannot be invoked. We must define match methods.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">Space</span> {
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	String space = <span style="color:#a50">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">increment</span>() {
+</span></span><span style="display:flex;"><span>		space += <span style="color:#a50">&#34;  &#34;</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">decrement</span>() {
+</span></span><span style="display:flex;"><span>		space = space.<span style="color:#1e90ff">substring</span>(2);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> String <span style="color:#0a0">get</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">return</span> space;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then the <em>Print</em> class can be defined. Inside it, we define a multimethod of dimension one with restrictions on the non-virtual parameters and the return type:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">Print</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> <span style="color:#00a">static</span> Method1&lt;Void&gt; method = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>(Space.<span style="color:#1e90ff">class</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#00a">static</span> Method1&lt;Void&gt; <span style="color:#0a0">method</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">return</span> method;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#00a">static</span> <span style="color:#0aa">void</span> <span style="color:#0a0">print</span>(Object object) <span style="color:#00a">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>		method.<span style="color:#1e90ff">invoke</span>(object, <span style="color:#00a">new</span> Space());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The call to <em>invoke()</em> is encapsulated into the <em>print()</em> call so that we can initialize the recursion with a fresh new <em>Space</em> object passed as the second parameter that is the non-virtual parameter. Notice that the <em>Print</em> class does not know any class and cannot be invoked. We must define match methods.</p>
 <p>Let&rsquo;s use it with match methods on our example classes:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Print.<span style="color:#1e90ff">method</span>().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
-			
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Container container, Space space) {
-		
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + container);
-		
-		space.<span style="color:#1e90ff">increment</span>();
-		
-		<span style="color:#00a">for</span> (Element element : container.<span style="color:#1e90ff">getElements</span>()) {
-			<span style="color:#00a">try</span> {
-				Print.<span style="color:#1e90ff">method</span>().<span style="color:#1e90ff">invoke</span>(element, space);
-			}
-			<span style="color:#00a">catch</span> (Throwable e) {
-				System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + <span style="color:#a50">&#34;?&#34;</span>);
-			}
-		}
-		
-		space.<span style="color:#1e90ff">decrement</span>();
-	}
-	
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Element element, Space space) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + element);
-	}
-});
-</code></pre></div><p>We benefit from the default <em>toString()</em> method already defined onto all the example classes.
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Print.<span style="color:#1e90ff">method</span>().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Container container, Space space) {
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + container);
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		space.<span style="color:#1e90ff">increment</span>();
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">for</span> (Element element : container.<span style="color:#1e90ff">getElements</span>()) {
+</span></span><span style="display:flex;"><span>			<span style="color:#00a">try</span> {
+</span></span><span style="display:flex;"><span>				Print.<span style="color:#1e90ff">method</span>().<span style="color:#1e90ff">invoke</span>(element, space);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			<span style="color:#00a">catch</span> (Throwable e) {
+</span></span><span style="display:flex;"><span>				System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + <span style="color:#a50">&#34;?&#34;</span>);
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		space.<span style="color:#1e90ff">decrement</span>();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Element element, Space space) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + element);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>We benefit from the default <em>toString()</em> method already defined onto all the example classes.
 Thus we simply define two match methods: on the <em>Container</em> class and the <em>Element</em> class.</p>
 <p>The <em>Container</em> class is the abstract class that owns the <em>Element</em> children. We print the object with the space and increments it before invoking recursively the <em>Print</em> on the children.
 When the process of the children is terminated we can decrement the space.</p>
 <p>For the <em>Element</em> class, it is simply the print of the object with space.</p>
 <p>We can test it on a filled <em>Room</em> object:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Room room = RoomBuilder.<span style="color:#1e90ff">build</span>();
-		
-Print.<span style="color:#1e90ff">print</span>(room);
-</code></pre></div><h3 id="generalization-of-the-traversal">Generalization of the traversal</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Room room = RoomBuilder.<span style="color:#1e90ff">build</span>();
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>Print.<span style="color:#1e90ff">print</span>(room);
+</span></span></code></pre></div><h3 id="generalization-of-the-traversal">Generalization of the traversal</h3>
 <p>The implementation of <em>Print</em> is specialized and mixes the traversal of the tree structure of our <em>Element</em> objects and their process. In this section we propose a generalization that separates process from traversal using a tree walker. Our tree walker abstraction is based on the following methods:</p>
 <ul>
 <li><em>enter</em>: Method called when entering a node i.e. an <em>Element</em> in our case.</li>
@@ -441,122 +364,122 @@ Print.<span style="color:#1e90ff">print</span>(room);
 </ul>
 <p>If now you begin to master the EVL library, I&rsquo;m sure that you know that the <em>enter</em>, <em>traverse</em> and <em>leave</em> methods are multimethods in our implementation and you&rsquo;re right.</p>
 <p>Let&rsquo;s define the <em>TreeWalker</em> class with the three multimethods:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeWalker</span> {
-	
-	<span style="color:#00a">private</span> Method1&lt;Void&gt; traverse = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
-			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
-			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>(TreeWalker.<span style="color:#1e90ff">class</span>);
-	
-	<span style="color:#00a">private</span> Method1&lt;Void&gt; enter = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
-			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
-			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>();
-	
-	<span style="color:#00a">private</span> Method1&lt;Void&gt; leave = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
-			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
-			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>();
-	
-	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">traverse</span>() {
-		<span style="color:#00a">return</span> traverse;
-	}
-	
-	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">enter</span>() {
-		<span style="color:#00a">return</span> enter;
-	}
-	
-	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">leave</span>() {
-		<span style="color:#00a">return</span> leave;
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">walk</span>(Object object) <span style="color:#00a">throws</span> Throwable {
-		enter.<span style="color:#1e90ff">invoke</span>(object);
-		traverse.<span style="color:#1e90ff">invoke</span>(object, <span style="color:#00a">this</span>);
-		leave.<span style="color:#1e90ff">invoke</span>(object);
-	}
-}
-</code></pre></div><p>You can notice that the <em>traverse</em> multimethod differs from <em>enter</em> and <em>leave</em> by the fact that it has a <em>TreeWalker</em> non-virtual parameter. It is necessary to organize the recursion because our tree traversal is recursive. The <em>TreeWalker</em> implementation uses the strategy pattern as the <em>walk()</em> method is calling the <em>enter</em>, <em>traverse</em> and <em>leave</em> multimethods.
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeWalker</span> {
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> Method1&lt;Void&gt; traverse = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>(TreeWalker.<span style="color:#1e90ff">class</span>);
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> Method1&lt;Void&gt; enter = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>();
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> Method1&lt;Void&gt; leave = <span style="color:#00a">new</span> Method1&lt;Void&gt;()
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">returnType</span>(Void.<span style="color:#1e90ff">class</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#1e90ff">nonVirtualParameterTypes</span>();
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">traverse</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">return</span> traverse;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">enter</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">return</span> enter;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> Method1&lt;Void&gt; <span style="color:#0a0">leave</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">return</span> leave;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">walk</span>(Object object) <span style="color:#00a">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>		enter.<span style="color:#1e90ff">invoke</span>(object);
+</span></span><span style="display:flex;"><span>		traverse.<span style="color:#1e90ff">invoke</span>(object, <span style="color:#00a">this</span>);
+</span></span><span style="display:flex;"><span>		leave.<span style="color:#1e90ff">invoke</span>(object);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can notice that the <em>traverse</em> multimethod differs from <em>enter</em> and <em>leave</em> by the fact that it has a <em>TreeWalker</em> non-virtual parameter. It is necessary to organize the recursion because our tree traversal is recursive. The <em>TreeWalker</em> implementation uses the strategy pattern as the <em>walk()</em> method is calling the <em>enter</em>, <em>traverse</em> and <em>leave</em> multimethods.
 Notice that this implementation is general and could be reused any other context.</p>
 <p>Now we can specialize the traversal. Let&rsquo;s define the Depth-First Search traversal methods for our <em>Element</em> objects:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeTraversal</span> {
-
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">traverse</span>(Container container, TreeWalker walker) <span style="color:#00a">throws</span> Throwable {
-		
-		<span style="color:#00a">for</span> (Element element : container.<span style="color:#1e90ff">getElements</span>()) {
-			walker.<span style="color:#1e90ff">walk</span>(element);
-		}
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">traverse</span>(Element element, TreeWalker walker) {
-	}
-}
-</code></pre></div><p>This class is defining the different <em>traverse</em> implementations. We find the <em>TreeWalker</em> parameter in the two implementations, called to continue the recursion in case of a <em>Container</em> object.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeTraversal</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">traverse</span>(Container container, TreeWalker walker) <span style="color:#00a">throws</span> Throwable {
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">for</span> (Element element : container.<span style="color:#1e90ff">getElements</span>()) {
+</span></span><span style="display:flex;"><span>			walker.<span style="color:#1e90ff">walk</span>(element);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">traverse</span>(Element element, TreeWalker walker) {
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This class is defining the different <em>traverse</em> implementations. We find the <em>TreeWalker</em> parameter in the two implementations, called to continue the recursion in case of a <em>Container</em> object.</p>
 <p>The <em>enter</em> and <em>leave</em> implementations are defined into the process class <em>TreePrinter</em>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreePrinter</span> {
-
-	<span style="color:#00a">private</span> Space space = <span style="color:#00a">new</span> Space();
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Element element) {
-		
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + element);
-		
-		space.<span style="color:#1e90ff">increment</span>();
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Element element) {
-		space.<span style="color:#1e90ff">decrement</span>();
-	}
-}
-</code></pre></div><p>We find a <em>Space</em> object to manage the space indents. Then we can define our concrete <em>TreeWalker</em> configured with <em>TreeTraversal</em> and <em>TreePrinter</em> objects and apply it to the previously defined <em>Room</em> object:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">TreeWalker walker = <span style="color:#00a">new</span> TreeWalker();
-			
-TreeTraversal traversal = <span style="color:#00a">new</span> TreeTraversal();
-TreePrinter printer = <span style="color:#00a">new</span> TreePrinter();
-
-walker.<span style="color:#1e90ff">traverse</span>().<span style="color:#1e90ff">add</span>(traversal, <span style="color:#a50">&#34;traverse&#34;</span>);
-walker.<span style="color:#1e90ff">enter</span>().<span style="color:#1e90ff">add</span>(printer, <span style="color:#a50">&#34;enter&#34;</span>);
-walker.<span style="color:#1e90ff">leave</span>().<span style="color:#1e90ff">add</span>(printer, <span style="color:#a50">&#34;leave&#34;</span>);
-
-walker.<span style="color:#1e90ff">walk</span>(room);
-</code></pre></div><p>In this implementation, we preferred to give the names <em>traverse</em>, <em>enter</em> and <em>leave</em> to the process methods rather than the default <em>match</em> name because it clarifies what they do and allows to have <em>enter</em> and <em>leave</em> in the same class.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreePrinter</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> Space space = <span style="color:#00a">new</span> Space();
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Element element) {
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(space.<span style="color:#1e90ff">get</span>() + element);
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		space.<span style="color:#1e90ff">increment</span>();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Element element) {
+</span></span><span style="display:flex;"><span>		space.<span style="color:#1e90ff">decrement</span>();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We find a <em>Space</em> object to manage the space indents. Then we can define our concrete <em>TreeWalker</em> configured with <em>TreeTraversal</em> and <em>TreePrinter</em> objects and apply it to the previously defined <em>Room</em> object:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TreeWalker walker = <span style="color:#00a">new</span> TreeWalker();
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>TreeTraversal traversal = <span style="color:#00a">new</span> TreeTraversal();
+</span></span><span style="display:flex;"><span>TreePrinter printer = <span style="color:#00a">new</span> TreePrinter();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">traverse</span>().<span style="color:#1e90ff">add</span>(traversal, <span style="color:#a50">&#34;traverse&#34;</span>);
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">enter</span>().<span style="color:#1e90ff">add</span>(printer, <span style="color:#a50">&#34;enter&#34;</span>);
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">leave</span>().<span style="color:#1e90ff">add</span>(printer, <span style="color:#a50">&#34;leave&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">walk</span>(room);
+</span></span></code></pre></div><p>In this implementation, we preferred to give the names <em>traverse</em>, <em>enter</em> and <em>leave</em> to the process methods rather than the default <em>match</em> name because it clarifies what they do and allows to have <em>enter</em> and <em>leave</em> in the same class.</p>
 <h3 id="count-the-cars-in-boxes">Count the cars in boxes</h3>
 <p>Let&rsquo;s show that we can use our <em>TreeWalker</em> and <em>TreeTraversal</em> classes to define another algorithm on the <em>Element</em> tree objects. Now we want to count the number of <em>Car</em> objects in each <em>Box</em> object. Thus we define the class <em>TreeCarInBoxCounter</em> that prints the results:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeCarInBoxCounter</span> {
-
-	<span style="color:#00a">private</span> Deque&lt;Integer&gt; counters = <span style="color:#00a">new</span> ArrayDeque&lt;Integer&gt;();
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Element element) {
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Box box) {
-		counters.<span style="color:#1e90ff">push</span>(0);
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Car car) {
-		Integer count = counters.<span style="color:#1e90ff">pop</span>();
-		count++;
-		counters.<span style="color:#1e90ff">push</span>(count);
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Element element) {
-	}
-	
-	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Box box) {
-		<span style="color:#0aa">int</span> count = counters.<span style="color:#1e90ff">pop</span>();
-		
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(box + <span style="color:#a50">&#34; contains &#34;</span> + count + <span style="color:#a50">&#34; cars&#34;</span>);
-	}
-}
-</code></pre></div><p>We use it like the previous <em>TreePrinter</em> class:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">TreeWalker walker = <span style="color:#00a">new</span> TreeWalker();
-			
-TreeTraversal traversal = <span style="color:#00a">new</span> TreeTraversal();
-TreeCarInBoxCounter counter = <span style="color:#00a">new</span> TreeCarInBoxCounter();
-
-walker.<span style="color:#1e90ff">traverse</span>().<span style="color:#1e90ff">add</span>(traversal, <span style="color:#a50">&#34;traverse&#34;</span>);
-walker.<span style="color:#1e90ff">enter</span>().<span style="color:#1e90ff">add</span>(counter, <span style="color:#a50">&#34;enter&#34;</span>);
-walker.<span style="color:#1e90ff">leave</span>().<span style="color:#1e90ff">add</span>(counter, <span style="color:#a50">&#34;leave&#34;</span>);
-
-walker.<span style="color:#1e90ff">walk</span>(room);
-</code></pre></div><p>Easy right? And very flexible.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">public</span> <span style="color:#00a">class</span> <span style="color:#0a0;text-decoration:underline">TreeCarInBoxCounter</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">private</span> Deque&lt;Integer&gt; counters = <span style="color:#00a">new</span> ArrayDeque&lt;Integer&gt;();
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Element element) {
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Box box) {
+</span></span><span style="display:flex;"><span>		counters.<span style="color:#1e90ff">push</span>(0);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">enter</span>(Car car) {
+</span></span><span style="display:flex;"><span>		Integer count = counters.<span style="color:#1e90ff">pop</span>();
+</span></span><span style="display:flex;"><span>		count++;
+</span></span><span style="display:flex;"><span>		counters.<span style="color:#1e90ff">push</span>(count);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Element element) {
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">public</span> <span style="color:#0aa">void</span> <span style="color:#0a0">leave</span>(Box box) {
+</span></span><span style="display:flex;"><span>		<span style="color:#0aa">int</span> count = counters.<span style="color:#1e90ff">pop</span>();
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(box + <span style="color:#a50">&#34; contains &#34;</span> + count + <span style="color:#a50">&#34; cars&#34;</span>);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We use it like the previous <em>TreePrinter</em> class:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>TreeWalker walker = <span style="color:#00a">new</span> TreeWalker();
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>TreeTraversal traversal = <span style="color:#00a">new</span> TreeTraversal();
+</span></span><span style="display:flex;"><span>TreeCarInBoxCounter counter = <span style="color:#00a">new</span> TreeCarInBoxCounter();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">traverse</span>().<span style="color:#1e90ff">add</span>(traversal, <span style="color:#a50">&#34;traverse&#34;</span>);
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">enter</span>().<span style="color:#1e90ff">add</span>(counter, <span style="color:#a50">&#34;enter&#34;</span>);
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">leave</span>().<span style="color:#1e90ff">add</span>(counter, <span style="color:#a50">&#34;leave&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>walker.<span style="color:#1e90ff">walk</span>(room);
+</span></span></code></pre></div><p>Easy right? And very flexible.</p>
 <p>In this example we restricted the three multimethods to the dimension one but of course we could have added more dimensions if we wanted to pass other objects that may change the process.
 For instance we could have added another state object as seen in the <a href="../../docs/examples/strategy.html">strategy</a> example.</p>
 <p>This example shows once again that multimethods are <strong>adaptable</strong> to any programming problem and allow to have a good separation between class definitions and their behaviors: here the <em>Element</em> classes and the tree process methods.</p>
@@ -607,35 +530,10 @@ For instance we could have added another state object as seen in the <a href="..
 
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    
 
-
-
-
-
+<script src="../../js/main.min.be25a680a0d95dc8b5d6664622e2134aa894220e2f224ef609e00f633a3a1b32.js" integrity="sha256-viWmgKDZXci11mZGIuITSqiUIg4vIk72CeAPYzo6GzI=" crossorigin="anonymous"></script>
 <script src='../../js/tabpane-persist.js'></script>
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="../../js/main.min.5c74b870c6953931a705f390a49c7e4c0a842ec5c83b24354758dd674343ed0d.js" integrity="sha256-XHS4cMaVOTGnBfOQpJx&#43;TAqELsXIOyQ1R1jdZ0ND7Q0=" crossorigin="anonymous"></script>
-
-
-
 
   </body>
 </html>

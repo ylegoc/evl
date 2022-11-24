@@ -25,71 +25,70 @@
         &lt;p&gt;In the first part of the documentation &lt;a href=&#34;../../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt;, only &lt;em&gt;static match&lt;/em&gt; methods were registered and dispatched.
 The multimethods were thus &lt;em&gt;stateless&lt;/em&gt;. In this section we show how to make them &lt;strong&gt;stateful&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;dispatch-to-match-methods&#34;&gt;Dispatch to match methods&lt;/h3&gt;
-&lt;p&gt;The idea is to define a class with members that we can 
+&lt;p&gt;The idea is to define a class with members that we can
 access in the &lt;em&gt;match&lt;/em&gt; methods. Let&amp;rsquo;s take the class hierarchy defined in the &lt;a href=&#34;../../docs/the-multimethods.html&#34;&gt;the multimethods&lt;/a&gt; and now define a &lt;em&gt;CounterA&lt;/em&gt; class
 that processes only classes of the &lt;em&gt;A&lt;/em&gt; hierarchy i.e. &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;D&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterA&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; count = 0;
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A obj) {
-		count += 1;
-	}
-
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D obj) {
-		count += 2;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class is simply counting the objects by adding 1 for an object of type &lt;em&gt;A&lt;/em&gt; and 2 for an object of type &lt;em&gt;D&lt;/em&gt;.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterA&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; count = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A obj) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		count += 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(D obj) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		count += 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The class is simply counting the objects by adding 1 for an object of type &lt;em&gt;A&lt;/em&gt; and 2 for an object of type &lt;em&gt;D&lt;/em&gt;.
 Let&amp;rsquo;s use them:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;CounterA counterA = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CounterA();
-
-Method1&amp;lt;Void&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counterA);
-
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a);
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(d);
-	
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter A: &amp;#34;&lt;/span&gt; + counterA.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time we simply added the object &lt;em&gt;counterA&lt;/em&gt; to the multimethod. The methods &lt;em&gt;match(A)&lt;/em&gt; and &lt;em&gt;match(D)&lt;/em&gt; are automatically added and we can apply the multimethod to the objects &lt;em&gt;a&lt;/em&gt; and &lt;em&gt;d&lt;/em&gt; but not the others because an exception would be thrown. Then we can access to the counter and we get 3 (1 + 2).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CounterA counterA = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CounterA();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;Void&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counterA);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(d);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter A: &amp;#34;&lt;/span&gt; + counterA.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time we simply added the object &lt;em&gt;counterA&lt;/em&gt; to the multimethod. The methods &lt;em&gt;match(A)&lt;/em&gt; and &lt;em&gt;match(D)&lt;/em&gt; are automatically added and we can apply the multimethod to the objects &lt;em&gt;a&lt;/em&gt; and &lt;em&gt;d&lt;/em&gt; but not the others because an exception would be thrown. Then we can access to the counter and we get 3 (1 + 2).&lt;/p&gt;
 &lt;p&gt;This example shows the dispatch to one object so that the multimethod can be considered as a &lt;em&gt;command&lt;/em&gt;. In fact we can dispatch to any number of objects. Let&amp;rsquo;s define another class counting the objects from the &lt;em&gt;B&lt;/em&gt; hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterB&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; count = 0;
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B obj) {
-		count += 10;
-	}
-
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C obj) {
-		count += 11;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s instantiate it, add it to the multimethod and invoke this time through the iteration of an array of object:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;CounterB counterB = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CounterB();
-
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counterB);
-	
-I[] objs = {a, b, c, d};
-	
-&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (I obj : objs) {
-	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(obj);
-}
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter A: &amp;#34;&lt;/span&gt; + counterA.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter B: &amp;#34;&lt;/span&gt; + counterB.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No surprise, the counter for &lt;em&gt;A&lt;/em&gt; is 6 (3 + 1 + 2) and 21 for &lt;em&gt;B&lt;/em&gt; (10 + 11). We showed how the multimethods can dispatch to a number of objects and be &lt;strong&gt;stateful&lt;/strong&gt;, the objects being stateful.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;CounterB&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; count = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B obj) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		count += 10;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C obj) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		count += 11;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Let&amp;rsquo;s instantiate it, add it to the multimethod and invoke this time through the iteration of an array of object:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;CounterB counterB = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; CounterB();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(counterB);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;I[] objs = {a, b, c, d};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;for&lt;/span&gt; (I obj : objs) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(obj);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter A: &amp;#34;&lt;/span&gt; + counterA.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Counter B: &amp;#34;&lt;/span&gt; + counterB.&lt;span style=&#34;color:#1e90ff&#34;&gt;count&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;No surprise, the counter for &lt;em&gt;A&lt;/em&gt; is 6 (3 + 1 + 2) and 21 for &lt;em&gt;B&lt;/em&gt; (10 + 11). We showed how the multimethods can dispatch to a number of objects and be &lt;strong&gt;stateful&lt;/strong&gt;, the objects being stateful.&lt;/p&gt;
 &lt;h3 id=&#34;dispatch-to-any-method&#34;&gt;Dispatch to any method&lt;/h3&gt;
 &lt;p&gt;It is not mandatory to add methods that have the name &lt;em&gt;match&lt;/em&gt;. In fact it is possible to dispatch to any method but you will have to give the name.
 To add all the &lt;em&gt;process&lt;/em&gt; methods of the object &lt;em&gt;agent&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(agent, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;process&amp;#34;&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add the &lt;em&gt;process(A, int)&lt;/em&gt; method of the object &lt;em&gt;agent&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(agent, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;process&amp;#34;&lt;/span&gt;, A.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add all the static &lt;em&gt;foo&lt;/em&gt; methods of the class &lt;em&gt;Agent&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(Agent.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add the static &lt;em&gt;foo(B, C)&lt;/em&gt; method of the class &lt;em&gt;Agent&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(Agent.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, C.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This lets the freedom to dispatch to any method static or not of any object or class: the EVL multimethod library is flexible.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(agent, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;process&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add the &lt;em&gt;process(A, int)&lt;/em&gt; method of the object &lt;em&gt;agent&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(agent, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;process&amp;#34;&lt;/span&gt;, A.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add all the static &lt;em&gt;foo&lt;/em&gt; methods of the class &lt;em&gt;Agent&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(Agent.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;To add the static &lt;em&gt;foo(B, C)&lt;/em&gt; method of the class &lt;em&gt;Agent&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(Agent.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;foo&amp;#34;&lt;/span&gt;, B.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, C.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This lets the freedom to dispatch to any method static or not of any object or class: the EVL multimethod library is flexible.&lt;/p&gt;
 
       </description>
     </item>
@@ -105,72 +104,72 @@ To add all the &lt;em&gt;process&lt;/em&gt; methods of the object &lt;em&gt;agen
         
         &lt;p&gt;In standard Java, it is not possible to define a method in an interface. With the EVL multimethods, it is now possible to do it.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take the following hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IA&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;();
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IA {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
-	}
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IB&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;();
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IB {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2.&lt;span style=&#34;color:#1e90ff&#34;&gt;1f&lt;/span&gt;;
-	}
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IA, IB {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 4;
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 35.&lt;span style=&#34;color:#1e90ff&#34;&gt;9f&lt;/span&gt;;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s define the following multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(IA a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;();
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(IB b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;)b.&lt;span style=&#34;color:#1e90ff&#34;&gt;getB&lt;/span&gt;();
-	}
-	
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The multimethod defines methods for the interfaces &lt;em&gt;IA&lt;/em&gt; and &lt;em&gt;IB&lt;/em&gt; in which we can access to the methods &lt;em&gt;getA()&lt;/em&gt; and &lt;em&gt;getB()&lt;/em&gt;.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IA&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IA {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;IB&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IB {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2.&lt;span style=&#34;color:#1e90ff&#34;&gt;1f&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; IA, IB {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getA&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 4;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;float&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;getB&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 35.&lt;span style=&#34;color:#1e90ff&#34;&gt;9f&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s define the following multimethod:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(IA a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(IB b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;)b.&lt;span style=&#34;color:#1e90ff&#34;&gt;getB&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The multimethod defines methods for the interfaces &lt;em&gt;IA&lt;/em&gt; and &lt;em&gt;IB&lt;/em&gt; in which we can access to the methods &lt;em&gt;getA()&lt;/em&gt; and &lt;em&gt;getB()&lt;/em&gt;.
 Let&amp;rsquo;s apply the multimethod to the three objects &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt; and &lt;em&gt;c&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Object a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
-Object b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
-Object c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;C: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Without surprise we obtain 1 for &lt;em&gt;A&lt;/em&gt; and 2 for &lt;em&gt;B&lt;/em&gt;. However the call to &lt;em&gt;c&lt;/em&gt; throws an exception: the call is ambiguous. It is not possible to decide between &lt;em&gt;IA&lt;/em&gt; and &lt;em&gt;IC&lt;/em&gt;.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Object a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Object b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Object c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;C: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Without surprise we obtain 1 for &lt;em&gt;A&lt;/em&gt; and 2 for &lt;em&gt;B&lt;/em&gt;. However the call to &lt;em&gt;c&lt;/em&gt; throws an exception: the call is ambiguous. It is not possible to decide between &lt;em&gt;IA&lt;/em&gt; and &lt;em&gt;IC&lt;/em&gt;.
 Both interfaces are at distance 1 from &lt;em&gt;C&lt;/em&gt; and the lexicographic comparator provides equality. Indeed we saw in the previous sections that the asymmetric comparator was providing less
 ambiguities than the symmetric comparator. Here is the proof that the asymmetric comparator is not ambiguity free.&lt;/p&gt;
 &lt;p&gt;We resolve the ambiguity by adding a method for &lt;em&gt;C&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-			
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;() + (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;)c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getB&lt;/span&gt;();
-	}
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The ambiguity is resolved and we obtain 39 (4 + 35) for &lt;em&gt;C&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getA&lt;/span&gt;() + (&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;)c.&lt;span style=&#34;color:#1e90ff&#34;&gt;getB&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The ambiguity is resolved and we obtain 39 (4 + 35) for &lt;em&gt;C&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The EVL multimethod library is &lt;strong&gt;flexible&lt;/strong&gt; and allows to define methods for &lt;strong&gt;interfaces&lt;/strong&gt;. However in case of multiple inheritance of interfaces, &lt;strong&gt;ambiguities&lt;/strong&gt; can happen and even in the case of the default asymmetric comparator.&lt;/p&gt;
 
       </description>
@@ -191,68 +190,68 @@ By default, an empty multimethod does not define the expected return type, and n
 They are defined by the &lt;strong&gt;first method added&lt;/strong&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;return-type&#34;&gt;Return type&lt;/h3&gt;
 &lt;p&gt;Let&amp;rsquo;s take the following hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
-
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
-
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; id = 7;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And a similar hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RI&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;();
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RA&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; RI {
-
-	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;
-	}
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RB&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; RI {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; value;
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;RB&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; value) {
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;value&lt;/span&gt; = value;
-	}
-
-	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; value;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We want to define a factory that builds a &lt;em&gt;RA&lt;/em&gt; object from an &lt;em&gt;A&lt;/em&gt; object and a &lt;em&gt;RB&lt;/em&gt; object from an &lt;em&gt;B&lt;/em&gt; object.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;I&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; I {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; id = 7;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And a similar hierarchy:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;interface&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RI&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RA&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; RI {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;RB&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;implements&lt;/span&gt; RI {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;RB&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; value) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;value&lt;/span&gt; = value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#888&#34;&gt;@Override&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;get&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; value;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We want to define a factory that builds a &lt;em&gt;RA&lt;/em&gt; object from an &lt;em&gt;A&lt;/em&gt; object and a &lt;em&gt;RB&lt;/em&gt; object from an &lt;em&gt;B&lt;/em&gt; object.
 Here is the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	RA &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RA();  
-	}
-	
-	RB &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RB(b.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;);  
-	}
-	
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We defined the &lt;em&gt;match()&lt;/em&gt; methods for &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt; with different return types and we added a call to &lt;em&gt;returnType()&lt;/em&gt; by passing the class &lt;em&gt;RI&lt;/em&gt;. If we omit this call, we will get an exception in the &lt;em&gt;add()&lt;/em&gt; call. Otherwise the return type is defined at the first insertion (&lt;em&gt;RA&lt;/em&gt;) and the return type &lt;em&gt;RB&lt;/em&gt; of the second &lt;em&gt;match()&lt;/em&gt; is different from &lt;em&gt;RA&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	RA &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RA();  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	RB &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RB(b.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt;);  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We defined the &lt;em&gt;match()&lt;/em&gt; methods for &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt; with different return types and we added a call to &lt;em&gt;returnType()&lt;/em&gt; by passing the class &lt;em&gt;RI&lt;/em&gt;. If we omit this call, we will get an exception in the &lt;em&gt;add()&lt;/em&gt; call. Otherwise the return type is defined at the first insertion (&lt;em&gt;RA&lt;/em&gt;) and the return type &lt;em&gt;RB&lt;/em&gt; of the second &lt;em&gt;match()&lt;/em&gt; is different from &lt;em&gt;RA&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;We can use the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
-I b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we will get 3 for &lt;em&gt;A&lt;/em&gt; and 7 for &lt;em&gt;B&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;I a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;I b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b).&lt;span style=&#34;color:#1e90ff&#34;&gt;get&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And we will get 3 for &lt;em&gt;A&lt;/em&gt; and 7 for &lt;em&gt;B&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;You surely noticed that the &lt;em&gt;RI&lt;/em&gt; class is specified twice for the return type in our multimethod:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;By the generic type&lt;/li&gt;
@@ -260,40 +259,40 @@ System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style
 &lt;/ul&gt;
 &lt;p&gt;The generic type is for the compilation phase and the other place is for the execution. Java does not provide a way to define both at once.&lt;/p&gt;
 &lt;p&gt;Notice that we defined a &lt;em&gt;virtual&lt;/em&gt; method by implementing &lt;em&gt;get()&lt;/em&gt; from &lt;em&gt;RI&lt;/em&gt;. We can avoid this by defining a multimethod instead:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;Integer&amp;gt; print = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(RA a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;  
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(RB b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;value&lt;/span&gt;;  
-	}
-	
-});
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a)));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b)));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example shows a chain of calls to multimethods.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;Integer&amp;gt; print = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(RA a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(RB b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;value&lt;/span&gt;;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a)));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;B: &amp;#34;&lt;/span&gt; + print.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(method.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b)));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This example shows a chain of calls to multimethods.&lt;/p&gt;
 &lt;h3 id=&#34;non-virtual-parameter-types&#34;&gt;Non-virtual parameter types&lt;/h3&gt;
 &lt;p&gt;To specify the non-virtual parameter types before the first insertion, the method &lt;em&gt;nonVirtualParameterTypes()&lt;/em&gt; can be called:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, String.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
-		
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	RA &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i, String name) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RA();
-	}
-	
-	RB &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i, String name) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RB(b.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + i + name.&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;());  
-	}
-	
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Compared to the first factory multimethod, we added the parameters &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;name&lt;/em&gt; so that our match methods have 3 parameters, the first one is the &lt;em&gt;virtual&lt;/em&gt; parameter and the last ones are the &lt;em&gt;non-virtual&lt;/em&gt; parameters. Notice that the type &lt;em&gt;Integer&lt;/em&gt; is not compatible with &lt;em&gt;int&lt;/em&gt; here.&lt;/p&gt;
-&lt;p&gt;The EVL library offers a way to &lt;strong&gt;control the signature&lt;/strong&gt; of the &lt;em&gt;match()&lt;/em&gt; methods, however these controls can only be done at &lt;strong&gt;runtime&lt;/strong&gt;. 
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;RI&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;RI&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;returnType&lt;/span&gt;(RI.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;nonVirtualParameterTypes&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;, String.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	RA &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i, String name) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RA();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	RB &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i, String name) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; RB(b.&lt;span style=&#34;color:#1e90ff&#34;&gt;id&lt;/span&gt; + i + name.&lt;span style=&#34;color:#1e90ff&#34;&gt;length&lt;/span&gt;());  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Compared to the first factory multimethod, we added the parameters &lt;em&gt;i&lt;/em&gt; and &lt;em&gt;name&lt;/em&gt; so that our match methods have 3 parameters, the first one is the &lt;em&gt;virtual&lt;/em&gt; parameter and the last ones are the &lt;em&gt;non-virtual&lt;/em&gt; parameters. Notice that the type &lt;em&gt;Integer&lt;/em&gt; is not compatible with &lt;em&gt;int&lt;/em&gt; here.&lt;/p&gt;
+&lt;p&gt;The EVL library offers a way to &lt;strong&gt;control the signature&lt;/strong&gt; of the &lt;em&gt;match()&lt;/em&gt; methods, however these controls can only be done at &lt;strong&gt;runtime&lt;/strong&gt;.
 For the return type it is possible to control at compilation but it is redundant with the control at runtime. These limitations are due to the Java language specifications.&lt;/p&gt;
 
       </description>
@@ -310,38 +309,38 @@ For the return type it is possible to control at compilation but it is redundant
         
         &lt;p&gt;The EVL library provides the &lt;em&gt;Switch&lt;/em&gt; class which is a &lt;strong&gt;syntactic sugar&lt;/strong&gt; for a multimethod of dimension 1 with &lt;em&gt;void&lt;/em&gt; return type.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s take a simple hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Switch&lt;/em&gt; class implements a general switch construct based on the dynamic type. We add a non-virtual parameter to show that it is accepted :&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Switch test = Switch.&lt;span style=&#34;color:#1e90ff&#34;&gt;with&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-				
-	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Integer i, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
-		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Integer &amp;#34;&lt;/span&gt; + (i + v));
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
-		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;String &amp;#34;&lt;/span&gt; + s + v);
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
-		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A &amp;#34;&lt;/span&gt; + (a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + v));
-	}
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can use it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(12), 3);
-test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; String(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;beautiful&amp;#34;&lt;/span&gt;), 11);
-test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(5), 4);
-test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Float.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(13.&lt;span style=&#34;color:#1e90ff&#34;&gt;1f&lt;/span&gt;), 5);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything will be fine except for the last invocation: there is no compatible method because a &lt;em&gt;Float&lt;/em&gt; object cannot be cast into an &lt;em&gt;Integer&lt;/em&gt; object.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Switch&lt;/em&gt; class implements a general switch construct based on the dynamic type. We add a non-virtual parameter to show that it is accepted :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Switch test = Switch.&lt;span style=&#34;color:#1e90ff&#34;&gt;with&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;				
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(Integer i, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;Integer &amp;#34;&lt;/span&gt; + (i + v));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(String s, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;String &amp;#34;&lt;/span&gt; + s + v);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a, &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; v) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;A &amp;#34;&lt;/span&gt; + (a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + v));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We can use it:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Integer.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(12), 3);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; String(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;beautiful&amp;#34;&lt;/span&gt;), 11);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(5), 4);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;test.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(Float.&lt;span style=&#34;color:#1e90ff&#34;&gt;valueOf&lt;/span&gt;(13.&lt;span style=&#34;color:#1e90ff&#34;&gt;1f&lt;/span&gt;), 5);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything will be fine except for the last invocation: there is no compatible method because a &lt;em&gt;Float&lt;/em&gt; object cannot be cast into an &lt;em&gt;Integer&lt;/em&gt; object.&lt;/p&gt;
 &lt;p&gt;The &lt;em&gt;Switch&lt;/em&gt; class can be used anywhere with any &lt;strong&gt;basic types&lt;/strong&gt;, however only in their &lt;em&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/em&gt; &lt;strong&gt;form&lt;/strong&gt; preventing from number casting.
 This rule also applies to standard multimethods.&lt;/p&gt;
 
@@ -360,69 +359,69 @@ This rule also applies to standard multimethods.&lt;/p&gt;
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the &lt;strong&gt;open&lt;/strong&gt; access here where a multimethod can be invoked and extended anywhere.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s illustrate this by a simple: we want to define a general &lt;em&gt;print&lt;/em&gt; method that returns a String.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s start by the simple class hierarchy as in previous page:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We define a &lt;em&gt;Print&lt;/em&gt; class in which we define a static method &lt;em&gt;method()&lt;/em&gt; returning the multimethod:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Print&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;String&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;String&amp;gt;();
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;String&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;method&lt;/span&gt;() {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; method;
-	}
-	
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have named the method accessing the singleton &lt;em&gt;getInstance()&lt;/em&gt; as it is often the case in Java, however we think that a multimethod is a special class that can have a special accessor name. The advantage with &lt;em&gt;m&lt;/em&gt; is that when reading, the eye is focused on &lt;em&gt;Print&lt;/em&gt;. Moreover it can clearly identify that this is a global multimethod.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We define a &lt;em&gt;Print&lt;/em&gt; class in which we define a static method &lt;em&gt;method()&lt;/em&gt; returning the multimethod:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Print&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;String&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;String&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; Method1&amp;lt;String&amp;gt; &lt;span style=&#34;color:#0a0&#34;&gt;method&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; method;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We could have named the method accessing the singleton &lt;em&gt;getInstance()&lt;/em&gt; as it is often the case in Java, however we think that a multimethod is a special class that can have a special accessor name. The advantage with &lt;em&gt;m&lt;/em&gt; is that when reading, the eye is focused on &lt;em&gt;Print&lt;/em&gt;. Moreover it can clearly identify that this is a global multimethod.&lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s feed our multimethod. This can now be done anywhere:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-			
-	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ A a:&amp;#34;&lt;/span&gt; + a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
-	}
-	
-	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ B a:&amp;#34;&lt;/span&gt; + b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
-	}
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s apply it to some objects:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
-B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(3);
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything is fine and now we define another class somewhere else:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; c;
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; A a;
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;C&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; c, A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;c&lt;/span&gt; = c;
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The particularity of &lt;em&gt;C&lt;/em&gt; is that it has a member of type &lt;em&gt;A&lt;/em&gt;. So we can combine the print methods and extend the &lt;em&gt;Print&lt;/em&gt; multimethod to &lt;em&gt;C&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ C c:&amp;#34;&lt;/span&gt; + c.&lt;span style=&#34;color:#1e90ff&#34;&gt;c&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; a:&amp;#34;&lt;/span&gt; + Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt;) + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
-	}
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to call &lt;em&gt;Print.method().invoke()&lt;/em&gt; on the &lt;em&gt;a&lt;/em&gt; member and add &lt;em&gt;Throwable&lt;/em&gt; in the throwable exceptions. We also could have caught the exception if this is a possible case.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ A a:&amp;#34;&lt;/span&gt; + a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ B a:&amp;#34;&lt;/span&gt; + b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;And now let&amp;rsquo;s apply it to some objects:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B(3);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Everything is fine and now we define another class somewhere else:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;C&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; A a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;C&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; c, A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;c&lt;/span&gt; = c;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The particularity of &lt;em&gt;C&lt;/em&gt; is that it has a member of type &lt;em&gt;A&lt;/em&gt;. So we can combine the print methods and extend the &lt;em&gt;Print&lt;/em&gt; multimethod to &lt;em&gt;C&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	String &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;{ C c:&amp;#34;&lt;/span&gt; + c.&lt;span style=&#34;color:#1e90ff&#34;&gt;c&lt;/span&gt; + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; a:&amp;#34;&lt;/span&gt; + Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt;) + &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34; }&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We need to call &lt;em&gt;Print.method().invoke()&lt;/em&gt; on the &lt;em&gt;a&lt;/em&gt; member and add &lt;em&gt;Throwable&lt;/em&gt; in the throwable exceptions. We also could have caught the exception if this is a possible case.
 Now we can apply it to a &lt;em&gt;C&lt;/em&gt; object:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;C c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C(5, b);
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We showed how to write &lt;strong&gt;global&lt;/strong&gt; multimethods. That can be useful when the multimethod is general and can interest developers of different packages.&lt;br&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;C c = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; C(5, b);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(Print.&lt;span style=&#34;color:#1e90ff&#34;&gt;method&lt;/span&gt;().&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(c));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;We showed how to write &lt;strong&gt;global&lt;/strong&gt; multimethods. That can be useful when the multimethod is general and can interest developers of different packages.&lt;br&gt;
 However, it also means that another code can extend the multimethod.&lt;/p&gt;
 
       </description>
@@ -439,35 +438,35 @@ However, it also means that another code can extend the multimethod.&lt;/p&gt;
         
         &lt;p&gt;As EVL multimethods are objects, they can be either &lt;strong&gt;global&lt;/strong&gt; i.e. accessible anywhere or &lt;strong&gt;local&lt;/strong&gt; and protected to a class hierarchy. It will depend of course on what you want to do with your multimethod. We present the local access here where a multimethod is a &lt;strong&gt;protected&lt;/strong&gt; member of a class.&lt;/p&gt;
 &lt;p&gt;As in &lt;a href=&#34;../../docs/more-features/open-access.html&#34;&gt;open access&lt;/a&gt;, we need a simple class hierarchy:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
-}
-
-&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But this time, the multimethod definition is done inside a class:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method1&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;();
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Class&lt;/span&gt;() {
-		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;fooMatch&amp;#34;&lt;/span&gt;);
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt;;
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; m.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Class&lt;/em&gt; class is the first class of a hierarchy to use a multimethod:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;A&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a = 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; A {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;B&lt;/span&gt;(&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; = a;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But this time, the multimethod definition is done inside a class:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method1&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Integer&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Class&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;fooMatch&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; m.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(a);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;em&gt;Class&lt;/em&gt; class is the first class of a hierarchy to use a multimethod:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The multimethod &lt;em&gt;m&lt;/em&gt; is a member.&lt;/li&gt;
 &lt;li&gt;The method &lt;em&gt;foo(A)&lt;/em&gt; is the public access to the multimethod. It simply forwards the call to &lt;em&gt;m&lt;/em&gt;.&lt;/li&gt;
@@ -476,76 +475,76 @@ However, it also means that another code can extend the multimethod.&lt;/p&gt;
 &lt;li&gt;In the constructor, &lt;em&gt;m&lt;/em&gt; is feed with all the methods named &lt;em&gt;fooMatch()&lt;/em&gt; called with the object &lt;em&gt;this&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The class can be directly tested with objects of type &lt;em&gt;A&lt;/em&gt; and &lt;em&gt;B&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
-B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
-
-Class c1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Class();
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on a: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on b: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s extend &lt;em&gt;Class&lt;/em&gt; into the class &lt;em&gt;ExtendedClass&lt;/em&gt; which defines a new match method for &lt;em&gt;B&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class {
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 4;
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;ExtendedClass&lt;/span&gt;() {
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + i + fooMatch((A)b);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This implementation shows:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;A a = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; A();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;B b = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; B();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Class c1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Class();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on a: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;c1.foo on b: &amp;#34;&lt;/span&gt; + c1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now let&amp;rsquo;s extend &lt;em&gt;Class&lt;/em&gt; into the class &lt;em&gt;ExtendedClass&lt;/em&gt; which defines a new match method for &lt;em&gt;B&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; i = 4;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;ExtendedClass&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + i + fooMatch((A)b);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This implementation shows:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The method &lt;em&gt;fooMatch(B)&lt;/em&gt; can use the &lt;em&gt;i&lt;/em&gt; member as well as call &lt;em&gt;fooMatch(A)&lt;/em&gt; defined in &lt;em&gt;Class&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;There is nothing to do in the constructor. The &lt;em&gt;Class&lt;/em&gt; constructor is called before and all the &lt;em&gt;fooMatch()&lt;/em&gt; methods are added to &lt;em&gt;m&lt;/em&gt; including &lt;em&gt;fooMatch(B)&lt;/em&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We can test it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ExtendedClass e1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass();
-	
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on a: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on b: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time the call to &lt;em&gt;b&lt;/em&gt; is dispatched to &lt;em&gt;fooMatch(B)&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ExtendedClass e1 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on a: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(a));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e1.foo on b: &amp;#34;&lt;/span&gt; + e1.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This time the call to &lt;em&gt;b&lt;/em&gt; is dispatched to &lt;em&gt;fooMatch(B)&lt;/em&gt;.&lt;/p&gt;
 &lt;h3 id=&#34;extend-to-the-dimension-two&#34;&gt;Extend to the dimension two&lt;/h3&gt;
 &lt;p&gt;Now we want to extend the internal multimethod to dimension two. We define an &lt;em&gt;Operator&lt;/em&gt; hierarchy that will be used as second &lt;em&gt;virtual parameter&lt;/em&gt; to the multimethod.
 The definition of &lt;em&gt;Class2&lt;/em&gt; is a bit longer:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class2&lt;/span&gt; {
-
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Integer&amp;gt;();
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Operator&lt;/span&gt; {};
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Add&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Operator {};
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Multiply&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Operator {};
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Operator operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Add();
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setAddOperator&lt;/span&gt;() {
-		operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Add();
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setMultiplyOperator&lt;/span&gt;() {
-		operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Multiply();
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Add op, A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + 2;
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Multiply op, A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; * 2;
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Class2&lt;/span&gt;() {
-		
-		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;access&lt;/span&gt;(Class2.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
-		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;fooMatch&amp;#34;&lt;/span&gt;);
-	}
-	
-	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(A a) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; m.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(operator, a);
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It contains:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Class2&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Method2&amp;lt;Integer&amp;gt; m = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method2&amp;lt;Integer&amp;gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Operator&lt;/span&gt; {};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Add&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Operator {};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;Multiply&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Operator {};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; Operator operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Add();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setAddOperator&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Add();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;setMultiplyOperator&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		operator = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Multiply();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Add op, A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Multiply op, A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; a.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; * 2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;Class2&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;access&lt;/span&gt;(Class2.&lt;span style=&#34;color:#1e90ff&#34;&gt;class&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		m.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;fooMatch&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;foo&lt;/span&gt;(A a) &lt;span style=&#34;color:#00a&#34;&gt;throws&lt;/span&gt; Throwable {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; m.&lt;span style=&#34;color:#1e90ff&#34;&gt;invoke&lt;/span&gt;(operator, a);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;It contains:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The definition of the multimethod of dimension two &lt;em&gt;m&lt;/em&gt;.&lt;/li&gt;
 &lt;li&gt;The definition of the &lt;em&gt;Operator&lt;/em&gt; classes with concrete classes &lt;em&gt;Add&lt;/em&gt; and &lt;em&gt;Multiply&lt;/em&gt;.&lt;/li&gt;
@@ -555,26 +554,26 @@ The definition of &lt;em&gt;Class2&lt;/em&gt; is a bit longer:&lt;/p&gt;
 &lt;li&gt;The &lt;em&gt;foo(A)&lt;/em&gt; method that is the front method forwarding to the multimethod. The &lt;em&gt;operator&lt;/em&gt; parameter is hidden to the user of the method.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This class is easily extended to process &lt;em&gt;B&lt;/em&gt; objects:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass2&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class2 {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Add op, B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + 3;
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Multiply op, B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; * 3;
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Only &lt;em&gt;fooMatch()&lt;/em&gt; methods with new tuples (&lt;em&gt;Add&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) and (&lt;em&gt;Multiply&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) are added.
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#0a0;text-decoration:underline&#34;&gt;ExtendedClass2&lt;/span&gt; &lt;span style=&#34;color:#00a&#34;&gt;extends&lt;/span&gt; Class2 {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Add op, B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; + 3;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;fooMatch&lt;/span&gt;(Multiply op, B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; b.&lt;span style=&#34;color:#1e90ff&#34;&gt;a&lt;/span&gt; * 3;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Only &lt;em&gt;fooMatch()&lt;/em&gt; methods with new tuples (&lt;em&gt;Add&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) and (&lt;em&gt;Multiply&lt;/em&gt;, &lt;em&gt;B&lt;/em&gt;) are added.
 We test it:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;ExtendedClass2 e2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass2();
-			
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e2.foo on b: &amp;#34;&lt;/span&gt; + e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
-
-e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setMultiplyOperator&lt;/span&gt;();
-
-System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e2.foo on b: &amp;#34;&lt;/span&gt; + e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First call to &lt;em&gt;foo()&lt;/em&gt; is made with the default value of &lt;em&gt;operator&lt;/em&gt;. Then it is changed by the call to &lt;em&gt;setMultiplyOperator()&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ExtendedClass2 e2 = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; ExtendedClass2();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e2.foo on b: &amp;#34;&lt;/span&gt; + e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;setMultiplyOperator&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;System.&lt;span style=&#34;color:#1e90ff&#34;&gt;out&lt;/span&gt;.&lt;span style=&#34;color:#1e90ff&#34;&gt;println&lt;/span&gt;(&lt;span style=&#34;color:#a50&#34;&gt;&amp;#34;e2.foo on b: &amp;#34;&lt;/span&gt; + e2.&lt;span style=&#34;color:#1e90ff&#34;&gt;foo&lt;/span&gt;(b));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;First call to &lt;em&gt;foo()&lt;/em&gt; is made with the default value of &lt;em&gt;operator&lt;/em&gt;. Then it is changed by the call to &lt;em&gt;setMultiplyOperator()&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;These two examples show how it is easy to use an &lt;strong&gt;inner&lt;/strong&gt; multimethod to implement a new dispatch.
 This dispatch can be extended making it fully &lt;strong&gt;compatible&lt;/strong&gt; with usual Java &lt;strong&gt;inheritance&lt;/strong&gt;.&lt;/p&gt;
 
@@ -592,48 +591,48 @@ This dispatch can be extended making it fully &lt;strong&gt;compatible&lt;/stron
         
         &lt;p&gt;By default, EVL multimethods are permissive and allow to override and extend existing match methods. However it is possible to restrict and emulate the &amp;ldquo;final&amp;rdquo; qualifier.&lt;/p&gt;
 &lt;p&gt;First it is possible to define a multimethod that is &lt;strong&gt;not overridable&lt;/strong&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;notOverridable&lt;/span&gt;()
-		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;  
-	}
-	
-	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
-		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2;  
-	}
-	
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This way, trying to add a new match method for &lt;em&gt;A&lt;/em&gt; or &lt;em&gt;B&lt;/em&gt; will lead to the throw of a &lt;em&gt;MethodNotAddedException&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
-	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
-			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;  
-		}
-}
-&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
-	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Second it is possible to make the multimethod &lt;strong&gt;final&lt;/strong&gt; meaning that it is not possible to extend it anymore:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-method.&lt;span style=&#34;color:#1e90ff&#34;&gt;setFinal&lt;/span&gt;();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So that add a new match method will lead to the throw of a &lt;em&gt;MethodNotAddedException&lt;/em&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;
-&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
-	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
-	
-		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) {
-			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;  
-		}
-}
-&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
-	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once the multimethod is set final, it is impossible to go back and it will remain final for the rest of its existence.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;Method1&amp;lt;Integer&amp;gt; method = &lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Method1&amp;lt;Void&amp;gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;notOverridable&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(B b) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 2;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;});
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This way, trying to add a new match method for &lt;em&gt;A&lt;/em&gt; or &lt;em&gt;B&lt;/em&gt; will lead to the throw of a &lt;em&gt;MethodNotAddedException&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(A a) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 1;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Second it is possible to make the multimethod &lt;strong&gt;final&lt;/strong&gt; meaning that it is not possible to extend it anymore:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;method.&lt;span style=&#34;color:#1e90ff&#34;&gt;setFinal&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;So that add a new match method will lead to the throw of a &lt;em&gt;MethodNotAddedException&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;try&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	method.&lt;span style=&#34;color:#1e90ff&#34;&gt;add&lt;/span&gt;(&lt;span style=&#34;color:#00a&#34;&gt;new&lt;/span&gt; Cases() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		&lt;span style=&#34;color:#0aa&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#0a0&#34;&gt;match&lt;/span&gt;(C c) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;			&lt;span style=&#34;color:#00a&#34;&gt;return&lt;/span&gt; 3;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;		}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#00a&#34;&gt;catch&lt;/span&gt; (Throwable e) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	e.&lt;span style=&#34;color:#1e90ff&#34;&gt;printStackTrace&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Once the multimethod is set final, it is impossible to go back and it will remain final for the rest of its existence.&lt;/p&gt;
 
       </description>
     </item>

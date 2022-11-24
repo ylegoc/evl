@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.85.0" /><META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+<meta name="generator" content="Hugo 0.106.0">
+<meta name="robots" content="index, follow">
 
 
 <link rel="shortcut icon" href="../../favicons/favicon.ico" >
@@ -18,19 +19,17 @@
 <link rel="icon" type="image/png" href="../../favicons/android-192x192.png" sizes="192x192">
 
 <title>Visitor | </title>
-
-
-  <meta name="description" content="Visit without entering">
+<meta name="description" content="Visit without entering">
 <meta property="og:title" content="Visitor" />
 <meta property="og:description" content="Visit without entering" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/docs/examples/visitor.html" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2021-10-10T13:33:19+02:00" />
+<meta property="article:modified_time" content="2022-11-15T11:44:04+01:00" />
 
 <meta itemprop="name" content="Visitor">
 <meta itemprop="description" content="Visit without entering">
-<meta itemprop="dateModified" content="2021-10-10T13:33:19+02:00" />
+<meta itemprop="dateModified" content="2022-11-15T11:44:04+01:00" />
 <meta itemprop="wordCount" content="702">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Visitor"/>
@@ -39,16 +38,13 @@
 
 
 
-<link rel="preload" href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" as="style">
-<link href="../../scss/main.min.4f8223efbb2c711f4a11ec1de7c4f31fbb8d618b49c0f25bccb83951765705fc.css" rel="stylesheet" integrity="">
-
+<link rel="preload" href="../../scss/main.min.ce94b946b7605b8568883507e50ba772f97fabd6660cfa4a75e5f6a7d3632e37.css" as="style">
+<link href="../../scss/main.min.ce94b946b7605b8568883507e50ba772f97fabd6660cfa4a75e5f6a7d3632e37.css" rel="stylesheet" integrity="">
 
 <script
-  src="https://code.jquery.com/jquery-3.5.1.min.js"
-  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
   crossorigin="anonymous"></script>
-
-
 <style>
 
 	a {
@@ -67,72 +63,31 @@
 
 </style>
 
-
-
-
-
-
-
-
   </head>
   <body class="td-page">
     <header>
-      
-<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
-        <a class="navbar-brand" href="../../">
-		<span class="navbar-logo"><svg version="1.2" baseProfile="tiny" width="43mm" height="43mm" viewBox="7450 5250 4300 4300" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink"><defs class="ClipPathGroup"><clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse"><rect x="7450" y="5250" width="4300" height="4300"/></clipPath></defs><defs><font id="EmbeddedFont_1" horiz-adv-x="2048"><font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/><missing-glyph horiz-adv-x="2048" d="M0 0H2047V2047H0V0z"/><glyph unicode="v" horiz-adv-x="1271" d="M31 1120H389L668 346l278 774h359L864 0H471L31 1120z"/><glyph unicode="l" horiz-adv-x="345" d="M172 1556H530V0H172V1556z"/><glyph unicode="E" horiz-adv-x="1033" d="M188 1493H1227V1202H573V924h615V633H573V291h676V0H188V1493z"/></font></defs><defs class="TextShapeIndex"><g ooo:slide="id1" ooo:id-list="id3 id4 id5"/></defs><defs class="EmbeddedBulletChars"><g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)"><path d="M580 1141l583-570L580 0-4 571l584 570z"/></g><g id="bullet-char-template(57354)" transform="scale(0.00048828125,-0.00048828125)"><path d="M8 1128H1137V0H8V1128z"/></g><g id="bullet-char-template(10146)" transform="scale(0.00048828125,-0.00048828125)"><path d="M174 0 602 739 174 1481 1456 739 174 0zM1358 739 309 1346 659 739h699z"/></g><g id="bullet-char-template(10132)" transform="scale(0.00048828125,-0.00048828125)"><path d="M2015 739 1276 0H717l543 543H174V936H1260L717 1481h557l741-742z"/></g><g id="bullet-char-template(10007)" transform="scale(0.00048828125,-0.00048828125)"><path d="M0-2C-7 14-16 27-25 37L356 567C262 823 215 952 215 954c0 25 13 38 40 38 9 0 21-2 34-5 21 4 42 12 65 25l27-13L492 748l280 301 64-25 24 25c21-10 41-24 62-43-36-69-87-143-152-222-1-1-60-68-176-2e2L774 223c0-27-21-55-63-84l16-20c-10-29-28-43-55-43-31 0-102 102-215 305L164-76c-22-34-53-51-92-51-42 0-63 17-64 51C1-67-2-52-2-32-2-23-1-13 0-2z"/></g><g id="bullet-char-template(10004)" transform="scale(0.00048828125,-0.00048828125)"><path d="M285-33C182-33 111 30 74 156 52 228 41 333 41 471c0 78 14 145 41 201 34 71 87 106 158 106 53 0 88-31 106-94l23-176c8-64 28-97 59-98l735 706c11 11 33 17 66 17 42 0 63-15 63-46V965c0-36-10-64-30-84L442 47C390-6 338-33 285-33z"/></g><g id="bullet-char-template(9679)" transform="scale(0.00048828125,-0.00048828125)"><path d="M813 0C632 0 489 54 383 161 276 268 223 411 223 592s53 324 160 431c106 107 249 161 430 161 179 0 323-54 432-161 108-107 162-251 162-431s-54-324-162-431C1136 54 992 0 813 0z"/></g><g id="bullet-char-template(8226)" transform="scale(0.00048828125,-0.00048828125)"><path d="M346 457c-73 0-137 26-191 78-54 51-81 114-81 188 0 73 27 136 81 188s118 78 191 78 134-26 185-79c51-51 77-114 77-187 0-75-25-137-76-188-50-52-112-78-186-78z"/></g><g id="bullet-char-template(8211)" transform="scale(0.00048828125,-0.00048828125)"><path d="M-4 459H1135V606H-4V459z"/></g></defs><defs class="TextEmbeddedBitmaps"/><g class="SlideGroup"><g><g id="id1" class="Slide" clip-path="url(#presentation_clip_path)"><g class="Page"><g class="com.sun.star.drawing.CustomShape"><g id="id3"><g><defs><linearGradient id="gradient1" x1="8165" y1="4915" x2="11035" y2="9885" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ddd"/><stop offset="1" style="stop-color:gray"/></linearGradient></defs><path style="fill:url(#gradient1)" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g><path fill="none" stroke="rgb(185,21,21)" stroke-width="100" stroke-linejoin="miter" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g></g><g class="com.sun.star.drawing.TextShape"><g id="id4"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="2540" font-weight="700"><tspan class="TextPosition" x="7850" y="8283"/><tspan class="TextPosition" x="7850" y="8283"><tspan fill="rgb(128,0,0)" stroke="none">E</tspan></tspan></tspan></text></g></g><g class="com.sun.star.drawing.TextShape"><g id="id5"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="1764" font-weight="700"><tspan class="TextPosition" x="9550" y="8263"/><tspan class="TextPosition" x="9550" y="8263"><tspan fill="rgb(84,0,0)" stroke="none">vl</tspan></tspan></tspan></text></g></g></g></g></g></g></svg></span><span class="text-uppercase font-weight-bold"></span>
-	</a>
-	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
-		<ul class="navbar-nav mt-2 mt-lg-0">
-			
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../docs/about.html" ><span>What is EVL?</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../docs.html" ><span>Documentation</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="../../apidocs/index.html" ><span>Javadoc</span></a>
-			</li>
-			
-			<li class="nav-item mr-4 mb-2 mb-lg-0">
-				
-				
-				
-				
-				
-				
-				<a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank" ><span>GitHub</span></a>
-			</li>
-			
-			
-			
-		</ul>
-	</div>
-	<div class="navbar-nav d-none d-lg-block"></div>
+      <nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+  <a class="navbar-brand" href="../../"><span class="navbar-brand__logo navbar-logo"><svg version="1.2" baseProfile="tiny" width="43mm" height="43mm" viewBox="7450 5250 4300 4300" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink"><defs class="ClipPathGroup"><clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse"><rect x="7450" y="5250" width="4300" height="4300"/></clipPath></defs><defs><font id="EmbeddedFont_1" horiz-adv-x="2048"><font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/><missing-glyph horiz-adv-x="2048" d="M0 0H2047V2047H0V0z"/><glyph unicode="v" horiz-adv-x="1271" d="M31 1120H389L668 346l278 774h359L864 0H471L31 1120z"/><glyph unicode="l" horiz-adv-x="345" d="M172 1556H530V0H172V1556z"/><glyph unicode="E" horiz-adv-x="1033" d="M188 1493H1227V1202H573V924h615V633H573V291h676V0H188V1493z"/></font></defs><defs class="TextShapeIndex"><g ooo:slide="id1" ooo:id-list="id3 id4 id5"/></defs><defs class="EmbeddedBulletChars"><g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)"><path d="M580 1141l583-570L580 0-4 571l584 570z"/></g><g id="bullet-char-template(57354)" transform="scale(0.00048828125,-0.00048828125)"><path d="M8 1128H1137V0H8V1128z"/></g><g id="bullet-char-template(10146)" transform="scale(0.00048828125,-0.00048828125)"><path d="M174 0 602 739 174 1481 1456 739 174 0zM1358 739 309 1346 659 739h699z"/></g><g id="bullet-char-template(10132)" transform="scale(0.00048828125,-0.00048828125)"><path d="M2015 739 1276 0H717l543 543H174V936H1260L717 1481h557l741-742z"/></g><g id="bullet-char-template(10007)" transform="scale(0.00048828125,-0.00048828125)"><path d="M0-2C-7 14-16 27-25 37L356 567C262 823 215 952 215 954c0 25 13 38 40 38 9 0 21-2 34-5 21 4 42 12 65 25l27-13L492 748l280 301 64-25 24 25c21-10 41-24 62-43-36-69-87-143-152-222-1-1-60-68-176-2e2L774 223c0-27-21-55-63-84l16-20c-10-29-28-43-55-43-31 0-102 102-215 305L164-76c-22-34-53-51-92-51-42 0-63 17-64 51C1-67-2-52-2-32-2-23-1-13 0-2z"/></g><g id="bullet-char-template(10004)" transform="scale(0.00048828125,-0.00048828125)"><path d="M285-33C182-33 111 30 74 156 52 228 41 333 41 471c0 78 14 145 41 201 34 71 87 106 158 106 53 0 88-31 106-94l23-176c8-64 28-97 59-98l735 706c11 11 33 17 66 17 42 0 63-15 63-46V965c0-36-10-64-30-84L442 47C390-6 338-33 285-33z"/></g><g id="bullet-char-template(9679)" transform="scale(0.00048828125,-0.00048828125)"><path d="M813 0C632 0 489 54 383 161 276 268 223 411 223 592s53 324 160 431c106 107 249 161 430 161 179 0 323-54 432-161 108-107 162-251 162-431s-54-324-162-431C1136 54 992 0 813 0z"/></g><g id="bullet-char-template(8226)" transform="scale(0.00048828125,-0.00048828125)"><path d="M346 457c-73 0-137 26-191 78-54 51-81 114-81 188 0 73 27 136 81 188s118 78 191 78 134-26 185-79c51-51 77-114 77-187 0-75-25-137-76-188-50-52-112-78-186-78z"/></g><g id="bullet-char-template(8211)" transform="scale(0.00048828125,-0.00048828125)"><path d="M-4 459H1135V606H-4V459z"/></g></defs><defs class="TextEmbeddedBitmaps"/><g class="SlideGroup"><g><g id="id1" class="Slide" clip-path="url(#presentation_clip_path)"><g class="Page"><g class="com.sun.star.drawing.CustomShape"><g id="id3"><g><defs><linearGradient id="gradient1" x1="8165" y1="4915" x2="11035" y2="9885" gradientUnits="userSpaceOnUse"><stop offset="0" style="stop-color:#ddd"/><stop offset="1" style="stop-color:gray"/></linearGradient></defs><path style="fill:url(#gradient1)" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g><path fill="none" stroke="rgb(185,21,21)" stroke-width="100" stroke-linejoin="miter" d="M96e2 95e2H75e2V53e2h42e2V95e2H96e2z"/></g></g><g class="com.sun.star.drawing.TextShape"><g id="id4"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="2540" font-weight="700"><tspan class="TextPosition" x="7850" y="8283"/><tspan class="TextPosition" x="7850" y="8283"><tspan fill="rgb(128,0,0)" stroke="none">E</tspan></tspan></tspan></text></g></g><g class="com.sun.star.drawing.TextShape"><g id="id5"><text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="1764" font-weight="700"><tspan class="TextPosition" x="9550" y="8263"/><tspan class="TextPosition" x="9550" y="8263"><tspan fill="rgb(84,0,0)" stroke="none">vl</tspan></tspan></tspan></text></g></g></g></g></g></g></svg></span><span class="navbar-brand__name"></span></a>
+  <div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+    <ul class="navbar-nav mt-2 mt-lg-0">
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../docs/about.html"><span>What is EVL?</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../docs.html"><span>Documentation</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="../../apidocs/index.html"><span>Javadoc</span></a>
+      </li>
+      <li class="nav-item mr-4 mb-2 mb-lg-0">
+        <a class="nav-link" href="https://github.com/ylegoc/evl" target="_blank"><span>GitHub</span></a>
+      </li>
+      </ul>
+  </div>
+  <div class="navbar-nav d-none d-lg-block">
+    
+  </div>
 </nav>
-
     </header>
     <div class="container-fluid td-outer">
       <div class="td-main">
@@ -142,7 +97,7 @@
 <div id="td-sidebar-menu" class="td-sidebar__inner">
   <form class="td-sidebar__search d-flex align-items-center">
     
-    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
     </button>
   </form>
   <nav class="collapse td-sidebar-nav" id="td-section-nav">
@@ -250,22 +205,12 @@
           </aside>
           <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
             
-  
-  
-  
-  
-  
-  
-  <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
-  
-  
-  </div>
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 
+</div>
 
-            
-
-
-<div class="td-toc"><nav id="TableOfContents">
+            <div class="td-toc">
+        <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -274,10 +219,9 @@
       </ul>
     </li>
   </ul>
-</nav></div>
-
-
-
+</nav>
+      </div>
+    
             
 
 	
@@ -303,57 +247,36 @@
             
   
 
-            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
-	<ol class="breadcrumb spb-1">
-		
-
-
-
-
-
-
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="../../docs.html">Documentation</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item" >
-	<a href="../../docs/examples.html">Examples</a>
-</li>
-
-
-
-
-<li class="breadcrumb-item active" aria-current="page">
-	<a href="../../docs/examples/visitor.html">Visitor</a>
-</li>
-
-	</ol>
-</nav	>
-
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="../../docs.html">Documentation</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="../../docs/examples.html">Examples</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="../../docs/examples/visitor.html" aria-disabled="true" class="btn-link disabled">Visitor</a>
+  </li>
+  </ol>
+</nav>
             
 <div class="td-content">
 	<h1>Visitor</h1>
 	<div class="lead">Visit without entering</div>
 	<header class="article-meta">
 		
-		
-			
-				
+
+  
+    
 
 
-			
-				
+  
+    
 
 
-			
-		
+  
+
 		
 	</header>    
 	<p>The EVL library provides multimethods that implement multiple dispatch. The implementation of the <strong>Visitor</strong> pattern is immediate.
@@ -361,106 +284,106 @@ If you are not familiar with the pattern, you can have a look at the Wikipedia <
 <p>Implement the pattern requires some intrusive code and when we need to dispatch on the real type, we simply use the <em>instanceof</em> operator along with a downcast.</p>
 <p>The classes used in the example are defined in the <a href="../../docs/examples/preliminaries.html">preliminaries</a>.
 First we define a list of <em>Toy</em> objects that we will traverse:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">ArrayList&lt;Toy&gt; toys = <span style="color:#00a">new</span> ArrayList&lt;Toy&gt;();
-toys.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Car(<span style="color:#a50">&#34;red&#34;</span>));
-toys.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Doll(10));
-</code></pre></div><h3 id="simple-dispatch">Simple dispatch</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ArrayList&lt;Toy&gt; toys = <span style="color:#00a">new</span> ArrayList&lt;Toy&gt;();
+</span></span><span style="display:flex;"><span>toys.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Car(<span style="color:#a50">&#34;red&#34;</span>));
+</span></span><span style="display:flex;"><span>toys.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Doll(10));
+</span></span></code></pre></div><h3 id="simple-dispatch">Simple dispatch</h3>
 <p>If you need to traverse the list and process the <em>Toy</em> objects, you will often write:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">for</span> (Toy toy : toys) {
-	
-	<span style="color:#00a">if</span> (toy <span style="color:#00a">instanceof</span> Car) {
-		Car car = (Car)toy;
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
-	}
-	
-	<span style="color:#00a">if</span> (toy <span style="color:#00a">instanceof</span> Doll) {
-		Doll doll = (Doll)toy;
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
-	}
-	
-}
-</code></pre></div><p>The <em>downcast</em> enables to access to the specific methods of <em>Car</em> and <em>Doll</em>. However this code is not extensible. How to do if we need to process a <em>Game</em> object? Modify the loop?
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">for</span> (Toy toy : toys) {
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">if</span> (toy <span style="color:#00a">instanceof</span> Car) {
+</span></span><span style="display:flex;"><span>		Car car = (Car)toy;
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">if</span> (toy <span style="color:#00a">instanceof</span> Doll) {
+</span></span><span style="display:flex;"><span>		Doll doll = (Doll)toy;
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <em>downcast</em> enables to access to the specific methods of <em>Car</em> and <em>Doll</em>. However this code is not extensible. How to do if we need to process a <em>Game</em> object? Modify the loop?
 If you want to do this with standard polymorphism, you must implement the <strong>Visitor</strong> pattern to replace the <em>instanceof</em> operator, which is not simple and quite verbose.
 Another easy way is to use a multimethod.
 Here is the code:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Method1&lt;Void&gt; play = <span style="color:#00a">new</span> Method1&lt;Void&gt;().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
-			
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Car car) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
-	}
-	
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Doll doll) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
-	}
-
-});
-
-<span style="color:#00a">for</span> (Toy toy : toys) {
-	play.<span style="color:#1e90ff">invoke</span>(toy);
-}
-</code></pre></div><p>And if you need to add a new case for a <em>Game</em> object, this is naturally done:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">play.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
-			
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Game game) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Game with players &#34;</span> + game.<span style="color:#1e90ff">getPlayers</span>());
-	}
-	
-});
-</code></pre></div><p>Adding a new case only depends on the visibility of the multimethod. If it is global, new cases can be added anywhere and the loop does not need to be extended.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Method1&lt;Void&gt; play = <span style="color:#00a">new</span> Method1&lt;Void&gt;().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Car car) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Doll doll) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a">for</span> (Toy toy : toys) {
+</span></span><span style="display:flex;"><span>	play.<span style="color:#1e90ff">invoke</span>(toy);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And if you need to add a new case for a <em>Game</em> object, this is naturally done:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>play.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Game game) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Game with players &#34;</span> + game.<span style="color:#1e90ff">getPlayers</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Adding a new case only depends on the visibility of the multimethod. If it is global, new cases can be added anywhere and the loop does not need to be extended.</p>
 <h3 id="multiple-dispatch">Multiple dispatch</h3>
 <p>Now we want to refine the dispatch by taking into account the status of the person playing with the toys. The status is represented by the <em>Person</em> class hierarchy including <em>Kid</em>, <em>Teen</em> and <em>Adult</em>.</p>
 <p>We define a multimethod of dimension two, first dimension being the <em>Person</em> and second the <em>Toy</em>:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Method2&lt;Void&gt; play = <span style="color:#00a">new</span> Method2&lt;Void&gt;().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
-				
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Kid kid, Car car) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(kid.<span style="color:#1e90ff">getAge</span>() + <span style="color:#a50">&#34; years old kid plays with car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
-	}
-	
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Kid kid, Doll doll) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(kid.<span style="color:#1e90ff">getAge</span>() + <span style="color:#a50">&#34; years old kid plays with doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
-	}
-	
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Teen teen, Game game) {
-		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(teen.<span style="color:#1e90ff">getSex</span>() + <span style="color:#a50">&#34; teen plays with game with players &#34;</span> + game.<span style="color:#1e90ff">getPlayers</span>());
-	}
-	
-});
-</code></pre></div><p>Let&rsquo;s play with two persons:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Person[] persons = {<span style="color:#00a">new</span> Kid(5), <span style="color:#00a">new</span> Teen(Teen.<span style="color:#1e90ff">Sex</span>.<span style="color:#1e90ff">BOY</span>)};
-
-<span style="color:#00a">for</span> (Person person : persons) {
-	<span style="color:#00a">for</span> (Toy toy : toys) {
-		<span style="color:#00a">try</span> {
-			play.<span style="color:#1e90ff">invoke</span>(person, toy);
-		}
-		<span style="color:#00a">catch</span> (Throwable e) {
-			System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Toy cannot be played&#34;</span>);
-		}
-	}
-}
-</code></pre></div><p>This time we needed to catch the exception when there is no compatible method. This happened for the couples (<em>Kid</em>, <em>Game</em>), (<em>Teen</em>, <em>Car</em>) and (<em>Teen</em>, <em>Doll</em>).
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Method2&lt;Void&gt; play = <span style="color:#00a">new</span> Method2&lt;Void&gt;().<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
+</span></span><span style="display:flex;"><span>				
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Kid kid, Car car) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(kid.<span style="color:#1e90ff">getAge</span>() + <span style="color:#a50">&#34; years old kid plays with car with color &#34;</span> + car.<span style="color:#1e90ff">getColor</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Kid kid, Doll doll) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(kid.<span style="color:#1e90ff">getAge</span>() + <span style="color:#a50">&#34; years old kid plays with doll with height &#34;</span> + doll.<span style="color:#1e90ff">getHeight</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Teen teen, Game game) {
+</span></span><span style="display:flex;"><span>		System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(teen.<span style="color:#1e90ff">getSex</span>() + <span style="color:#a50">&#34; teen plays with game with players &#34;</span> + game.<span style="color:#1e90ff">getPlayers</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Let&rsquo;s play with two persons:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Person[] persons = {<span style="color:#00a">new</span> Kid(5), <span style="color:#00a">new</span> Teen(Teen.<span style="color:#1e90ff">Sex</span>.<span style="color:#1e90ff">BOY</span>)};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#00a">for</span> (Person person : persons) {
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">for</span> (Toy toy : toys) {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">try</span> {
+</span></span><span style="display:flex;"><span>			play.<span style="color:#1e90ff">invoke</span>(person, toy);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">catch</span> (Throwable e) {
+</span></span><span style="display:flex;"><span>			System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Toy cannot be played&#34;</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This time we needed to catch the exception when there is no compatible method. This happened for the couples (<em>Kid</em>, <em>Game</em>), (<em>Teen</em>, <em>Car</em>) and (<em>Teen</em>, <em>Doll</em>).
 The exception that is thrown is an instance of <em>NoMatchingMethodException</em>. If you want to define your own exception and manage the errors yourself, this is also feasible:</p>
 <p>We suppose that you defined the <em>ToyCannotBePlayedException</em> class.</p>
 <p>We add a new match method that covers all the error cases:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">play.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
-				
-	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Person person, Toy toy) <span style="color:#00a">throws</span> ToyCannotBePlayedException {
-		<span style="color:#00a">throw</span> <span style="color:#00a">new</span> ToyCannotBePlayedException();
-	}
-});
-</code></pre></div><p>We catch it in the loop:</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00a">for</span> (Person person : persons) {
-	<span style="color:#00a">for</span> (Toy toy : toys) {
-		<span style="color:#00a">try</span> {
-			play.<span style="color:#1e90ff">invoke</span>(person, toy);
-		}
-		<span style="color:#00a">catch</span> (ToyCannotBePlayedException e) {
-			System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Toy cannot be played by any person&#34;</span>);
-		}
-		<span style="color:#00a">catch</span> (Throwable e) {}
-	}
-}
-</code></pre></div><p>We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (<em>Person</em>, <em>Toy</em>).
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>play.<span style="color:#1e90ff">add</span>(<span style="color:#00a">new</span> Cases() {
+</span></span><span style="display:flex;"><span>				
+</span></span><span style="display:flex;"><span>	<span style="color:#0aa">void</span> <span style="color:#0a0">match</span>(Person person, Toy toy) <span style="color:#00a">throws</span> ToyCannotBePlayedException {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">throw</span> <span style="color:#00a">new</span> ToyCannotBePlayedException();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>We catch it in the loop:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#00a">for</span> (Person person : persons) {
+</span></span><span style="display:flex;"><span>	<span style="color:#00a">for</span> (Toy toy : toys) {
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">try</span> {
+</span></span><span style="display:flex;"><span>			play.<span style="color:#1e90ff">invoke</span>(person, toy);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">catch</span> (ToyCannotBePlayedException e) {
+</span></span><span style="display:flex;"><span>			System.<span style="color:#1e90ff">out</span>.<span style="color:#1e90ff">println</span>(<span style="color:#a50">&#34;Toy cannot be played by any person&#34;</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#00a">catch</span> (Throwable e) {}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>We could have defined a match method for each error case but that is not necessary. The multimethod dispatches on the most specific couple and it is enough to define a single match method on (<em>Person</em>, <em>Toy</em>).
 The couple (<em>Kid</em>, <em>Car</em>) is compatible with (<em>Person</em>, <em>Toy</em>) but there exists a perfect match method that is thus applied. However there is no perfect match for (<em>Kid</em>, <em>Game</em>) but (<em>Person</em>, <em>Toy</em>) is compatible and is thus applied.
 For more details, see <a href="../../docs/the-multimethods/best-match/">best match</a> and <a href="../../docs/theory/search-best-match.html">search for the best match</a>.</p>
 
@@ -510,35 +433,10 @@ For more details, see <a href="../../docs/the-multimethods/best-match/">best mat
 
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    
 
-
-
-
-
+<script src="../../js/main.min.be25a680a0d95dc8b5d6664622e2134aa894220e2f224ef609e00f633a3a1b32.js" integrity="sha256-viWmgKDZXci11mZGIuITSqiUIg4vIk72CeAPYzo6GzI=" crossorigin="anonymous"></script>
 <script src='../../js/tabpane-persist.js'></script>
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-<script src="../../js/main.min.5c74b870c6953931a705f390a49c7e4c0a842ec5c83b24354758dd674343ed0d.js" integrity="sha256-XHS4cMaVOTGnBfOQpJx&#43;TAqELsXIOyQ1R1jdZ0ND7Q0=" crossorigin="anonymous"></script>
-
-
-
 
   </body>
 </html>
