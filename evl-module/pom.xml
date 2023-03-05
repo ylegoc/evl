@@ -3,14 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.daproject.evl</groupId>
-	<artifactId>evl-base</artifactId>
+	<artifactId>evl-module</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>evl-lib</module>
-		<module>evl-examples</module>
-		<module>evl-perf</module>
-		<module>evl-module</module>
+		<module>evl-test-module</module>
+		<module>evl-use-module</module>
 	</modules>
 </project>
